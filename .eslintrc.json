@@ -1,0 +1,44 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "eslint:recommended",
+    "xo"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "globals": {
+    "JSX": true,
+    "React": true
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "no-unreachable": "warn",
+    "camelcase": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "padded-blocks": "warn",
+    "operator-linebreak": "off",
+    "no-multiple-empty-lines": "warn",
+    "@typescript-eslint/no-empty-function": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { "args": "none", "varsIgnorePattern": "^[^a-z]*$" }],
+    "no-promise-executor-return": "off",
+    "no-undef": "off",
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "jsx-quotes": ["warn", "prefer-single"],
+    "object-curly-spacing": ["warn", "always"],
+    "curly": ["warn", "multi"],
+    "comma-dangle": ["warn", "only-multiline"]
+  }
+}
