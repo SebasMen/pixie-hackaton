@@ -13,5 +13,5 @@ export const appProvider: AppContextType = {
   api,
 
   // Auth
-  isAuthenticated: false,
+  isAuthenticated: true,
 };

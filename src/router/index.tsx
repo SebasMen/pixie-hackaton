@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import FadeScreen from '../components/layout/fadeScreen';
 import Protected from './Protected';
 import Home from '../views/Home';
-import Login from '../views/Login';
 import NotFound from '../views/notFound';
 
 import { useAppContext, useAuth } from '../hooks';
@@ -55,7 +54,6 @@ const AppRouter = () => {
             }
           />
 
-          <Route path='/login' element={<Login />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>
