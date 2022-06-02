@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import FadeScreen from '../components/layout/fadeScreen';
-import Protected from './Protected';
 import Home from '../views/Home';
 import Catalogue from '../views/Catalogue';
 import NotFound from '../views/notFound';
