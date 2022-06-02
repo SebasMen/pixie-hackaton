@@ -15,6 +15,36 @@ export const IconButton = ({ onClick, name, type, size, className, img, color }:
   </div>
 );
 
+IconButton.mini = ({ onClick, name, type, size, className, img, color }: IconButtonProps) => (
+  <div
+    onClick={onClick}
+    style={color ? { backgroundColor: color } : {}}
+    className={`
+        flex items-center justify-center
+        cursor-pointer w-8 h-8 rounded-full
+        shadow-xl overflow-hidden
+        ${className} md:w-10 md:h-10
+    `}
+  >
+    {img ? <img src={img} alt={name} className='w-full h-full' /> : <Icon name={name} type={type} size={size} />}
+  </div>
+);
+
+IconButton.xl = ({ onClick, name, type, size, className, img, color }: IconButtonProps) => (
+  <div
+    onClick={onClick}
+    style={color ? { backgroundColor: color } : {}}
+    className={`
+        flex items-center justify-center
+        cursor-pointer w-20 h-20 rounded-full
+        shadow-xl overflow-hidden
+        ${className} md:w-24 md:h-24
+    `}
+  >
+    {img ? <img src={img} alt={name} className='w-full h-full' /> : <Icon name={name} type={type} size={size} />}
+  </div>
+);
+
 interface IconButtonProps extends IconProps {
   onClick: () => void;
   img?: string;

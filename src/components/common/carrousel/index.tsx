@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react';
 import { Pagination } from 'swiper';
 
 import 'swiper/css';
@@ -14,16 +14,19 @@ export const Carrousel = ({
   slidesPerView = 1.25,
   spaceBetween = 25,
   bulletsDirection = 'horizontal',
-  onSlideChange = () => {},
+  breakpoints,
+  centeredSlides = true,
+  onSlideChange = () => { },
 }: CarrouselProps) => (
   <Swiper
     className={'w-full rounded-lg relative ' + className}
-    centeredSlides
+    centeredSlides={centeredSlides}
     draggable
     spaceBetween={spaceBetween}
     slidesPerView={slidesPerView}
     onSlideChange={onSlideChange ? swiper => onSlideChange(swiper.activeIndex) : undefined}
     modules={[Pagination]}
+    breakpoints={breakpoints}
     pagination={{
       clickable: true,
       modifierClass: `swiper-pagination-${bulletsDirection} `,
@@ -42,6 +45,8 @@ interface CarrouselProps {
   slidesPerView?: number;
   spaceBetween?: number;
   bulletsDirection?: 'vertical' | 'horizontal';
+  breakpoints?: SwiperProps['breakpoints'];
+  centeredSlides?: boolean;
   onSlideChange?: (slide: number) => void;
 }
 

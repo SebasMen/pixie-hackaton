@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import FadeScreen from '../components/layout/fadeScreen';
 import Protected from './Protected';
 import Home from '../views/Home';
+import Catalogue from '../views/Catalogue';
 import NotFound from '../views/notFound';
 
 import { useAppContext, useAuth } from '../hooks';
@@ -36,7 +37,7 @@ const AppRouter = () => {
 
     if (!isMounted.current) isMounted.current = true;
 
-    return () => {};
+    return () => { };
   }, [isMounted.current]);
 
   // Routes
@@ -48,9 +49,14 @@ const AppRouter = () => {
           <Route
             path='/'
             element={
-              <Protected>
-                <Home />
-              </Protected>
+              <Home />
+            }
+          />
+
+          <Route
+            path='/catalogue'
+            element={
+              <Catalogue />
             }
           />
 

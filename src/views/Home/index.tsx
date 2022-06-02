@@ -33,7 +33,10 @@ const products: Product[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     name: 'Lorem ipsum dolor sit amet',
     price: 1000,
-    tag: 'sample',
+    tag: {
+      name: 'Cachorros',
+      key: 'dogs'
+    },
   },
   {
     id: '2',
@@ -41,7 +44,10 @@ const products: Product[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     name: 'Lorem ipsum dolor sit amet',
     price: 1000,
-    tag: 'sample',
+    tag: {
+      name: 'Cachorros',
+      key: 'dogs'
+    },
   },
   {
     id: '3',
@@ -49,7 +55,10 @@ const products: Product[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     name: 'Lorem ipsum dolor sit amet',
     price: 1000,
-    tag: 'sample',
+    tag: {
+      name: 'Cachorros',
+      key: 'dogs'
+    },
   },
   {
     id: '4',
@@ -57,7 +66,10 @@ const products: Product[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     name: 'Lorem ipsum dolor sit amet',
     price: 1000,
-    tag: 'sample',
+    tag: {
+      name: 'Cachorros',
+      key: 'dogs'
+    },
   },
   {
     id: '5',
@@ -65,7 +77,65 @@ const products: Product[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     name: 'Lorem ipsum dolor sit amet',
     price: 1000,
-    tag: 'sample',
+    tag: {
+      name: 'Cachorros',
+      key: 'dogs'
+    },
+  },
+  {
+    id: '6',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    name: 'Lorem ipsum dolor sit amet',
+    price: 1000,
+    tag: {
+      name: 'Cachorros',
+      key: 'dogs'
+    },
+  },
+  {
+    id: '7',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    name: 'Lorem ipsum dolor sit amet',
+    price: 1000,
+    tag: {
+      name: 'Cachorros',
+      key: 'dogs'
+    },
+  },
+  {
+    id: '8',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    name: 'Lorem ipsum dolor sit amet',
+    price: 1000,
+    tag: {
+      name: 'Cachorros',
+      key: 'dogs'
+    },
+  },
+  {
+    id: '9',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    name: 'Lorem ipsum dolor sit amet',
+    price: 1000,
+    tag: {
+      name: 'Cachorros',
+      key: 'dogs'
+    },
+  },
+  {
+    id: '10',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    name: 'Lorem ipsum dolor sit amet',
+    price: 1000,
+    tag: {
+      name: 'Cachorros',
+      key: 'dogs'
+    },
   },
 ];
 
@@ -75,7 +145,7 @@ const Home = () => (
     <img
       src={backgroundWood}
       alt='wood-bg'
-      className='object-cover h-screen absolute top-0 -z-10'
+      className='object-cover h-screen absolute top-0 -z-10 md:w-screen'
       style={{ backgroundColor: '#FAD7B1' }}
     />
 
@@ -83,7 +153,7 @@ const Home = () => (
     <NavBar />
 
     {/* Banner */}
-    <Banner dataBanner={dataBanner} />
+    <Banner dataBanner={dataBanner} showBotton={true} />
 
     {/* Carrousel & Products */}
     <ProductsSection products={products} />
@@ -97,10 +167,10 @@ const Home = () => (
       onClick={() => console.log('Hi')}
     />
 
-    {/* calculator */}
+    {/* Calculator */}
     <CalculatorSection />
 
-    {/* footer */}
+    {/* Footer */}
     <Footer />
   </Page>
 );

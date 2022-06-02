@@ -29,7 +29,8 @@
     "build": "cp environments/.local.env ./.env && react-scripts build",
     "build:prod": "cp environments/.prod.env ./.env && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev" : "react-scripts start"
   },
   "eslintConfig": {
     "extends": [
