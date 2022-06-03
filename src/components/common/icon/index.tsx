@@ -6,7 +6,7 @@ export interface IconProps {
 }
 
 export const Icon = ({ name, size = 'xl', type = 'round', className = '' }: IconProps) => (
-  <i className={`material-icons-${type} text-${size} ${className} rounded-full`}>{name}</i>
+  <i className={`material-icons-${type} text-${size} ${className} rounded-full`} >{name}</i>
 );
 
 export default Icon;

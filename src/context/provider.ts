@@ -14,4 +14,7 @@ export const appProvider: AppContextType = {
 
   // Auth
   isAuthenticated: true,
+
+  // Products
+  products: [],
 };

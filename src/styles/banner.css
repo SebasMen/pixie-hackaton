@@ -6,6 +6,10 @@
   .banner {
     height: calc(100vh - 110px);
   }
+
+  .productBanner {
+    height: calc(100vh - 150px) !important;
+  }
 }
 
 @media (min-width: 1024px) {

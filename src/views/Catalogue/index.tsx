@@ -198,7 +198,7 @@ const productsData = [
 ];
 
 const Catalogue = () => (
-  <Page className='relative'>
+  <Page color='#efd1b0'>
     {/* Background */}
     <img
       src={backgroundWood}
