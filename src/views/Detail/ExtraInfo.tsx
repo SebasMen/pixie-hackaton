@@ -1,22 +1,17 @@
 const ExtraInfo = ({ type, infoList, infoTable, infoConservation }: ExtraInfoProps) => {
   if (type === 'list')
     return <ul>
-      {infoList?.map(text => <li className='list-disc' key={text}>{ text }</li>)}
+      {infoList?.map((text, i) => <li className='list-disc text-gray-700 text-base' key={`li${i}${text}`}>{ text }</li>)}
     </ul>;
   if (type === 'table')
     return <div className='my-8'>
-      <div className='w-full bg-gray-300 text-center rounded-lg font-bold py-2'>Senior mayores de 7 años</div>
+      <div className='w-full bg-primary text-center text-white rounded-lg font-bold py-2'>Senior mayores de 7 años</div>
       <table className='table-auto border-collapse'>
-        <thead>
-          {/* <tr>
-            <th className='bg-gray-400 w-full'>Etapa: Senior mayores de 7 años</th>
-          </tr> */}
-        </thead>
         <tbody>
           {infoTable?.map(({ grams, kl }) =>
-            <tr key={kl}>
-              <td className='border-r border-b border-black px-12 py-6 font-bold'>{kl} Kg</td>
-              <td className='border-b border-black px-12 py-6 font-bold'>{grams} gramos por día</td>
+            <tr key={`tableItem-${grams}-${kl}`}>
+              <td className='border-r border-b border-black px-8 py-3 md:py-6 font-bold text-gray-700'>{kl} Kg</td>
+              <td className='border-b border-black md:px-12 px-8 py-3 md:py-6 font-bold text-gray-700'>{grams} gramos por día</td>
             </tr>
           )}
         </tbody>
@@ -25,11 +20,11 @@ const ExtraInfo = ({ type, infoList, infoTable, infoConservation }: ExtraInfoPro
 
   return (
     <div>
-      <p className='text-sm'>
-        <strong>Congelado:</strong> {infoConservation?.frozen}
+      <p className='text-sm text-gray-700'>
+        <strong className='text-primary'>Congelado:</strong> {infoConservation?.frozen}
       </p>
-      <p className='text-sm'>
-        <strong>Refrigerado:</strong> {infoConservation?.cooled}
+      <p className='text-sm text-gray-700'>
+        <strong className='text-primary'>Refrigerado:</strong> {infoConservation?.cooled}
       </p>
     </div>);
 };

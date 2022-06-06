@@ -5,3 +5,7 @@
 .animate__faster300 {
   --animate-duration: 0.3s;
 }
+.text_withoutbg {
+  -webkit-text-stroke: 2px #379C93;
+  color: transparent;
+}

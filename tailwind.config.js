@@ -11,7 +11,14 @@ module.exports = {
       zIndex: {
         100: '100',
         1000: '1000',
-      }
+      },
+      colors: {
+        primary: '#DF2F44',
+        secondary: '#BEE0E1',
+        third: '#D9EEEF',
+        fourth: '#7AC5BE',
+        fifth: '#fcebd8'
+      },
     },
   },
   plugins: [],

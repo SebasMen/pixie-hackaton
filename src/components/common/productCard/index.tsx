@@ -16,11 +16,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   // Component
   return (
     <div className='relative flex flex-col flex-shrink-0 justify-between items-center h-72 w-40 p-3 pb-8 rounded-2xl bg-white md:w-72 md:h-116'>
-      <div className='flex justify-between items-center gap-1 w-full'>
+      <div className='flex justify-between items-center gap-1 w-full mb-2'>
         <Tag name={product.tag.name} />
         <IconButton.mini img={product.tag.key === 'dogs' ? dog : cat} name={product.name + '-tag-' + product.tag.key} className='text-red-400 border-2 border-red-400 p-1 shadow-none' onClick={() => console.log(product.tag.key)} />
       </div>
-      <Icon name='landscape' className='text-gray-300' />
+      <div className='flex-grow overflow-hidden rounded-md'>
+        <img src={product.img} className='w-full object-cover' />
+      </div>
       <div className='text-center font-bold'>
         <h4 className='text-red-600 mb-1'>{product.name}</h4>
         <p className='text-gray-800'>${product.price}</p>

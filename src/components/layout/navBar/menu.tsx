@@ -1,14 +1,10 @@
-import { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
 import Icon from '../../common/icon';
 import IconButton from '../../common/iconButton';
 
-import twitterRed from '../../../assets/vectors/TwitterRed.svg';
-import facebookRed from '../../../assets/vectors/FacebookRed.svg';
-import instagramRed from '../../../assets/vectors/InstagramRed.svg';
-import logo from '../../../assets/images/logo.png';
+import { InstagramRed, FacebookRed, TwitterRed } from '../../../assets/vectors';
+import { logo } from '../../../assets/images';
 
 export const Menu = ({ collapsed, toggle }: MenuProps) => {
   // Hooks
@@ -63,9 +59,9 @@ export const Menu = ({ collapsed, toggle }: MenuProps) => {
 
       {/* Social */}
       <div className='flex justify-around items-center w-full flex-shrink-0 gap-2'>
-        <img src={facebookRed} className='w-4' />
-        <img src={instagramRed} className='w-7' />
-        <img src={twitterRed} className='w-7' />
+        <img src={FacebookRed} className='w-4' />
+        <img src={InstagramRed} className='w-7' />
+        <img src={TwitterRed} className='w-7' />
       </div>
     </div>
   );

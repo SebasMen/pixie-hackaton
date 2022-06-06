@@ -6,10 +6,8 @@ import IconButton from '../../common/iconButton';
 import Button from '../../common/button';
 import Menu from './menu';
 
-import twitterRed from '../../../assets/vectors/TwitterRed.svg';
-import facebookRed from '../../../assets/vectors/FacebookRed.svg';
-import instagramRed from '../../../assets/vectors/InstagramRed.svg';
-import logo from '../../../assets/images/logo.png';
+import { TwitterRed, FacebookRed, InstagramRed, basket } from '../../../assets/vectors';
+import { logo } from '../../../assets/images';
 
 export const NavBar = ({ isProduct }: NavBarProps) => {
   // Hooks
@@ -48,9 +46,9 @@ export const NavBar = ({ isProduct }: NavBarProps) => {
               <img src={logo} className='w-full cursor-pointer' onClick={toHome} />
             </div>
             <div className='hidden md:flex md:flex-row md:space-x-8 md:w-2/3'>
-              <img src={facebookRed} className='w-4' />
-              <img src={instagramRed} className='w-7' />
-              <img src={twitterRed} className='w-7' />
+              <img src={FacebookRed} className='w-4' />
+              <img src={InstagramRed} className='w-7' />
+              <img src={TwitterRed} className='w-7' />
             </div>
           </div>
           <div className='w-1/3 md:flex md:flex-row md:w-96'>
@@ -63,7 +61,7 @@ export const NavBar = ({ isProduct }: NavBarProps) => {
             </div>
 
             <div className='flex-shrink-0 flex justify-end gap-2 md:w-1/5'>
-              <IconButton name='shopping_basket' type='outlined' className={`${isProduct ? 'text-red-500 ring-2 ring-red-500' : 'text-amber-100'}`} size='3xl' shadow={false} onClick={() => console.log('cart')} color={isProduct ? undefined : '#df2f44'} />
+              <IconButton img={basket} name={basket} type='outlined' className={`pt-2 ${isProduct && 'mr-2 md:mr-0'}`} size='3xl' shadow={false} onClick={() => console.log('cart')} color='#df2f44' />
             </div>
           </div>
         </div>

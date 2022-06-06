@@ -13,9 +13,8 @@ import InfoSection from './InfoSection';
 import '../../styles/banner.css';
 import ExtraInfoContainer from './ExtraInfoContainer';
 
-const ingredients = [
-  'Corazón de res', 'Pulmón de res', 'Arroz integral', 'Papa', 'Zanahoria', 'Habichuela', 'Quinua', 'Linaza', 'Aceite vegetal', 'Huevo', 'Vitaminas', 'Minerales'
-];
+// DBFake
+import { ingredients } from '../../@fake/detailFake';
 
 const Detail = () => {
   // Hooks
@@ -27,7 +26,7 @@ const Detail = () => {
       <div className='flex flex-col w-full h-screen flex-shrink-0 overflow-hidden productBanner'>
         {/* NavBar */}
         <NavBar isProduct />
-        <p className='hidden text-gray-500 md:pt-10 md:mb-1 md:pl-24 md:block'>{'Catálogo > Pixie carne al horno'}</p>
+        <p className='hidden md:pt-10 md:mb-1 md:pl-24 md:block text-primary'>{'Catálogo > Pixie carne al horno'}</p>
         <div className='w-full flex-grow flex flex-col flex-shrink-0 md:flex-row md:px-24 md:pb-10 md:gap-16'>
           {/* Banner Detail */}
           <BannerDetail />

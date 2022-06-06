@@ -7,8 +7,7 @@ import Button from '../../components/common/button';
 
 import { Product } from '../../interfaces/product';
 
-import vegetables from '../../assets/images/vegetables.png';
-import dog from '../../assets/images/dogDesktop.png';
+import { dogDesktop, vegetables } from '../../assets/images';
 import { useNavigate } from 'react-router-dom';
 
 const cardsData = [
@@ -44,7 +43,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
     <div className='flex flex-col items-center bg-gray-100 w-full rounded-t-3xl transform -mt-4 pb-20 relative overflow-hidden'>
       {/* Backgrounds */}
       <img className='absolute w-full h-full object-cover object-right -z-20' src={vegetables} />
-      <img className='hidden absolute bottom-0 right-0 object-none -z-10 transform lg:block xl:bottom-16 xl:right-12 xl:scale-125' src={dog} />
+      <img className='hidden absolute bottom-0 right-0 object-none -z-10 transform lg:block xl:bottom-16 xl:right-12 xl:scale-125' src={dogDesktop} />
 
       {/* Carrousel */}
       <Carrousel onSlideChange={setSelected} className='pt-20 pb-10 px-5' breakpoints={{
