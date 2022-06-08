@@ -2,6 +2,8 @@ export interface Product {
   id: string;
   name: string;
   description: string;
+  quantity?: number;
+  totalPrice?: number;
   price: number;
   tag: {
     name: string;
@@ -9,3 +11,4 @@ export interface Product {
   };
   img?: string;
 }
+

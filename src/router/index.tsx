@@ -10,6 +10,7 @@ import NotFound from '../views/notFound';
 
 import { useAppContext, useAuth } from '../hooks';
 import Detail from '../views/Detail';
+import Calculator from '../views/Calculator';
 
 const AppRouter = () => {
   // Hooks
@@ -65,6 +66,13 @@ const AppRouter = () => {
             path='product/detail/:id'
             element={
               <Detail />
+            }
+          />
+
+          <Route
+            path='/calculator'
+            element={
+              <Calculator />
             }
           />
 

@@ -8,17 +8,22 @@ import Menu from './menu';
 
 import { TwitterRed, FacebookRed, InstagramRed, basket } from '../../../assets/vectors';
 import { logo } from '../../../assets/images';
+import { useAppContext } from '../../../hooks';
+import ShoppingCar from '../shoppingCar';
 
 export const NavBar = ({ isProduct }: NavBarProps) => {
   // Hooks
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState<boolean | null>(null);
+  const { products } = useAppContext();
+  const [showShoppingCar, setShowShoppingCar] = useState(false);
 
   // Methods
   const toCatalogue = () => navigate('/catalogue');
   const toHome = () => navigate('/');
 
   const toggleCollapsed = () => setCollapsed(old => !old);
+  const toogleShoppingCar = () => setShowShoppingCar(!showShoppingCar);
 
   return (
     <div className='w-full'>
@@ -61,7 +66,9 @@ export const NavBar = ({ isProduct }: NavBarProps) => {
             </div>
 
             <div className='flex-shrink-0 flex justify-end gap-2 md:w-1/5'>
-              <IconButton img={basket} name={basket} type='outlined' className={`pt-2 ${isProduct && 'mr-2 md:mr-0'}`} size='3xl' shadow={false} onClick={() => console.log('cart')} color='#df2f44' />
+              <IconButton img={basket} name={basket} type='outlined' className={`pt-2 ${isProduct && 'mr-2 md:mr-0'}`} size='3xl' shadow={false} onClick={() => toogleShoppingCar()} color='#df2f44' />
+              <div className='flex w-8 h-8 rounded-full absolute justify-center items-center font-bold bg-gray-600 text-white top-12 md:top-28 lg:top-32'>{products.length}</div>
+              {showShoppingCar ? <ShoppingCar onClose={toogleShoppingCar}/> : ''}
             </div>
           </div>
         </div>

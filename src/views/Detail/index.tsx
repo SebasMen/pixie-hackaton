@@ -15,6 +15,7 @@ import ExtraInfoContainer from './ExtraInfoContainer';
 
 // DBFake
 import { ingredients } from '../../@fake/detailFake';
+import BannerDetailDT from './BannerDetailDT';
 
 const Detail = () => {
   // Hooks
@@ -28,8 +29,10 @@ const Detail = () => {
         <NavBar isProduct />
         <p className='hidden md:pt-10 md:mb-1 md:pl-24 md:block text-primary'>{'Catálogo > Pixie carne al horno'}</p>
         <div className='w-full flex-grow flex flex-col flex-shrink-0 md:flex-row md:px-24 md:pb-10 md:gap-16'>
-          {/* Banner Detail */}
-          <BannerDetail />
+          {/* Banner Detail to mobile */}
+          <BannerDetail id={id} />
+          {/* Banner Detail to desktop */}
+          <BannerDetailDT />
           <InfoSection id={id} />
         </div>
       </div>

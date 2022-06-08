@@ -5,22 +5,40 @@ import ProductCounter from './productCounter';
 
 import { Product } from '../../interfaces/product';
 import { useAppContext } from '../../hooks';
+import ProductService from '../../services/productService';
 
-import { products } from '../../@fake/productsFake';
+import { useEffect, useState } from 'react';
 
 const InfoSection = ({ id }: InfoSectionProps) => {
   // Hooks
   const { updateContext } = useAppContext();
-
-  // Methods
-  const handlePriceChange = (price: number) =>
-    console.log(id, price);
-
-  const handleAddProduct = () =>
-    product && updateContext(old => ({ ...old, products: [...old.products, product] }));
+  const [product, setproduct] = useState<Product>({
+    description: 'undefined',
+    id: '0',
+    name: 'no registrado',
+    price: 0,
+    tag: {
+      name: 'cachorros',
+      key: '1'
+    },
+    quantity: 1,
+    totalPrice: 0
+  });
 
   // Product
-  const product: Product | undefined = products.find(p => p.id === id);
+  useEffect(() => {
+    ProductService.searchProduct(id).then(product => setproduct(product)).catch(product => setproduct(product));
+  }, [id]);
+
+  // Methods
+  const handlePriceChange = (totalPrice: number) => {
+    setproduct({ ...product, totalPrice });
+  };
+
+  const handleAddProduct = () => {
+    console.log(product);
+    updateContext(old => ({ ...old, products: [...old.products, product] }));
+  };
 
   return (
     <div className='flex flex-col w-full md:h-full md:w-1/3'>
@@ -38,7 +56,7 @@ const InfoSection = ({ id }: InfoSectionProps) => {
       </div>
 
       {/* Product Counter */}
-      <ProductCounter price={1000} onPriceChange={handlePriceChange} />
+      <ProductCounter price={product.price} onPriceChange={handlePriceChange} />
 
       {/* Cart Button */}
       <Button className='flex bg-red-600 gap-4 rounded-t-2xl py-4 rounded-b-none w-full md:rounded-b-2xl'

@@ -6,6 +6,8 @@ import logo_red from './logo_red.png';
 import logo from './logo.png';
 import vegetables from './vegetables.png';
 import vegetablesCatalogue from './vegetablesCatalogue.png';
+import dogCalculator from './dogCalculator.png';
+import backgroundCalculator from './backgroundCalculator.png';
 
 export {
   backgroundWood,
@@ -15,5 +17,7 @@ export {
   logo_red,
   logo,
   vegetables,
-  vegetablesCatalogue
+  vegetablesCatalogue,
+  dogCalculator,
+  backgroundCalculator
 };

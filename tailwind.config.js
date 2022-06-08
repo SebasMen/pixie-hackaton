@@ -17,7 +17,9 @@ module.exports = {
         secondary: '#BEE0E1',
         third: '#D9EEEF',
         fourth: '#7AC5BE',
-        fifth: '#fcebd8'
+        fourthOpacity: '#bcddd5',
+        fifth: '#fcebd8',
+        sixth: '#FFF6EC',
       },
     },
   },
