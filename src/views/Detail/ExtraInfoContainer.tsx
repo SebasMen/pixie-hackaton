@@ -6,7 +6,7 @@ const ExtraInfoContainer = () => (
     <div className='flex justify-between gap-4 mb-8 mx-24'>
       <div className='rounded-lg text-sm px-16 bg-fifth'>
         <div className='py-7'>
-          <span className='text-lg font-bold text-primary'>Beneficios y Características:</span>
+          <span className='text-lg font-bold text-fourth'>Beneficios y Características:</span>
         </div>
         <div className='pb-8 pl-5'>
           <ExtraInfo type='list' infoList={extraInfo.infoBenefits} />
@@ -14,7 +14,7 @@ const ExtraInfoContainer = () => (
       </div>
       <div className='rounded-lg text-sm	px-16 bg-fifth'>
         <div className='py-7'>
-          <span className='text-lg font-bold text-primary'>Tabla consumo en gramos diarios:</span>
+          <span className='text-lg font-bold text-fourth'>Tabla consumo en gramos diarios:</span>
         </div>
         <div className='pb-8'>
           <ExtraInfo type='table' infoTable={extraInfo.infoConsumer}/>
@@ -24,7 +24,7 @@ const ExtraInfoContainer = () => (
     <div className='flex justify-around rounded-lg px-16 mx-24 bg-fifth'>
       <div className='w-1/3'>
         <div className='py-7'>
-          <span className='text-lg font-bold text-primary'>Composición Garantizada-MS%</span>
+          <span className='text-lg font-bold text-fourth'>Composición Garantizada-MS%</span>
         </div>
         <div className='pb-8 pl-5'>
           <ExtraInfo type='list' infoList={extraInfo.infoComposition}/>
@@ -32,7 +32,7 @@ const ExtraInfoContainer = () => (
       </div>
       <div className='w-2/3'>
         <div className='py-7'>
-          <span className='text-lg font-bold text-primary'>Conservación del producto</span>
+          <span className='text-lg font-bold text-fourth'>Conservación del producto</span>
         </div>
         <div className='pb-8'>
           <ExtraInfo type='conservation' infoConservation={extraInfo.conservatioInfo} />

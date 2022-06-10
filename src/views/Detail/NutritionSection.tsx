@@ -1,11 +1,11 @@
 import NutritionItem from '../../components/common/nutritionItem';
 
 const NutritionSection = ({ ingredients }: NutritionSectionProps) => (
-  <div className='flex flex-col w-full bg-fifth md:px-24 md:bg-transparent mt-10'>
-    <div className='mb-4 mx-7 md:mx-0 text-center py-6'>
-      <span className='text-lg font-bold text-primary md:hidden'>Ingredientes y Nutrición</span>
+  <div className='flex flex-col w-full md:px-24 md:bg-transparent mt-10'>
+    <div className='md:hidden mb-4 mx-7 md:mx-0 text-center py-6'>
+      <span className='text-lg font-bold text-primary '>Ingredientes y Nutrición</span>
     </div>
-    <div className='mx-7 text-xs grid grid-cols-4 gap-4 md:grid-cols-12 text-primary font-extrabold md:pt-3 md:rounded-lg md:mx-0 md:bg-fifth'>
+    <div className='mx-7 mb-6 ring-2 ring-primary text-xs grid grid-cols-4 gap-4 md:grid-cols-12 text-primary font-extrabold md:pt-3 md:rounded-lg md:mx-0'>
       {ingredients.map(({ img, name }) => (<NutritionItem key={name} name={name} img={img} />))}
     </div>
   </div>

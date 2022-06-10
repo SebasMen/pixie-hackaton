@@ -23,7 +23,6 @@ export const CalculatorSection = () => {
 
   // Methods
   const handleSubmit = (form: CalculatorFormType) => {
-    console.log(form);
     setIsResult(true);
   };
 

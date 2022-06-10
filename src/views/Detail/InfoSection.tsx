@@ -5,53 +5,57 @@ import ProductCounter from './productCounter';
 
 import { Product } from '../../interfaces/product';
 import { useAppContext } from '../../hooks';
-import ProductService from '../../services/productService';
+import { transformAge } from '../../helpers/productHelper';
 
-import { useEffect, useState } from 'react';
-
-const InfoSection = ({ id }: InfoSectionProps) => {
+const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
   // Hooks
-  const { updateContext } = useAppContext();
-  const [product, setproduct] = useState<Product>({
-    description: 'undefined',
-    id: '0',
-    name: 'no registrado',
-    price: 0,
-    tag: {
-      name: 'cachorros',
-      key: '1'
-    },
-    quantity: 1,
-    totalPrice: 0
-  });
-
-  // Product
-  useEffect(() => {
-    ProductService.searchProduct(id).then(product => setproduct(product)).catch(product => setproduct(product));
-  }, [id]);
+  const { updateContext, products } = useAppContext();
 
   // Methods
-  const handlePriceChange = (totalPrice: number) => {
-    setproduct({ ...product, totalPrice });
+  const handlePriceChange = (quantity: number, totalPrice: number) => {
+    setproduct({ ...product, totalPrice, quantitySold: quantity });
   };
 
+  const ages = transformAge(product);
+
   const handleAddProduct = () => {
-    console.log(product);
-    updateContext(old => ({ ...old, products: [...old.products, product] }));
+    // The product already exist
+    const productOld = products.find(item => item.id === product.id);
+    if (productOld === undefined)
+      updateContext(old => ({ ...old, products: [...old.products, product] }));
+    else {
+      // Se obtienen los nuevos valores sumados con los que ya estan
+      const priceNewProduct = product.totalPrice === undefined ? 0 : product.totalPrice;
+      const quiantityNewProduct = product.quantitySold === undefined ? 0 : product.quantitySold;
+      const newPrice = productOld.totalPrice === undefined ? 0 : productOld.totalPrice += priceNewProduct;
+      const newQuantity = productOld.quantitySold === undefined ? 0 : productOld.quantitySold += quiantityNewProduct;
+      reOrganiceProducts(newPrice, newQuantity);
+    }
+  };
+
+  // Quitar el producto antiguo y guardar el nuevo
+  const reOrganiceProducts = (newPrice: number, newQuantity: number) => {
+    const newProduct: Product = { ...product, price: newPrice, quantitySold: newQuantity };
+    const newArrayProduct: Array<Product> = [];
+    products.map(item => item.id !== product.id && newArrayProduct.push(item));
+    newArrayProduct.push(newProduct);
+    updateContext(old => ({ ...old, products: newArrayProduct }));
   };
 
   return (
     <div className='flex flex-col w-full md:h-full md:w-1/3'>
       <div className='flex-shrink-0 px-7 md:px-0 md:flex-grow'>
-        <Tag name='Cachorros' className='mb-1 mt-2 md:mt-0' />
+        <div className='flex gap-3'>
+          {ages.map(age => <Tag key={`${product.id}-age-${age}`} name={age} className='mb-1 mt-2 md:mt-0'/>)}
+        </div>
         <div className='text-2xl font-bold mb-2 md:text-3xl text-primary'>
-          Pixie carne al horno
+          {product.name}
         </div>
         <div className='text-base mb-2'>
-          Dieta diseñada para perritos mayores de 7 años o con problemas hepáticos o renales
+          {product.description}
         </div>
-        <div className='text-sm text-gray-400	'>
-          Licencia de venta ICA #14584-AL
+        <div className='text-sm text-fourth	'>
+          Licencia de venta {product.license}
         </div>
       </div>
 
@@ -67,16 +71,17 @@ const InfoSection = ({ id }: InfoSectionProps) => {
       </Button>
 
       {/* Calculator */}
-      <div className='hidden justify-between mt-5 md:flex gap-1'>
+      <div className='hidden justify-between mt-5 md:flex gap-5'>
         <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
-        <Button className='rounded-full px-8 ring-2 ring-red-600 text-red-500'>Calculadora</Button>
+        <Button className='rounded-full px-8 ring-2 ring-red-600 text-red-500 h-12'>Calculadora</Button>
       </div>
     </div>
   );
 };
 
 interface InfoSectionProps {
-  id: string | undefined
+  product: Product,
+  setproduct: React.Dispatch<React.SetStateAction<Product>>
 }
 
 export default InfoSection;

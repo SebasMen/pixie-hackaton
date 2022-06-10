@@ -5,7 +5,7 @@ const ExtraInfo = ({ type, infoList, infoTable, infoConservation }: ExtraInfoPro
     </ul>;
   if (type === 'table')
     return <div className='my-8'>
-      <div className='w-full bg-primary text-center text-white rounded-lg font-bold py-2'>Senior mayores de 7 años</div>
+      <div className='w-full bg-fourth text-center text-white rounded-lg font-bold py-2'>Senior mayores de 7 años</div>
       <table className='table-auto border-collapse'>
         <tbody>
           {infoTable?.map(({ grams, kl }) =>
@@ -21,10 +21,10 @@ const ExtraInfo = ({ type, infoList, infoTable, infoConservation }: ExtraInfoPro
   return (
     <div>
       <p className='text-sm text-gray-700'>
-        <strong className='text-primary'>Congelado:</strong> {infoConservation?.frozen}
+        <strong className='text-fourth'>Congelado:</strong> {infoConservation?.frozen}
       </p>
       <p className='text-sm text-gray-700'>
-        <strong className='text-primary'>Refrigerado:</strong> {infoConservation?.cooled}
+        <strong className='text-fourth'>Refrigerado:</strong> {infoConservation?.cooled}
       </p>
     </div>);
 };

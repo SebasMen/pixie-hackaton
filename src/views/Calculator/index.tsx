@@ -6,10 +6,9 @@ import BannerSection from './BannerSection';
 import CalculatorSection from './calculatorSection';
 
 import { dog } from '../../assets/vectors';
-import ResultSection from './ResultSection';
 
 const Calculator = () => (
-  <Page className='bg-fourth'>
+  <Page className='bg-secondary'>
     <NavBar />
 
     {/* Banner */}
@@ -19,7 +18,6 @@ const Calculator = () => (
     <CalculatorSection />
 
     {/* result */}
-    {/* <ResultSection/> */}
 
     {/* FAB */}
     <IconButton

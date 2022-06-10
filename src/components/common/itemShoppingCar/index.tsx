@@ -12,9 +12,9 @@ const ItemShoppingCar = ({ product }: ItemShoppingCarProps) => {
   return (
     <div className='grid grid-flow-col gap-4 mb-6 items-center'>
       <figure>
-        <img src={product.img} className='w-16 h-16 rounded-2xl object-cover'/>
+        <img src={product.url_image} className='w-16 h-16 rounded-2xl object-cover'/>
       </figure>
-      <p>{product.name}</p>
+      <p>({product.quantitySold}) {product.name}</p>
       <p className='font-bold'>${product.totalPrice}</p>
       <IconButton name='close' onClick={handleDeleteProduct} shadow={false}/>
     </div>

@@ -13,7 +13,7 @@ export const ProductCounter = ({ price = 0, onPriceChange }: ProductCounterProps
     if (!(newCount > 0)) return;
 
     setCount(newCount);
-    onPriceChange(newCount * price);
+    onPriceChange(newCount, (newCount * price));
   };
 
   // Constants
@@ -23,7 +23,7 @@ export const ProductCounter = ({ price = 0, onPriceChange }: ProductCounterProps
   // Component
   return (
     <div className='w-full flex gap-1 px-7 my-2 md:px-0'>
-      <div className='w-max flex items-center p-4 rounded-3xl bg-fourth text-white'>
+      <div className='w-max flex items-center p-4 rounded-3xl bg-grayText text-white'>
         <IconButton.mini name='add' onClick={() => handleCount(1)} className='shadow-none p-2' />
         <span className='px-4 text-xl'>
           {count}
@@ -43,7 +43,7 @@ export const ProductCounter = ({ price = 0, onPriceChange }: ProductCounterProps
 
 interface ProductCounterProps {
   price?: number;
-  onPriceChange: (prize: number) => void;
+  onPriceChange: (quantity: number, price: number) => void;
 }
 
 export default ProductCounter;

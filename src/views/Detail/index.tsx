@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom';
-
 import Page from '../../components/layout/page';
 import NavBar from '../../components/layout/navBar';
 import Button from '../../components/common/button';
@@ -16,31 +14,37 @@ import ExtraInfoContainer from './ExtraInfoContainer';
 // DBFake
 import { ingredients } from '../../@fake/detailFake';
 import BannerDetailDT from './BannerDetailDT';
+import { useState } from 'react';
+import { Product } from '../../interfaces/product';
+import { useAppContext } from '../../hooks';
 
 const Detail = () => {
   // Hooks
-  const { id } = useParams();
+  /// const { id } = useParams();
+  // Hooks
+  const { productView } = useAppContext();
+  const [product, setproduct] = useState<Product>({ ...productView, quantitySold: 1, totalPrice: productView.price });
 
   // Component
   return (
     <Page>
-      <div className='flex flex-col w-full h-screen flex-shrink-0 overflow-hidden productBanner'>
+      <div className='flex flex-col w-full xl:h-screen flex-shrink-0 overflow-hidden productBanner'>
         {/* NavBar */}
         <NavBar isProduct />
-        <p className='hidden md:pt-10 md:mb-1 md:pl-24 md:block text-primary'>{'Catálogo > Pixie carne al horno'}</p>
+        <p className='hidden md:pt-10 md:mb-1 md:pl-24 md:block text-fourth'>{'Catálogo > '} {product.name}</p>
         <div className='w-full flex-grow flex flex-col flex-shrink-0 md:flex-row md:px-24 md:pb-10 md:gap-16'>
           {/* Banner Detail to mobile */}
-          <BannerDetail id={id} />
+          <BannerDetail product={product} />
           {/* Banner Detail to desktop */}
           <BannerDetailDT />
-          <InfoSection id={id} />
+          <InfoSection product={product} setproduct={setproduct}/>
         </div>
       </div>
 
       {/* Calculator */}
-      <div className='flex mx-3 mt-5 md:hidden md:px-24'>
+      <div className='flex mx-3 mt-5 md:hidden md:px-24 gap-5'>
         <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
-        <Button className='ring-2 ring-red-600 text-red-500'>Calculadora</Button>
+        <Button className='ring-2 ring-red-600 text-red-500 rounded-full'>Calculadora</Button>
       </div>
 
       {/* Nutrition */}

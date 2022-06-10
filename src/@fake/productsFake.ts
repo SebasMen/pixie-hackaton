@@ -1,125 +1,141 @@
+import { Product } from '../interfaces/product';
 
-export const products = [
+export const products: Array<Product> = [
   {
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     id: '1',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 2000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-    img: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=MnwxM[…]G90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-  },
-  {
-    id: '2',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     name: 'Lorem ipsum dolor sit amet',
     price: 5000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-    img: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+    age: 'cachorros',
+    quantity: 0,
+    totalPrice: 0,
+    category: '',
+    ingredients: '',
+    kind_pet: '',
+    license: '',
+    nutrition_information: '',
+    presentation: '',
+    status: '',
+    url_image: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
   },
   {
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    id: '2',
+    name: 'Lorem ipsum dolor sit amet',
+    price: 5000,
+    age: 'cachorros',
+    quantity: 0,
+    totalPrice: 0,
+    category: '',
+    ingredients: '',
+    kind_pet: '',
+    license: '',
+    nutrition_information: '',
+    presentation: '',
+    status: '',
+    url_image: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+  },
+  {
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     id: '3',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     name: 'Lorem ipsum dolor sit amet',
-    price: 6000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-    img: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+    price: 5000,
+    age: 'cachorros',
+    quantity: 0,
+    totalPrice: 0,
+    category: '',
+    ingredients: '',
+    kind_pet: '',
+    license: '',
+    nutrition_information: '',
+    presentation: '',
+    status: '',
+    url_image: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
   },
-  {
-    id: '4',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 9000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-    img: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-  },
-  {
-    id: '5',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 500,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-    img: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-  },
-  {
-    id: '6',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 3500,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-    img: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-  },
-  {
-    id: '7',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 10900,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-    img: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=MnwxM[…]G90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-  },
-  {
-    id: '8',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 23000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-    img: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-  },
-  {
-    id: '9',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 15000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-    img: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=MnwxM[…]G90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-  },
-  {
-    id: '10',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 3000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-    img: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=MnwxM[…]G90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-  },
+  // {
+  //   id: '4',
+  //   description:
+  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  //   name: 'Lorem ipsum dolor sit amet',
+  //   price: 9000,
+  //   tag: {
+  //     name: 'Cachorros',
+  //     key: 'dogs'
+  //   },
+  //   img: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+  // },
+  // {
+  //   id: '5',
+  //   description:
+  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  //   name: 'Lorem ipsum dolor sit amet',
+  //   price: 500,
+  //   tag: {
+  //     name: 'Cachorros',
+  //     key: 'dogs'
+  //   },
+  //   img: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+  // },
+  // {
+  //   id: '6',
+  //   description:
+  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  //   name: 'Lorem ipsum dolor sit amet',
+  //   price: 3500,
+  //   tag: {
+  //     name: 'Cachorros',
+  //     key: 'dogs'
+  //   },
+  //   img: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+  // },
+  // {
+  //   id: '7',
+  //   description:
+  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  //   name: 'Lorem ipsum dolor sit amet',
+  //   price: 10900,
+  //   tag: {
+  //     name: 'Cachorros',
+  //     key: 'dogs'
+  //   },
+  //   img: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=MnwxM[…]G90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+  // },
+  // {
+  //   id: '8',
+  //   description:
+  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  //   name: 'Lorem ipsum dolor sit amet',
+  //   price: 23000,
+  //   tag: {
+  //     name: 'Cachorros',
+  //     key: 'dogs'
+  //   },
+  //   img: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+  // },
+  // {
+  //   id: '9',
+  //   description:
+  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  //   name: 'Lorem ipsum dolor sit amet',
+  //   price: 15000,
+  //   tag: {
+  //     name: 'Cachorros',
+  //     key: 'dogs'
+  //   },
+  //   img: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=MnwxM[…]G90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+  // },
+  // {
+  //   id: '10',
+  //   description:
+  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  //   name: 'Lorem ipsum dolor sit amet',
+  //   price: 3000,
+  //   tag: {
+  //     name: 'Cachorros',
+  //     key: 'dogs'
+  //   },
+  //   img: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=MnwxM[…]G90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+  // },
 ];
 
 export const productsCatalogue = [

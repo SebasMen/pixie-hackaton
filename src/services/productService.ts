@@ -9,19 +9,24 @@ class ProductService {
       id: '0',
       name: 'no registrado',
       price: 0,
-      tag: {
-        name: 'cachorros',
-        key: '1'
-      },
+      age: 'a',
       quantity: 0,
-      totalPrice: 0
+      totalPrice: 0,
+      category: '',
+      ingredients: '',
+      kind_pet: '',
+      license: '',
+      nutrition_information: '',
+      presentation: '',
+      status: '',
+      url_image: ''
     };
     return new Promise((resolve, reject) => {
       const productFind = products.find(p => p.id === idProduct);
       if (productFind === undefined)
         reject(product);
       else
-        resolve(productFind);
+        resolve(product);
     });
   };
 }
