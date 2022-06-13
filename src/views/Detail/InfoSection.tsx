@@ -51,10 +51,10 @@ const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
         <div className='text-2xl font-bold mb-2 md:text-3xl text-primary'>
           {product.name}
         </div>
-        <div className='text-base mb-2'>
+        <div className='mb-2 font-subTitles text-lg'>
           {product.description}
         </div>
-        <div className='text-sm text-fourth	'>
+        <div className='text-sm text-fourth	font-paragraph'>
           Licencia de venta {product.license}
         </div>
       </div>
@@ -62,18 +62,26 @@ const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
       {/* Product Counter */}
       <ProductCounter price={product.price} onPriceChange={handlePriceChange} />
 
+      {/* typeProduct */}
+      <div className='hidden my-3 lg:flex gap-2 opacity-60'>
+        <div className='ring-1 ring-primary rounded-full w-9 h-9'></div>
+        <div className='ring-1 ring-primary rounded-full w-9 h-9'></div>
+        <div className='ring-1 ring-primary rounded-full w-9 h-9'></div>
+        <div className='ring-1 ring-primary rounded-full w-9 h-9'></div>
+      </div>
+
       {/* Cart Button */}
       <Button className='flex bg-red-600 gap-4 rounded-t-2xl py-4 rounded-b-none w-full md:rounded-b-2xl'
         onClick={handleAddProduct}
       >
-        <Icon name='shopping_bag' className='text-white' size='3xl' />
-        <span className='text-white text-xl'>Agregar a la bolsa</span>
+        <Icon name='shopping_bag' className='text-amber-100' size='3xl' type='outlined' />
+        <span className='text-xl text-amber-100'>Agregar a la bolsa</span>
       </Button>
 
       {/* Calculator */}
       <div className='hidden justify-between mt-5 md:flex gap-5'>
-        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
-        <Button className='rounded-full px-8 ring-2 ring-red-600 text-red-500 h-12'>Calculadora</Button>
+        <span className='font-subTitles'>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+        <Button rounded className='px-8 ring-2 ring-red-600 text-red-500 h-12 font-paragraph'>Calculadora</Button>
       </div>
     </div>
   );

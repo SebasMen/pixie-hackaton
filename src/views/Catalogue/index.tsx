@@ -1,6 +1,5 @@
 /// components
 import Page from '../../components/layout/page';
-import NavBar from '../../components/layout/navBar';
 import Footer from '../../components/layout/footer';
 import Banner from '../../components/layout/banner';
 import IconButton from '../../components/common/iconButton';
@@ -25,9 +24,12 @@ const Catalogue = () => {
     typePet: 'DOG'
   });
   return (
-    <Page color='#efd1b0'>
+    <Page color='#7AC5BE'>
       {loading
-        ? <Spinner/>
+        ?
+        <div className='w-full h-screen flex items-center justify-center'>
+          <Spinner />
+        </div>
         : (
           <>
             {/* Background */}
@@ -37,9 +39,6 @@ const Catalogue = () => {
               className='object-cover h-screen absolute top-0 -z-10 md:w-screen'
               style={{ backgroundColor: '#FAD7B1' }}
             />
-
-            {/* Navbar */}
-            <NavBar />
 
             {/* Banner */}
             <Banner dataBanner={dataBanner} showBotton={false} />
@@ -53,7 +52,7 @@ const Catalogue = () => {
               onClick={() => console.log('Hi')}
             />
 
-            <AnimalFilter setFilter={setfilterSelected} filter={filterSelected}/>
+            <AnimalFilter setFilter={setfilterSelected} filter={filterSelected} />
 
             {/* Products */}
             <ProductsSection data={response?.products} filter={filterSelected} />

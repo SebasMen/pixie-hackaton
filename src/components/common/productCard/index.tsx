@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { basket } from '../../../assets/vectors/index';
 
 import Tag from './tag';
 import IconButton from '../iconButton';
@@ -9,6 +10,7 @@ import cat from '../../../assets/vectors/CatIcon.svg';
 import dog from '../../../assets/vectors/DogIcon.svg';
 import { transformAge } from '../../../helpers/productHelper';
 import { useAppContext } from '../../../hooks';
+import AddRemoveItem from '../../addRemoveItem/AddRemoveItem';
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   // Hooks
@@ -28,20 +30,27 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <div>
           {ages.map(age => <Tag key={`${product.id}-age-${age}`} name={age} className='mb-1'/>)}
         </div>
-        <IconButton.mini img={product.kind_pet === 'CAT' ? dog : cat} name={product.name + '-tag-' + product.kind_pet} className='text-red-400 border-2 border-red-400 p-1 shadow-none' onClick={() => console.log(product.kind_pet)} />
+        <IconButton.mini img={product.kind_pet === 'CAT' ? cat : dog} name={product.name + '-tag-' + product.kind_pet} className='text-red-400 border-2 border-red-400 p-1 shadow-none' onClick={() => console.log(product.kind_pet)} />
       </div>
       <div className='flex-grow overflow-hidden rounded-md'>
         <img src={product.url_image} className='w-full object-cover' />
       </div>
-      <div className='text-center font-bold'>
+      <div className='text-center font-bold w-full'>
         <h4 className='text-red-600 mb-1'>{product.name}</h4>
-        <p className='text-gray-800'>${product.price}</p>
+        <div className='flex items-center justify-between'>
+          <p className='text-gray-800 font-subTitles font-extrabold'>${product.price} <span className='text-xs'>{product.presentation}</span></p>
+          <div>
+            <AddRemoveItem />
+          </div>
+        </div>
       </div>
       <IconButton
-        className='absolute -bottom-7 bg-red-500 text-white md:-bottom-8'
-        name='shopping_basket'
+        className='absolute -bottom-7 bg-red-500 text-white md:-bottom-8 '
+        imgClassName='w-8 h-8'
+        img={basket}
+        name='basket'
         type='outlined'
-        size='3xl'
+        size='xs'
         onClick={() => handleSubmit()}
       />
     </div>

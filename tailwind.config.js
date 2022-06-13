@@ -2,6 +2,15 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      screens: {
+        md: '720px',
+        tall: {
+          raw: '(min-width: 720px) and (min-height: 800px) and (orientation: portrait)',
+        },
+        taller: {
+          raw: '(min-width: 900px) and (orientation: portrait)'
+        },
+      },
       height: {
         116: '26rem',
         120: '28rem',
@@ -24,8 +33,16 @@ module.exports = {
         fourthOpacity: '#BEE0E1',
         fifth: '#f0f8f9',
         sixth: '#FFF6EC',
+        seventh: '#c1d4ae',
+        seventhOpacity: '#d3dec0',
+        seventhLight: '#dce3c9'
       },
+      fontFamily: {
+        titles: ['RNS Camelia'],
+        subTitles: ['RNS Sanz'],
+        paragraph: ['Arial', 'calibri']
+      }
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };

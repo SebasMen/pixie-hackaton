@@ -15,13 +15,13 @@ export const CalculatorSection = () => {
           <span className='text-3xl text-grayText font-extrabold'>Copy invitando a calculadora</span>
         </div>
         <Button
-          className='flex items-center justify-center px-11 py-2.5 rounded-xl cursor-pointer focus:outline-none mt-5 bg-white text-red-600 font-bold'
+          className='flex items-center justify-center px-11 py-2.5 rounded-xl cursor-pointer focus:outline-none mt-5 font-subTitles bg-white text-red-600 font-bold'
           onClick={ () => navigate('/calculator')}
         >
           Call to action
         </Button>
       </div>
-      <div className='z-10 md:w-2/3 xl:h-80 md:flex md:items-center md:justify-center md:pr-16 md:pl-16'>
+      <div className='z-10 md:w-2/3 xl:h-ful md:flex md:items-center md:justify-center md:pr-16 md:pl-16'>
         <img src={dogs} className='md:w-full md:object-contain' />
       </div>
     </div>

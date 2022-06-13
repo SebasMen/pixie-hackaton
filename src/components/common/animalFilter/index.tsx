@@ -4,7 +4,7 @@ import Button from '../button';
 import IconButton from '../iconButton';
 import Icon from '../icon';
 
-import { vegetablesCatalogue } from '../../../assets/images';
+/// import { vegetablesCatalogue } from '../../../assets/images';
 import {
   CatIcon,
   DogIcon,
@@ -43,10 +43,10 @@ const filters = [
   },
 ];
 
-const AnimalFilter = ({ setFilter, filter }:animalFilterProps) => (
+const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => (
   <div className='w-full flex flex-col items-center justify-center rounded-t-3xl overflow-hidden transform -mt-4' style={{ backgroundColor: '#FFF6EC' }}>
     {/* Backgrounds */}
-    <img className='absolute w-full md:pt-20 object-cover object-right -z-10' src={vegetablesCatalogue} />
+    {/* <img className='absolute w-full md:pt-20 object-cover object-right -z-10' src={vegetablesCatalogue} /> */}
 
     <div className='flex flex-row justify-around mb-14 mt-20 gap-5 md:gap-14'>
       {filters.map(({ name, key, img, imgSelected }) => (
@@ -78,15 +78,15 @@ const AnimalFilter = ({ setFilter, filter }:animalFilterProps) => (
         </div>
       ))}
     </div>
-    <div className='w-full flex flex-row justify-around px-8 gap-2 mb-10 md:gap-5 md:mb-2 md:px-32 md:justify-center'>
+    <div className='w-full flex flex-row justify-around px-8 gap-1 mb-10 md:gap-5 md:mb-2 md:px-32 md:justify-center'>
       {categories.map(({ key, name }) => (
         <Button
-          key={`cat${key}`}
-          className={'font-bold text-white gap-2 h-full transform transition-all duration-300 md:rounded-b-none'}
+          key={`cat-${key}`}
+          className={'font-bold text-white gap-1 h-full transform transition-all duration-300 md:rounded-b-none'}
           color={`${filter.agePet === key ? '#7ac5be' : '#bee0e1'}`}
           onClick={() => setFilter({ ...filter, agePet: key })}>
-          <Icon name='done' size='2xl' className={`${filter.agePet === key ? 'w-7' : 'w-0'} overflow-hidden transform transition-all`} />
-          {name}
+          <Icon name='done' size='2xl' className={`${filter.agePet === key ? 'w-6 md:w-7' : 'w-0'} overflow-hidden transform transition-all`} />
+          <span className='tracking-wide md:tracking-widest'>{name}</span>
         </Button>
       ))}
     </div>

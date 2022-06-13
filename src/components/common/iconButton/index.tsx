@@ -1,6 +1,6 @@
 import Icon, { IconProps } from '../icon/';
 
-export const IconButton = ({ onClick, name, type, size, className, img, color, shadow = true }: IconButtonProps) => (
+export const IconButton = ({ onClick, name, type, size, className, img, imgClassName, color, shadow = true }: IconButtonProps) => (
   <div
     onClick={onClick}
     style={color ? { backgroundColor: color } : {}}
@@ -11,7 +11,7 @@ export const IconButton = ({ onClick, name, type, size, className, img, color, s
         ${className} md:w-16 md:h-16 
     `}
   >
-    {img ? <img src={img} alt={name} className='w-full h-full' /> : <Icon name={name} type={type} size={size} />}
+    {img ? <img src={img} alt={name} className={imgClassName || 'w-full h-full'} /> : <Icon name={name} type={type} size={size} />}
   </div>
 );
 
@@ -48,6 +48,7 @@ IconButton.xl = ({ onClick, name, type, size, className, img, color, shadow = tr
 interface IconButtonProps extends IconProps {
   onClick: () => void;
   img?: string;
+  imgClassName?: string;
   color?: string;
   shadow?: boolean;
 }

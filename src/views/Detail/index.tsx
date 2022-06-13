@@ -1,5 +1,4 @@
 import Page from '../../components/layout/page';
-import NavBar from '../../components/layout/navBar';
 import Button from '../../components/common/button';
 import Footer from '../../components/layout/footer';
 
@@ -29,9 +28,7 @@ const Detail = () => {
   return (
     <Page>
       <div className='flex flex-col w-full xl:h-screen flex-shrink-0 overflow-hidden productBanner'>
-        {/* NavBar */}
-        <NavBar isProduct />
-        <p className='hidden md:pt-10 md:mb-1 md:pl-24 md:block text-fourth'>{'Catálogo > '} {product.name}</p>
+        <p className='hidden md:pt-10 md:mb-1 md:pl-24 md:block text-fourth font-paragraph text-sm'>{'Catálogo > '} {product.name}</p>
         <div className='w-full flex-grow flex flex-col flex-shrink-0 md:flex-row md:px-24 md:pb-10 md:gap-16'>
           {/* Banner Detail to mobile */}
           <BannerDetail product={product} />

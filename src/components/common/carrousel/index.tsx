@@ -16,6 +16,7 @@ export const Carrousel = ({
   bulletsDirection = 'horizontal',
   breakpoints,
   centeredSlides = true,
+  bulletClassName,
   onSlideChange = () => { },
 }: CarrouselProps) => (
   <Swiper
@@ -30,7 +31,7 @@ export const Carrousel = ({
     pagination={{
       clickable: true,
       modifierClass: `swiper-pagination-${bulletsDirection} `,
-      bulletClass: 'bg-gray-500 transition-all transform scale-50 swiper-pagination-bullet',
+      bulletClass: `${bulletClassName} bg-gray-500 transition-all transform scale-50 swiper-pagination-bullet`,
     }}
   >
     {React.Children.map(children, item => (
@@ -44,6 +45,7 @@ interface CarrouselProps {
   className?: string;
   slidesPerView?: number;
   spaceBetween?: number;
+  bulletClassName?: string;
   bulletsDirection?: 'vertical' | 'horizontal';
   breakpoints?: SwiperProps['breakpoints'];
   centeredSlides?: boolean;

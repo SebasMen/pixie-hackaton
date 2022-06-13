@@ -1,5 +1,4 @@
 import Page from '../../components/layout/page';
-import NavBar from '../../components/layout/navBar';
 import ProductsSection from './productsSection';
 import Banner from '../../components/layout/banner';
 import IconButton from '../../components/common/iconButton';
@@ -21,7 +20,10 @@ const Home = () => {
   return (
     <Page color='#efd1b0'>
       {loading
-        ? <Spinner/>
+        ?
+        <div className='w-full h-screen flex items-center justify-center'>
+          <Spinner />
+        </div>
         :
         (<>
           {/* Background */}
@@ -31,9 +33,6 @@ const Home = () => {
             className='object-cover h-screen absolute top-0 -z-10 md:w-screen'
             style={{ backgroundColor: '#FAD7B1' }}
           />
-
-          {/* Navbar */}
-          <NavBar />
 
           {/* Banner */}
           <Banner dataBanner={dataBanner} showBotton={true} />

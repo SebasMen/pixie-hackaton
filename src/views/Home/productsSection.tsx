@@ -90,19 +90,12 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       </Carrousel>
 
       {/* Products */}
-      <div>
-        <div className='flex flex-wrap justify-center gap-4 gap-y-20 mt-20 p-4 xl:p-32 xl:justify-start items-start'>
-          {products?.slice(0, 4).map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-        <div className='flex flex-wrap justify-center gap-4 gap-y-20 mt-20 p-4 xl:justify-start items-start'>
-          {products?.slice(4, 7).map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+      <div className='flex flex-wrap justify-center gap-4 gap-y-20 mt-20 p-4 lg:p-24 xl:p-32 xl:justify-start items-start'>
+        {products?.slice(0, 7).map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
-      <Button className='mt-10 text-red-500 font-bold w-4/5 border-2 border-red-500 md:w-96' onClick={redirectCatalogue}>Ver catálogo</Button>
+      <Button className='mt-10 text-red-500 font-bold font-subTitles w-4/5 border-2 border-red-500 md:w-96' onClick={redirectCatalogue}>Ver catálogo</Button>
     </div>
   );
 };

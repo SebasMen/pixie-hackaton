@@ -1,11 +1,10 @@
 import { ChangeEventHandler, HTMLInputTypeAttribute } from 'react';
 
-/// import { TextFieldStyle } from './textFieldStyle';
-
 export const TextField = ({
   label,
   placeholder,
   className,
+  fieldClassName,
   name,
   value,
   pattern,
@@ -17,7 +16,7 @@ export const TextField = ({
   <div className={`${className} flex flex-col`}>
     {label && <label>{label}</label>}
     <input
-      className='outline-none rounded-full px-4 p-2 ring-0 ring-red-500 transform transition-all focus:ring-2 focus:outline-none'
+      className={`${fieldClassName} outline-none rounded-full px-4 p-2 ring-0 ring-red-500 transform transition-all focus:ring-2 focus:outline-none`}
       placeholder={placeholder}
       pattern={pattern}
       type={type}
@@ -35,6 +34,7 @@ interface TextFieldProps {
   value: string | number;
   type?: HTMLInputTypeAttribute;
   className?: string;
+  fieldClassName?: string;
   label?: string;
   disabled?: boolean;
   required?: boolean;

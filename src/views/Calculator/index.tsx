@@ -1,6 +1,5 @@
 import IconButton from '../../components/common/iconButton';
 import Footer from '../../components/layout/footer';
-import NavBar from '../../components/layout/navBar';
 import Page from '../../components/layout/page';
 import BannerSection from './BannerSection';
 import CalculatorSection from './calculatorSection';
@@ -8,9 +7,7 @@ import CalculatorSection from './calculatorSection';
 import { dog } from '../../assets/vectors';
 
 const Calculator = () => (
-  <Page className='bg-secondary'>
-    <NavBar />
-
+  <Page color='#efd1b0' className='bg-secondary'>
     {/* Banner */}
     <BannerSection />
 

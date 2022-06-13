@@ -4,20 +4,23 @@ import ResultRecommendation from './ResultRecommendation';
 import Button from '../../components/common/button';
 
 const ResultSection = () => (
-  <div className='w-full rounded-t-3xl bg-sixth -mt-5 z-10 '>
+  <div className='w-full rounded-t-3xl bg-sixth -mt-5 z-10 animate__animated animate__fadeIn'>
     <div className='text-center mb-14 mt-14'>
       <span className='text-primary text-2xl font-bold'>¡PIXEL debe consumir un total de 670 gramos al día en 2 porciones!</span>
     </div>
     <div className='flex justify-center items-center lg:gap-14 gap-6'>
       <div className='lg:scale-90 mb-4'>
-        <ProductCard product={products[0]} />
+        <ProductCard product={products[0]}/>
       </div>
       <div className='mb-4'>
-        <ProductCard product={products[1]}/>
+        <ProductCard product={products[1]} />
       </div>
       <div className='hidden lg:scale-90 lg:block'>
         <ProductCard product={products[2]}/>
       </div>
+    </div>
+    <div className='text-center mt-8 font-subTitles font-bold'>
+      <span>Dieta recomendada para 4 semanas = 30 porciones, <span className='text-primary'>¡combínalas como tu quieras!</span></span>
     </div>
     <ResultRecommendation/>
     <div className='flex justify-center items-center mb-36 flex-col w-full lg:flex-row px-3'>

@@ -13,11 +13,11 @@ export const ProductsSection = ({ data, filter }: ProductsSectionProps) => {
               ${i % 2 === 0 ? 'bg-thirdOpacity' : 'bg-third'}
             `}
           >
-            <h2 className='text-center font-bold text-5xl mb-10 text-gray-700 stroke-zinc-50 text_withoutbg opacity-50 md:text-7xl'>{category}</h2>
+            <h2 className='text-center text-5xl mb-10 text-gray-700 stroke-zinc-50 text_withoutbg opacity-50 md:text-7xl'>{category}</h2>
             <div
               className={`
                 flex flex-wrap justify-center gap-4 gap-y-20 
-                xl:justify-start items-start
+                items-start
               `}
             >
               {data?.map(product => (product.category.trim() === category.toLocaleLowerCase() && product.age.includes(filter.agePet) && product.kind_pet === filter.typePet) && <ProductCard key={product.id} product={product} />)}

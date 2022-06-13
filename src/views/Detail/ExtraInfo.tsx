@@ -1,12 +1,12 @@
 const ExtraInfo = ({ type, infoList, infoTable, infoConservation }: ExtraInfoProps) => {
   if (type === 'list')
-    return <ul>
+    return <ul className='font-paragraph'>
       {infoList?.map((text, i) => <li className='list-disc text-gray-700 text-base' key={`li${i}${text}`}>{ text }</li>)}
     </ul>;
   if (type === 'table')
     return <div className='my-8'>
       <div className='w-full bg-fourth text-center text-white rounded-lg font-bold py-2'>Senior mayores de 7 años</div>
-      <table className='table-auto border-collapse'>
+      <table className='table-auto border-collapse font-paragraph'>
         <tbody>
           {infoTable?.map(({ grams, kl }) =>
             <tr key={`tableItem-${grams}-${kl}`}>
@@ -19,7 +19,7 @@ const ExtraInfo = ({ type, infoList, infoTable, infoConservation }: ExtraInfoPro
     </div>;
 
   return (
-    <div>
+    <div className='font-paragraph'>
       <p className='text-sm text-gray-700'>
         <strong className='text-fourth'>Congelado:</strong> {infoConservation?.frozen}
       </p>
