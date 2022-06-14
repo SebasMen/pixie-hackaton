@@ -26,3 +26,8 @@ export interface Product {
   // };
 }
 
+export interface productCatalogue {
+    name: string,
+    products: Array<Product>,
+}
+

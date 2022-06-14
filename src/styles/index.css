@@ -7,7 +7,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  color: '#4A4A4A';
+  color: #4A4A4A;
   margin: 0;
   font-family: 'RNS Camelia', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -15,20 +15,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 /* @font-face {
   font-family: 'RNS Camelia';
-  src: local('RNS Camelia'), url(../assets/fonts/RNSCamelia-Regular.otf) format('opentype');
-} */
-
-/* @font-face {
-  font-family: 'RNS Camelia';
-  src: local('RNS Camelia'), url(../assets/fonts/RNSCamelia-Black.otf) format('opentype');
+  src: local('RNS Camelia'), url(../assets/fonts/RNSCamelia-Medium.otf) format('opentype');
 } */
 @font-face {
   font-family: 'RNS Camelia';
-  src: local('RNS Camelia'), url(../assets/fonts/RNSCamelia-Medium.otf) format('opentype');
+  src: local('RNS Camelia'), url(../assets/fonts/RNSCamelia-ExtraBold.otf) format('opentype');
 }
+
 /* @font-face {
   font-family: 'RNS Camelia';
   src: local('RNS Camelia'), url(../assets/fonts/RNSCamelia-Light.otf) format('opentype');
@@ -37,6 +32,7 @@ body {
   font-family: 'RNS Sanz';
   src: local('RNS Camelia'), url(../assets/fonts/RNSSanz-Normal.ttf) format('truetype');
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
@@ -57,4 +53,14 @@ h5,
 h6,
 button {
   text-align: center;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+input:focus {
+  border: none;
+  outline: none;
 }

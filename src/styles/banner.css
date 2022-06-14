@@ -1,5 +1,5 @@
 .banner {
-  height: calc(100vh - 105px);
+  height: calc(100vh - 110px);
 }
 
 @media (min-width: 728px) {
@@ -17,7 +17,8 @@
 
 @media (min-width: 1280px) {
   .banner {
-    height: calc(100vh - 220px);
+    /* height: calc(100vh - 220px); */
+    height: 600px;
   }
 }
 @media (min-width: 1280px) and (min-height: 700px) {

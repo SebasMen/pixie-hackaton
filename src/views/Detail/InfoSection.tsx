@@ -5,7 +5,7 @@ import ProductCounter from './productCounter';
 
 import { Product } from '../../interfaces/product';
 import { useAppContext } from '../../hooks';
-import { transformAge } from '../../helpers/productHelper';
+import { addProductToCar, transformAge } from '../../helpers/productHelper';
 
 const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
   // Hooks
@@ -19,27 +19,7 @@ const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
   const ages = transformAge(product);
 
   const handleAddProduct = () => {
-    // The product already exist
-    const productOld = products.find(item => item.id === product.id);
-    if (productOld === undefined)
-      updateContext(old => ({ ...old, products: [...old.products, product] }));
-    else {
-      // Se obtienen los nuevos valores sumados con los que ya estan
-      const priceNewProduct = product.totalPrice === undefined ? 0 : product.totalPrice;
-      const quiantityNewProduct = product.quantitySold === undefined ? 0 : product.quantitySold;
-      const newPrice = productOld.totalPrice === undefined ? 0 : productOld.totalPrice += priceNewProduct;
-      const newQuantity = productOld.quantitySold === undefined ? 0 : productOld.quantitySold += quiantityNewProduct;
-      reOrganiceProducts(newPrice, newQuantity);
-    }
-  };
-
-  // Quitar el producto antiguo y guardar el nuevo
-  const reOrganiceProducts = (newPrice: number, newQuantity: number) => {
-    const newProduct: Product = { ...product, price: newPrice, quantitySold: newQuantity };
-    const newArrayProduct: Array<Product> = [];
-    products.map(item => item.id !== product.id && newArrayProduct.push(item));
-    newArrayProduct.push(newProduct);
-    updateContext(old => ({ ...old, products: newArrayProduct }));
+    addProductToCar(product);
   };
 
   return (

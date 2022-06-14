@@ -15,22 +15,22 @@ export const IconButton = ({ onClick, name, type, size, className, img, imgClass
   </div>
 );
 
-IconButton.mini = ({ onClick, name, type, size, className, img, color, shadow }: IconButtonProps) => (
+IconButton.mini = ({ onClick, name, type, size, className, img, imgClassName, color, shadow, sizeContainer }: IconButtonProps) => (
   <div
     onClick={onClick}
     style={color ? { backgroundColor: color } : {}}
     className={`
         flex items-center justify-center
-        cursor-pointer w-8 h-8 rounded-full
+        cursor-pointer ${sizeContainer ? sizeContainer : 'w-8 h-8 md:w-10 md:h-10'} rounded-full
         ${shadow && 'shadow-xl'} overflow-hidden
-        ${className} md:w-10 md:h-10
+        ${className}
     `}
   >
-    {img ? <img src={img} alt={name} className='w-full h-full' /> : <Icon name={name} type={type} size={size} />}
+    {img ? <img src={img} alt={name} className={imgClassName || 'w-full h-full'} /> : <Icon name={name} type={type} size={size} />}
   </div>
 );
 
-IconButton.xl = ({ onClick, name, type, size, className, img, color, shadow = true }: IconButtonProps) => (
+IconButton.xl = ({ onClick, name, type, size, className, img, imgClassName, color, shadow = true }: IconButtonProps) => (
   <div
     onClick={onClick}
     style={color ? { backgroundColor: color } : {}}
@@ -41,7 +41,7 @@ IconButton.xl = ({ onClick, name, type, size, className, img, color, shadow = tr
         ${className} md:w-24 md:h-24
     `}
   >
-    {img ? <img src={img} alt={name} className='w-full h-full' /> : <Icon name={name} type={type} size={size} />}
+    {img ? <img src={img} alt={name} className={imgClassName || 'w-full h-full'} /> : <Icon name={name} type={type} size={size} />}
   </div>
 );
 
@@ -51,6 +51,7 @@ interface IconButtonProps extends IconProps {
   imgClassName?: string;
   color?: string;
   shadow?: boolean;
+  sizeContainer?: string;
 }
 
 export default IconButton;

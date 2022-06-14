@@ -22,7 +22,7 @@ export const SelectField = ({
       })}
       isMulti={isMulti}
       className='w-full'
-      name='departments'
+      name={name}
       value={value}
       options={options}
       onChange={newValue => onChange(newValue, name)}

@@ -25,6 +25,13 @@ import Twitter from './Twitter.svg';
 import TwitterRed from './TwitterRed.svg';
 import vegetableOil from './vegetableOil.svg';
 import vitamin from './vitamin.svg';
+import cardHomePets from './cardHomePets.svg';
+import cardHomeStool from './cardHomeStool.svg';
+import cardHomeFood from './cardHomeFood.svg';
+import cardHomeLoveDog from './cardHomeLoveDog.svg';
+import cardHomePets2 from './cardHomePets2.svg';
+import cataloguePoints from './cataloguePoints.svg';
+import cataloguePointsM from './cataloguePointsM.svg';
 
 export {
   basket,
@@ -54,4 +61,11 @@ export {
   TwitterRed,
   vegetableOil,
   vitamin,
+  cardHomePets,
+  cardHomeStool,
+  cardHomeFood,
+  cardHomeLoveDog,
+  cardHomePets2,
+  cataloguePoints,
+  cataloguePointsM
 };

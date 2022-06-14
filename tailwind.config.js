@@ -4,6 +4,8 @@ module.exports = {
     extend: {
       screens: {
         md: '720px',
+        lg2: '1100px',
+        '3xl': '1800px',
         tall: {
           raw: '(min-width: 720px) and (min-height: 800px) and (orientation: portrait)',
         },
@@ -12,6 +14,12 @@ module.exports = {
         },
       },
       height: {
+        116: '26rem',
+        120: '28rem',
+        124: '30rem',
+        128: '32rem',
+      },
+      with: {
         116: '26rem',
         120: '28rem',
         124: '30rem',
@@ -44,5 +52,5 @@ module.exports = {
       }
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [],
 };

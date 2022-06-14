@@ -16,7 +16,7 @@ export const TextField = ({
   <div className={`${className} flex flex-col`}>
     {label && <label>{label}</label>}
     <input
-      className={`${fieldClassName} outline-none rounded-full px-4 p-2 ring-0 ring-red-500 transform transition-all focus:ring-2 focus:outline-none`}
+      className={`${fieldClassName} outline-none rounded-full px-4 p-2 ring-0 transform transition-all border-0 ring-red-500 focus:ring-2 focus:outline-none`}
       placeholder={placeholder}
       pattern={pattern}
       type={type}

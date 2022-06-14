@@ -8,6 +8,8 @@ import vegetables from './vegetables.png';
 import vegetablesCatalogue from './vegetablesCatalogue.png';
 import dogCalculator from './dogCalculator.png';
 import backgroundCalculator from './backgroundCalculator.png';
+import catalogCat from './catalogCat.png';
+import fullDogCalculator from './fullDogCalculator.png';
 
 export {
   backgroundWood,
@@ -19,5 +21,7 @@ export {
   vegetables,
   vegetablesCatalogue,
   dogCalculator,
-  backgroundCalculator
+  backgroundCalculator,
+  catalogCat,
+  fullDogCalculator
 };

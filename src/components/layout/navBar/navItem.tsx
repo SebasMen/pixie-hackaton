@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export const NavItem = ({ name, path }: NavItemProps) => {
+export const NavItem = ({ name, path, color = 'red-500' }: NavItemProps) => {
   // Hooks
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ export const NavItem = ({ name, path }: NavItemProps) => {
   return (
     <span
       className={`
-        text-red-600 text-lg py-2 px-4 rounded-full bg-transparent
-        ${isActive ? 'bg-red-500 bg-opacity-20' : 'cursor-pointer'}
+        text-${color} text-lg py-2 px-4 rounded-full bg-transparent
+        ${isActive ? `bg-${color} bg-opacity-20` : 'cursor-pointer'}
         transform transition-all duration-200
       `}
       onClick={isActive ? undefined : (() => navigate(path))}
@@ -25,6 +25,7 @@ export const NavItem = ({ name, path }: NavItemProps) => {
 interface NavItemProps {
   name: string;
   path: string;
+  color?: string;
 }
 
 export default NavItem;

@@ -1,27 +1,26 @@
-/// components
+import { useState } from 'react';
+
+// Components
 import Page from '../../components/layout/page';
 import Footer from '../../components/layout/footer';
-import Banner from '../../components/layout/banner';
 import IconButton from '../../components/common/iconButton';
 import AnimalFilter from '../../components/common/animalFilter';
 import ProductsSection from './productsSection';
+import Spinner from '../../components/common/spinner';
+import BannerSection from './bannerSection';
 
-import { backgroundWood } from '../../assets/images';
 import { dog } from '../../assets/vectors';
 
-import { dataBanner } from '../../@fake/bannerFake';
-import { useFetch } from '../../hooks';
 import { ProductListResponse } from '../../interfaces/product';
-import Spinner from '../../components/common/spinner';
-import { useState } from 'react';
 import { filterShop } from '../../interfaces/filter';
+import { useFetch } from '../../hooks';
 
 const Catalogue = () => {
   const { loading, response } = useFetch<ProductListResponse>(`${process.env.REACT_APP_API_URL}/products?_limit=10`);
   const ageFilter = ['cachorros', 'adultos', 'senior'];
   const [filterSelected, setfilterSelected] = useState<filterShop>({
-    agePet: ageFilter[0],
-    typePet: 'DOG'
+    agePet: 'none',
+    typePet: 'none'
   });
   return (
     <Page color='#7AC5BE'>
@@ -32,16 +31,8 @@ const Catalogue = () => {
         </div>
         : (
           <>
-            {/* Background */}
-            <img
-              src={backgroundWood}
-              alt='wood-bg'
-              className='object-cover h-screen absolute top-0 -z-10 md:w-screen'
-              style={{ backgroundColor: '#FAD7B1' }}
-            />
-
             {/* Banner */}
-            <Banner dataBanner={dataBanner} showBotton={false} />
+            <BannerSection />
 
             {/* FAB */}
             <IconButton

@@ -24,11 +24,11 @@ export const ProductCounter = ({ price = 0, onPriceChange }: ProductCounterProps
   return (
     <div className='w-full flex gap-1 px-7 my-2 md:px-0'>
       <div className='w-max flex items-center p-4 rounded-3xl bg-grayText text-white'>
-        <IconButton.mini name='add' onClick={() => handleCount(1)} className='shadow-none p-2' />
+        <IconButton.mini name='remove' onClick={() => handleCount(-1)} className='shadow-none p-2' />
         <span className='px-4 text-xl'>
           {count}
         </span>
-        <IconButton.mini name='remove' onClick={() => handleCount(-1)} className='shadow-none p-2' />
+        <IconButton.mini name='add' onClick={() => handleCount(1)} className='shadow-none p-2' />
       </div>
       <div className='flex flex-col flex-grow items-end h-full transform transition-all'>
         <div className='flex gap-2 items-end text-primary font-paragraph'>

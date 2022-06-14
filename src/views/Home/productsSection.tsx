@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Carrousel from '../../components/common/carrousel';
 import Card from '../../components/common/card';
@@ -8,28 +9,33 @@ import Button from '../../components/common/button';
 import { Product } from '../../interfaces/product';
 
 import { dogDesktop, vegetables } from '../../assets/images';
-import { useNavigate } from 'react-router-dom';
+import { cardHomePets, cardHomeStool, cardHomeFood, cardHomeLoveDog, cardHomePets2 } from '../../assets/vectors';
 
 const cardsData = [
   {
-    title: 'Lorem ipsum dolor sit amet 1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc consectetur purus, eget egestas nisl nunc sed.',
+    title: 'DIRECTO A TU CASA:',
+    description: 'Nosotros te la llevamlos fresca y cuando la necesites hasta la puerta de tu casa ',
+    img: cardHomePets
   },
   {
-    title: 'Lorem ipsum dolor sit amet 2',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc consectetur purus, eget egestas nisl nunc sed.',
+    title: 'MENOS Y MEJORES HECES: ',
+    description: '',
+    img: cardHomeStool,
   },
   {
-    title: 'Lorem ipsum dolor sit amet 3',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc consectetur purus, eget egestas nisl nunc sed.',
+    title: 'COMIDA REAL HORNEADA',
+    description: 'Ingredientes de grado humano alimenticio.',
+    img: cardHomeFood,
   },
   {
-    title: 'Lorem ipsum dolor sit amet 4',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc consectetur purus, eget egestas nisl nunc sed.',
+    title: 'DESARROLLADA POR NUTRIÓLOGOS VETERINARIOS:',
+    description: 'Comida hecha de manera natural, sin conservadores y con los nutrientes necesarios como proteínas, vegetales y cereales, para una dieta diaria balanceada y saludable.',
+    img: cardHomeLoveDog,
   },
   {
-    title: 'Lorem ipsum dolor sit amet 5',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc consectetur purus, eget egestas nisl nunc sed.',
+    title: 'VARIEDAD DE PRODUCTOS: ',
+    description: 'Cada dieta y cada ingrediente, está pensada para cada tamaño, edad, condición física y condición médica.',
+    img: cardHomePets2,
   },
 ];
 
@@ -43,10 +49,16 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
     <div className='flex flex-col items-center bg-gray-100 w-full rounded-t-3xl transform -mt-4 pb-20 relative overflow-hidden'>
       {/* Backgrounds */}
       <img className='absolute w-full h-full object-cover object-right -z-20' src={vegetables} />
-      <img className='hidden absolute bottom-0 right-0 object-none -z-10 transform lg:block xl:bottom-16 xl:right-12 xl:scale-125' src={dogDesktop} />
-
+      <img className='hidden absolute bottom-0 right-0 object-none -z-10 transform lg:block' src={dogDesktop} />
+      <div className='hidden lg:block mt-28 text-primary text-3xl mx-72 text-center pb-16'>
+        <span>Tu amor de 4 patas debería de comer igual de saludable que toda tu familia.</span>
+      </div>
       {/* Carrousel */}
-      <Carrousel onSlideChange={setSelected} className='pt-20 pb-10 px-5' breakpoints={{
+      <Carrousel onSlideChange={setSelected} className='pt-20 pb-10 lg:px-32' breakpoints={{
+        100: {
+          slidesPerView: 1.7,
+          spaceBetween: 0,
+        },
         580: {
           slidesPerView: 2,
         },
@@ -56,6 +68,11 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
         },
         980: {
           slidesPerView: 3.5,
+          spaceBetween: 30,
+          initialSlide: 2,
+        },
+        1023: {
+          slidesPerView: 2.7,
           spaceBetween: 30,
           initialSlide: 2,
         },
@@ -82,7 +99,8 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
                 description={card.description}
                 selected={selected === i}
                 far={isFar}
-                className={`${isLeft && 'translate-x-20'} ${isRight && '-translate-x-20'}`}
+                img={card.img}
+                className={`${isLeft && 'lg:translate-x-20'} ${isRight && 'lg:-translate-x-20'}`}
               />
             );
           })

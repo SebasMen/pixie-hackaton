@@ -50,7 +50,7 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => (
 
     <div className='flex flex-row justify-around mb-14 mt-20 gap-5 md:gap-14'>
       {filters.map(({ name, key, img, imgSelected }) => (
-        <div key={key} className='text-center'>
+        <div key={key} className='text-center cursor-pointer' onClick={() => setFilter({ ...filter, typePet: key })}>
           <div
             className={`
               md:w-52 md:flex md:justify-between md:items-center 
@@ -64,7 +64,7 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => (
                 img={filter.typePet === key ? imgSelected : img}
                 name={name}
                 className={'z-10 ring-1 ring-red-600 rounded-full p-2 shadow-none transform transition-all md:ring-0 scale-75'}
-                onClick={() => setFilter({ ...filter, typePet: key })}
+                onClick={() => { }}
                 shadow={false}
               />
             </div>
