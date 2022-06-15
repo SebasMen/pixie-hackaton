@@ -1,12 +1,12 @@
-import { useAppContext } from '../../../hooks';
+import useShoppingCar from '../../../hooks/useShoppingCar';
 import { Product } from '../../../interfaces/product';
 import IconButton from '../iconButton';
 
 const ItemShoppingCar = ({ product }: ItemShoppingCarProps) => {
-  const { updateContext } = useAppContext();
+  const { deleteProduct } = useShoppingCar();
 
   const handleDeleteProduct = () => {
-    updateContext(old => ({ ...old, products: [...old.products.filter(item => item.id !== product.id)] }));
+    deleteProduct(product);
   };
 
   return (
@@ -15,7 +15,7 @@ const ItemShoppingCar = ({ product }: ItemShoppingCarProps) => {
         <img src={product.url_image} className='w-16 h-16 rounded-2xl object-cover'/>
       </figure>
       <p>({product.quantitySold}) {product.name}</p>
-      <p className='font-bold'>${product.totalPrice}</p>
+      <p className='font-bold'>$ {product.totalPrice}</p>
       <IconButton name='close' onClick={handleDeleteProduct} shadow={false}/>
     </div>
   );

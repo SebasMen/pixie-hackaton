@@ -20,7 +20,7 @@ export const appProvider: AppContextType = {
   // ProductView
   productView: {
     age: '',
-    category: '',
+    category: 'Accesorios',
     description: '',
     id: '',
     ingredients: '',

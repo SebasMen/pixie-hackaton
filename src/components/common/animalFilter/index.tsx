@@ -4,6 +4,8 @@ import Button from '../button';
 import IconButton from '../iconButton';
 import Icon from '../icon';
 
+import { filterShop, typePet, agePet } from '../../../interfaces/filter';
+
 /// import { vegetablesCatalogue } from '../../../assets/images';
 import {
   CatIcon,
@@ -11,87 +13,108 @@ import {
   DogIconSelected,
   CatIconSelected,
 } from '../../../assets/vectors';
-import { filterShop } from '../../../interfaces/filter';
 
 const categories = [
   {
     name: 'Cachorros',
-    key: 'cachorros'
+    key: 'cachorros' as agePet,
   },
   {
     name: 'Adultos',
-    key: 'adultos'
+    key: 'adultos' as agePet,
   },
   {
     name: 'Senior',
-    key: 'senior'
+    key: 'senior' as agePet,
   }
 ];
 
 const filters = [
   {
     name: 'Perros',
-    key: 'DOG',
+    key: 'DOG' as typePet,
     img: DogIcon,
     imgSelected: DogIconSelected
   },
   {
     name: 'Gatos',
-    key: 'CAT',
+    key: 'CAT' as typePet,
     img: CatIcon,
     imgSelected: CatIconSelected
   },
 ];
 
-const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => (
-  <div className='w-full flex flex-col items-center justify-center rounded-t-3xl overflow-hidden transform -mt-4' style={{ backgroundColor: '#FFF6EC' }}>
-    {/* Backgrounds */}
-    {/* <img className='absolute w-full md:pt-20 object-cover object-right -z-10' src={vegetablesCatalogue} /> */}
+const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
+  // Handlers
+  const handleFilterChange = (type: 'typePet' | 'agePet', value: string) => {
+    if (type === 'typePet') {
+      const typePet = value as typePet;
 
-    <div className='flex flex-row justify-around mb-14 mt-20 gap-5 md:gap-14'>
-      {filters.map(({ name, key, img, imgSelected }) => (
-        <div key={key} className='text-center cursor-pointer' onClick={() => setFilter({ ...filter, typePet: key })}>
-          <div
-            className={`
-              md:w-52 md:flex md:justify-between md:items-center 
-              rounded-full transform transition-all gap-2
-              md:ring-2 md:ring-red-600 shadow-xl
-              ${filter.typePet === key ? 'bg-red-600 ' : 'bg-transparent'}
-            `}
-          >
-            <div className='text-left'>
-              <IconButton.xl
-                img={filter.typePet === key ? imgSelected : img}
-                name={name}
-                className={'z-10 ring-1 ring-red-600 rounded-full p-2 shadow-none transform transition-all md:ring-0 scale-75'}
-                onClick={() => { }}
-                shadow={false}
-              />
+      const add = filter.typePet.includes(typePet);
+      const newTypePet = add ? filter.typePet.filter(item => item !== typePet) : [...filter.typePet, typePet];
+      setFilter(() => ({ ...filter, typePet: newTypePet }));
+    }
+
+    if (type === 'agePet') {
+      const agePet = value as agePet;
+
+      const add = filter.agePet.includes(agePet);
+      const newAgePet = add ? filter.agePet.filter(item => item !== agePet) : [...filter.agePet, agePet];
+      setFilter(() => ({ ...filter, agePet: newAgePet }));
+    }
+  };
+
+  // Component
+  return (
+    <div className='w-full flex flex-col items-center justify-center rounded-t-3xl overflow-hidden transform -mt-4' style={{ backgroundColor: '#FFF6EC' }}>
+      {/* Backgrounds */}
+      {/* <img className='absolute w-full md:pt-20 object-cover object-right -z-10' src={vegetablesCatalogue} /> */}
+
+      <div className='flex flex-row justify-around mb-14 mt-20 gap-5 md:gap-14'>
+        {filters.map(({ name, key, img, imgSelected }) => (
+          <div key={key} className='text-center cursor-pointer' onClick={() => handleFilterChange('typePet', key)}>
+            <div
+              className={`
+                md:w-52 md:flex md:justify-between md:items-center 
+                rounded-full transform transition-all gap-2
+                md:ring-2 md:ring-red-600 shadow-xl
+                ${filter.typePet.includes(key as any) ? 'bg-red-600 ' : 'bg-transparent'}
+              `}
+            >
+              <div className='text-left'>
+                <IconButton.xl
+                  img={filter.typePet.includes(key as any) ? imgSelected : img}
+                  name={name}
+                  className={'z-10 ring-1 ring-red-600 rounded-full p-2 shadow-none transform transition-all md:ring-0 scale-75'}
+                  onClick={() => { }}
+                  shadow={false}
+                />
+              </div>
+              <div className={`hidden text-2xl font-bold text-white md:flex-grow md:flex ${filter.typePet.includes(key as any) ? 'md:text-amber-100' : 'md:text-red-600'}`}>
+                <span>{name}</span>
+              </div>
             </div>
-            <div className={`hidden text-2xl font-bold text-white md:flex-grow md:flex ${filter.typePet === key ? 'md:text-amber-100' : 'md:text-red-600'}`}>
+            <div className={'md:hidden text-2xl font-bold text-red-600 md:flex-grow'}>
               <span>{name}</span>
             </div>
           </div>
-          <div className={'md:hidden text-2xl font-bold text-red-600 md:flex-grow'}>
-            <span>{name}</span>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
+      <div className='w-full flex flex-row justify-around px-8 gap-1 mb-10 md:gap-5 md:mb-2 md:px-32 md:justify-center'>
+        {categories.map(cat => (
+          <Button
+            key={`cat-${cat.key}`}
+            className={'font-bold text-white gap-1 h-full transform transition-all duration-300 md:rounded-b-none'}
+            color={`${filter.agePet.includes(cat.key) ? '#7ac5be' : '#bee0e1'}`}
+            onClick={() => handleFilterChange('agePet', cat.key)}>
+            <Icon name='done' size='2xl' className={`${filter.agePet.includes(cat.key) ? 'w-6 md:w-7' : 'w-0'} overflow-hidden transform transition-all`} />
+            <span className='tracking-wide md:tracking-widest'>{cat.name}</span>
+          </Button>
+        ))}
+      </div>
     </div>
-    <div className='w-full flex flex-row justify-around px-8 gap-1 mb-10 md:gap-5 md:mb-2 md:px-32 md:justify-center'>
-      {categories.map(({ key, name }) => (
-        <Button
-          key={`cat-${key}`}
-          className={'font-bold text-white gap-1 h-full transform transition-all duration-300 md:rounded-b-none'}
-          color={`${filter.agePet === key ? '#7ac5be' : '#bee0e1'}`}
-          onClick={() => setFilter({ ...filter, agePet: key })}>
-          <Icon name='done' size='2xl' className={`${filter.agePet === key ? 'w-6 md:w-7' : 'w-0'} overflow-hidden transform transition-all`} />
-          <span className='tracking-wide md:tracking-widest'>{name}</span>
-        </Button>
-      ))}
-    </div>
-  </div>
-);
+  );
+};
 
 interface animalFilterProps {
   setFilter: React.Dispatch<SetStateAction<filterShop>>

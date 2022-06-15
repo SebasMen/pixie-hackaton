@@ -17,11 +17,11 @@ import { useFetch } from '../../hooks';
 
 const Catalogue = () => {
   const { loading, response } = useFetch<ProductListResponse>(`${process.env.REACT_APP_API_URL}/products?_limit=10`);
-  const ageFilter = ['cachorros', 'adultos', 'senior'];
   const [filterSelected, setfilterSelected] = useState<filterShop>({
-    agePet: 'none',
-    typePet: 'none'
+    agePet: [],
+    typePet: []
   });
+
   return (
     <Page color='#7AC5BE'>
       {loading

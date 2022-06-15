@@ -4,12 +4,12 @@ import Tag from '../../components/common/productCard/tag';
 import ProductCounter from './productCounter';
 
 import { Product } from '../../interfaces/product';
-import { useAppContext } from '../../hooks';
-import { addProductToCar, transformAge } from '../../helpers/productHelper';
+import { transformAge } from '../../helpers/productHelper';
+import useShoppingCar from '../../hooks/useShoppingCar';
 
 const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
   // Hooks
-  const { updateContext, products } = useAppContext();
+  const { addProduct } = useShoppingCar();
 
   // Methods
   const handlePriceChange = (quantity: number, totalPrice: number) => {
@@ -19,7 +19,7 @@ const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
   const ages = transformAge(product);
 
   const handleAddProduct = () => {
-    addProductToCar(product);
+    addProduct(product);
   };
 
   return (

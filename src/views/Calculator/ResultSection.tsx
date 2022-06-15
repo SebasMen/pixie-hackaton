@@ -23,7 +23,7 @@ const ResultSection = () => (
       <span>Dieta recomendada para 4 semanas = 30 porciones, <span className='text-primary'>¡combínalas como tu quieras!</span></span>
     </div>
     <ResultRecommendation />
-    <div className='flex justify-center items-center mb-36 flex-col w-full px-3 lg:gap-24 lg:flex-row lg:px-32'>
+    <div className='flex justify-center items-center mb-36 flex-col w-full px-3 gap-4 md:px-12 lg:gap-24 lg:flex-row lg2:px-20 xl:px-44'>
       <p className='font-subTitles text-base text-justify text-gray-600 lg:w-[60%]'>*Este es un dato aproximado. Te invitamos a monitorear periódicamente el peso de tu mascota y reajustar la ración según corresponda, ya que el metabolismo de cada perro/gato puede variar. Si tu perro/gato tiene una condición especial de la que debamos saber, por favor escríbenos en el horario de atención de nuestro chat o agenda una asesoría nutricional gratis. </p>
       <div className='flex gap-6 lg:w-[40%] flex-col md:flex-row'>
         <Button className='bg-transparent ring-2 ring-primary text-primary font-bold truncate'>Tabla peso ideal perro</Button>

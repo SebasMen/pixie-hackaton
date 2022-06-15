@@ -12,7 +12,7 @@ class ProductService {
       age: 'a',
       quantity: 0,
       totalPrice: 0,
-      category: '',
+      category: 'Alimentos',
       ingredients: '',
       kind_pet: '',
       license: '',

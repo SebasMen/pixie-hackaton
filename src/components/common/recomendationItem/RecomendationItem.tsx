@@ -12,27 +12,34 @@ const RecomendationItem = ({ name, quantity, price }: RecomendationItemProps) =>
   return (
     <div
       className={`
-        flex justify-between rounded-lg items-center 
-        bg-primary px-5 py-10 transform transition-all
+        flex flex-col justify-between rounded-lg items-start 
+        gap-4 bg-primary px-5 py-10 transform transition-all
         duration-150 animate__animated animate__fadeIn
-        lg:px-14
+        md:items-center md:gap-0 md:flex-row lg:px-14
         ${checked ? 'bg-opacity-[0.2]' : 'bg-opacity-[0.1]'} 
       `}
     >
-      <div>
-        <CheckField onChange={setChecked} />
+      {/* Check */}
+      <div className='flex items-center md:gap-10'>
+        <div>
+          <CheckField onChange={setChecked} />
+        </div>
+        <div className='font-extrabold text-primary text-xl'>
+          {name}
+        </div>
       </div>
-      <div className='font-extrabold text-primary text-xl'>
-        {name}
+
+      {/* Quantity */}
+      <div className='flex items-center gap-4'>
+        <TextField value={quantity} handler={() => console.log('quantity')} name={'quantity'} type='number' fieldClassName='font-subTitles font-semibold w-14' />
+        <div className='flex flex-col'>
+          <span className='font-extrabold'>porciones por</span>
+          <span className='text-sm font-subTitles'>(500gms porción)</span>
+        </div>
       </div>
-      <div className='rounded-xl w-20'>
-        <TextField value={quantity} handler={() => console.log('quantity')} name={'quantity'} type='number' fieldClassName='font-subTitles font-semibold' />
-      </div>
-      <div className='flex flex-col'>
-        <span className='font-extrabold'>porciones por</span>
-        <span className='text-sm font-subTitles'>(500gms porción)</span>
-      </div>
-      <div className='bg-white p-4 rounded-xl font-subTitles font-semibold'>
+
+      {/* Price */}
+      <div className='w-full bg-white p-4 rounded-xl font-subTitles font-semibold md:w-auto md:px-8'>
         ${price}
       </div>
     </div>

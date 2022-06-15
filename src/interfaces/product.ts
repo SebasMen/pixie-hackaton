@@ -7,7 +7,7 @@ export interface Product {
   id: string;
   name: string;
   age: string;
-  category: string;
+  category: 'Alimentos' | 'Snack' | 'Accesorios';
   description: string;
   ingredients: string;
   kind_pet: string;
@@ -27,7 +27,7 @@ export interface Product {
 }
 
 export interface productCatalogue {
-    name: string,
-    products: Array<Product>,
+  name: string,
+  products: Array<Product>,
 }
 
