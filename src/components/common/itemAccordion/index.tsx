@@ -13,10 +13,10 @@ const ItemAccordion = ({ name, infoList, infoTable, infoConservation, type }: It
       onClick={() => setIsOpen(!isOpen)}
     >
       <div className='flex justify-between'>
-        <span className='text-primary font-extrabold text-base'>
+        <span className='text-fourth font-extrabold text-base'>
           {name}
         </span>
-        {isOpen ? <Icon name='expand_more' size='3xl' /> : <Icon name='expand_less' size='3xl' />}
+        {isOpen ? <Icon name='expand_more' size='3xl' className='text-fourth'/> : <Icon name='expand_less' size='3xl' className='text-fourth'/>}
       </div>
       <div className={`overflow-hidden h-auto transition-all transform${isOpen ? 'max-h-screen duration-500 block' : 'max-h-0 duration-300 hidden'}`}>
         <div className='pl-5'>

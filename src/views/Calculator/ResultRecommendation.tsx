@@ -11,7 +11,7 @@ const ResultRecommendation = () => (
     </div>
     <div className='flex flex-col flex-shrink-0 justify-center items-center gap-5 w-full h-auto p-10 rounded-2xl shadow-xl ring-1 ring-red-500 lg:flex-row lg:h-32'>
       <div className='flex items-center justify-center w-1/6 h-full border-b border-b-red-500 border-r-red-500 lg:border-r lg:border-b-0'>
-        <h2 className='text-xl text-red-500'>
+        <h2 className='text-xl text-red-500 font-extrabold'>
           Resumen
         </h2>
       </div>

@@ -14,10 +14,10 @@ export const CalculatorForm = ({ onChange, onSelectChange, onSubmit, form: { nam
 
   // Component
   return (
-    <form className='flex-grow flex flex-col gap-2 text-red-500 py-14 lg:pr-28 px-9 md:w-1/2' onSubmit={onSubmit}>
-      <div className='flex'>
+    <form className='relative overflow-hidden flex-grow flex flex-col gap-2 text-red-500 py-14 lg:pr-28 px-9 md:w-1/2' onSubmit={onSubmit}>
+      <div className='flex relative'>
         {/* Page 0 */}
-        <div className={`flex flex-col gap-2 w-full md:gap-5 animate__animated animate__fast font-subTitles ${page === 0 ? 'animate__fadeInRight' : 'absolute animate__fadeOutRight'}`}>
+        <div className={`flex flex-col gap-2 w-full md:gap-5 animate__animated animate__fast font-subTitles ${page === 0 ? 'relative animate__fadeInRight' : 'hidden'}`}>
           <p className='font-bold text-center mb-16 text-xl'>Descubre cuál es el plan que más le conviene ¡GET STARTED!</p>
 
           <TextField name='name' value={name} handler={onChange} label='¿Como se llama tu mascota? *' />
@@ -30,19 +30,19 @@ export const CalculatorForm = ({ onChange, onSelectChange, onSubmit, form: { nam
         </div>
 
         {/* Page 1 */}
-        <div className={`flex flex-col gap-2 w-full md:gap-5 animate__animated animate__fast ${page === 1 ? 'animate__fadeInRight' : 'absolute animate__fadeOutRight'}`}>
+        <div className={`flex flex-col gap-2 w-full md:gap-5 animate__animated animate__fast font-subTitles ${page === 1 ? 'relative animate__fadeInRight' : 'hidden'}`}>
           <div className='w-full flex flex-col items-center justify-center gap-6 mb-16 text-center'>
             <p className='font-subTitles font-bold text-lg'>¿Sabes el peso ideal de tu mascota? Revisa esta guía:</p>
 
-            <div className='flex flex-col w-full justify-center items-center gap-2 sm:gap-10 sm:flex-row'>
-              <Button className='ring-red-500 ring-2 py-1 w-full md:w-max md:px-10'>
-                <span className='font-subTitles text-lg font-bold truncate'>
+            <div className='flex md:flex-col w-full justify-center items-center gap-5 sm:gap-10 sm:flex-row'>
+              <Button className='ring-red-500 ring-2 py-1 px-2 w-full md:w-max md:px-10' padding={'py-1 px-1'}>
+                <span className='font-subTitles md:text-lg font-bold truncate'>
                   Tabla peso ideal gato
                 </span>
               </Button>
 
-              <Button className='ring-red-500 ring-2 py-1 w-full sm:w-max sm:px-10'>
-                <span className='font-subTitles text-lg font-bold truncate'>
+              <Button className='ring-red-500 ring-2 py-1 px-2 w-full sm:w-max sm:px-10' padding={'py-1 px-1'}>
+                <span className='font-subTitles md:text-lg font-bold truncate'>
                   Tabla peso ideal perro
                 </span>
               </Button>

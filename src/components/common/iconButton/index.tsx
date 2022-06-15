@@ -30,15 +30,15 @@ IconButton.mini = ({ onClick, name, type, size, className, img, imgClassName, co
   </div>
 );
 
-IconButton.xl = ({ onClick, name, type, size, className, img, imgClassName, color, shadow = true }: IconButtonProps) => (
+IconButton.xl = ({ onClick, name, type, size, className, img, imgClassName, color, shadow = true, sizeContainer }: IconButtonProps) => (
   <div
     onClick={onClick}
     style={color ? { backgroundColor: color } : {}}
     className={`
         flex items-center justify-center
-        cursor-pointer w-20 h-20 rounded-full
+        cursor-pointer ${sizeContainer ? sizeContainer : 'w-20 h-20 md:w-24 md:h-24'} rounded-full
         ${shadow && 'shadow-xl'} overflow-hidden
-        ${className} md:w-24 md:h-24
+        ${className}
     `}
   >
     {img ? <img src={img} alt={name} className={imgClassName || 'w-full h-full'} /> : <Icon name={name} type={type} size={size} />}

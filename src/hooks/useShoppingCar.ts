@@ -19,8 +19,10 @@ export const useShoppingCar = () => {
   const deleteProduct = (currentProduct: Product) => updateContext(old => ({ ...old, products: [...old.products.filter(item => item.id !== currentProduct.id)] }));
 
   const joinProducts = (oldProduct: Product, currentProduct: Product) => {
-    const totalPrice = ((oldProduct.totalPrice === undefined) ? 0 : oldProduct.totalPrice) + ((currentProduct.totalPrice === undefined) ? 0 : currentProduct.totalPrice);
-    const quantitySold = ((oldProduct.quantitySold === undefined) ? 0 : oldProduct.quantitySold) + ((currentProduct.quantitySold === undefined) ? 0 : currentProduct.quantitySold);
+    console.log(typeof parseInt(`${oldProduct.totalPrice}`, 10));
+    console.log(typeof currentProduct.totalPrice);
+    const totalPrice = ((oldProduct.totalPrice === undefined) ? 0 : parseInt(`${oldProduct.totalPrice}`, 10)) + ((currentProduct.totalPrice === undefined) ? 0 : parseInt(`${currentProduct.totalPrice}`, 10));
+    const quantitySold = ((oldProduct.quantitySold === undefined) ? 0 : parseInt(`${oldProduct.quantitySold}`, 10)) + ((currentProduct.quantitySold === undefined) ? 0 : parseInt(`${currentProduct.quantitySold}`, 10));
     const newProduct = { ...currentProduct, totalPrice, quantitySold };
 
     deleteProduct(oldProduct);

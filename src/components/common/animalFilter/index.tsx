@@ -70,14 +70,14 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
       {/* Backgrounds */}
       {/* <img className='absolute w-full md:pt-20 object-cover object-right -z-10' src={vegetablesCatalogue} /> */}
 
-      <div className='flex flex-row justify-around mb-14 mt-20 gap-5 md:gap-14'>
+      <div className='flex flex-row justify-around mb-14 mt-20 gap-14 md:gap-14'>
         {filters.map(({ name, key, img, imgSelected }) => (
           <div key={key} className='text-center cursor-pointer' onClick={() => handleFilterChange('typePet', key)}>
             <div
               className={`
                 md:w-52 md:flex md:justify-between md:items-center 
                 rounded-full transform transition-all gap-2
-                md:ring-2 md:ring-red-600 shadow-xl
+                md:ring-2 md:ring-red-600 lg:shadow-xl
                 ${filter.typePet.includes(key as any) ? 'bg-red-600 ' : 'bg-transparent'}
               `}
             >
@@ -85,9 +85,10 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
                 <IconButton.xl
                   img={filter.typePet.includes(key as any) ? imgSelected : img}
                   name={name}
-                  className={'z-10 ring-1 ring-red-600 rounded-full p-2 shadow-none transform transition-all md:ring-0 scale-75'}
+                  className={'z-10 rounded-full ring-1 ring-primary md:ring-0 p-2 shadow-none transform transition-all scale-75'}
                   onClick={() => { }}
                   shadow={false}
+                  sizeContainer={'h-20 w-20'}
                 />
               </div>
               <div className={`hidden text-2xl font-bold text-white md:flex-grow md:flex ${filter.typePet.includes(key as any) ? 'md:text-amber-100' : 'md:text-red-600'}`}>

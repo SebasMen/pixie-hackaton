@@ -10,8 +10,9 @@ export const SelectField = ({
   isMulti = false,
 }: SelectFieldProps) => (
   <div className={'w-full flex flex-col items-start ' + className}>
-    {label && <h2 className='my-1.5'>{label}</h2>}
+    {label && <h2 className='mb-4 text-lg'>{label}</h2>}
     <Select
+      components={{ IndicatorSeparator: () => null }}
       theme={old => ({
         ...old,
         colors: {
@@ -27,6 +28,10 @@ export const SelectField = ({
       options={options}
       onChange={newValue => onChange(newValue, name)}
       styles={{
+        dropdownIndicator: base => ({
+          ...base,
+          color: '#DF2F44',
+        }),
         control: base => ({
           ...base,
           minHeight: 40,
