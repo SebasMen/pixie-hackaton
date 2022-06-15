@@ -49,9 +49,15 @@ export const NavBar = () => {
       <div className='flex flex-col w-full font-subTitles md:px-5 lg:px-20'>
         {/* Top */}
         <div className={`hidden text-${color} pt-5 gap-12 md:flex md:flex-row md:justify-end md:items-center`}>
-          <Button rounded className={`font-extrabold bg-transparent py-1 ${'border-' + color} border-2`} padding={'py-0 px-3'}>
-            Ingresar
-          </Button>
+          {
+            color === 'grayText' ?
+              <Button rounded className='font-extrabold bg-transparent py-1 ring-grayText ring-2' padding='py-0 px-3'>
+                Ingresar
+              </Button> :
+              <Button rounded className='font-extrabold bg-transparent py-1 ring-red-500 ring-2' padding='py-0 px-3'>
+                Ingresar
+              </Button>
+          }
           <div className='flex'>
             <span className='font-medium'>EN</span> | <span className='font-extrabold'>ES</span>
           </div>

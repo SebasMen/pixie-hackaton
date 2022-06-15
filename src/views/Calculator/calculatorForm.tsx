@@ -34,7 +34,7 @@ export const CalculatorForm = ({ onChange, onSelectChange, onSubmit, form: { nam
           <div className='w-full flex flex-col items-center justify-center gap-6 mb-16 text-center'>
             <p className='font-subTitles font-bold text-lg'>¿Sabes el peso ideal de tu mascota? Revisa esta guía:</p>
 
-            <div className='flex md:flex-col w-full justify-center items-center gap-5 sm:gap-10 sm:flex-row'>
+            <div className='flex  w-full justify-center items-center gap-5 sm:gap-10 sm:flex-row'>
               <Button className='ring-red-500 ring-2 py-1 px-2 w-full md:w-max md:px-10' padding={'py-1 px-1'}>
                 <span className='font-subTitles md:text-lg font-bold truncate'>
                   Tabla peso ideal gato

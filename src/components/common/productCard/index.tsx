@@ -58,7 +58,7 @@ export const ProductCard = ({ product, showControls = true, className }: Product
       </div>
       {showControls &&
         <IconButton.mini
-          className='absolute -bottom-7 bg-red-500 text-white md:-bottom-5 z-10'
+          className='absolute -bottom-7 bg-red-500 text-white md:-bottom-5 z-10 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'
           imgClassName='w-7 h-7'
           sizeContainer='w-10 h-10'
           img={basket}
