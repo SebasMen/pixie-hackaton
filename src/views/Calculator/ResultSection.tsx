@@ -23,7 +23,20 @@ const ResultSection = () => (
         slidesPerView: 2,
         spaceBetween: 0,
         initialSlide: 2,
-      }
+      },
+
+      1536: {
+        slidesPerView: 2.5,
+        spaceBetween: 0,
+        initialSlide: 2,
+      },
+
+      1800: {
+        slidesPerView: 3,
+        spaceBetween: 0,
+        initialSlide: 2,
+      },
+
     }}>
       {
         products.map((card, i) =>

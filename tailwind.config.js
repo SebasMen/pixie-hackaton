@@ -13,7 +13,7 @@ module.exports = {
           raw: '(min-width: 720px) and (min-height: 800px) and (orientation: portrait)',
         },
         taller: {
-          raw: '(min-width: 900px) and (orientation: portrait)'
+          raw: '(min-width: 900px) and (min-height: 800px) and (orientation: portrait)'
         },
       },
       height: {
