@@ -36,10 +36,11 @@ const Catalogue = () => {
 
             {/* FAB */}
             <IconButton
-              className='fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:right-12 md:bottom-1/2'
+              className='fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:right-10 md:bottom-1/2'
               color='#DF2F44'
               name='DogButton'
               img={dog}
+              sizeContainer={'w-[75px] h-[75px]'}
               onClick={() => console.log('Hi')}
             />
 

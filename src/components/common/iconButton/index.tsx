@@ -1,14 +1,14 @@
 import Icon, { IconProps } from '../icon/';
 
-export const IconButton = ({ onClick, name, type, size, className, img, imgClassName, color, shadow = true }: IconButtonProps) => (
+export const IconButton = ({ onClick, name, type, size, className, img, imgClassName, color, shadow = true, sizeContainer }: IconButtonProps) => (
   <div
     onClick={onClick}
     style={color ? { backgroundColor: color } : {}}
     className={`
         flex items-center justify-center
-        cursor-pointer w-14 h-14 rounded-full
+        cursor-pointer ${sizeContainer ? sizeContainer : 'w-14 h-14 md:w-16 md:h-16'} rounded-full
         ${shadow && 'shadow-xl'} overflow-hidden
-        ${className} md:w-16 md:h-16 
+        ${className} 
     `}
   >
     {img ? <img src={img} alt={name} className={imgClassName || 'w-full h-full'} /> : <Icon name={name} type={type} size={size} />}

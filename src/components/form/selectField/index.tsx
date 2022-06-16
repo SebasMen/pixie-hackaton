@@ -10,15 +10,15 @@ export const SelectField = ({
   isMulti = false,
 }: SelectFieldProps) => (
   <div className={'w-full flex flex-col items-start ' + className}>
-    {label && <h2 className='mb-4 text-lg'>{label}</h2>}
+    {label && <h2 className='pl-6 mb-3 text-lg font-medium'>{label}</h2>}
     <Select
       components={{ IndicatorSeparator: () => null }}
       theme={old => ({
         ...old,
         colors: {
           ...old.colors,
-          primary: '#ebd3b8',
-          primary25: '#fff6ec',
+          primary: '#DF2F44',
+          primary25: '#DF2F44',
         },
       })}
       isMulti={isMulti}

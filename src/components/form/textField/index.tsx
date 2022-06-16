@@ -14,9 +14,9 @@ export const TextField = ({
   required = false,
 }: TextFieldProps) => (
   <div className={`${className} flex flex-col`}>
-    {label && <label className='mb-4 text-lg'>{label}</label>}
+    {label && <label className='pl-6 mb-3 text-lg font-medium'>{label}</label>}
     <input
-      className={`${fieldClassName} outline-none rounded-full px-4 p-2 ring-0 transform transition-all border-0 ring-red-500 focus:ring-2 focus:outline-none`}
+      className={`${fieldClassName} outline-none rounded-full px-4 p-2 ring-0 transform transition-all border-0 ring-primary focus:ring-1 focus:outline-none`}
       placeholder={placeholder}
       pattern={pattern}
       type={type}

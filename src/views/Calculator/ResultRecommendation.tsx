@@ -4,7 +4,7 @@ import IconButton from '../../components/common/iconButton';
 import { basket } from '../../assets/vectors';
 
 const ResultRecommendation = () => (
-  <div className='flex flex-col gap-10 w-full my-16 px-5 md:px-12 lg2:px-20 xl:px-64'>
+  <div className='flex flex-col gap-10 w-full my-16 px-5 md:px-0'>
     <div className='flex flex-col gap-5'>
       <RecomendationItem name={'Carne al horno'} price={322.620} quantity={30} />
       <RecomendationItem name={'Carne al horno'} price={322.620} quantity={30} />

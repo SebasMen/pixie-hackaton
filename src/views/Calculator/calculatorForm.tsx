@@ -18,7 +18,10 @@ export const CalculatorForm = ({ onChange, onSelectChange, onSubmit, form: { nam
       <div className='flex relative'>
         {/* Page 0 */}
         <div className={`flex flex-col gap-2 w-full md:gap-5 animate__animated animate__fast font-subTitles ${page === 0 ? 'relative animate__fadeInRight' : 'hidden'}`}>
-          <p className='font-bold text-center mb-16 text-xl'>Descubre cuál es el plan que más le conviene ¡GET STARTED!</p>
+          <div className='font-bold text-center mb-16 text-xl'>
+            <p>Descubre cuál es el plan que más le conviene</p>
+            <p className='font-extrabold'>¡GET STARTED!</p>
+          </div>
 
           <TextField name='name' value={name} handler={onChange} label='¿Como se llama tu mascota? *' />
           <SelectField name='type' value={type} options={typeOptions} onChange={onSelectChange} label='Tu mascota es un... *' />

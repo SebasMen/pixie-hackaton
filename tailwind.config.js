@@ -5,6 +5,7 @@ module.exports = {
       screens: {
         md: '720px',
         lg2: '1100px',
+        xl2: '1400px',
         '3xl': '1800px',
         tall: {
           raw: '(min-width: 720px) and (min-height: 800px) and (orientation: portrait)',

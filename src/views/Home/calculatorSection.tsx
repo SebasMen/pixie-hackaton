@@ -8,8 +8,8 @@ export const CalculatorSection = () => {
   const navigate = useNavigate();
   return (
     <div
-      className='relative flex flex-col h-max pt-10 w-full items-center justify-center text-center rounded-t-3xl overflow-hidden transform -mt-4 z-10 md:flex-row-reverse bg-secondaryOpacity'>
-      <img src={fillets} className='object-none h-full float-none absolute' />
+      className='relative flex flex-col h-full pt-11 w-full items-center justify-center text-center rounded-t-3xl overflow-hidden transform -mt-4 z-10 md:flex-row-reverse bg-secondaryOpacity'>
+      <img src={fillets} className='object-none h-full w-full float-none absolute' />
       <div className='flex flex-col items-center justify-center md:w-1/3 z-10'>
         <div>
           <span className='text-3xl text-grayText font-extrabold'>Copy invitando a calculadora</span>
@@ -21,7 +21,7 @@ export const CalculatorSection = () => {
           Call to action
         </Button>
       </div>
-      <div className='z-10 md:w-2/3 xl:h-ful md:flex md:items-center md:justify-center md:pr-16 md:pl-16'>
+      <div className='z-10 md:w-2/3 xl:h-full md:flex md:items-center md:justify-center md:pr-16 md:pl-16 md:mt-7'>
         <img src={dogs} className='md:w-full md:object-contain' />
       </div>
     </div>

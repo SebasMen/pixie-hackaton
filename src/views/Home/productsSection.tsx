@@ -71,21 +71,32 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
           spaceBetween: 30,
           initialSlide: 2,
         },
-        1023: {
+        1020: {
           slidesPerView: 2.7,
           spaceBetween: 30,
           initialSlide: 2,
         },
         1280: {
-          slidesPerView: 4,
-          spaceBetween: 30,
+          slidesPerView: 3.5,
+          spaceBetween: 10,
+          initialSlide: 2,
+        },
+        1366: {
+          slidesPerView: 3.7,
+          spaceBetween: 10,
           initialSlide: 2,
         },
         1536: {
+          slidesPerView: 4.5,
+          spaceBetween: 30,
+          initialSlide: 2,
+        },
+        1800: {
           slidesPerView: 5,
           spaceBetween: 30,
           initialSlide: 2,
         }
+
       }}>
         {
           cardsData.map((card, i) => {
@@ -100,7 +111,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
                 selected={selected === i}
                 far={isFar}
                 img={card.img}
-                className={`${isLeft && 'lg:translate-x-20'} ${isRight && 'lg:-translate-x-20'}`}
+                className={`${isLeft && 'lg:translate-x-16'} ${isRight && 'lg:-translate-x-16'}`}
               />
             );
           })
@@ -108,14 +119,14 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       </Carrousel>
 
       {/* Products */}
-      <div className='flex flex-wrap justify-center gap-4 gap-y-20 mt-20 p-4 lg:p-24 xl:p-32 xl:justify-between items-start'>
+      <div className='flex flex-wrap justify-center items-start gap-4 gap-y-20 mt-20 p-4 lg:p-24 xl:justify-between 2xl:p-32'>
         {products?.slice(0, 7).map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
-        <div className='h-72 w-40 hidden md:w-[269px] md:h-[357px] xl:block 2xl:w-[58%]' />
+        <div className='h-72 w-40 hidden md:w-[16.815rem] md:h-[357px] xl:block' />
 
       </div>
-      <Button className='mt-10 text-red-500 font-bold font-subTitles w-4/5 border-2 border-red-500 md:w-96' onClick={redirectCatalogue}>Ver catálogo</Button>
+      <Button className='mt-10 text-primary font-bold font-subTitles w-4/5 border border-primary md:w-96 xl:-ml-[19rem]' onClick={redirectCatalogue}>Ver catálogo</Button>
     </div>
   );
 };

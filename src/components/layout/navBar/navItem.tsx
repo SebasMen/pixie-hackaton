@@ -14,7 +14,7 @@ export const NavItem = ({ name, path, color = 'red-500' }: NavItemProps) => {
       className={`
         text-${color} text-lg py-2 px-4 rounded-full bg-transparent
         ${isActive ? `bg-${color} bg-opacity-20` : 'cursor-pointer'}
-        transform transition-all duration-200
+        transform transition-all duration-200 font-subTitles h-fit
       `}
       onClick={isActive ? undefined : (() => navigate(path))}
     >
