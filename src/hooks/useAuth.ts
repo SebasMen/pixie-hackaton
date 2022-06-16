@@ -11,7 +11,7 @@ export const useAuth = () => {
 
       setIsChecking(true);
 
-      // TODO: implement check token service
+      // Implement check token service
       const data = await new Promise<any>(resolve => {
         setTimeout(() => resolve({ isChecked: true, msg: '' }), 1000); // Fake async
       });

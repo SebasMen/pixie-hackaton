@@ -1,69 +1,125 @@
-import { useState } from 'react';
+import { SetStateAction } from 'react';
 
 import Button from '../button';
 import IconButton from '../iconButton';
+import Icon from '../icon';
 
-import catIcon from '../../../assets/vectors/CatIcon.svg';
-import dogIcon from '../../../assets/vectors/DogIcon.svg';
+import { filterShop, typePet, agePet } from '../../../interfaces/filter';
+
+/// import { vegetablesCatalogue } from '../../../assets/images';
+import {
+  CatIcon,
+  DogIcon,
+  DogIconSelected,
+  CatIconSelected,
+} from '../../../assets/vectors';
+
+const categories = [
+  {
+    name: 'Cachorros',
+    key: 'cachorros' as agePet,
+  },
+  {
+    name: 'Adultos',
+    key: 'adultos' as agePet,
+  },
+  {
+    name: 'Senior',
+    key: 'senior' as agePet,
+  }
+];
 
 const filters = [
   {
-    name: 'Perritos',
-    key: 'dogs',
-    img: dogIcon,
+    name: 'Perros',
+    key: 'DOG' as typePet,
+    img: DogIcon,
+    imgSelected: DogIconSelected
   },
   {
-    name: 'Michis',
-    key: 'cats',
-    img: catIcon,
+    name: 'Gatos',
+    key: 'CAT' as typePet,
+    img: CatIcon,
+    imgSelected: CatIconSelected
   },
 ];
 
-const AnimalFilter = () => {
-  const [filter, setFilter] = useState('dogs');
+const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
+  // Handlers
+  const handleFilterChange = (type: 'typePet' | 'agePet', value: string) => {
+    if (type === 'typePet') {
+      const typePet = value as typePet;
 
+      const add = filter.typePet.includes(typePet);
+      const newTypePet = add ? filter.typePet.filter(item => item !== typePet) : [...filter.typePet, typePet];
+      setFilter(() => ({ ...filter, typePet: newTypePet }));
+    }
+
+    if (type === 'agePet') {
+      const agePet = value as agePet;
+
+      const add = filter.agePet.includes(agePet);
+      const newAgePet = add ? filter.agePet.filter(item => item !== agePet) : [...filter.agePet, agePet];
+      setFilter(() => ({ ...filter, agePet: newAgePet }));
+    }
+  };
+
+  // Component
   return (
-    <div className='bg-white w-full flex flex-col items-center justify-center '>
-      <div className='flex flex-row justify-around mb-14 mt-20 gap-5 md:gap-14'>
-        {filters.map(({ name, key, img }) => (
-          <div
-            key={key}
-            className={`
-              md:w-80 md:flex md:justify-between md:items-center 
-              md:rounded-3xl md:p-4 transform transition-all gap-5
-              ${filter === key ? 'md:bg-red-100' : 'md:bg-red-50'}
-            `}
-          >
-            <div className='text-left'>
-              <IconButton.xl
-                img={img}
-                name={name}
-                className={`
-                  z-10 ring-1 ring-red-600 rounded-full p-1 shadow-none
-                  transform transition-all
-                  ${filter === key ? 'bg-red-100 scale-90' : 'scale-75'}
-                `}
-                onClick={() => setFilter(key)} />
+    <div className='w-full flex flex-col items-center justify-center rounded-t-3xl overflow-hidden transform -mt-4' style={{ backgroundColor: '#FFF6EC' }}>
+      {/* Backgrounds */}
+      {/* <img className='absolute w-full md:pt-20 object-cover object-right -z-10' src={vegetablesCatalogue} /> */}
+
+      <div className='flex flex-row justify-around mb-14 mt-20 gap-14 md:gap-14'>
+        {filters.map(({ name, key, img, imgSelected }) => (
+          <div key={key} className='text-center cursor-pointer' onClick={() => handleFilterChange('typePet', key)}>
+            <div
+              className={`
+                md:w-52 md:flex md:justify-between md:items-center 
+                rounded-full transform transition-all gap-2
+                md:ring-2 md:ring-red-600 lg:shadow-xl
+                ${filter.typePet.includes(key as any) ? 'bg-red-600 ' : 'bg-transparent'}
+              `}
+            >
+              <div className='text-left'>
+                <IconButton.xl
+                  img={filter.typePet.includes(key as any) ? imgSelected : img}
+                  name={name}
+                  className={'z-10 rounded-full ring-1 ring-primary md:ring-0 p-2 shadow-none transform transition-all scale-75'}
+                  onClick={() => { }}
+                  shadow={false}
+                  sizeContainer={'h-20 w-20'}
+                />
+              </div>
+              <div className={`hidden text-2xl font-bold text-white md:flex-grow md:flex ${filter.typePet.includes(key as any) ? 'md:text-amber-100' : 'md:text-red-600'}`}>
+                <span>{name}</span>
+              </div>
             </div>
-            <div className='hidden text-3xl text-white md:flex-grow md:flex md:text-red-500'>
+            <div className={'md:hidden text-2xl font-bold text-red-600 md:flex-grow'}>
               <span>{name}</span>
             </div>
-          </div>))
-        }
+          </div>
+        ))}
       </div>
-      <div className='w-full flex flex-row justify-around px-8 gap-2 mb-10 md:gap-5 md:mb-0 md:px-32 md:justify-start'>
-        <Button className='text-amber-100 font-bold md:rounded-b-none' color='#DF2F44'>
-          Cachorros
-        </Button>
-        <Button className='text-red-600 font-bold bg-transparent ring-2 ring-inset ring-red-600 md:rounded-b-none'>
-          Adultos
-        </Button>
-        <Button className='text-red-600 font-bold bg-transparent ring-2 ring-inset ring-red-600 md:rounded-b-none'>
-          Veteranos
-        </Button>
+      <div className='w-full flex flex-row justify-around px-8 gap-1 mb-10 md:gap-5 md:mb-2 md:px-32 md:justify-center'>
+        {categories.map(cat => (
+          <Button
+            key={`cat-${cat.key}`}
+            className={'font-bold text-white gap-1 h-full transform transition-all duration-300 md:rounded-b-none'}
+            color={`${filter.agePet.includes(cat.key) ? '#7ac5be' : '#bee0e1'}`}
+            onClick={() => handleFilterChange('agePet', cat.key)}>
+            <Icon name='done' size='2xl' className={`${filter.agePet.includes(cat.key) ? 'w-6 md:w-7' : 'w-0'} overflow-hidden transform transition-all`} />
+            <span className='tracking-wide md:tracking-widest'>{cat.name}</span>
+          </Button>
+        ))}
       </div>
     </div>
   );
 };
+
+interface animalFilterProps {
+  setFilter: React.Dispatch<SetStateAction<filterShop>>
+  filter: filterShop
+}
 
 export default AnimalFilter;

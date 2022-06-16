@@ -1,178 +1,63 @@
 import Page from '../../components/layout/page';
-import NavBar from '../../components/layout/navBar';
 import ProductsSection from './productsSection';
 import Banner from '../../components/layout/banner';
 import IconButton from '../../components/common/iconButton';
 import Footer from '../../components/layout/footer';
 import CalculatorSection from './calculatorSection';
-import backgroundWood from '../../assets/images/backgroundWood.png';
 
-import { Product } from '../../interfaces/product';
+import { backgroundWood } from '../../assets/images';
+import { dog } from '../../assets/vectors';
 
-import dog from '../../assets/vectors/dog.svg';
+import { dataBanner } from '../../@fake/bannerFake';
+import { useAppContext, useFetch } from '../../hooks';
+import Spinner from '../../components/common/spinner';
+import { ProductListResponse } from '../../interfaces/product';
 
-const dataBanner = [
-  {
-    title: 'Lorem ipsum dolor sit amet1',
-    text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet2',
-    text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet3',
-    text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  },
-];
+const Home = () => {
+  const { api } = useAppContext();
+  const { loading, response } = useFetch<ProductListResponse>(`${api}/products?_limit=10`);
 
-const products: Product[] = [
-  {
-    id: '1',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 1000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-  },
-  {
-    id: '2',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 1000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-  },
-  {
-    id: '3',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 1000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-  },
-  {
-    id: '4',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 1000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-  },
-  {
-    id: '5',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 1000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-  },
-  {
-    id: '6',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 1000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-  },
-  {
-    id: '7',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 1000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-  },
-  {
-    id: '8',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 1000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-  },
-  {
-    id: '9',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 1000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-  },
-  {
-    id: '10',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Lorem ipsum dolor sit amet',
-    price: 1000,
-    tag: {
-      name: 'Cachorros',
-      key: 'dogs'
-    },
-  },
-];
+  return (
+    <Page color='#efd1b0'>
+      {loading
+        ?
+        <div className='w-full h-screen flex items-center justify-center'>
+          <Spinner />
+        </div>
+        :
+        (<>
+          {/* Background */}
+          <img
+            src={backgroundWood}
+            alt='wood-bg'
+            className='object-cover h-screen absolute top-0 -z-10 md:w-screen'
+            style={{ backgroundColor: '#FAD7B1' }}
+          />
 
-const Home = () => (
-  <Page className='relative'>
-    {/* Background */}
-    <img
-      src={backgroundWood}
-      alt='wood-bg'
-      className='object-cover h-screen absolute top-0 -z-10 md:w-screen'
-      style={{ backgroundColor: '#FAD7B1' }}
-    />
+          {/* Banner */}
+          <Banner dataBanner={dataBanner} showBotton={true} />
 
-    {/* Navbar */}
-    <NavBar />
+          {/* Carrousel & Products */}
+          <ProductsSection products={response?.products} />
 
-    {/* Banner */}
-    <Banner dataBanner={dataBanner} showBotton={true} />
+          {/* FAB */}
+          <IconButton
+            className='fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:right-10 md:bottom-1/2'
+            color='#DF2F44'
+            name='DogButton'
+            img={dog}
+            sizeContainer={'w-[75px] h-[75px]'}
+            onClick={() => console.log('Hi')}
+          />
 
-    {/* Carrousel & Products */}
-    <ProductsSection products={products} />
+          {/* Calculator */}
+          <CalculatorSection />
 
-    {/* FAB */}
-    <IconButton
-      className='fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:right-12 md:bottom-1/2'
-      color='#DF2F44'
-      name='DogButton'
-      img={dog}
-      onClick={() => console.log('Hi')}
-    />
-
-    {/* Calculator */}
-    <CalculatorSection />
-
-    {/* Footer */}
-    <Footer />
-  </Page>
-);
+          {/* Footer */}
+          <Footer />
+        </>)}
+    </Page>
+  );
+};
 
 export default Home;

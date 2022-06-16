@@ -1,19 +1,20 @@
-import Icon from '../icon';
 
-export const Card = ({ title, description, selected, far, className }: CardProps) => (
+export const Card = ({ title, description, selected, far, className, img }: CardProps) => (
   <div
     className={`
-        w-full h-120 rounded-3xl flex flex-col p-5 
-        shadow-xl transform transition-all 2xl:h-128
-        ${selected ? 'bg-red-100' : far ? 'bg-red-400 scale-50' : 'bg-red-300 scale-75'}
+        w-[17.1rem] h-[26rem] p-2 lg:h-120 rounded-3xl flex flex-col lg:p-5 
+        shadow-xl transform transition-all overflow-hidden flex-shrink-0
+        ${selected ? 'bg-red-200' : far ? 'bg-red-400 scale-50' : 'bg-red-300 scale-75'}
         ${className}
     `}
   >
-    <div className='flex items-center justify-center pt-3 pb-3 flex-grow'>
-      <Icon name='landscape' size='3xl'/>
+    <div className='flex flex-grow flex-shrink-0 items-center justify-center lg:pt-3 lg:pb-3 '>
+      <img src={img} className=' w-32 h-32 xl:w-44 xl:h-44' />
     </div>
-    <h2 className='text-xl'>{title}</h2>
-    <p className='text-center'>{description}</p>
+    <div className='flex-grow flex-shrink-0 overflow-y-auto'>
+      <h2 className='lg:text-xl text-lg mb-3'>{title}</h2>
+      <p className='text-center font-subTitles text-xs font-semibold md:text-sm'>{description}</p>
+    </div>
   </div>
 );
 
@@ -23,6 +24,7 @@ interface CardProps {
   selected?: boolean | (() => boolean);
   far?: boolean | (() => boolean);
   className?: string;
+  img: string;
 }
 
 export default Card;
