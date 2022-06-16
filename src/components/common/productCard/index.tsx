@@ -31,9 +31,11 @@ export const ProductCard = ({ product, showControls = true, className }: Product
   return (
     <div
       className={`
-        relative flex flex-col flex-shrink-0 justify-between items-center cursor-pointer
-        h-64 w-40 p-3 pb-8 rounded-2xl bg-white ${className}
+        relative flex flex-col flex-shrink-0 justify-between items-center 
+        cursor-pointer h-64 w-40 p-3 pb-8 rounded-2xl bg-white 
+        ring-0 ring-primary transform transition-all 
         md:w-[16.815rem] md:h-[357px]
+        hover:ring-1 ${className}
       `}
       onClick={handleSubmit}
     >

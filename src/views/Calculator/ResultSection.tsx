@@ -12,7 +12,7 @@ const ResultSection = () => (
     <span>Recomendados:</span>
 
     {/* Carrousel */}
-    <Carrousel className='pt-20 pb-10 lg:px-32' navigation breakpoints={{
+    <Carrousel className='pt-20 pb-10 lg:px-[9.8rem]' navigation breakpoints={{
       100: {
         slidesPerView: 1,
         spaceBetween: 0,
@@ -31,7 +31,7 @@ const ResultSection = () => (
         )
       }
     </Carrousel>
-    <div className='text-center mt-8 font-subTitles font-bold'>
+    <div className='text-center mt-8 mb-5 font-subTitles font-bold'>
       <span>Dieta recomendada para 4 semanas = 30 porciones, <span className='text-primary'>¡combínalas como tu quieras!</span></span>
     </div>
     <ResultRecommendation />
