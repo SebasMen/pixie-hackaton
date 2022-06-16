@@ -8,6 +8,8 @@ import Catalogue from '../views/Catalogue';
 import NotFound from '../views/notFound';
 
 import { useAppContext, useAuth } from '../hooks';
+import Detail from '../views/Detail';
+import Calculator from '../views/Calculator';
 
 const AppRouter = () => {
   // Hooks
@@ -56,6 +58,20 @@ const AppRouter = () => {
             path='/catalogue'
             element={
               <Catalogue />
+            }
+          />
+
+          <Route
+            path='product/detail/:id'
+            element={
+              <Detail />
+            }
+          />
+
+          <Route
+            path='/calculator'
+            element={
+              <Calculator />
             }
           />
 

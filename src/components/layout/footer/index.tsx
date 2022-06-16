@@ -3,9 +3,9 @@ import facebookLogo from '../../../assets/vectors/Facebook.svg';
 import twitterLogo from '../../../assets/vectors/Twitter.svg';
 import instagramLogo from '../../../assets/vectors/Instagram.svg';
 
-export const Footer = () => (
+export const Footer = ({ className }: FooterProps) => (
   <footer
-    className='flex flex-col filter w-full items-center justify-center pb-24 z-10 md:pt-16'
+    className={`flex flex-col filter w-full items-center justify-center pb-24 z-10 md:pt-16 ${className} `}
     style={{ backgroundColor: '#DF2F44' }}
   >
     <div className='hidden md:absolute md:bottom-56 md:block'>
@@ -35,5 +35,9 @@ export const Footer = () => (
     </div>
   </footer>
 );
+
+interface FooterProps {
+  className?: string;
+}
 
 export default Footer;

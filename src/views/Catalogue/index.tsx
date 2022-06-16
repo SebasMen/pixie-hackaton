@@ -1,235 +1,59 @@
-/// components
+import { useState } from 'react';
+
+// Components
 import Page from '../../components/layout/page';
-import NavBar from '../../components/layout/navBar';
 import Footer from '../../components/layout/footer';
-import Banner from '../../components/layout/banner';
 import IconButton from '../../components/common/iconButton';
 import AnimalFilter from '../../components/common/animalFilter';
 import ProductsSection from './productsSection';
+import Spinner from '../../components/common/spinner';
+import BannerSection from './bannerSection';
 
-import backgroundWood from '../../assets/images/backgroundWood.png';
-import dog from '../../assets/vectors/dog.svg';
+import { dog } from '../../assets/vectors';
 
-const dataBanner = [
-  {
-    title: 'Lorem ipsum dolor sit amet1',
-    text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet2',
-    text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet3',
-    text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  },
-];
+import { ProductListResponse } from '../../interfaces/product';
+import { filterShop } from '../../interfaces/filter';
+import { useFetch } from '../../hooks';
 
-const productsData = [
-  {
-    name: 'Alimentos',
-    products: [
-      {
-        id: '1',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-      {
-        id: '2',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-      {
-        id: '3',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-      {
-        id: '4',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-      {
-        id: '5',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-      {
-        id: '6',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-      {
-        id: '7',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-      {
-        id: '8',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-    ],
-  },
-  {
-    name: 'Snacks',
-    products: [
-      {
-        id: '1',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-      {
-        id: '2',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-      {
-        id: '3',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-      {
-        id: '4',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-    ],
-  },
-  {
-    name: 'Accesorios',
-    products: [
-      {
-        id: '1',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Cachorros',
-          key: 'dogs'
-        },
-      },
-      {
-        id: '2',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        name: 'Lorem ipsum dolor sit amet',
-        price: 1000,
-        tag: {
-          name: 'Gatitos',
-          key: 'cats'
-        },
-      },
-    ],
-  }
-];
+const Catalogue = () => {
+  const { loading, response } = useFetch<ProductListResponse>(`${process.env.REACT_APP_API_URL}/products?_limit=10`);
+  const [filterSelected, setfilterSelected] = useState<filterShop>({
+    agePet: [],
+    typePet: []
+  });
 
-const Catalogue = () => (
-  <Page className='relative'>
-    {/* Background */}
-    <img
-      src={backgroundWood}
-      alt='wood-bg'
-      className='object-cover h-screen absolute top-0 -z-10 md:w-screen'
-      style={{ backgroundColor: '#FAD7B1' }}
-    />
+  return (
+    <Page color='#7AC5BE'>
+      {loading
+        ?
+        <div className='w-full h-screen flex items-center justify-center'>
+          <Spinner />
+        </div>
+        : (
+          <>
+            {/* Banner */}
+            <BannerSection />
 
-    {/* Navbar */}
-    <NavBar />
+            {/* FAB */}
+            <IconButton
+              className='fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:right-10 md:bottom-1/2'
+              color='#DF2F44'
+              name='DogButton'
+              img={dog}
+              sizeContainer={'w-[75px] h-[75px]'}
+              onClick={() => console.log('Hi')}
+            />
 
-    {/* Banner */}
-    <Banner dataBanner={dataBanner} showBotton={false} />
+            <AnimalFilter setFilter={setfilterSelected} filter={filterSelected} />
 
-    {/* FAB */}
-    <IconButton
-      className='fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:right-12 md:bottom-1/2'
-      color='#DF2F44'
-      name='DogButton'
-      img={dog}
-      onClick={() => console.log('Hi')}
-    />
+            {/* Products */}
+            <ProductsSection data={response?.products} filter={filterSelected} />
 
-    <AnimalFilter />
-
-    {/* Products */}
-    <ProductsSection data={productsData} />
-
-    {/* Footer */}
-    <Footer />
-  </Page>
-);
+            {/* Footer */}
+            <Footer />
+          </>)}
+    </Page>
+  );
+};
 
 export default Catalogue;

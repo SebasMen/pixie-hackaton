@@ -4,7 +4,9 @@ import Swal from 'sweetalert2';
 import { ReactSweetAlert } from 'sweetalert2-react-content';
 
 import { appProvider as provider } from './provider';
+import { Product } from '../interfaces/product';
 
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const AppContext = createContext<AppContextType>(null!);
 
 export interface AppContextType {
@@ -15,6 +17,12 @@ export interface AppContextType {
 
   // Auth
   isAuthenticated: boolean;
+
+  // Products
+  products: Product[];
+
+  // Productview
+  productView: Product;
 }
 
 export const appProvider: AppContextType = provider;

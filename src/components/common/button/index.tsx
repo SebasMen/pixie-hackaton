@@ -10,6 +10,8 @@ export const Button = ({
   tooltip = '',
   tooltipPosition,
   color,
+  rounded,
+  padding
 }: ButtonProps) => (
   <Tooltiped label={tooltip} visible={tooltip ? undefined : false} position={tooltipPosition}>
     <button
@@ -18,9 +20,9 @@ export const Button = ({
       style={color ? { backgroundColor: color } : {}}
       className={`
         flex items-center justify-center 
-        px-5 py-2.5 rounded-xl cursor-pointer
+        ${padding ? padding : 'px-5 py-2.5'} cursor-pointer
         focus:outline-none
-       ${className}
+       ${className} ${rounded ? 'rounded-full' : 'rounded-xl'}
       `}
     >
       {children}
@@ -33,9 +35,11 @@ interface ButtonProps {
   children: React.ReactNode;
   tooltip?: string;
   color?: string;
+  rounded?: boolean;
   tooltipPosition?: TippyProps['placement'];
   onClick?: () => void;
   className?: string;
+  padding? : string;
 }
 
 export default Button;

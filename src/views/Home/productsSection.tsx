@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Carrousel from '../../components/common/carrousel';
 import Card from '../../components/common/card';
@@ -7,30 +8,34 @@ import Button from '../../components/common/button';
 
 import { Product } from '../../interfaces/product';
 
-import vegetables from '../../assets/images/vegetables.png';
-import dog from '../../assets/images/dogDesktop.png';
-import { useNavigate } from 'react-router-dom';
+import { dogDesktop, vegetables } from '../../assets/images';
+import { cardHomePets, cardHomeStool, cardHomeFood, cardHomeLoveDog, cardHomePets2 } from '../../assets/vectors';
 
 const cardsData = [
   {
-    title: 'Lorem ipsum dolor sit amet 1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc consectetur purus, eget egestas nisl nunc sed.',
+    title: 'DIRECTO A TU CASA:',
+    description: 'Nosotros te la llevamlos fresca y cuando la necesites hasta la puerta de tu casa ',
+    img: cardHomePets
   },
   {
-    title: 'Lorem ipsum dolor sit amet 2',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc consectetur purus, eget egestas nisl nunc sed.',
+    title: 'MENOS Y MEJORES HECES: ',
+    description: '',
+    img: cardHomeStool,
   },
   {
-    title: 'Lorem ipsum dolor sit amet 3',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc consectetur purus, eget egestas nisl nunc sed.',
+    title: 'COMIDA REAL HORNEADA',
+    description: 'Ingredientes de grado humano alimenticio.',
+    img: cardHomeFood,
   },
   {
-    title: 'Lorem ipsum dolor sit amet 4',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc consectetur purus, eget egestas nisl nunc sed.',
+    title: 'DESARROLLADA POR NUTRIÓLOGOS VETERINARIOS:',
+    description: 'Comida hecha de manera natural, sin conservadores y con los nutrientes necesarios como proteínas, vegetales y cereales, para una dieta diaria balanceada y saludable.',
+    img: cardHomeLoveDog,
   },
   {
-    title: 'Lorem ipsum dolor sit amet 5',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc consectetur purus, eget egestas nisl nunc sed.',
+    title: 'VARIEDAD DE PRODUCTOS: ',
+    description: 'Cada dieta y cada ingrediente, está pensada para cada tamaño, edad, condición física y condición médica.',
+    img: cardHomePets2,
   },
 ];
 
@@ -44,10 +49,16 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
     <div className='flex flex-col items-center bg-gray-100 w-full rounded-t-3xl transform -mt-4 pb-20 relative overflow-hidden'>
       {/* Backgrounds */}
       <img className='absolute w-full h-full object-cover object-right -z-20' src={vegetables} />
-      <img className='hidden absolute bottom-0 right-0 object-none -z-10 transform lg:block xl:bottom-16 xl:right-12 xl:scale-125' src={dog} />
-
+      <img className='hidden absolute bottom-0 right-0 object-none -z-10 transform lg:block' src={dogDesktop} />
+      <div className='hidden lg:block mt-28 text-primary text-3xl mx-72 text-center pb-16'>
+        <span>Tu amor de 4 patas debería de comer igual de saludable que toda tu familia.</span>
+      </div>
       {/* Carrousel */}
-      <Carrousel onSlideChange={setSelected} className='pt-20 pb-10 px-5' breakpoints={{
+      <Carrousel onSlideChange={setSelected} className='pt-20 pb-10 lg:px-32' breakpoints={{
+        100: {
+          slidesPerView: 1.7,
+          spaceBetween: 0,
+        },
         580: {
           slidesPerView: 2,
         },
@@ -60,16 +71,32 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
           spaceBetween: 30,
           initialSlide: 2,
         },
-        1280: {
-          slidesPerView: 4,
+        1020: {
+          slidesPerView: 2.7,
           spaceBetween: 30,
           initialSlide: 2,
         },
+        1280: {
+          slidesPerView: 3.5,
+          spaceBetween: 10,
+          initialSlide: 2,
+        },
+        1366: {
+          slidesPerView: 3.7,
+          spaceBetween: 10,
+          initialSlide: 2,
+        },
         1536: {
+          slidesPerView: 4.5,
+          spaceBetween: 30,
+          initialSlide: 2,
+        },
+        1800: {
           slidesPerView: 5,
           spaceBetween: 30,
           initialSlide: 2,
         }
+
       }}>
         {
           cardsData.map((card, i) => {
@@ -83,7 +110,8 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
                 description={card.description}
                 selected={selected === i}
                 far={isFar}
-                className={`${isLeft && 'translate-x-20'} ${isRight && '-translate-x-20'}`}
+                img={card.img}
+                className={`${isLeft && 'lg:translate-x-16'} ${isRight && 'lg:-translate-x-16'}`}
               />
             );
           })
@@ -91,18 +119,20 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       </Carrousel>
 
       {/* Products */}
-      <div className='flex flex-wrap justify-center gap-4 gap-y-20 mt-20 p-4 lg:p-24 xl:p-32 xl:justify-start items-start'>
-        {products.slice(0, 7).map(product => (
+      <div className='flex flex-wrap justify-center items-start gap-4 gap-y-20 mt-20 p-4 lg:p-24 xl:justify-between 2xl:p-32'>
+        {products?.slice(0, 7).map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
+        <div className='h-72 w-40 hidden md:w-[16.815rem] md:h-[357px] xl:block' />
+
       </div>
-      <Button className='mt-10 text-red-500 font-bold w-4/5 border-2 border-red-500 md:w-96' onClick={redirectCatalogue}>Ver catálogo</Button>
+      <Button className='mt-10 text-primary font-bold font-subTitles w-4/5 border border-primary md:w-96 xl:-ml-[19rem]' onClick={redirectCatalogue}>Ver catálogo</Button>
     </div>
   );
 };
 
 interface ProductsSectionProps {
-  products: Product[];
+  products: Product[] | undefined;
 }
 
 export default ProductsSection;

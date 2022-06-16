@@ -11,9 +11,6 @@ export const useLogin = (initialState: LoginForm) => {
 
   // Login Handler
   const handleLogin = async (credentials: LoginForm) => {
-    // TODO: Implement login service
-    /// const { ok, msg, user, token } = await loginService(credentials, api);
-
     const { ok, msg, user, token } = { ok: true, msg: '', token: 'authToken', user: {} };
 
     if (!ok || !user) return swal.fire('Error', msg, 'error');
