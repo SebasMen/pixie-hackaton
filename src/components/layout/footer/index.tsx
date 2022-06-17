@@ -19,7 +19,7 @@ export const Footer = ({ className }: FooterProps) => (
       <img src={instagramLogo} />
       <img src={twitterLogo} />
     </div>
-    <div className='text-center text-orange-200 font-extrabold md:flex md:flex-row md:space-x-20'>
+    <div className='text-center text-[#FAD7B1] font-extrabold md:flex md:flex-row md:space-x-20'>
       <div className='my-3.5'>
         <span>Contacto</span>
       </div>

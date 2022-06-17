@@ -65,3 +65,7 @@ input:focus {
   border: none;
   outline: none;
 }
+
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 1
+}

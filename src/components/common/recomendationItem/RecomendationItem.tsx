@@ -11,7 +11,7 @@ const RecomendationItem = ({ name, quantity, price }: RecomendationItemProps) =>
   return (
     <div
       className={`
-        flex flex-col justify-between rounded-lg items-start 
+        flex flex-col justify-between rounded-2xl items-start 
         gap-4 bg-primary px-5 py-6 transform transition-all
         duration-150 animate__animated animate__fadeIn
         md:items-center md:gap-0 md:flex-row lg:px-14
@@ -31,7 +31,7 @@ const RecomendationItem = ({ name, quantity, price }: RecomendationItemProps) =>
 
       {/* Quantity */}
       <div className='flex items-center gap-4'>
-        <TextField value={quantity} handler={() => console.log('quantity')} name={'quantity'} type='number' fieldClassName='font-subTitles font-semibold w-14' />
+        <TextField value={quantity} handler={() => console.log('quantity')} name={'quantity'} type='number' fieldClassName='font-subTitles font-semibold w-min min-w-[3.5rem] max-w-[5rem]' />
         <div className='flex flex-col'>
           <span className='font-extrabold'>porciones por</span>
           <span className='text-sm font-subTitles'>(500gms porción)</span>
@@ -39,7 +39,7 @@ const RecomendationItem = ({ name, quantity, price }: RecomendationItemProps) =>
       </div>
 
       {/* Price */}
-      <div className='w-full bg-white p-4 rounded-xl font-subTitles font-semibold md:w-auto md:px-8'>
+      <div className='w-full bg-white p-4 rounded-xl font-subTitles font-semibold md:w-auto md:mr-8'>
         ${price}
       </div>
     </div>

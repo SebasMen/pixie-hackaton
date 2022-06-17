@@ -11,7 +11,7 @@ const BannerDetail = ({ product } : BannerDetailProps) => {
       <Carrousel bulletsDirection='vertical' className='flex-grow flex-shrink-0' slidesPerView={1} centeredSlides={false} spaceBetween={0} >
         {arrayUrlImages.length > 0 ? arrayUrlImages.map(image =>
           <div key={image} className='flex w-full h-full items-center justify-center bg-gray-100'>
-            <img src={image} className='w-96 h-96'/>
+            <img src={image} className='w-full h-full object-cover'/>
           </div>
         )
           :

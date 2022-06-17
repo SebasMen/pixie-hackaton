@@ -1,17 +1,48 @@
 import Button from '../../components/common/button';
 
-const BannerSection = () => (
-  <div className='bg-transparent banner-calculator w-full flex justify-center items-center'>
-    <div className='flex flex-col text-center md:text-left md:w-1/2 md:ml-32 '>
-      <span className='text-5xl font-extrabold mb-4'>Lorem Ipsum</span>
-      <span className='text-xl font-bold font-subTitles mb-8 lg:pr-24'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-      <div className='flex justify-center gap-2 lg:justify-start lg:gap-6 font-subTitles'>
-        <Button className='bg-transparent border text-sm border-grayText text-grayText font-bold truncate lg:py-3 lg:px-10 lg:text-base'>Tabla peso ideal perro</Button>
-        <Button className='bg-transparent border text-sm border-grayText text-grayText font-bold truncate lg:py-3 lg:px-10 lg:text-base'>Tablas peso ideal gato</Button>
-      </div>
+const BannerSection = ({ view }: BannerSectionProps) => (
+  <div className='bg-transparent banner-calculator w-full flex justify-center items-center lg:items-start'>
+    <div
+      className={`
+        flex flex-col justify-end pb-14 text-center w-full h-full 
+        md:pb-5 md:text-left md:ml-10 md:justify-center 
+        lg:pb-0 lg:ml-36 
+        xl:ml-28
+        xl2:w-2/3 
+        2xl:w-1/2
+      `}
+    >
+      {view === 0 && (
+        <div className='flex flex-col w-full px-10 text-xl font-extrabold md:truncate md:pl-0 md:text-3xl lg:text-4xl lg:mb-20'>
+          <span>Cambiar la forma en que</span>
+          <span>alimentas a tu mascota,</span>
+          <span>comienza aquí!</span>
+        </div>
+      )}
+      {view === 1 && (
+        <div className='px-10 flex flex-col w-full'>
+          <span className='text-[45px] font-extrabold mb-4 md:truncate '>Calcula tu ración</span>
+          <span className='text-xl font-bold font-subTitles mb-8'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+        </div>
+      )
+      }
+      {view === 2 && (
+        <div className='px-10 h-full w-full flex flex-col justify-end md:justify-center'>
+          <span className='text-4xl font-extrabold mb-4 md:mb-2 lg:mb-4 lg:text-[45px]'>Lorem Ipsum</span>
+          <span className='w-full text-xl font-bold font-subTitles lg:mb-8 lg:pr-24'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+          <div className='flex justify-center gap-2 pb-5 pt-2 lg:pt-0 lg:pb-0 md:justify-start lg:gap-6 font-subTitles'>
+            <Button padding='px-2 md:py-3 md:px-10' className='bg-transparent border text-sm border-grayText text-grayText font-bold truncate h-8 md:h-auto lg:text-base'>Tabla peso ideal perro</Button>
+            <Button padding='px-2 md:py-3 md:px-10' className='bg-transparent border text-sm border-grayText text-grayText font-bold truncate h-8 md:h-auto lg:text-base'>Tabla peso ideal gato</Button>
+          </div>
+        </div>
+      )}
     </div>
     <div className='hidden md:block md:w-1/2'></div>
   </div>
 );
+
+interface BannerSectionProps {
+  view: number;
+}
 
 export default BannerSection;
