@@ -65,7 +65,7 @@ export const Carrousel = ({
       {/* Navigation */}
       {
         navigation &&
-        <div className='absolute z-20 w-full h-full top-0 left-0 hidden md:block'>
+        <div className='absolute w-full h-full top-0 left-0 hidden md:block'>
           <IconButton name='arrow_back_ios' onClick={() => swipeTo((swiper?.realIndex || 0) - 1)} shadow={false} className='absolute top-1/2  -left-20' />
           <IconButton name='arrow_forward_ios' onClick={() => swipeTo((swiper?.realIndex || 0) + 1)} shadow={false} className='absolute top-1/2 -right-20' />
         </div>

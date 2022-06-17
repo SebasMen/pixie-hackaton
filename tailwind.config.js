@@ -5,13 +5,15 @@ module.exports = {
       screens: {
         md: '720px',
         lg2: '1100px',
+        xl1: '1280px ',
         xl2: '1400px',
+        '2xl1': '1536px',
         '3xl': '1800px',
         tall: {
           raw: '(min-width: 720px) and (min-height: 800px) and (orientation: portrait)',
         },
         taller: {
-          raw: '(min-width: 900px) and (orientation: portrait)'
+          raw: '(min-width: 900px) and (min-height: 800px) and (orientation: portrait)'
         },
       },
       height: {
@@ -53,5 +55,6 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+  ],
 };

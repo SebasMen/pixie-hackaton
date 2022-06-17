@@ -55,34 +55,49 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       </div>
       {/* Carrousel */}
       <Carrousel onSlideChange={setSelected} className='pt-20 pb-10 lg:px-32' breakpoints={{
-        100: {
+        300: {
+          slidesPerView: 1,
+          initialSlide: 2,
+        },
+        460: {
           slidesPerView: 1.7,
-          spaceBetween: 0,
+          initialSlide: 2,
         },
         580: {
           slidesPerView: 2,
+          initialSlide: 2,
         },
         720: {
           slidesPerView: 3,
           initialSlide: 2,
         },
-        980: {
+        800: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          initialSlide: 2,
+        },
+        900: {
           slidesPerView: 3.5,
           spaceBetween: 30,
           initialSlide: 2,
         },
         1020: {
-          slidesPerView: 2.7,
-          spaceBetween: 30,
+          slidesPerView: 3,
+          spaceBetween: 0,
+          initialSlide: 2,
+        },
+        1200: {
+          slidesPerView: 3.5,
+          spaceBetween: 0,
           initialSlide: 2,
         },
         1280: {
-          slidesPerView: 3.5,
+          slidesPerView: 4,
           spaceBetween: 10,
           initialSlide: 2,
         },
         1366: {
-          slidesPerView: 3.7,
+          slidesPerView: 4.25,
           spaceBetween: 10,
           initialSlide: 2,
         },
@@ -123,10 +138,12 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
         {products?.slice(0, 7).map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
-        <div className='h-72 w-40 hidden md:w-[16.815rem] md:h-[357px] xl:block' />
+        <div className='h-[357px] w-[16.815rem] hidden xl:block' />
+        <div className='h-[357px] w-[16.815rem] hidden 3xl:block' />
+        <div className='h-[357px] w-[16.815rem] hidden 3xl:block' />
 
       </div>
-      <Button className='mt-10 text-primary font-bold font-subTitles w-4/5 border border-primary md:w-96 xl:-ml-[19rem]' onClick={redirectCatalogue}>Ver catálogo</Button>
+      <Button className='mt-10 text-primary font-bold font-subTitles w-4/5 border border-primary md:w-96 xl:-ml-[19rem] 2xl:-ml-[21rem] 3xl:mt-0 3xl:-ml-0' onClick={redirectCatalogue}>Ver catálogo</Button>
     </div>
   );
 };

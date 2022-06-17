@@ -12,9 +12,10 @@ const RecomendationItem = ({ name, quantity, price }: RecomendationItemProps) =>
     <div
       className={`
         flex flex-col justify-between rounded-lg items-start 
-        gap-4 bg-primary px-5 py-10 transform transition-all
+        gap-4 bg-primary px-5 py-6 transform transition-all
         duration-150 animate__animated animate__fadeIn
         md:items-center md:gap-0 md:flex-row lg:px-14
+        mb-[10px]
         ${checked ? 'bg-opacity-[0.2]' : 'bg-opacity-[0.1]'} 
       `}
     >

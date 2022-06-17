@@ -2,9 +2,41 @@
   height: calc(100vh - 110px);
 }
 
+.banner-calculator {
+  height: calc(100vh - 300px);
+}
+
 @media (min-width: 728px) {
   .banner {
     height: calc(100vh - 110px);
+  }
+
+  .banner-calculator {
+    height: calc(100vh - 200px);
+  }
+
+}
+
+@media (min-width: 630px) and (orientation: landscape) {
+
+  .banner-calculator {
+    height: calc(100vh - 125px);
+  }
+
+}
+
+@media (min-width: 720px) and (orientation: landscape) {
+
+  .banner-calculator {
+    height: calc(100vh);
+  }
+
+}
+
+@media (min-width: 728px) and (orientation: portrait) {
+
+  .banner-calculator {
+    height: calc(100vh - 500px);
   }
 
 }
@@ -12,6 +44,10 @@
 @media (min-width: 1024px) {
   .banner {
     height: calc(100vh - 210px);
+  }
+
+  .banner-calculator {
+    height: calc(100vh - 300px);
   }
 }
 

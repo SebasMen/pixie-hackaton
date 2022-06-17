@@ -1,6 +1,6 @@
 
 export const Icon = ({ name, size = 'xl', type = 'round', className = '' }: IconProps) => (
-  <i className={`material-icons-${type} text-${size} ${className} rounded-full`} >{name}</i>
+  <i className={`material-icons-${type} text-${size} ${className} rounded-full select-none`} >{name}</i>
 );
 
 Icon.awesome = ({ icon, size = 'xl', className = '' }: AwesomeIcon) => (
