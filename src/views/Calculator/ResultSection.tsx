@@ -6,10 +6,10 @@ import { products } from '../../@fake/productsFake';
 
 const ResultSection = () => (
   <div className='w-full rounded-t-3xl bg-sixth -mt-5 z-10 animate__animated animate__fadeIn md:px-20 lg:px-[11.9rem]'>
-    <div className='mb-8 mt-14'>
-      <span className='text-primary text-2xl font-bold'>¡PIXEL debe consumir un total de 670 gramos al día en 2 porciones!</span>
+    <div className='mb-8 mt-14 text-center'>
+      <span className='text-primary text-2xl xl2:text-[29px] font-bold'>¡PIXEL debe consumir un total de 670 gramos al día en 2 porciones!</span>
     </div>
-    <span>Recomendados:</span>
+    <span className='pl-5'>Recomendados:</span>
 
     {/* Carrousel */}
     <Carrousel className='pt-20 pb-10 lg:px-[9.8rem]' navigation breakpoints={{

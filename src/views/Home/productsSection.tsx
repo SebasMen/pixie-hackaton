@@ -54,7 +54,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
         <span>Tu amor de 4 patas debería de comer igual de saludable que toda tu familia.</span>
       </div>
       {/* Carrousel */}
-      <Carrousel onSlideChange={setSelected} className='pt-20 pb-10 lg:px-32' breakpoints={{
+      <Carrousel onSlideChange={setSelected} className='pt-20 pb-10 h-max lg:px-32' breakpoints={{
         300: {
           slidesPerView: 1,
           initialSlide: 2,

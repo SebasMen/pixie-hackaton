@@ -80,7 +80,7 @@ interface CarrouselProps {
   slidesPerView?: number;
   spaceBetween?: number;
   bulletClassName?: string;
-  bulletsDirection?: 'vertical' | 'horizontal';
+  bulletsDirection?: 'vertical' | 'horizontal' | 'horizontal-banner';
   breakpoints?: SwiperProps['breakpoints'];
   centeredSlides?: boolean;
   navigation?: boolean;

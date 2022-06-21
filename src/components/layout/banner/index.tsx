@@ -17,7 +17,7 @@ export const Banner = ({ dataBanner, showBotton, fixed = false, backgroundImg }:
         text={dataBanner[0].text}
         showBotton={showBotton}
       /> :
-      <Carrousel slidesPerView={1} bulletsDirection='vertical'>
+      <Carrousel slidesPerView={1} bulletsDirection='horizontal-banner'>
         {dataBanner.map(item => (
           <BannerContent key={item.title} title={item.title} text={item.text} showBotton={showBotton} img={vegetables} />
         ))}

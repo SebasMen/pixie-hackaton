@@ -1,7 +1,7 @@
 .swiper-pagination-horizontal {
   position: absolute;
   left: 50%;
-  bottom: 10px;
+  bottom: 0px;
 
   width: fit-content;
   height: fit-content;
@@ -10,6 +10,21 @@
 
   display: flex;
   flex-direction: row;
+  gap: 5px;
+}
+
+.swiper-pagination-horizontal-banner {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+
+  width: fit-content;
+  height: fit-content;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  flex-direction: column;
   gap: 5px;
 }
 
@@ -26,5 +41,78 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+@media (min-width: 1024px) {
+  .swiper-pagination-horizontal-banner {
+    position: absolute;
+    left: 10rem;
+    bottom: 0px;
+    top: auto;
+
+    width: fit-content;
+    height: fit-content;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .swiper-pagination-horizontal-banner {
+    position: absolute;
+    left: 10rem;
+    bottom: 10%;
+    top: auto;
+
+    width: fit-content;
+    height: fit-content;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+}
+
+
+@media (min-width: 1536px) {
+  .swiper-pagination-horizontal-banner {
+    position: absolute;
+    left: 10rem;
+    bottom: 20%;
+    top: auto;
+
+    width: fit-content;
+    height: fit-content;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .swiper-pagination-horizontal-banner {
+    position: absolute;
+    left: 10rem;
+    bottom: 30%;
+    top: auto;
+
+    width: fit-content;
+    height: fit-content;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
 }
 

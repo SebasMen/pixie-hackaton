@@ -26,7 +26,7 @@ const exercises: SelectItem[] = [
   { value: 'high', label: 'Alta' },
 ];
 
-export const CalculatorSection = () => {
+export const CalculatorSection = ({ setView }:CalculatorSectionProps) => {
   // Hooks
   const { form, onSubmit, handleFormChange, handleSelectChange } = useForm<CalculatorFormType>({
     name: '',
@@ -62,7 +62,7 @@ export const CalculatorSection = () => {
                 <img src={dogCalculator} className='w-full z-10' />
               </div>
               {/* Form */}
-              <CalculatorForm form={form} onSubmit={onSubmit} onChange={handleFormChange} onSelectChange={handleSelectChange} />
+              <CalculatorForm form={form} onSubmit={onSubmit} onChange={handleFormChange} onSelectChange={handleSelectChange} setView={setView}/>
             </div>
             {/* Mobile Dog */}
             <img src={fullDogCalculator} className='block w-full z-10 pb-5 sm:hidden' />
@@ -72,5 +72,9 @@ export const CalculatorSection = () => {
     </>
   );
 };
+
+interface CalculatorSectionProps {
+  setView: React.Dispatch<React.SetStateAction<number>>
+}
 
 export default CalculatorSection;
