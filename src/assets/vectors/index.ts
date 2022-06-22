@@ -32,6 +32,7 @@ import cardHomeLoveDog from './cardHomeLoveDog.svg';
 import cardHomePets2 from './cardHomePets2.svg';
 import cataloguePoints from './cataloguePoints.svg';
 import cataloguePointsM from './cataloguePointsM.svg';
+import backArrow from './backArrow.svg';
 
 export {
   basket,
@@ -67,5 +68,6 @@ export {
   cardHomeLoveDog,
   cardHomePets2,
   cataloguePoints,
-  cataloguePointsM
+  cataloguePointsM,
+  backArrow
 };

@@ -3,7 +3,7 @@ import { extraInfo } from '../../@fake/detailFake';
 
 const ExtraInfoContainer = () => (
   <div className='hidden md:flex md:flex-col mt-7 w-full'>
-    <div className='flex gap-4 mb-8 mx-24'>
+    <div className='flex gap-4 mb-8'>
       <div className='rounded-lg w-1/2 text-sm pl-12 pr-16 bg-fifth'>
         <div className='py-7'>
           <span className='text-lg font-bold text-fourth'>Beneficios y Características:</span>
@@ -21,7 +21,7 @@ const ExtraInfoContainer = () => (
         </div>
       </div>
     </div>
-    <div className='flex justify-around rounded-lg px-16 mx-24 bg-fifth'>
+    <div className='flex justify-around rounded-lg px-16 bg-fifth'>
       <div className='w-2/5'>
         <div className='py-7'>
           <span className='text-lg font-bold text-fourth'>Composición Garantizada-MS%</span>

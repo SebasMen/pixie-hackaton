@@ -12,11 +12,17 @@ import { dataBanner } from '../../@fake/bannerFake';
 import { useAppContext, useFetch } from '../../hooks';
 import Spinner from '../../components/common/spinner';
 import { ProductListResponse } from '../../interfaces/product';
+import { useEffect } from 'react';
 
 const Home = () => {
   const { api } = useAppContext();
   const { loading, response } = useFetch<ProductListResponse>(`${api}/products?_limit=10`);
 
+  const { updateContext } = useAppContext();
+
+  useEffect(() => {
+    updateContext(old => ({ ...old, showNavbar: true }));
+  }, [screen.width]);
   return (
     <Page color='#efd1b0'>
       {loading
@@ -46,7 +52,7 @@ const Home = () => {
             color='#DF2F44'
             name='DogButton'
             img={dog}
-            sizeContainer={'w-[75px] h-[75px]'}
+            sizeContainer={'w-[67px] h-[67px] md:w-[75px] md:h-[75px]'}
             onClick={() => console.log('Hi')}
           />
 

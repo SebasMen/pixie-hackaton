@@ -9,7 +9,7 @@ const ItemAccordion = ({ name, infoList, infoTable, infoConservation, type }: It
   // Component
   return (
     <li
-      className='relative flex flex-col text-lg px-7 py-4 md:px-0'
+      className='relative flex flex-col text-lg px-7 py-4 md:px-0 font-medium'
       onClick={() => setIsOpen(!isOpen)}
     >
       <div className='flex justify-between'>

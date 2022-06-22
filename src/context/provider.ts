@@ -34,4 +34,6 @@ export const appProvider: AppContextType = {
     status: '',
     url_image: '',
   },
+
+  showNavbar: true,
 };

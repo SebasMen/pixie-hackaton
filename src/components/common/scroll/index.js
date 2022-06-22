@@ -16,14 +16,10 @@ export default class ColoredScrollbars extends Component {
   }
 
   renderView({ style, ...props }) {
-    const viewStyle = {
-      paddingLeft: 22,
-      paddingRight: 22,
-    };
     return (
       <div
-        className='box'
-        style={{ ...style, ...viewStyle }}
+        className='box md:pr-5'
+        style={{ ...style }}
         {...props}/>
     );
   }

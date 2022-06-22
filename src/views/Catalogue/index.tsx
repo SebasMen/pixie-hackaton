@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Components
 import Page from '../../components/layout/page';
@@ -13,7 +13,7 @@ import { dog } from '../../assets/vectors';
 
 import { ProductListResponse } from '../../interfaces/product';
 import { filterShop } from '../../interfaces/filter';
-import { useFetch } from '../../hooks';
+import { useAppContext, useFetch } from '../../hooks';
 
 const Catalogue = () => {
   const { loading, response } = useFetch<ProductListResponse>(`${process.env.REACT_APP_API_URL}/products?_limit=10`);
@@ -21,6 +21,11 @@ const Catalogue = () => {
     agePet: [],
     typePet: []
   });
+  const { updateContext } = useAppContext();
+
+  useEffect(() => {
+    updateContext(old => ({ ...old, showNavbar: true }));
+  }, [screen.width]);
 
   return (
     <Page color='#7AC5BE'>

@@ -14,22 +14,25 @@ import { cardHomePets, cardHomeStool, cardHomeFood, cardHomeLoveDog, cardHomePet
 const cardsData = [
   {
     title: 'DIRECTO A TU CASA:',
-    description: 'Nosotros te la llevamlos fresca y cuando la necesites hasta la puerta de tu casa ',
+    description: 'Nosotros te llevamos la comida fresca y cuando la necesites hasta la puerta de tu casa.',
     img: cardHomePets
   },
   {
     title: 'MENOS Y MEJORES HECES: ',
-    description: '',
+    description: `Por su alta digestibilidad los perros y gatos absorben
+                  de mejor forma los nutrientes por lo que recogerás menos popós.`,
     img: cardHomeStool,
   },
   {
     title: 'COMIDA REAL HORNEADA',
-    description: 'Ingredientes de grado humano alimenticio.',
+    description: `Cumpliendo nuestro propósito de generar bienestar aseguramos
+                  que solo usamos los mejores ingredientes de grado humano dentro del rollo.`,
     img: cardHomeFood,
   },
   {
     title: 'DESARROLLADA POR NUTRIÓLOGOS VETERINARIOS:',
-    description: 'Comida hecha de manera natural, sin conservadores y con los nutrientes necesarios como proteínas, vegetales y cereales, para una dieta diaria balanceada y saludable.',
+    description: `Sin conservadores y con los nutrientes necesarios para
+                  una dieta diaria balanceada y saludable.`,
     img: cardHomeLoveDog,
   },
   {
@@ -56,7 +59,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       {/* Carrousel */}
       <Carrousel onSlideChange={setSelected} className='pt-20 pb-10 h-max lg:px-32' breakpoints={{
         300: {
-          slidesPerView: 1,
+          slidesPerView: 1.7,
           initialSlide: 2,
         },
         460: {
