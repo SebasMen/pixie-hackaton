@@ -10,8 +10,8 @@ const ExtraInfo = ({ type, infoList, infoTable, infoConservation }: ExtraInfoPro
         <tbody>
           {infoTable?.map(({ grams, kl }) =>
             <tr key={`tableItem-${grams}-${kl}`}>
-              <td className='border-r border-b border-black px-8 py-3 md:py-6 font-bold text-gray-700 text-center'>{kl} Kg</td>
-              <td className='border-b border-black md:px-12 px-8 py-3 md:py-6 font-bold text-gray-700 text-center'>{grams} gramos por día</td>
+              <td className='border-r border-b border-fourth px-8 py-3 font-semibold text-center'>{kl} Kg</td>
+              <td className='border-b border-fourth md:px-12 px-8 py-3 font-semibold text-center'>{grams} gramos por día</td>
             </tr>
           )}
         </tbody>

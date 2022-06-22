@@ -15,7 +15,7 @@ const BannerSection = ({ view }: BannerSectionProps) => (
       {view === 0 && (
         <div className='flex flex-col w-full px-10 text-xl font-extrabold md:truncate md:pl-0 md:text-3xl lg:text-4xl lg:mb-20'>
           <span>Cambiar la forma en que</span>
-          <span>alimentas a tu mascota,</span>
+          <span>alimentas a tu mascota</span>
           <span>comienza aquí!</span>
         </div>
       )}

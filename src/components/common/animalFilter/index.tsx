@@ -66,7 +66,7 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
 
   // Component
   return (
-    <div className='w-full flex flex-col items-center justify-center rounded-t-3xl overflow-hidden transform -mt-4' style={{ backgroundColor: '#FFF6EC' }}>
+    <div className='w-full flex flex-col items-center justify-center rounded-t-3xl overflow-hidden transform -mt-4 lg:gap-9' style={{ backgroundColor: '#FFF6EC' }}>
       {/* Backgrounds */}
       {/* <img className='absolute w-full md:pt-20 object-cover object-right -z-10' src={vegetablesCatalogue} /> */}
 
@@ -77,8 +77,8 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
               className={`
                 md:w-52 md:flex md:justify-between md:items-center 
                 rounded-full transform transition-all gap-2
-                md:ring-2 md:ring-red-600 lg:shadow-xl
-                ${filter.typePet.includes(key as any) ? 'bg-red-600 ' : 'bg-transparent'}
+                md:ring-2 md:ring-primary lg:shadow-xl
+                ${filter.typePet.includes(key as any) ? 'bg-primary ' : 'bg-transparent'}
               `}
             >
               <div className='text-left'>
@@ -91,11 +91,11 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
                   sizeContainer={'h-20 w-20'}
                 />
               </div>
-              <div className={`hidden text-2xl font-bold text-white md:flex-grow md:flex ${filter.typePet.includes(key as any) ? 'md:text-amber-100' : 'md:text-red-600'}`}>
+              <div className={`hidden text-2xl font-bold text-white md:flex-grow md:flex ${filter.typePet.includes(key as any) ? 'md:text-amber-100' : 'md:text-primary'}`}>
                 <span>{name}</span>
               </div>
             </div>
-            <div className={'md:hidden text-2xl font-bold text-red-600 md:flex-grow'}>
+            <div className={'md:hidden text-2xl font-bold text-primary md:flex-grow'}>
               <span>{name}</span>
             </div>
           </div>
@@ -105,11 +105,14 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
         {categories.map(cat => (
           <Button
             key={`cat-${cat.key}`}
-            className={'font-bold text-white gap-1 h-full transform transition-all duration-300 md:rounded-b-none'}
+            className={'font-bold text-white gap-1 h-full transform transition-all duration-300 md:rounded-b-none lg:rounded-t-3xl'}
             color={`${filter.agePet.includes(cat.key) ? '#7ac5be' : '#bee0e1'}`}
-            onClick={() => handleFilterChange('agePet', cat.key)}>
+            onClick={() => handleFilterChange('agePet', cat.key)}
+            padding={'px-[1.0rem] lg:py-3 lg:px-5'}
+            rounded={true}
+          >
             <Icon name='done' size='2xl' className={`${filter.agePet.includes(cat.key) ? 'w-6 md:w-7' : 'w-0'} overflow-hidden transform transition-all`} />
-            <span className='tracking-wide md:tracking-widest'>{cat.name}</span>
+            <span className='tracking-wide md:tracking-widest text-sm lg:text-[27px]'>{cat.name}</span>
           </Button>
         ))}
       </div>

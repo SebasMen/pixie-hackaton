@@ -13,7 +13,7 @@ export const Tag = ({ name, className }: TagProps) => (
     `}
   >
     <Icon name='sell' className='text-md rotate-90 scale-[55%] sm:block md:scale-[80%]' type='outlined' />
-    <span className='text-[11px] md:text-sm'>{capitalize(name)}</span>
+    <span className='text-[11px] md:text-sm capitalize'>{capitalize(name)}</span>
   </div>
 );
 

@@ -12,7 +12,7 @@ import { useAppContext } from '../../../hooks';
 
 import { basket, CatIcon, DogIcon } from '../../../assets/vectors/index';
 
-export const ProductCard = ({ product, showControls = true, className }: ProductCardProps) => {
+export const ProductCard = ({ product, showControls = true, className, selected }: ProductCardProps) => {
   // Hooks
   const navigate = useNavigate();
   const ages = transformAge(product);
@@ -34,6 +34,7 @@ export const ProductCard = ({ product, showControls = true, className }: Product
         relative flex flex-col flex-shrink-0 justify-between items-center 
         cursor-pointer h-64 w-40 p-3 pb-8 rounded-2xl bg-white 
         ring-0 ring-primary transform transition-all 
+        ${selected ? 'scale-110 lg:scale-100' : 'scale-90'}
         md:w-[16.815rem] md:h-[357px]
         hover:ring-1 ${className}
       `}
@@ -80,6 +81,7 @@ interface ProductCardProps {
   product: Product;
   showControls?: boolean;
   className?: string;
+  selected?: boolean
 }
 
 export default ProductCard;

@@ -24,16 +24,23 @@ export const CalculatorForm = ({ onChange, onSelectChange, onSubmit, form: { nam
         {/* Page 0 */}
         <div className={`flex flex-col gap-2 w-full md:gap-5 animate__animated animate__fast font-subTitles ${page === 0 ? 'relative animate__fadeInRight' : 'hidden'}`}>
           <div className='font-bold text-center mb-16 text-xl'>
-            <p>Descubre cuál es el plan que más le conviene</p>
+            <p>Descubre cuál es la opción y cantidad ideal de Pixie para tu amigo de cuatro patas </p>
             <p className='font-extrabold'>¡GET STARTED!</p>
           </div>
 
-          <TextField name='name' value={name} handler={onChange} label='¿Como se llama tu mascota? *' />
+          <TextField name='name' value={name} handler={onChange} label='¿Cómo se llama tu mascota? *' />
           <SelectField name='type' value={type} options={typeOptions} onChange={onSelectChange} label='Tu mascota es un... *' />
           <SelectField name='age' value={age} options={ageOptions} onChange={onSelectChange} label='Edad *' />
           <TextField name='exactAge' value={exactAge} handler={onChange} type='number' label='Edad exacta en meses *' />
-          <div className='flex justify-center gap-7 mt-4 md:justify-end'>
-            <Button className='bg-primary text-white w-36' onClick={() => handleChangeView(1)}>Siguiente</Button>
+          <div className='flex justify-between items-center mt-4'>
+            <div className='flex gap-2 items-center px-5'>
+              <div className='w-3 h-3 bg-gray-600 rounded-full' />
+              <div className='w-3 h-3 bg-gray-400 rounded-full' />
+            </div>
+
+            <div className='flex justify-center gap-7 md:justify-end'>
+              <Button className='bg-primary text-white w-36' onClick={() => handleChangeView(1)}>Siguiente</Button>
+            </div>
           </div>
         </div>
 
@@ -62,9 +69,15 @@ export const CalculatorForm = ({ onChange, onSelectChange, onSubmit, form: { nam
           <SelectField name='exercise' value={exercise} options={exerciseOptions} onChange={onSelectChange} label='Actividad fisica*' />
           <TextField name='diseases' value={diseases} handler={onChange} label='Enfermedades*' />
           <TextField name='allergies' value={allergies} handler={onChange} label='Alergias*' />
-          <div className='flex justify-center gap-7 mt-4 md:justify-end'>
-            <Button className='ring-1 ring-primary bg-transparent text-primary w-36' onClick={() => handleChangeView(0)} >Anterior</Button>
-            <Button className='bg-primary text-white w-36' type='submit' onClick={() => handleChangeView(2)}>Consultar</Button>
+          <div className='flex justify-between items-center mt-4'>
+            <div className='flex gap-2 items-center px-5'>
+              <div className='w-3 h-3 bg-gray-400 rounded-full' />
+              <div className='w-3 h-3 bg-gray-600 rounded-full' />
+            </div>
+            <div className='flex justify-center gap-7 md:justify-end'>
+              <Button className='ring-1 ring-primary bg-transparent text-primary w-36' onClick={() => handleChangeView(0)} >Anterior</Button>
+              <Button className='bg-primary text-white w-36' type='submit' onClick={() => handleChangeView(2)}>Consultar</Button>
+            </div>
           </div>
         </div>
       </div>

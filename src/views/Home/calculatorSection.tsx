@@ -12,13 +12,13 @@ export const CalculatorSection = () => {
       <img src={fillets} className='object-none h-full w-full float-none absolute' />
       <div className='flex flex-col items-center justify-center md:w-1/3 z-10'>
         <div className='lg:mb-[3.2rem]'>
-          <span className='text-3xl text-grayText font-extrabold'>Copy invitando a calculadora</span>
+          <span className='text-3xl text-grayText font-extrabold'>¿Cuál es el Pixie ideal para mi perrito o michi?</span>
         </div>
         <Button
           className='flex items-center justify-center mb-12 px-11 py-2.5 rounded-xl cursor-pointer focus:outline-none mt-5 font-subTitles bg-white text-red-600 font-bold lg:mb-0'
           onClick={ () => navigate('/calculator')}
         >
-          Call to action
+          Calcúlalo acá
         </Button>
       </div>
       <div className='z-10 md:w-2/3 xl:h-full md:flex md:items-center md:justify-center md:pr-16 md:pl-16 md:mt-7'>

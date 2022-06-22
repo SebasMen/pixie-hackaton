@@ -23,6 +23,9 @@ export interface AppContextType {
 
   // Productview
   productView: Product;
+
+  // ShowNavbar
+  showNavbar: boolean;
 }
 
 export const appProvider: AppContextType = provider;
