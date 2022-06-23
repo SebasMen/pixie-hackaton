@@ -10,7 +10,8 @@ import { transformAge } from '../../../helpers/productHelper';
 import { capitalize } from '../../../helpers/capitalize';
 import { useAppContext } from '../../../hooks';
 
-import { basket, CatIcon, DogIcon } from '../../../assets/vectors/index';
+import { basket, CatIcon, DogIcon, notImage } from '../../../assets/vectors/index';
+import { transformUrlGDrive } from '../../../helpers/imgHelper';
 
 export const ProductCard = ({ product, showControls = true, className, selected }: ProductCardProps) => {
   // Hooks
@@ -47,7 +48,12 @@ export const ProductCard = ({ product, showControls = true, className, selected 
         <IconButton.mini img={product.kind_pet === 'CAT' ? CatIcon : DogIcon} name={product.name + '-tag-' + product.kind_pet} className='text-primary border-[1px] border-primary p-1 shadow-none' onClick={() => console.log(product.kind_pet)} />
       </div>
       <div className='flex-grow overflow-hidden rounded-md'>
-        <img src={product.url_image} className='w-24 h-24 md:w-36 md:h-36 object-cover' />
+        {product.url_image === ''
+          ?
+          <img src={notImage} className='w-24 h-24 md:w-36 md:h-36' />
+          :
+          <img src={transformUrlGDrive(product.url_image)} className='w-24 h-24 md:w-36 md:h-36 object-contain' />
+        }
       </div>
       <div className='text-center text-xs md:text-lg  w-full'>
         <h4 className='text-red-600 mb-1'>{capitalize(product.name)}</h4>

@@ -1,5 +1,6 @@
 import { Product, productCatalogue } from '../interfaces/product';
 import { filterShop } from '../interfaces/filter';
+import { transformAge } from './productHelper';
 
 export const filterDefault = (products: Array<Product> | undefined, filter: filterShop) => {
   // Return empty if no products
@@ -7,7 +8,7 @@ export const filterDefault = (products: Array<Product> | undefined, filter: filt
 
   const filtered = products.filter(product => {
     // Get product categories
-    const productAges = product.age.split(',') as filterShop['agePet'];
+    const productAges = transformAge(product) as filterShop['agePet'];
 
     // Get product types
     const productKinds = product.kind_pet.split(',') as filterShop['typePet'];
@@ -29,7 +30,7 @@ export const filterDefault = (products: Array<Product> | undefined, filter: filt
   });
 
   // Products by category
-  const finishFilter: Array<productCatalogue> = [{ name: 'Alimentos', products: [] }, { name: 'Snack', products: [] }, { name: 'Accesorios', products: [] }];
+  const finishFilter: Array<productCatalogue> = [{ name: 'Alimentos', products: [] }, { name: 'Snacks', products: [] }, { name: 'Accesorios', products: [] }];
 
   // Iterate products
   filtered.forEach(product => {
@@ -37,7 +38,7 @@ export const filterDefault = (products: Array<Product> | undefined, filter: filt
     const name = product.category.toLowerCase().trim();
 
     // Get category index
-    const index = finishFilter.findIndex(cat => cat.name.toLocaleLowerCase() === name);
+    const index = finishFilter.findIndex(cat => cat.name.toLocaleLowerCase().trim() === name);
 
     // Validate index
     if (index === -1) return;
