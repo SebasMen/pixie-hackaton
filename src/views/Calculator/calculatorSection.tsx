@@ -11,9 +11,9 @@ import { dogCalculator, fullDogCalculator, backgroundCalculator } from '../../as
 import { getPetFeedData, PetFeedData, PetInfo } from '../../helpers/calculator';
 
 const ages: SelectItem[] = [
-  { value: '6', label: '6 Meses' },
-  { value: '8', label: '8 Meses' },
-  { value: '12', label: '12 Meses' },
+  { value: 'puppy', label: 'Cachorro (2 a 12 meses)' },
+  { value: 'adult', label: 'Adulto (1 a 6 años)' },
+  { value: 'senior', label: 'Senior (7 años en adelante)' },
 ];
 
 const types: SelectItem[] = [

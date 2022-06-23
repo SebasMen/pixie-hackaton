@@ -18,7 +18,7 @@ export const SelectField = ({
         colors: {
           ...old.colors,
           primary: '#DF2F44',
-          primary25: '#DF2F44',
+          primary25: '#df2f4422',
         },
       })}
       isMulti={isMulti}
@@ -44,7 +44,7 @@ export const SelectField = ({
           ...base,
           borderRadius: '15px',
           overflow: 'hidden',
-        })
+        }),
       }}
     />
   </div>
