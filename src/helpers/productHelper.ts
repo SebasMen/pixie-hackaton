@@ -3,7 +3,8 @@ import { Product } from '../interfaces/product';
 export const transformAge = (product : Product) => {
   const ages = product.age;
   const agesArray = ages.split(',');
-  return agesArray;
+  const lower = agesArray.map(element => element.toLowerCase().trim());
+  return lower;
 };
 
 export const transUrlImages = (product : Product) => {

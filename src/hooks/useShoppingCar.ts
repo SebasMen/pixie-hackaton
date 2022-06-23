@@ -7,10 +7,9 @@ export const useShoppingCar = () => {
 
   const addProduct = (currentProduct: Product) => {
     const existTheProduct = theProductExist(currentProduct);
-    if (existTheProduct) {
+    if (existTheProduct)
       joinProducts(existTheProduct, currentProduct);
-      console.log(existTheProduct);
-    } else
+    else
       updateContext(old => ({ ...old, products: [...old.products, currentProduct] }));
   };
 
@@ -19,8 +18,6 @@ export const useShoppingCar = () => {
   const deleteProduct = (currentProduct: Product) => updateContext(old => ({ ...old, products: [...old.products.filter(item => item.id !== currentProduct.id)] }));
 
   const joinProducts = (oldProduct: Product, currentProduct: Product) => {
-    console.log(typeof parseInt(`${oldProduct.totalPrice}`, 10));
-    console.log(typeof currentProduct.totalPrice);
     const totalPrice = ((oldProduct.totalPrice === undefined) ? 0 : parseInt(`${oldProduct.totalPrice}`, 10)) + ((currentProduct.totalPrice === undefined) ? 0 : parseInt(`${currentProduct.totalPrice}`, 10));
     const quantitySold = ((oldProduct.quantitySold === undefined) ? 0 : parseInt(`${oldProduct.quantitySold}`, 10)) + ((currentProduct.quantitySold === undefined) ? 0 : parseInt(`${currentProduct.quantitySold}`, 10));
     const newProduct = { ...currentProduct, totalPrice, quantitySold };

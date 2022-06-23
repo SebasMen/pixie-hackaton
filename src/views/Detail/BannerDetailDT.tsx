@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { transformUrlGDrive } from '../../helpers/imgHelper';
 import { transUrlImages } from '../../helpers/productHelper';
 import { useAppContext } from '../../hooks';
+import { notImage } from '../../assets/vectors/index';
+import MiniImageDT from './MiniImageDT';
 
 const BannerDetailDT = () => {
   const [image, setImage] = useState(0);
@@ -10,25 +13,28 @@ const BannerDetailDT = () => {
   /// const [product, setproduct] = useState<Product>(productView);
   const arrayUrlImages = transUrlImages(product);
 
-  const handleChangeImage = (index: number) => {
-    /// setShowMoreImg(false);
-    setImage(index);
-  };
-
   return (
     <div className='hidden lg:flex w-full overflow-hidden lg:h-full md:w-2/3 '>
       <div className='flex flex-col w-1/4 items-start'>
         {arrayUrlImages.map((url, index) => index < 3 ? (
-          <div key={url} className='mb-6 cursor-pointer hover:' onClick={() => handleChangeImage(index)}>
-            <img src={url} className='w-36 h-36 object-cover'/>
-          </div>)
+          <MiniImageDT key={url} src={url} handleChangeImage={setImage} index={index}/>
+        )
           : '')}
       </div>
-      <div className='flex w-3/4 justify-center'>
-        <div>
-          <img src={arrayUrlImages[image]} className='w-[529px] h-[446px]'/>
+      {arrayUrlImages[0] === ''
+        ?
+        <div className='flex w-3/4 justify-center'>
+          <div>
+            <img src={notImage} className='w-[529px] h-[446px]'/>
+          </div>
         </div>
-      </div>
+        :
+        <div className='flex w-3/4 justify-center'>
+          <div>
+            <img src={transformUrlGDrive(arrayUrlImages[image])} className='w-[529px] h-[446px] object-contain'/>
+          </div>
+        </div>
+      }
     </div>
   );
 };
