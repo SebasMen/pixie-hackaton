@@ -34,14 +34,13 @@ export const NavBar = () => {
   const isCalculator = pathname.includes('/calculator');
 
   const pixie = isCatalogue ? logoFooter : logo;
-  const color = ((isCatalogue || isCalculator) ? 'grayText' : 'red-500') || 'grayText';
+  const color = (isCatalogue || isCalculator ? 'grayText' : 'red-500') || 'grayText';
 
-  if (!showNavbar)
-    return <></>;
+  if (!showNavbar) return <></>;
 
   // Component
   return (
-    <div className='w-full relative'>
+    <div className='w-full relative max-w-[1440px]'>
       {/* Mobile Menu */}
       <Menu collapsed={collapsed} toggle={toggleCollapsed} />
 
@@ -63,17 +62,27 @@ export const NavBar = () => {
         <div className='flex flex-col flex-grow-0 md:flex-grow'>
           {/* Top */}
           <div className={`w-full hidden text-${color} gap-[22px] md:flex md:flex-row md:justify-end md:items-center`}>
-            {
-              color === 'grayText' ?
-                <Button rounded className='font-extrabold font-subTitles bg-transparent py-1 border-grayText border-[1px]' padding='py-0 px-3'>
-                  Ingresar
-                </Button> :
-                <Button rounded className='font-extrabold font-subTitles bg-transparent py-1 border-primary border-[1px]' padding='py-0 px-3'>
-                  Ingresar
-                </Button>
-            }
+            {color === 'grayText' ? (
+              <Button
+                rounded
+                className='font-extrabold font-subTitles bg-transparent py-1 border-grayText border-[1px]'
+                padding='py-0 px-3'
+              >
+                Ingresar
+              </Button>
+            ) : (
+              <Button
+                rounded
+                className='font-extrabold font-subTitles bg-transparent py-1 border-primary border-[1px]'
+                padding='py-0 px-3'
+              >
+                Ingresar
+              </Button>
+            )}
             <div className='flex'>
-              <span className='font-medium font-subTitles'>EN</span><span className='font-extrabold font-subTitles'> &nbsp;|&nbsp;</span><span className='font-black font-subTitles'>ES</span>
+              <span className='font-medium font-subTitles'>EN</span>
+              <span className='font-extrabold font-subTitles'> &nbsp;|&nbsp;</span>
+              <span className='font-black font-subTitles'>ES</span>
             </div>
           </div>
 
@@ -120,15 +129,17 @@ export const NavBar = () => {
                   onClick={() => toogleShoppingCar()}
                   color={isCatalogue || isCalculator ? undefined : '#df2f44'}
                 />
-                {products.length > 0 &&
+                {products.length > 0 && (
                   <div
                     className={`flex w-5 h-5 font-subTitles text-xs rounded-full
                      absolute justify-center items-center  text-white top-[3.9rem] right-7
                      md:right-4 lg:right-11 md:top-[5.5rem] animate__animated animate__bounceIn
                      ${isCatalogue || isCalculator ? 'bg-primary' : 'bg-gray-600'}
-                     `}>
+                     `}
+                  >
                     {products.length}
-                  </div>}
+                  </div>
+                )}
               </div>
             </div>
           </div>

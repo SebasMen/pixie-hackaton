@@ -25,13 +25,12 @@ const Home = () => {
   }, [screen.width]);
   return (
     <Page color='#efd1b0'>
-      {loading
-        ?
+      {loading ? (
         <div className='w-full h-screen flex items-center justify-center'>
           <Spinner />
         </div>
-        :
-        (<>
+      ) : (
+        <>
           {/* Background */}
           <img
             src={backgroundWood}
@@ -61,7 +60,8 @@ const Home = () => {
 
           {/* Footer */}
           <Footer />
-        </>)}
+        </>
+      )}
     </Page>
   );
 };

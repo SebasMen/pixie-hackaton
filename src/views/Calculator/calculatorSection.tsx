@@ -9,10 +9,11 @@ import { useForm } from '../../hooks';
 
 import { dogCalculator, fullDogCalculator, backgroundCalculator } from '../../assets/images';
 import { getPetFeedData, PetFeedData, PetInfo } from '../../helpers/calculator';
+import useAppContext from '../../hooks/useAppContext';
 
 const ages: SelectItem[] = [
-  { value: 'puppy', label: 'Cachorro (2 a 12 meses)' },
-  { value: 'adult', label: 'Adulto (1 a 6 años)' },
+  { value: 'cachorros', label: 'Cachorro (2 a 12 meses)' },
+  { value: 'adultos', label: 'Adulto (1 a 6 años)' },
   { value: 'senior', label: 'Senior (7 años en adelante)' },
 ];
 
@@ -46,22 +47,33 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
     form => handleSubmit(form)
   );
 
+  const { toast } = useAppContext();
+
   const [isResult, setIsResult] = useState(false);
   const [feedData, setFeedData] = useState<PetFeedData>();
 
   // Methods
   const handleSubmit = (form: CalculatorFormType) => {
+    if (!form.exactAge || !form.name || !form.idealWeight) return;
+
     const data = getPetFeedData({
       activity: form.exercise.value as PetInfo['activity'],
       age: form.exactAge,
-      range: 'senior',
-      type: 'dog',
+      range: form.age.value as PetInfo['range'],
+      type: form.type.value as PetInfo['type'],
       name: form.name,
       weight: form.idealWeight,
     });
-    setFeedData(data);
 
+    if (!data)
+      return toast.fire({
+        icon: 'warning',
+        title: 'Hubo un error en el calculo, porfavor revise los datos.',
+      });
+
+    setFeedData(data);
     setIsResult(true);
+    setView(2);
   };
 
   // Component
@@ -83,7 +95,6 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
               onSubmit={onSubmit}
               onChange={handleFormChange}
               onSelectChange={handleSelectChange}
-              setView={setView}
             />
           </div>
           {/* Mobile Dog */}

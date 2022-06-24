@@ -4,11 +4,24 @@ import withReactContent from 'sweetalert2-react-content';
 import { AppContextType } from './index';
 
 const MySwal = withReactContent(Swal);
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom-right',
+  showConfirmButton: false,
+  showCloseButton: true,
+  timer: 1500,
+  timerProgressBar: true,
+  didOpen(toast) {
+    toast.addEventListener('mouseenter', Swal.stopTimer);
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
+  },
+});
 const api = process.env.REACT_APP_API_URL;
 
 export const appProvider: AppContextType = {
   // Generic
   swal: MySwal,
+  toast: Toast,
   updateContext: old => old,
   api,
 

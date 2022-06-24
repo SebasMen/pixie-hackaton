@@ -278,13 +278,17 @@ export const calculator = {
   },
 };
 
-export const getPetFeedData = ({ name, weight, age, range, type, activity }: PetInfo): PetFeedData => {
-  const { activities, feedTimes } = calculator[type][range];
+export const getPetFeedData = ({ name, weight, age, range, type, activity }: PetInfo): PetFeedData | undefined => {
+  const data = calculator[type][range];
+
+  if (!data || !age) return;
+
+  const { activities, feedTimes } = data;
+
   const multiply = (activities[activity] as any)[age] as number;
+  const grams = Math.round((multiply / 100) * weight * 1000);
 
-  const grams = (multiply / 100) * weight * 1000;
-
-  console.log(multiply, '->', grams);
+  if (isNaN(grams) || !grams) return;
 
   return {
     msg: `¡${name.toUpperCase()} debe consumir un total de ${grams} gramos al dia en ${feedTimes} porciones!`,

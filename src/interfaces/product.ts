@@ -3,6 +3,11 @@ export interface ProductListResponse {
   products: Array<Product>;
 }
 
+export interface ResultProduct {
+  product: Product;
+  quantity: number;
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -27,7 +32,6 @@ export interface Product {
 }
 
 export interface productCatalogue {
-  name: string,
-  products: Array<Product>,
+  name: string;
+  products: Array<Product>;
 }
-
