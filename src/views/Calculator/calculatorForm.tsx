@@ -25,14 +25,13 @@ export const CalculatorForm = ({
     exercise,
     idealWeight,
   },
-  setView,
 }: CalculatorFormProps) => {
   // Hooks
   const [page, setPage] = useState(0);
 
   const handleChangeView = (page: number) => {
     setPage(page);
-    setView(page);
+    /// setView(page);
   };
 
   // Component
@@ -53,7 +52,7 @@ export const CalculatorForm = ({
             <p className='font-extrabold'>¡GET STARTED!</p>
           </div>
 
-          <TextField name='name' value={name} handler={onChange} label='¿Cómo se llama tu mascota? *' />
+          <TextField name='name' value={name} handler={onChange} label='¿Cómo se llama tu mascota? *' required />
           <SelectField
             name='type'
             value={type}
@@ -68,6 +67,7 @@ export const CalculatorForm = ({
             handler={onChange}
             type='number'
             label={`Edad exacta en ${age.value === 'puppy' ? 'meses' : 'años'} *`}
+            required
           />
           <div className='flex justify-between items-center mt-4'>
             <div className='flex gap-2 items-center px-5'>
@@ -76,7 +76,10 @@ export const CalculatorForm = ({
             </div>
 
             <div className='flex justify-center gap-7 md:justify-end'>
-              <Button className='bg-primary text-white w-36' onClick={() => handleChangeView(1)}>
+              <Button
+                className='bg-primary text-white w-36'
+                onClick={exactAge && name ? () => handleChangeView(1) : undefined}
+              >
                 Siguiente
               </Button>
             </div>
@@ -116,6 +119,7 @@ export const CalculatorForm = ({
             type='number'
             handler={onChange}
             label='Peso ideal en kilogramos*'
+            required
           />
           <SelectField
             name='exercise'
@@ -124,8 +128,8 @@ export const CalculatorForm = ({
             onChange={onSelectChange}
             label='Actividad fisica*'
           />
-          <TextField name='diseases' value={diseases} handler={onChange} label='Enfermedades*' />
-          <TextField name='allergies' value={allergies} handler={onChange} label='Alergias*' />
+          <TextField name='diseases' value={diseases} handler={onChange} label='Enfermedades' />
+          <TextField name='allergies' value={allergies} handler={onChange} label='Alergias' />
           <div className='flex justify-between items-center mt-4'>
             <div className='flex gap-2 items-center px-5'>
               <div className='w-3 h-3 bg-gray-400 rounded-full' />
@@ -138,7 +142,7 @@ export const CalculatorForm = ({
               >
                 Anterior
               </Button>
-              <Button className='bg-primary text-white w-36' type='submit' onClick={() => handleChangeView(2)}>
+              <Button className='bg-primary text-white w-36' type='submit'>
                 Consultar
               </Button>
             </div>
@@ -154,7 +158,7 @@ interface CalculatorFormProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   form: CalculatorFormType;
-  setView: React.Dispatch<React.SetStateAction<number>>;
+  /// setView: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default CalculatorForm;

@@ -6,22 +6,28 @@ import '../../../styles/banner.css';
 import vegetables from '../../../assets/images/food.png';
 
 export const Banner = ({ dataBanner, showBotton, fixed = false, backgroundImg }: BannerProps) => (
-  <div className='banner w-full flex transform transition-all overflow-hidden pb-10 md:pb-0'>
-    {backgroundImg &&
-      <img src={backgroundImg} className='abosolute w-full h-full object-cover md:object-contain' />
-    }
-    {fixed ?
+  <div className='banner w-full flex transform transition-all overflow-hidden pb-10 md:pb-0 max-w-[1440px] max-h-[755px]'>
+    {backgroundImg && <img src={backgroundImg} className='abosolute w-full h-full object-cover md:object-contain' />}
+    {fixed ? (
       <BannerContent
         key={dataBanner[0].title}
         title={dataBanner[0].title}
         text={dataBanner[0].text}
         showBotton={showBotton}
-      /> :
+      />
+    ) : (
       <Carrousel slidesPerView={1} bulletsDirection='horizontal-banner'>
         {dataBanner.map(item => (
-          <BannerContent key={item.title} title={item.title} text={item.text} showBotton={showBotton} img={vegetables} />
+          <BannerContent
+            key={item.title}
+            title={item.title}
+            text={item.text}
+            showBotton={showBotton}
+            img={vegetables}
+          />
         ))}
-      </Carrousel>}
+      </Carrousel>
+    )}
   </div>
 );
 

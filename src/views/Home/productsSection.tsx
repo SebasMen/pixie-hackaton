@@ -15,7 +15,7 @@ const cardsData = [
   {
     title: 'DIRECTO A TU CASA:',
     description: 'Nosotros te llevamos la comida fresca y cuando la necesites hasta la puerta de tu casa.',
-    img: cardHomePets
+    img: cardHomePets,
   },
   {
     title: 'MENOS Y MEJORES HECES: ',
@@ -37,7 +37,8 @@ const cardsData = [
   },
   {
     title: 'VARIEDAD DE PRODUCTOS: ',
-    description: 'Cada dieta y cada ingrediente, está pensada para cada tamaño, edad, condición física y condición médica.',
+    description:
+      'Cada dieta y cada ingrediente, está pensada para cada tamaño, edad, condición física y condición médica.',
     img: cardHomePets2,
   },
 ];
@@ -57,96 +58,101 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
         <span>Tu amor de 4 patas debería de comer igual de saludable que toda tu familia.</span>
       </div>
       {/* Carrousel */}
-      <Carrousel onSlideChange={setSelected} className='pt-20 pb-10 h-max lg:px-32' breakpoints={{
-        300: {
-          slidesPerView: 1.7,
-          initialSlide: 2,
-        },
-        460: {
-          slidesPerView: 1.7,
-          initialSlide: 2,
-        },
-        580: {
-          slidesPerView: 2,
-          initialSlide: 2,
-        },
-        720: {
-          slidesPerView: 3,
-          initialSlide: 2,
-        },
-        800: {
-          slidesPerView: 3,
-          spaceBetween: 30,
-          initialSlide: 2,
-        },
-        900: {
-          slidesPerView: 3.5,
-          spaceBetween: 30,
-          initialSlide: 2,
-        },
-        1020: {
-          slidesPerView: 3,
-          spaceBetween: 0,
-          initialSlide: 2,
-        },
-        1200: {
-          slidesPerView: 3.5,
-          spaceBetween: 0,
-          initialSlide: 2,
-        },
-        1280: {
-          slidesPerView: 4,
-          spaceBetween: 10,
-          initialSlide: 2,
-        },
-        1366: {
-          slidesPerView: 4.25,
-          spaceBetween: 10,
-          initialSlide: 2,
-        },
-        1536: {
-          slidesPerView: 4.5,
-          spaceBetween: 30,
-          initialSlide: 2,
-        },
-        1800: {
-          slidesPerView: 5,
-          spaceBetween: 30,
-          initialSlide: 2,
-        }
+      <Carrousel
+        onSlideChange={setSelected}
+        className='pt-20 pb-10 h-max lg:px-32 max-w-[1440px]'
+        breakpoints={{
+          300: {
+            slidesPerView: 1.7,
+            initialSlide: 2,
+          },
+          460: {
+            slidesPerView: 1.7,
+            initialSlide: 2,
+          },
+          580: {
+            slidesPerView: 2,
+            initialSlide: 2,
+          },
+          720: {
+            slidesPerView: 3,
+            initialSlide: 2,
+          },
+          800: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            initialSlide: 2,
+          },
+          900: {
+            slidesPerView: 3.5,
+            spaceBetween: 30,
+            initialSlide: 2,
+          },
+          1020: {
+            slidesPerView: 3,
+            spaceBetween: 0,
+            initialSlide: 2,
+          },
+          1200: {
+            slidesPerView: 3.5,
+            spaceBetween: 0,
+            initialSlide: 2,
+          },
+          1280: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+            initialSlide: 2,
+          },
+          1366: {
+            slidesPerView: 4.25,
+            spaceBetween: 10,
+            initialSlide: 2,
+          },
+          1536: {
+            slidesPerView: 4.5,
+            spaceBetween: 30,
+            initialSlide: 2,
+          },
+          1800: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+            initialSlide: 2,
+          },
+        }}
+      >
+        {cardsData.map((card, i) => {
+          const [isLeft, isRight] = [i < selected - 1, i > selected + 1];
+          const isFar = isLeft || isRight;
 
-      }}>
-        {
-          cardsData.map((card, i) => {
-            const [isLeft, isRight] = [(i < selected - 1), (i > selected + 1)];
-            const isFar = (isLeft || isRight);
-
-            return (
-              <Card
-                key={'card-' + i}
-                title={card.title}
-                description={card.description}
-                selected={selected === i}
-                far={isFar}
-                img={card.img}
-                className={`${isLeft && 'lg:translate-x-16'} ${isRight && 'lg:-translate-x-16'}`}
-              />
-            );
-          })
-        }
+          return (
+            <Card
+              key={'card-' + i}
+              title={card.title}
+              description={card.description}
+              selected={selected === i}
+              far={isFar}
+              img={card.img}
+              className={`${isLeft && 'lg:translate-x-16'} ${isRight && 'lg:-translate-x-16'}`}
+            />
+          );
+        })}
       </Carrousel>
 
       {/* Products */}
-      <div className='flex flex-wrap justify-center items-start gap-4 gap-y-20 mt-20 p-4 lg:p-24 xl:justify-between 2xl:p-32'>
+      <div className='flex flex-wrap justify-center items-start gap-4 gap-y-20 mt-20 p-4 lg:p-24 xl:justify-between 2xl:p-32 max-w-[1440px]'>
         {products?.slice(0, 7).map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
         <div className='h-[357px] w-[16.815rem] hidden xl:block' />
         <div className='h-[357px] w-[16.815rem] hidden 3xl:block' />
         <div className='h-[357px] w-[16.815rem] hidden 3xl:block' />
-
       </div>
-      <Button className='mt-10 text-primary font-bold font-subTitles w-4/5 border border-primary md:w-96 xl:-ml-[19rem] 2xl:-ml-[21rem] 3xl:mt-0 3xl:-ml-0' onClick={redirectCatalogue}>Ver mas opciones</Button>
+      <Button
+        className='mt-10 text-primary font-bold font-subTitles w-4/5 border border-primary md:w-96 xl:-ml-[19rem] 2xl:-ml-[21rem] 3xl:mt-0 3xl:-ml-0'
+        onClick={redirectCatalogue}
+      >
+        Ver mas opciones
+      </Button>
     </div>
   );
 };

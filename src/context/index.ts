@@ -13,6 +13,7 @@ export interface AppContextType {
   // Generic
   api: string;
   swal: typeof Swal & ReactSweetAlert;
+  toast: typeof Swal;
   updateContext: React.Dispatch<React.SetStateAction<AppContextType>>;
 
   // Auth
