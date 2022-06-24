@@ -146,7 +146,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
         <div className='h-[357px] w-[16.815rem] hidden 3xl:block' />
 
       </div>
-      <Button className='mt-10 text-primary font-bold font-subTitles w-4/5 border border-primary md:w-96 xl:-ml-[19rem] 2xl:-ml-[21rem] 3xl:mt-0 3xl:-ml-0' onClick={redirectCatalogue}>Ver catálogo</Button>
+      <Button className='mt-10 text-primary font-bold font-subTitles w-4/5 border border-primary md:w-96 xl:-ml-[19rem] 2xl:-ml-[21rem] 3xl:mt-0 3xl:-ml-0' onClick={redirectCatalogue}>Ver mas opciones</Button>
     </div>
   );
 };

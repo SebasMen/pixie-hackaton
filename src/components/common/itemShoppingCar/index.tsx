@@ -1,3 +1,4 @@
+import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import useShoppingCar from '../../../hooks/useShoppingCar';
 import { Product } from '../../../interfaces/product';
 import IconButton from '../iconButton';
@@ -12,7 +13,7 @@ const ItemShoppingCar = ({ product }: ItemShoppingCarProps) => {
   return (
     <div className='grid grid-flow-col gap-4 mb-6 items-center'>
       <figure>
-        <img src={product.url_image} className='w-16 h-16 rounded-2xl object-cover'/>
+        <img src={transformUrlGDrive(product.url_image)} className='w-16 h-16 rounded-2xl object-cover'/>
       </figure>
       <p>({product.quantitySold}) {product.name}</p>
       <p className='font-bold'>$ {product.totalPrice}</p>

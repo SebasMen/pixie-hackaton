@@ -46,7 +46,7 @@ const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
       <ProductCounter price={product.price} onPriceChange={handlePriceChange} />
 
       {/* typeProduct */}
-      <div className='my-3 mx-2 pl-6 lg:mx-0 flex gap-4 opacity-60'>
+      <div className='my-3 mx-2 pl-6 flex gap-4 opacity-60 lg:mx-0 lg:pl-0'>
         <div className='ring-1 ring-primary rounded-full w-[50px] h-[50px]'></div>
         <div className='ring-1 ring-primary rounded-full w-[50px] h-[50px]'></div>
         <div className='ring-1 ring-primary rounded-full w-[50px] h-[50px]'></div>
@@ -54,7 +54,7 @@ const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
       </div>
 
       {/* Cart Button */}
-      <Button className='fixed bottom-0 md:flex bg-primary gap-4 rounded-t-2xl py-4 rounded-b-none w-full md:rounded-b-2xl z-20'
+      <Button className='fixed bottom-0 bg-primary gap-4 rounded-t-2xl py-4 rounded-b-none w-full z-20 md:rounded-b-2xl md:relative'
         onClick={handleAddProduct}
       >
         <img src={basket} />
