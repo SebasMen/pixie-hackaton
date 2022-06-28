@@ -49,7 +49,7 @@ export const CalculatorForm = ({
           `}
         >
           <div className='font-bold text-center mb-16 text-xl'>
-            <p>Descubre cuál es la opción y cantidad ideal de Pixie para tu amigo de cuatro patas </p>
+            <p>Descubre cuál es el plan que más le conviene</p>
             <p className='font-extrabold'>¡GET STARTED!</p>
           </div>
 

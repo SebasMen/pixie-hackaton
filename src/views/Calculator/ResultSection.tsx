@@ -23,7 +23,7 @@ const ResultSection = ({ data }: ResultSectionProps) => {
   return (
     // Check loading & products array
     !loading && response?.products && feedData ? (
-      <div className='w-full rounded-t-3xl bg-sixth -mt-5 z-10 animate__animated animate__fadeIn flex flex-col justify-center lg:items-center'>
+      <div className='w-full rounded-t-3xl bg-sixth -mt-5 z-10 animate__animated animate__fadeIn flex flex-col justify-center xl1:items-center'>
         <div className='max-w-[1440px] md:px-20 xl1:px-[12.8rem] xl2:px-[17.8rem] '>
           <div className='mb-8 mt-14 text-center px-9 md:px-0'>
             <span className='text-primary text-xl font-bold lg:text-[24px]'>{feedData.msg}</span>
@@ -67,13 +67,13 @@ const ResultSection = ({ data }: ResultSectionProps) => {
           </Carrousel>
           <div className='text-center mt-8 mb-5 font-subTitles font-bold'>
             <span>
-              Dieta recomendada para 4 semanas = {Math.round((feedData.grams * 28) / feedData.grams)} rollitos,
+              Dieta recomendada para 4 semanas = {Math.round((feedData.grams * 28) / 500)} rollitos,
               <span className='text-primary'> ¡combínalas como tu quieras!</span>
             </span>
           </div>
           <ResultRecommendation
             products={response.products}
-            quantity={Math.round((feedData.grams * 28) / feedData.grams)}
+            quantity={Math.round((feedData.grams * 28) / 500)}
           />
           {/* <img src={backgroundCalculator} className='absolute -z-10' /> */}
         </div>

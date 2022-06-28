@@ -10,6 +10,7 @@ import NotFound from '../views/notFound';
 import { useAppContext, useAuth } from '../hooks';
 import Detail from '../views/Detail';
 import Calculator from '../views/Calculator';
+import Basket from '../views/Basket';
 
 const AppRouter = () => {
   // Hooks
@@ -72,6 +73,12 @@ const AppRouter = () => {
             path='/calculator'
             element={
               <Calculator />
+            }
+          />
+          <Route
+            path='basket'
+            element={
+              <Basket/>
             }
           />
 
