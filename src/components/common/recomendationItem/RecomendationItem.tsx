@@ -36,7 +36,7 @@ const RecomendationItem = ({ data, toggle, updateCant, checked = false, quantity
         `}
     >
       {/* Check */}
-      <div className='flex items-center'>
+      <div className='flex items-center lg:w-[43%] lg2:w-[50%]  xl2:w-[43%]'>
         <div className='flex items-center md:gap-10 lg:mr-3'>
           <div>
             <CheckField onClick={() => toggle(data.product, cant)} />
@@ -46,15 +46,15 @@ const RecomendationItem = ({ data, toggle, updateCant, checked = false, quantity
         <div className='font-extrabold text-primary text-xl lg:mr-10'>{data.product.name}</div>
       </div>
 
-      <div className='flex items-center'>
+      <div className='flex items-center lg:w-[57%] lg2:w-[50%] xl2:w-[57%]'>
         {/* Quantity */}
-        <div className='flex items-center gap-4 text-sm lg:text-xl lg:mr-5'>
+        <div className='flex items-center gap-4 text-sm flex-shrink-0 lg:text-xl lg:mr-5 '>
           <TextField
             value={cant}
             handler={handleFormChange}
             name='cant'
             type='number'
-            className='flex-grow-0 w-min min-w-[3.5rem] max-w-[5rem]'
+            className='flex-grow-0 w-min min-w-[3.5rem] max-w-[5rem] flex-shrink-0'
             fieldClassName='font-subTitles font-semibold'
           />
           <div className='flex-shrink-0 flex flex-col text-center lg:ml-10'>
