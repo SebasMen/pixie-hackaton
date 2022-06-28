@@ -19,7 +19,7 @@ export const ProductCard = ({ product, showControls = true, className, selected 
   const navigate = useNavigate();
   const ages = transformAge(product);
   const { updateContext } = useAppContext();
-  const { addProduct, deleteProduct } = useShoppingCar();
+  const { addRemoveProduct, deleteProduct } = useShoppingCar();
 
   const handleSubmit = () => {
     updateContext(old => ({ ...old, productView: product }));
@@ -27,14 +27,18 @@ export const ProductCard = ({ product, showControls = true, className, selected 
   };
 
   const handleChange = (type: number) => {
-    if (type === 1) addProduct(product);
-    else deleteProduct(product);
+    if (type === 1) handleAddProduct();
+    else handleRemoveProduct();
   };
 
   const handleAddProduct = () => {
     product.quantitySold = 1;
-    product.totalPrice = product.price;
-    addProduct(product);
+    addRemoveProduct(product);
+  };
+
+  const handleRemoveProduct = () => {
+    product.quantitySold = -1;
+    addRemoveProduct(product);
   };
 
   // Component

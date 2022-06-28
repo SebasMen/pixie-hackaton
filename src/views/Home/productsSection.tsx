@@ -107,17 +107,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
             slidesPerView: 4.25,
             spaceBetween: 10,
             initialSlide: 2,
-          },
-          1536: {
-            slidesPerView: 4.5,
-            spaceBetween: 30,
-            initialSlide: 2,
-          },
-          1800: {
-            slidesPerView: 5,
-            spaceBetween: 30,
-            initialSlide: 2,
-          },
+          }
         }}
       >
         {cardsData.map((card, i) => {
@@ -144,11 +134,11 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
           <ProductCard key={product.id} product={product} />
         ))}
         <div className='h-[357px] w-[16.815rem] hidden xl:block' />
-        <div className='h-[357px] w-[16.815rem] hidden 3xl:block' />
-        <div className='h-[357px] w-[16.815rem] hidden 3xl:block' />
+        {/* <div className='h-[357px] w-[16.815rem] hidden 3xl:block' /> */}
+        {/* <div className='h-[357px] w-[16.815rem] hidden 3xl:block' /> */}
       </div>
       <Button
-        className='mt-10 text-primary font-bold font-subTitles w-4/5 border border-primary md:w-96 xl:-ml-[19rem] 2xl:-ml-[21rem] 3xl:mt-0 3xl:-ml-0'
+        className='mt-10 text-primary font-bold font-subTitles w-4/5 border border-primary md:w-96 xl:-ml-[19rem] 2xl:-ml-[21rem]'
         onClick={redirectCatalogue}
       >
         Ver mas opciones

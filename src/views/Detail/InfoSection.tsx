@@ -12,7 +12,7 @@ import { capitalize } from '../../helpers/capitalize';
 
 const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
   // Hooks
-  const { addProduct } = useShoppingCar();
+  const { addRemoveProduct } = useShoppingCar();
 
   // Methods
   const handlePriceChange = (quantity: number, totalPrice: number) => {
@@ -22,7 +22,7 @@ const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
   const ages = transformAge(product);
 
   const handleAddProduct = () => {
-    addProduct(product);
+    addRemoveProduct(product);
   };
 
   return (

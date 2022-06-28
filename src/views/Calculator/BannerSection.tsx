@@ -1,7 +1,7 @@
 import Button from '../../components/common/button';
 
 const BannerSection = ({ view }: BannerSectionProps) => (
-  <div className='bg-transparent banner-calculator w-full flex justify-center items-center lg:items-start'>
+  <div className='bg-transparent banner-calculator w-full flex justify-center items-center lg:items-start max-w-[1440px] max-h-[755px]'>
     <div
       className={`
         flex flex-col justify-end pb-14 text-center w-full h-full 
