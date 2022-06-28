@@ -2,7 +2,7 @@ import { catalogCat } from '../../assets/images';
 import { cataloguePoints, cataloguePointsM } from '../../assets/vectors';
 
 export const BannerSection = () => (
-  <div className='banner relative w-full flex transform transition-all overflow-hidden pb-10 md:px-20 md:pb-0'>
+  <div className='banner relative w-full flex transform transition-all overflow-hidden pb-10 md:px-20 md:pb-0 max-w-[1440px] max-h-[755px]'>
     {/* Cat */}
     <img
       src={catalogCat}

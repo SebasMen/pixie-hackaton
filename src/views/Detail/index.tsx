@@ -39,7 +39,7 @@ const Detail = () => {
   // Component
   return (
     <Page>
-      <div className='lg:px-[126px]'>
+      <div className='lg:px-[126px] max-w-[1440px]'>
         <div className='md:hidden px-7 mt-7 mb'>
           <img src={backArrow} onClick={() => navigate(-1)}/>
         </div>

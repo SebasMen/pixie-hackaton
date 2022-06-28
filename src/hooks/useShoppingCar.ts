@@ -5,12 +5,15 @@ import { Product } from '../interfaces/product';
 export const useShoppingCar = () => {
   const { updateContext, products } = useContext(AppContext);
 
-  const addProduct = (currentProduct: Product) => {
+  const addRemoveProduct = (currentProduct: Product) => {
     const existTheProduct = theProductExist(currentProduct);
     if (existTheProduct)
       joinProducts(existTheProduct, currentProduct);
-    else
-      updateContext(old => ({ ...old, products: [...old.products, currentProduct] }));
+    else {
+      const quantitySold = ((currentProduct.quantitySold === undefined) ? 0 : currentProduct.quantitySold);
+      if (quantitySold > 0)
+        updateContext(old => ({ ...old, products: [...old.products, currentProduct] }));
+    }
   };
 
   const theProductExist = (currentProduct: Product) => products.find(item => item.id === currentProduct.id);
@@ -18,16 +21,16 @@ export const useShoppingCar = () => {
   const deleteProduct = (currentProduct: Product) => updateContext(old => ({ ...old, products: [...old.products.filter(item => item.id !== currentProduct.id)] }));
 
   const joinProducts = (oldProduct: Product, currentProduct: Product) => {
-    const totalPrice = ((oldProduct.totalPrice === undefined) ? 0 : parseInt(`${oldProduct.totalPrice}`, 10)) + ((currentProduct.totalPrice === undefined) ? 0 : parseInt(`${currentProduct.totalPrice}`, 10));
     const quantitySold = ((oldProduct.quantitySold === undefined) ? 0 : parseInt(`${oldProduct.quantitySold}`, 10)) + ((currentProduct.quantitySold === undefined) ? 0 : parseInt(`${currentProduct.quantitySold}`, 10));
-    const newProduct = { ...currentProduct, totalPrice, quantitySold };
+    const newProduct = { ...currentProduct, quantitySold };
 
     deleteProduct(oldProduct);
 
-    updateContext(old => ({ ...old, products: [...old.products, newProduct] }));
+    if (quantitySold > 0)
+      updateContext(old => ({ ...old, products: [...old.products, newProduct] }));
   };
 
-  return { addProduct, theProductExist, deleteProduct, joinProducts };
+  return { addRemoveProduct, theProductExist, deleteProduct, joinProducts };
 };
 
 export default useShoppingCar;

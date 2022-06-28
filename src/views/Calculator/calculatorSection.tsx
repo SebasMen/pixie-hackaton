@@ -82,8 +82,8 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
       {isResult ? (
         <ResultSection data={feedData} />
       ) : (
-        <div className='w-full flex flex-col gap-2 rounded-t-3xl bg-sixth -mt-5 z-10'>
-          <div className='flex gap-2'>
+        <div className='w-full flex flex-col items-center justify-center gap-2 rounded-t-3xl bg-sixth -mt-5 z-10'>
+          <div className='w-full flex gap-2 max-w-[1440px]'>
             {/* Background */}
             <div className='hidden tall:hidden md:w-1/2 md:overflow-hidden md:block'>
               <img src={backgroundCalculator} className='md:absolute md:-z-10' />

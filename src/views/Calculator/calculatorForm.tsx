@@ -37,15 +37,16 @@ export const CalculatorForm = ({
   // Component
   return (
     <form
-      className='relative overflow-hidden flex-grow flex flex-col gap-2 text-primary py-14 lg:pr-28 px-5 md:w-1/2'
+      className='w-full relative overflow-hidden flex-grow flex flex-col gap-2 text-primary py-14 p-2 lg:pr-28 md:px-5 md:w-1/2'
       onSubmit={onSubmit}
     >
-      <div className='flex relative'>
+      <div className='flex w-full relative'>
         {/* Page 0 */}
         <div
-          className={`flex flex-col gap-2 w-full md:gap-5 animate__animated animate__fast font-subTitles ${
-            page === 0 ? 'relative animate__fadeInRight' : 'hidden'
-          }`}
+          className={`\
+            flex-col gap-2 w-full md:gap-5 animate__animated animate__fast font-subTitles 
+            ${page === 0 ? 'flex animate__fadeInRight' : 'hidden'}
+          `}
         >
           <div className='font-bold text-center mb-16 text-xl'>
             <p>Descubre cuál es la opción y cantidad ideal de Pixie para tu amigo de cuatro patas </p>
@@ -66,10 +67,10 @@ export const CalculatorForm = ({
             value={exactAge}
             handler={onChange}
             type='number'
-            label={`Edad exacta en ${age.value === 'puppy' ? 'meses' : 'años'} *`}
+            label={`Edad exacta en ${age.value === 'cachorros' ? 'meses' : 'años'} *`}
             required
           />
-          <div className='flex justify-between items-center mt-4'>
+          <div className='flex flex-col gap-5 items-center mt-4 md:gap-0 md:justify-between md:flex-row'>
             <div className='flex gap-2 items-center px-5'>
               <div className='w-3 h-3 bg-gray-600 rounded-full' />
               <div className='w-3 h-3 bg-gray-400 rounded-full' />
@@ -88,9 +89,10 @@ export const CalculatorForm = ({
 
         {/* Page 1 */}
         <div
-          className={`flex flex-col gap-2 w-full md:gap-5 animate__animated animate__fast font-subTitles ${
-            page === 1 ? 'relative animate__fadeInRight' : 'hidden'
-          }`}
+          className={`
+              flex-col gap-2 w-full md:gap-5 animate__animated animate__fast font-subTitles 
+              ${page === 1 ? 'flex animate__fadeInRight' : 'hidden'}
+          `}
         >
           <div className='w-full flex flex-col items-center gap-6 mb-8 text-center'>
             <div className='flex flex-col font-subTitles font-bold text-lg md:block'>
@@ -130,7 +132,7 @@ export const CalculatorForm = ({
           />
           <TextField name='diseases' value={diseases} handler={onChange} label='Enfermedades' />
           <TextField name='allergies' value={allergies} handler={onChange} label='Alergias' />
-          <div className='flex justify-between items-center mt-4'>
+          <div className='flex flex-col gap-5 items-center mt-4 md:gap-0 md:justify-between md:flex-row'>
             <div className='flex gap-2 items-center px-5'>
               <div className='w-3 h-3 bg-gray-400 rounded-full' />
               <div className='w-3 h-3 bg-gray-600 rounded-full' />
