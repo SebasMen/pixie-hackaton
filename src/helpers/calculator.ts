@@ -127,7 +127,7 @@ export const calculator = {
       activities: {
         low: {
           2: 9, // Año : Multiplicacion
-          3: 9,
+          3: 8,
           4: 7,
           5: 7,
           6: 6,
@@ -140,7 +140,7 @@ export const calculator = {
         },
         medium: {
           2: 9, // Año : Multiplicacion
-          3: 9,
+          3: 8,
           4: 7,
           5: 7,
           6: 6,
@@ -153,7 +153,7 @@ export const calculator = {
         },
         high: {
           2: 9, // Año : Multiplicacion
-          3: 9,
+          3: 8,
           4: 7,
           5: 7,
           6: 6,

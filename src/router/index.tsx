@@ -11,6 +11,7 @@ import { useAppContext, useAuth } from '../hooks';
 import Detail from '../views/Detail';
 import Calculator from '../views/Calculator';
 import Basket from '../views/Basket';
+import CheckOut from '../views/Checkout';
 
 const AppRouter = () => {
   // Hooks
@@ -76,9 +77,15 @@ const AppRouter = () => {
             }
           />
           <Route
-            path='basket'
+            path='/basket'
             element={
               <Basket/>
+            }
+          />
+          <Route
+            path='/checkout'
+            element={
+              <CheckOut/>
             }
           />
 

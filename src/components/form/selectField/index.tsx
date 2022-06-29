@@ -7,11 +7,13 @@ export const SelectField = ({
   onChange,
   label,
   className = '',
+  placeholder,
   isMulti = false,
 }: SelectFieldProps) => (
   <div className={'w-full flex flex-col items-start ' + className}>
     {label && <h2 className='pl-6 mb-3 text-lg font-medium'>{label}</h2>}
     <Select
+      placeholder={placeholder}
       components={{ IndicatorSeparator: () => null }}
       theme={old => ({
         ...old,
@@ -55,7 +57,8 @@ interface SelectFieldProps {
   isMulti?: boolean;
   label?: string;
   className?: string;
-  value: SelectItem | SelectItem[];
+  placeholder?: string;
+  value?: SelectItem | SelectItem[];
   options: SelectItem[];
   onChange: (selected: MultiValue<SelectItem> | SingleValue<SelectItem>, name: string) => void;
 }

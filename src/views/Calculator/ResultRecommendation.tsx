@@ -74,7 +74,7 @@ const ResultRecommendation = ({ products, quantity }: ResultRecommendationProps)
 
   // Component
   return (
-    <div className='flex flex-col gap-[38px] w-full mb-16 px-5 md:px-0'>
+    <div className='flex flex-col gap-[38px] w-full mb-10 px-5 md:px-0'>
       <ColoredScrollbars style={{ height: 390 }}>
         {productList.map(listed => (
           <RecomendationItem

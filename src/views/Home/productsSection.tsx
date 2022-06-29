@@ -53,7 +53,9 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
     <div className='flex flex-col items-center bg-gray-100 w-full rounded-t-3xl transform -mt-4 pb-20 relative overflow-hidden'>
       {/* Backgrounds */}
       <img className='absolute w-full h-full object-cover object-right -z-20' src={vegetables} />
-      <img className='hidden absolute bottom-0 right-0 object-none -z-10 transform lg:block' src={dogDesktop} />
+      <div className='hidden absolute bottom-0 -z-10 left-[0] right-[0] m-auto w-full max-w-[1440px] lg:block xl2:w-[1440px]'>
+        <img className='absolute bottom-0 right-0 object-none' src={dogDesktop} />
+      </div>
       <div className='hidden lg:block mt-28 text-primary text-3xl mx-72 text-center pb-16'>
         <span>Tu amor de 4 patas debería de comer igual de saludable que toda tu familia.</span>
       </div>

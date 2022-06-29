@@ -25,7 +25,7 @@ const ShoppingCar = ({ onClose, show }: shoppingCarProps) => {
         <span>Carrito de compra</span>
       </div>
       <div>
-        {products.map(product => <ItemShoppingCar key={`item-${product.id}`} product={product} />)}
+        {/* {products.map(product => <ItemShoppingCar key={`item-${product.id}`} product={product} />)} */}
       </div>
       <div className='mt-auto'>
         <Button className='w-full bg-primary text-white'>Comprar</Button>

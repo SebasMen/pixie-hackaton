@@ -51,7 +51,7 @@ export const Menu = ({ collapsed, toggle }: MenuProps) => {
           <Icon name='person' className='text-red-500' size='2xl' />
           <p>Usuario</p>
         </div>
-        <div className='flex gap-2 items-center cursor-pointer' onClick={() => navigateClose('/cart')}>
+        <div className='flex gap-2 items-center cursor-pointer' onClick={() => navigateClose('/basket')}>
           <Icon name='shopping_basket' className='text-red-500' size='2xl' />
           <p>Carrito</p>
         </div>
