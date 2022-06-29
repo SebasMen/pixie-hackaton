@@ -5,23 +5,22 @@ import TextField from '../../form/textField';
 import { Product, ResultProduct } from '../../../interfaces/product';
 import useForm from '../../../hooks/useForm';
 
-const RecomendationItem = ({ data, toggle, updateCant, checked = false, quantity = 1 }: RecomendationItemProps) => {
+const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 500 }: RecomendationItemProps) => {
   // Hooks
-  const { current: defaultCant } = useRef(quantity);
+  const { current: defaultCant } = useRef(Math.round((grams / parseInt(data.product.presentation, 10)) * 28));
   const [price, setPrice] = useState(0);
 
   const {
     form: { cant },
     handleFormChange,
-  } = useForm({ cant: defaultCant }, () => {});
+  } = useForm({ cant: defaultCant }, () => { });
 
   useEffect(() => {
     updateCant(data.product.id, cant);
-    /// product.totalPrice = product.price * (cant || defaultCant);
-    // setPrice(product.totalPrice);
 
-    return () => {};
+    return () => { };
   }, [cant]);
+
 
   // Component
   return (
@@ -76,7 +75,7 @@ interface RecomendationItemProps {
   data: ResultProduct;
   toggle: (product: Product, cant?: number) => void;
   checked?: boolean;
-  quantity?: number;
+  grams?: number;
   updateCant: (id: string, value: number) => void;
 }
 

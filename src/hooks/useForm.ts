@@ -6,7 +6,7 @@ import { SelectItem } from '../components/form/selectField';
 export const useForm = <T>(
   initialState: T,
   onSubmit: (form: T) => void,
-  callback?: (target: EventTarget & HTMLInputElement) => void
+  callback?: (target: EventTarget & (HTMLInputElement | HTMLTextAreaElement)) => void
 ) => {
   const [form, setForm] = useState(initialState);
 
@@ -21,12 +21,15 @@ export const useForm = <T>(
   };
 
   // On change event
-  const handleFormChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFormChange = ({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     // Do callback if exists
     if (callback) callback(target);
 
     // Get value by type
     const value = () => {
+      // Check if textarea
+      if (target instanceof HTMLTextAreaElement) return target.value;
+
       switch (target.type) {
         case 'checkbox':
           return target.checked;

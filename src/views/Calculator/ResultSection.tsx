@@ -75,6 +75,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
           <ResultRecommendation
             products={response.products}
             quantity={Math.round((feedData.grams * 28) / 500)}
+            grams={feedData.grams}
           />
           <div className='w-full flex items-center justify-center mb-16 '>
             <Button

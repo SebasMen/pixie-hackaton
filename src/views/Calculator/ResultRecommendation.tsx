@@ -10,12 +10,12 @@ import { Product, ResultProduct } from '../../interfaces/product';
 import { basket } from '../../assets/vectors';
 import { capitalize } from '../../helpers/capitalize';
 
-const ResultRecommendation = ({ products, quantity }: ResultRecommendationProps) => {
+const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendationProps) => {
   // Hooks
   const [selected, setSelected] = useState<ResultProduct[]>([]);
   const [productList, setProductList] = useState<ResultProduct[]>(
     products.map(product => ({
-      quantity,
+      quantity: Math.round((grams / parseInt(product.presentation, 10)) * 28),
       product,
     }))
   );
@@ -26,7 +26,7 @@ const ResultRecommendation = ({ products, quantity }: ResultRecommendationProps)
       // Remove product if exist
       setSelected(old => old.filter(res => res.product.id !== product.id));
     // Add product if it no exist
-    else setSelected(old => [...old, { product, quantity: cant || quantity }]);
+    else setSelected(old => [...old, { product, quantity: cant || 1 }]);
   };
 
   const updateQuantity = (productId: string, value: number) => {
@@ -82,7 +82,7 @@ const ResultRecommendation = ({ products, quantity }: ResultRecommendationProps)
             data={listed}
             toggle={toggleSelect}
             checked={selected.some(res => res.product.id === listed.product.id)}
-            quantity={quantity}
+            grams={grams}
             updateCant={updateQuantity}
           />
         ))}
@@ -111,7 +111,7 @@ const ResultRecommendation = ({ products, quantity }: ResultRecommendationProps)
                 className='bg-primary scale-75 shadow-[0px_2px_10px_0_rgba(65,65,65,0.4)]'
                 img={basket}
                 imgClassName='w-9 h-9'
-                onClick={() => {}}
+                onClick={() => { }}
                 sizeContainer={'h-14 w-14'}
               />
             </div>
@@ -131,6 +131,7 @@ const ResultRecommendation = ({ products, quantity }: ResultRecommendationProps)
 interface ResultRecommendationProps {
   products: Product[];
   quantity: number;
+  grams: number;
 }
 
 export default ResultRecommendation;
