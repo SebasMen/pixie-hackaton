@@ -3,12 +3,13 @@ import { useState, useRef } from 'react';
 import ProductCard from '../../components/common/productCard';
 import Carrousel from '../../components/common/carrousel';
 import ResultRecommendation from './ResultRecommendation';
+import Button from '../../components/common/button';
 
 import { ProductListResponse } from '../../interfaces/product';
 import { PetFeedData } from '../../helpers/calculator';
 import { useFetch, useAppContext } from '../../hooks';
 
-const ResultSection = ({ data }: ResultSectionProps) => {
+const ResultSection = ({ data, reset }: ResultSectionProps) => {
   // Hooks
   const { api } = useAppContext();
   const [selected, setSelected] = useState(0);
@@ -75,6 +76,14 @@ const ResultSection = ({ data }: ResultSectionProps) => {
             products={response.products}
             quantity={Math.round((feedData.grams * 28) / 500)}
           />
+          <div className='w-full flex items-center justify-center mb-16 '>
+            <Button
+              onClick={reset}
+              padding='p-3 md:px-10'
+              className='bg-transparent text-sm ring-1 ring-primary font-bold truncate transform transition-all lg:text-base hover:ring-2'>
+              Calcular de nuevo!
+            </Button>
+          </div>
           {/* <img src={backgroundCalculator} className='absolute -z-10' /> */}
         </div>
       </div>
@@ -86,6 +95,7 @@ const ResultSection = ({ data }: ResultSectionProps) => {
 
 interface ResultSectionProps {
   data?: PetFeedData;
+  reset: VoidFunction;
 }
 
 export default ResultSection;

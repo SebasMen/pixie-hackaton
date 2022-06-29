@@ -76,11 +76,16 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
     setView(2);
   };
 
+  const reset = () => {
+    setIsResult(false);
+    setView(0);
+  };
+
   // Component
   return (
     <>
       {isResult ? (
-        <ResultSection data={feedData} />
+        <ResultSection data={feedData} reset={reset} />
       ) : (
         <div className='w-full flex flex-col items-center justify-center gap-2 rounded-t-3xl bg-sixth -mt-5 z-10'>
           <div className='w-full flex gap-2 max-w-[1440px]'>

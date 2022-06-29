@@ -19,7 +19,7 @@ export const ProductCard = ({ product, showControls = true, className, selected 
   const navigate = useNavigate();
   const ages = transformAge(product);
   const { updateContext } = useAppContext();
-  const { addRemoveProduct, deleteProduct } = useShoppingCar();
+  const { addRemoveProduct } = useShoppingCar();
 
   const handleSubmit = () => {
     updateContext(old => ({ ...old, productView: product }));
