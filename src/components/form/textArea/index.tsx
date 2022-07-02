@@ -5,6 +5,8 @@ export const TextArea = ({
   placeholder,
   className,
   fieldClassName,
+  border,
+  labelClassName,
   name,
   value,
   handler,
@@ -12,9 +14,12 @@ export const TextArea = ({
   required = false,
 }: TextAreaProps) => (
   <div className={`${className} flex flex-col`}>
-    {label && <label className='pl-6 mb-3 text-lg font-medium'>{label}</label>}
+    {label && <label className={`${labelClassName ? labelClassName : 'pl-6 mb-3 text-lg font-medium'}`}>{label}</label>}
     <textarea
-      className={`${fieldClassName} outline-none rounded-full px-4 p-2 ring-0 transform transition-all border-0 ring-primary focus:ring-1 focus:outline-none`}
+      className={`${fieldClassName} px-4 p-2
+      focus:ring-1 focus:outline-none
+      ${border ? border : 'outline-none rounded-full ring-0 transform transition-all border-0 ring-primary'}
+      `}
       placeholder={placeholder}
       required={required}
       name={name}
@@ -30,6 +35,8 @@ interface TextAreaProps {
   value: string | number;
   className?: string;
   fieldClassName?: string;
+  labelClassName?:string;
+  border? :string,
   label?: string;
   disabled?: boolean;
   required?: boolean;

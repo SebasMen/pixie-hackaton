@@ -19,6 +19,7 @@ class ProductService {
       nutrition_information: '',
       presentation: '',
       status: '',
+      benefits: '',
       url_image: ''
     };
     return new Promise((resolve, reject) => {

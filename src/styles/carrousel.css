@@ -84,7 +84,7 @@
   .swiper-pagination-horizontal-banner {
     position: absolute;
     left: 10rem;
-    bottom: 20%;
+    bottom: 15%;
     top: auto;
 
     width: fit-content;
@@ -102,7 +102,7 @@
   .swiper-pagination-horizontal-banner {
     position: absolute;
     left: 10rem;
-    bottom: 30%;
+    bottom: 20%;
     top: auto;
 
     width: fit-content;

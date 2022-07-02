@@ -22,23 +22,14 @@ export const ProductCard = ({ product, showControls = true, className, selected 
   const { addRemoveProduct } = useShoppingCar();
 
   const handleSubmit = () => {
-    updateContext(old => ({ ...old, productView: product }));
+    updateContext(old => ({ ...old, productView: product, showPopup: false }));
     navigate('/product/detail/' + product.id);
   };
 
-  const handleChange = (type: number) => {
-    if (type === 1) handleAddProduct();
-    else handleRemoveProduct();
-  };
-
-  const handleAddProduct = () => {
-    product.quantitySold = 1;
-    addRemoveProduct(product);
-  };
-
-  const handleRemoveProduct = () => {
-    product.quantitySold = -1;
-    addRemoveProduct(product);
+  const handleChange = (value: number) => {
+    addRemoveProduct(product, value);
+    if (value === 1)
+      updateContext(old => ({ ...old, showPopup: true }));
   };
 
   // Component
@@ -104,7 +95,7 @@ export const ProductCard = ({ product, showControls = true, className, selected 
           name='basket'
           type='outlined'
           size='xs'
-          onClick={handleAddProduct}
+          onClick={() => handleChange(+1)}
         />
       )}
     </div>

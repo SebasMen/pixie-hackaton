@@ -4,8 +4,10 @@ import { SelectItem } from '../../components/form/selectField';
 import Page from '../../components/layout/page';
 import { useForm } from '../../hooks';
 import { SubmissionFormInterface } from '../../interfaces/checkout';
-import ResumenSection from './ResumenSection';
+import ResumenSection from './ResumenProductSection';
+import StepsSection from './StepsSection';
 import SubmissionForm from './SubmissionForm';
+import ShippingSection from './ShippingSection';
 
 const countriesOptions: SelectItem[] = [
   { value: '1', label: 'Colombia' },
@@ -18,8 +20,7 @@ const provinceOptions: SelectItem[] = [
 ];
 
 const CheckOut = () => {
-  const [showSubmissionForm, setShowSubmissionForm] = useState(false);
-  const navigate = useNavigate();
+  const [step, setStep] = useState(2);
   // Hooks
   const { form, onSubmit, handleFormChange, handleSelectChange } = useForm<SubmissionFormInterface>(
     {
@@ -35,7 +36,8 @@ const CheckOut = () => {
       phone: '',
       postalCode: '',
       province: provinceOptions[0],
-      provinces: provinceOptions
+      provinces: provinceOptions,
+      typeShipping: ''
     },
     form => handleSubmit(form)
   );
@@ -47,22 +49,24 @@ const CheckOut = () => {
 
   return (
     <Page>
-      <div className='px-6 w-full font-paragraph mb-16'>
-        <div className='flex flex-col gap-2 text-left mb-3'>
+      <div className='w-full font-paragraph mb-16'>
+        <div className='px-6 flex flex-col gap-2 text-left'>
           <span className='text-[25px] font-bold'>Tu canasta</span>
-          <span className='text-lg font-bold'>Direccion de envío</span>
         </div>
-        {showSubmissionForm
-          ?
-          <SubmissionForm
-            form={form}
-            onChange={handleFormChange}
-            onSelectChange={handleSelectChange}
-            onSubmit={onSubmit}
-          />
-          :
-          <ResumenSection/>
-        }
+        <ResumenSection/>
+        <form className='px-6' onSubmit={onSubmit}>
+          <StepsSection step={step}/>
+          { step === 2
+            &&
+            <SubmissionForm
+              form={form}
+              onChange={handleFormChange}
+              onSelectChange={handleSelectChange}
+              changeStep={setStep}
+            />
+          }
+          { step === 3 && <ShippingSection form={form} onChange={handleFormChange} onSelectChange={handleSelectChange} changeStep={setStep}/> }
+        </form>
       </div>
     </Page>
   );

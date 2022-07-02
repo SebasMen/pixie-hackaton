@@ -23,6 +23,7 @@ const Home = () => {
   useEffect(() => {
     updateContext(old => ({ ...old, showNavbar: true }));
   }, [screen.width]);
+
   return (
     <Page color='#efd1b0'>
       {loading ? (
@@ -57,7 +58,6 @@ const Home = () => {
 
           {/* Calculator */}
           <CalculatorSection />
-
           {/* Footer */}
           <Footer />
         </>

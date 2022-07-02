@@ -1,38 +1,32 @@
 import { useContext } from 'react';
 import { AppContext } from '../context';
+import { CartItem } from '../interfaces/basket';
 import { Product } from '../interfaces/product';
 
 export const useShoppingCar = () => {
   const { updateContext, products } = useContext(AppContext);
 
-  const addRemoveProduct = (currentProduct: Product) => {
-    const existTheProduct = theProductExist(currentProduct);
-    if (existTheProduct)
-      joinProducts(existTheProduct, currentProduct);
-    else {
-      const quantitySold = ((currentProduct.quantitySold === undefined) ? 0 : currentProduct.quantitySold);
-      if (quantitySold > 0)
-        updateContext(old => ({ ...old, products: [...old.products, currentProduct] }));
-    }
+  const addRemoveProduct = (product: Product, value: number) => {
+    const itemIndex = getProductIndex(product.id);
+
+    if (itemIndex === -1) return updateContext(old => ({ ...old, products: [...old.products, { product, quantity: value }] }));
+
+    const prev = products[itemIndex];
+
+    const newProduct: CartItem = { ...prev, quantity: prev.quantity + value };
+
+    if (newProduct.quantity < 1) return deleteProduct(product.id);
+
+    const newProducts = products.map(item => item.product.id === product.id ? newProduct : item);
+
+    updateContext(old => ({ ...old, products: newProducts }));
   };
 
-  const theProductExist = (currentProduct: Product) => products.find(item => item.id === currentProduct.id);
+  const getProductIndex = (productId: string) => products.findIndex(item => item.product.id === productId);
 
-  const deleteProduct = (currentProduct: Product) => updateContext(old => ({ ...old, products: [...old.products.filter(item => item.id !== currentProduct.id)] }));
+  const deleteProduct = (productId: string) => updateContext(old => ({ ...old, products: [...old.products.filter(item => item.product.id !== productId)] }));
 
-  const joinProducts = (oldProduct: Product, currentProduct: Product) => {
-    console.log(oldProduct.quantitySold);
-    console.log(currentProduct.quantitySold);
-    const quantitySold = ((oldProduct.quantitySold === undefined) ? 0 : parseInt(`${oldProduct.quantitySold}`, 10)) + ((currentProduct.quantitySold === undefined) ? 0 : parseInt(`${currentProduct.quantitySold}`, 10));
-    const newProduct = { ...currentProduct, quantitySold };
-
-    deleteProduct(oldProduct);
-
-    if (quantitySold > 0)
-      updateContext(old => ({ ...old, products: [...old.products, newProduct] }));
-  };
-
-  return { addRemoveProduct, theProductExist, deleteProduct, joinProducts };
+  return { addRemoveProduct, deleteProduct };
 };
 
 export default useShoppingCar;

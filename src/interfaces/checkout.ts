@@ -14,4 +14,5 @@ export interface SubmissionFormInterface {
   postalCode: string;
   phone: string;
   email: string;
+  typeShipping: string;
 }

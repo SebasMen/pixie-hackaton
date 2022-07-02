@@ -40,7 +40,7 @@ export const NavBar = () => {
 
   // Component
   return (
-    <div className='w-full relative max-w-[1440px]'>
+    <div className='w-full relative  max-w-[1440px]'>
       {/* Mobile Menu */}
       <Menu collapsed={collapsed} toggle={toggleCollapsed} />
 

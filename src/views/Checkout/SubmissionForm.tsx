@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { MultiValue, SingleValue } from 'react-select';
 import Button from '../../components/common/button';
-import CheckField from '../../components/form/checkField';
 import SelectField, { SelectItem } from '../../components/form/selectField';
 import TextField from '../../components/form/textField';
 import { SubmissionFormInterface } from '../../interfaces/checkout';
@@ -9,7 +8,7 @@ import { SubmissionFormInterface } from '../../interfaces/checkout';
 const SubmissionForm = ({
   onChange,
   onSelectChange,
-  onSubmit,
+  changeStep,
   form: {
     countries,
     country,
@@ -29,50 +28,55 @@ const SubmissionForm = ({
   const navigate = useNavigate();
 
   return (
-    <form className='flex flex-col gap-3'>
+    <div className='flex flex-col gap-3'>
+      <div className='flex flex-col gap-2 text-left mb-2 mt-3'>
+        <span className='text-lg font-bold'>Información de contacto</span>
+      </div>
+      <TextField name='email' border='border border-primary ring-1 ring-black' value={email} handler={onChange} placeholder='Correo electrónico*' />
+      <div className='flex flex-col gap-2 text-left mb-3 mt-7'>
+        <span className='text-lg font-bold'>Direccion de envío</span>
+      </div>
       <SelectField
         placeholder='País/región*'
         name='country'
         options={countries}
         onChange={onSelectChange}
+        border={true}
+        borderRadius={false}
+        borderColor='#000'
       />
-      <TextField name='name' className='ring-1 ring-primary' value={names} handler={onChange} placeholder='Nombre*' required />
-      <TextField name='name' value={lastNames} handler={onChange} placeholder='Apellido*' required />
-      <TextField name='name' value={document} handler={onChange} placeholder='Documento*' required />
-      <TextField name='name' value={address} handler={onChange} placeholder='Dirección*' required />
-      <TextField name='name' value={apartament} handler={onChange} placeholder='Apartamento, local, etc'/>
-      <TextField name='name' value={city} handler={onChange} placeholder='Ciudad*' required/>
+      <TextField name='names' border='border border-primary ring-1 ring-black' value={names} handler={onChange} placeholder='Nombre*' />
+      <TextField name='lastNames' border='border border-primary ring-1 ring-black' value={lastNames} handler={onChange} placeholder='Apellido*' />
+      <TextField name='document' border='border border-primary ring-1 ring-black' value={document} handler={onChange} placeholder='Documento*' />
+      <TextField name='address' border='border border-primary ring-1 ring-black' value={address} handler={onChange} placeholder='Dirección*' />
+      <TextField name='apartament' border='border border-primary ring-1 ring-black' value={apartament} handler={onChange} placeholder='Apartamento, local, etc'/>
+      <TextField name='city' border='border border-primary ring-1 ring-black' value={city} handler={onChange} placeholder='Ciudad*' />
       <SelectField
         placeholder='Provincia*'
         name='Province'
         options={provinces}
         onChange={onSelectChange}
+        border={true}
+        borderRadius={false}
+        borderColor='#000'
       />
-      <TextField name='name' value={postalCode} handler={onChange} placeholder='Código postal'/>
-      <TextField name='name' value={phone} handler={onChange} placeholder='Teléfono*' required/>
-      <TextField name='name' value={email} handler={onChange} placeholder='E-mail*' required/>
-      <div className='flex gap-2 mt-12'>
-        <CheckField onClick={() => console.log('aa')}/>
-        <span className='text-[13px]'>Guardar mi información y consultar más rápidamente la próxima vez</span>
+      <TextField name='postalCode' border='border border-primary ring-1 ring-black' value={postalCode} handler={onChange} placeholder='Código postal'/>
+      <TextField name='phone' border='border border-primary ring-1 ring-black' value={phone} handler={onChange} placeholder='Teléfono*'/>
+      <Button className='bg-primary text-white mt-7' onClick={() => changeStep(3)}>
+        Seguir con envios
+      </Button>
+      <div className='text-center mt-5 cursor-pointer' onClick={() => navigate('/basket')}>
+        {'<'} Volver a la canasta
       </div>
-      <div className='flex justify-around mt-4 w-full gap-2'>
-        <Button className='ring-1 ring-primary text-primary text-base w-1/2' padding='py-[11px]' onClick={() => navigate('/basket')}>
-          ir a la bolsa
-        </Button>
-        <Button className='bg-primary text-white w-1/2'>
-          Siguiente
-        </Button>
-      </div>
-    </form>
+    </div>
   );
 };
 
 interface SubmissionFormProps {
     onSelectChange: (selected: MultiValue<SelectItem> | SingleValue<SelectItem>, name: string) => void;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    changeStep: React.Dispatch<React.SetStateAction<number>>;
     form: SubmissionFormInterface;
-    /// setView: React.Dispatch<React.SetStateAction<number>>;
   }
 
 export default SubmissionForm;
