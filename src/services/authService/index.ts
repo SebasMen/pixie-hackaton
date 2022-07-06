@@ -1,6 +1,6 @@
-import { LoginForm } from '../interfaces/login';
+import { LoginForm } from '../../interfaces/login';
 
-export const loginService = async (user: LoginForm, api = '') => {
+export const authService = async (user: LoginForm, api = '') => {
   try {
     const response = await fetch(`${api}/login`, {
       method: 'POST',

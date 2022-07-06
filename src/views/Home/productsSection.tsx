@@ -62,7 +62,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       {/* Carrousel */}
       <Carrousel
         onSlideChange={setSelected}
-        className='pt-20 pb-10 h-max lg:px-32 max-w-[1440px]'
+        className='pt-12 pb-10 h-max lg:px-32 max-w-[1440px]'
         breakpoints={{
           300: {
             slidesPerView: 1.7,
@@ -131,7 +131,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       </Carrousel>
 
       {/* Products */}
-      <div className='flex flex-wrap justify-center items-start gap-4 gap-y-20 mt-20 p-4 lg:p-24 xl:justify-between 2xl:p-32 max-w-[1440px]'>
+      <div className='flex flex-wrap justify-center items-start gap-4 gap-y-20 mt-20 p-4 lg:pt-10 lg:px-36 lg:pb-12 xl:justify-between 2xl:p-32 max-w-[1440px]'>
         {products?.slice(0, 7).map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
@@ -140,10 +140,10 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
         {/* <div className='h-[357px] w-[16.815rem] hidden 3xl:block' /> */}
       </div>
       <Button
-        className='mt-10 text-primary font-bold font-subTitles w-4/5 border border-primary md:w-96 xl:-ml-[19rem] 2xl:-ml-[21rem]'
+        className='mt-10 text-primary font-bold font-sanzBold w-4/5 border border-primary md:w-80 lg:mb-12 xl:-ml-[19rem] 2xl:-ml-[21rem]'
         onClick={redirectCatalogue}
       >
-        Ver mas opciones
+        Ver más opciones
       </Button>
     </div>
   );

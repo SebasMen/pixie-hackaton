@@ -1,18 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-export const useFetch = <T>(
-  url: string,
-  data: RequestInit = {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem('token') || '' },
-  }
-) => {
+export const useFetch = <T>(method: () => Promise<T>) => {
   // Hooks
   const [state, setState] = useState<FetchState<T>>({
     loading: false,
   });
   const [update, setUpdate] = useState(true);
   const isMounted = useRef(true);
-  const requestData = useRef(data);
   const isLoading = useRef(state.loading);
   // Update handler
   const doUpdate = () => setUpdate(old => !old);
@@ -23,19 +16,16 @@ export const useFetch = <T>(
     isMounted.current = true;
     // Prevent changes if loading
     if (isLoading.current) return;
-    // Prevent fetching if not url is provided
-    if (!url) return;
+    // Prevent fetching if method is not provided
+    if (!method) return;
     const fetchData = async () => {
       // Set loading
       setState({ loading: true });
       try {
         // Get response
-        const response = await fetch(url, { ...requestData.current });
-        const result: T = await response.json();
-        // Check status
-        if (response.status !== 200) throw new Error((result as any)?.message || 'Error interno');
+        const response = await method();
         // Only update if rendered
-        if (isMounted.current) setState({ loading: false, response: result });
+        if (isMounted.current) setState({ loading: false, response });
       } catch (err) {
         if (isMounted.current) setState({ loading: false, err: (err as Error).message });
       }
@@ -43,12 +33,11 @@ export const useFetch = <T>(
 
     // Do fetch
     fetchData();
-
     // Advise component disposed
     return () => {
       isMounted.current = false;
     };
-  }, [url, update, isLoading]);
+  }, [method, update, isLoading]);
   return { ...state, doUpdate };
 };
 
@@ -57,5 +46,4 @@ interface FetchState<T> {
   response?: T;
   err?: any;
 }
-
 export default useFetch;

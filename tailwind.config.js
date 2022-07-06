@@ -51,7 +51,10 @@ module.exports = {
       fontFamily: {
         titles: ['RNS Camelia'],
         subTitles: ['RNS Sanz'],
-        paragraph: ['Arial', 'calibri']
+        paragraph: ['Arial', 'calibri'],
+        sanzSemiBold: ['RNS Sanz Semi Bold'],
+        sanzBold: ['RNS Sanz Bold'],
+        sanzExtraBold: ['RNS Sanz Extra Bold'],
       }
     },
   },

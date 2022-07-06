@@ -14,9 +14,10 @@ import { dog } from '../../assets/vectors';
 import { ProductListResponse } from '../../interfaces/product';
 import { filterShop } from '../../interfaces/filter';
 import { useAppContext, useFetch } from '../../hooks';
+import productService from '../../services/productService';
 
 const Catalogue = () => {
-  const { loading, response } = useFetch<ProductListResponse>(`${process.env.REACT_APP_API_URL}/products?_limit=10`);
+  const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
   const [filterSelected, setfilterSelected] = useState<filterShop>({
     agePet: [],
     typePet: []

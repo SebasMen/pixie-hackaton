@@ -9,10 +9,12 @@ export interface SubmissionFormInterface {
   address: string;
   apartament: string;
   city: string;
-  provinces: SelectItem[];
-  province: SelectItem;
+  states: SelectItem[];
+  state: SelectItem;
   postalCode: string;
   phone: string;
   email: string;
-  typeShipping: string;
+  typeShipping: 'rapido' | 'estandar';
+  typePayment: 'credito' | 'debito';
+  billingAddress: string;
 }

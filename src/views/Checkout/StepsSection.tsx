@@ -1,5 +1,5 @@
 const StepsSection = ({ step }:StepsSectionProps) => (
-  <div className='mt-4 text-xs'>
+  <div className='mt-4 text-xs lg:text-[13px]'>
     <span>
       <span className={'font-bold'}>Carrito {'>'} </span>
       <span className={step > 1 ? 'font-bold' : 'text-gray-400'}>Información {'>'} </span>

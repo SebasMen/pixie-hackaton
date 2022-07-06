@@ -32,31 +32,40 @@ const Basket = () => {
   // Component
   return (
     <Page>
-      <div className='px-6 w-full font-paragraph mb-16'>
+      <div className='px-6 w-full font-paragraph mb-16 max-w-[1440px] lg:px-14'>
         <div className='text-left'>
-          <span className='text-[25px] font-bold'>Tu canasta</span>
+          <span className='text-[25px] font-bold lg:text-[35px]'>Tu canasta</span>
         </div>
-        {/* Deleted message */}
-        {showMessage && <div className='ring-1 ring-primary w-full px-3 py-2 animate__animated animate__fadeIn'>{messageDelete}</div>}
+        <div className='lg:flex'>
+          <div className='lg:w-1/2'>
+            {/* Deleted message */}
+            {showMessage && <div className='ring-1 ring-primary w-full px-3 py-2 animate__animated animate__fadeIn'>{messageDelete}</div>}
 
-        <div className='mt-7'>
-          {/* Product list */}
-          {products.map(item => <ItemShoppingCar key={`item-${item.product.id}`} item={item} showMessageDelete={showMessageDelete} showOptions />)}
-        </div>
+            <div className='mt-7'>
+              {/* Product list */}
+              {products.map(item => <ItemShoppingCar key={`item-${item.product.id}`} item={item} showMessageDelete={showMessageDelete} showOptions />)}
+            </div>
 
-        {/* Sections */}
-        <PromotionalSection />
-        <div className='border-b border-primary text-sm font-bold pb-4'>
-          <span>RESUMEN DE TU PEDIDO</span>
-        </div>
-        <TotalSection />
-        <div className='flex justify-around mt-[10px] w-full gap-2'>
-          <Button className='ring-1 ring-primary text-primary text-base w-2/3' padding='px-[25px] py-[11px]'>
-            Seguir comprando
-          </Button>
-          <Button className='bg-primary text-white w-1/3' padding='px-[25px]' onClick={() => navigate('/checkout')}>
-            Siguiente
-          </Button>
+            {/* Sections */}
+            <PromotionalSection />
+          </div>
+
+          <div className='lg:w-1/2'>
+            <div className='lg:bg-[#E4E4E4] lg:ml-52 lg:px-6 lg:pb-8 lg:pt-5 lg:rounded-xl lg:mt-7'>
+              <div className='border-b border-primary text-sm font-bold pb-4 lg:border-b-0 lg:text-base'>
+                <span>RESUMEN DE TU PEDIDO</span>
+              </div>
+              <TotalSection />
+              <div className='flex justify-around mt-[10px] w-full gap-2'>
+                <Button className='ring-1 ring-primary text-primary text-base w-2/3' padding='px-[25px] py-[11px]'>
+                  Seguir comprando
+                </Button>
+                <Button className='bg-primary text-white w-1/3' padding='px-[25px]' onClick={() => navigate('/checkout')}>
+                  Siguiente
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <Footer />

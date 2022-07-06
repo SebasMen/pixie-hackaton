@@ -19,24 +19,26 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
     addRemoveProduct(item.product, value);
 
   return (
-    <div className='grid grid-flow-col mb-6 items-center font-paragraph pb-7 border-b border-primary'>
+    <div className='grid grid-flow-col mb-4 items-center font-paragraph pb-5 border-b border-primary lg:flex'>
       <figure>
-        <img src={transformUrlGDrive(item.product.url_image)} className='w-[70px] h-[70px] rounded-2xl object-cover' />
+        <img src={transformUrlGDrive(item.product.url_image)} className='w-[70px] h-[70px] rounded-2xl object-cover lg:w-[10rem] lg:h-32' />
       </figure>
-      <div className='flex flex-col text-xs gap-5'>
-        <div className='flex flex-col'>
-          <span className='text-sm font-bold'>{capitalize(item.product.name)}</span>
-          <span className='font-medium'>{calculateGrs(item)}</span>
-        </div>
-        <span className='underline cursor-pointer' onClick={handleDeleteProduct}>{showOptions && <p>Quitar</p>}</span>
-      </div>
-      <div className='flex flex-col gap-5 justify-end items-end'>
-        <span className='text-sm font-bold'>${item.quantity * item.product.price}</span>
-        {showOptions && (
-          <div className='w-[71px] h-[30px] '>
-            <AddRemoveItem handleChance={handleChange} />
+      <div className='grid grid-flow-col lg:flex lg:justify-between lg:w-full'>
+        <div className='flex flex-col text-xs gap-5'>
+          <div className='flex flex-col'>
+            <span className='text-sm font-bold lg:text-[22px]'>{capitalize(item.product.name)}</span>
+            <span className='font-medium lg:text-sm'>{calculateGrs(item)}</span>
           </div>
-        )}
+          <span className='underline cursor-pointer lg:text-sm' onClick={handleDeleteProduct}>{showOptions && <p>Quitar</p>}</span>
+        </div>
+        <div className='flex flex-col gap-5 justify-end items-end'>
+          <span className='text-sm font-bold lg:text-[22px]'>${item.quantity * item.product.price}</span>
+          {showOptions && (
+            <div className='w-[71px] h-[30px] lg:w-[87px] lg:h-[38px]'>
+              <AddRemoveItem handleChance={handleChange} />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -18,8 +18,8 @@ const SubmissionForm = ({
     address,
     apartament,
     city,
-    provinces,
-    province,
+    states,
+    state,
     postalCode,
     phone,
     email
@@ -28,13 +28,13 @@ const SubmissionForm = ({
   const navigate = useNavigate();
 
   return (
-    <div className='flex flex-col gap-3'>
-      <div className='flex flex-col gap-2 text-left mb-2 mt-3'>
-        <span className='text-lg font-bold'>Información de contacto</span>
+    <div className='flex flex-col gap-3 lg:mt-6'>
+      <div className='flex flex-col gap-2 text-left mt-3'>
+        <span className='text-lg font-bold lg:text-xl'>Información de contacto</span>
       </div>
       <TextField name='email' border='border border-primary ring-1 ring-black' value={email} handler={onChange} placeholder='Correo electrónico*' />
-      <div className='flex flex-col gap-2 text-left mb-3 mt-7'>
-        <span className='text-lg font-bold'>Direccion de envío</span>
+      <div className='flex flex-col gap-2 text-left mt-6'>
+        <span className='text-lg font-bold lg:text-xl'>Direccion de envío</span>
       </div>
       <SelectField
         placeholder='País/región*'
@@ -45,28 +45,35 @@ const SubmissionForm = ({
         borderRadius={false}
         borderColor='#000'
       />
-      <TextField name='names' border='border border-primary ring-1 ring-black' value={names} handler={onChange} placeholder='Nombre*' />
-      <TextField name='lastNames' border='border border-primary ring-1 ring-black' value={lastNames} handler={onChange} placeholder='Apellido*' />
+      <div className='lg:flex lg:gap-3'>
+        <TextField name='names' border='border border-primary ring-1 ring-black' value={names} handler={onChange} placeholder='Nombre*' className='lg:w-1/2'/>
+        <TextField name='lastNames' border='border border-primary ring-1 ring-black' value={lastNames} handler={onChange} placeholder='Apellido*' className='lg:w-1/2'/>
+      </div>
       <TextField name='document' border='border border-primary ring-1 ring-black' value={document} handler={onChange} placeholder='Documento*' />
       <TextField name='address' border='border border-primary ring-1 ring-black' value={address} handler={onChange} placeholder='Dirección*' />
       <TextField name='apartament' border='border border-primary ring-1 ring-black' value={apartament} handler={onChange} placeholder='Apartamento, local, etc'/>
-      <TextField name='city' border='border border-primary ring-1 ring-black' value={city} handler={onChange} placeholder='Ciudad*' />
-      <SelectField
-        placeholder='Provincia*'
-        name='Province'
-        options={provinces}
-        onChange={onSelectChange}
-        border={true}
-        borderRadius={false}
-        borderColor='#000'
-      />
-      <TextField name='postalCode' border='border border-primary ring-1 ring-black' value={postalCode} handler={onChange} placeholder='Código postal'/>
+      <div className='lg:flex lg:gap-3'>
+        <TextField name='city' border='border border-primary ring-1 ring-black' value={city} handler={onChange} placeholder='Ciudad*' className='lg:w-1/2'/>
+        <SelectField
+          placeholder='Estado*'
+          name='state'
+          options={states}
+          onChange={onSelectChange}
+          border={true}
+          borderRadius={false}
+          borderColor='#000'
+          className='lg:w-1/2'
+        />
+      </div>
+      <TextField name='postalCode' border='border border-primary ring-1 ring-black' value={postalCode} handler={onChange} placeholder='Código postal' />
       <TextField name='phone' border='border border-primary ring-1 ring-black' value={phone} handler={onChange} placeholder='Teléfono*'/>
-      <Button className='bg-primary text-white mt-7' onClick={() => changeStep(3)}>
-        Seguir con envios
-      </Button>
-      <div className='text-center mt-5 cursor-pointer' onClick={() => navigate('/basket')}>
-        {'<'} Volver a la canasta
+      <div className='lg:flex lg:flex-row-reverse lg:items-center'>
+        <Button className='bg-primary text-white mt-7 lg:w-72' onClick={() => changeStep(3)}>
+          Seguir con envios
+        </Button>
+        <div className='text-center mt-5 cursor-pointer lg:mx-10' onClick={() => navigate('/basket')}>
+          {'<'} Volver a la canasta
+        </div>
       </div>
     </div>
   );

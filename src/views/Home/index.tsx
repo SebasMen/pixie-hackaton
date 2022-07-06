@@ -13,10 +13,10 @@ import { useAppContext, useFetch } from '../../hooks';
 import Spinner from '../../components/common/spinner';
 import { ProductListResponse } from '../../interfaces/product';
 import { useEffect } from 'react';
+import productService from '../../services/productService';
 
 const Home = () => {
-  const { api } = useAppContext();
-  const { loading, response } = useFetch<ProductListResponse>(`${api}/products?_limit=10`);
+  const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
 
   const { updateContext } = useAppContext();
 
@@ -48,7 +48,7 @@ const Home = () => {
 
           {/* FAB */}
           <IconButton
-            className='fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:right-10 md:bottom-1/2'
+            className='fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:right-6 md:bottom-1/2'
             color='#DF2F44'
             name='DogButton'
             img={dog}
