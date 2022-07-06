@@ -9,6 +9,8 @@ export const CheckField = ({
   checked = false,
   onClick,
   disabled = false,
+  border,
+  labelClassName
 }: CheckFieldProps) => {
   // Hooks
   const [_checked, setChecked] = useState(false);
@@ -23,7 +25,9 @@ export const CheckField = ({
   return (
     <div className={`flex items-center gap-2 ${className}`} onClick={onClick}>
       <div
-        className='w-10 h-10 bg-white flex items-center justify-center rounded-md cursor-pointer'
+        className={`w-10 h-10 bg-white flex items-center justify-center rounded-md cursor-pointer
+        ${border}
+        `}
         onClick={disabled || checked ? undefined : () => setChecked(old => !old)}
       >
         <Icon
@@ -35,7 +39,7 @@ export const CheckField = ({
           `}
         />
       </div>
-      <span>{label}</span>
+      <span className={`${labelClassName}`}>{label}</span>
     </div>
   );
 };
@@ -45,7 +49,9 @@ interface CheckFieldProps {
   className?: string;
   disabled?: boolean;
   checked?: boolean;
+  border?: string;
   onChange?: (value: boolean) => void;
+  labelClassName?: string;
   onClick: VoidFunction;
 }
 

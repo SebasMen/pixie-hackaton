@@ -1,5 +1,6 @@
+import { useState } from 'react';
+
 import Button from '../../components/common/button';
-import Icon from '../../components/common/icon';
 import Tag from '../../components/common/productCard/tag';
 import ProductCounter from './productCounter';
 
@@ -9,20 +10,24 @@ import { Product } from '../../interfaces/product';
 import { transformAge } from '../../helpers/productHelper';
 import useShoppingCar from '../../hooks/useShoppingCar';
 import { capitalize } from '../../helpers/capitalize';
+import { useAppContext } from '../../hooks';
 
-const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
+const InfoSection = ({ product }: InfoSectionProps) => {
   // Hooks
+  const [quantity, setQuantity] = useState(1);
   const { addRemoveProduct } = useShoppingCar();
+  const { updateContext } = useAppContext();
 
   // Methods
   const handlePriceChange = (quantity: number, totalPrice: number) => {
-    setproduct({ ...product, totalPrice, quantitySold: quantity });
+    setQuantity(quantity);
   };
 
   const ages = transformAge(product);
 
   const handleAddProduct = () => {
-    addRemoveProduct(product);
+    addRemoveProduct(product, quantity);
+    updateContext(old => ({ ...old, showPopup: true }));
   };
 
   return (
@@ -71,8 +76,7 @@ const InfoSection = ({ product, setproduct }: InfoSectionProps) => {
 };
 
 interface InfoSectionProps {
-  product: Product,
-  setproduct: React.Dispatch<React.SetStateAction<Product>>
+  product: Product
 }
 
 export default InfoSection;

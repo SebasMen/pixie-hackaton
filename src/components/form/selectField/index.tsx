@@ -8,6 +8,9 @@ export const SelectField = ({
   label,
   className = '',
   placeholder,
+  border,
+  borderRadius,
+  borderColor,
   isMulti = false,
 }: SelectFieldProps) => (
   <div className={'w-full flex flex-col items-start ' + className}>
@@ -37,8 +40,8 @@ export const SelectField = ({
         control: base => ({
           ...base,
           minHeight: 40,
-          border: 'none',
-          borderRadius: '9999px',
+          border: border ? '' : 'none',
+          borderRadius: borderRadius ? '9999px' : '',
           paddingLeft: '10px',
           paddingRight: '10px',
         }),
@@ -59,6 +62,9 @@ interface SelectFieldProps {
   className?: string;
   placeholder?: string;
   value?: SelectItem | SelectItem[];
+  border?: boolean;
+  borderRadius?: boolean;
+  borderColor? : string;
   options: SelectItem[];
   onChange: (selected: MultiValue<SelectItem> | SingleValue<SelectItem>, name: string) => void;
 }

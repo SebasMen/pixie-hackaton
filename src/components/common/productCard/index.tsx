@@ -22,23 +22,14 @@ export const ProductCard = ({ product, showControls = true, className, selected 
   const { addRemoveProduct } = useShoppingCar();
 
   const handleSubmit = () => {
-    updateContext(old => ({ ...old, productView: product }));
+    updateContext(old => ({ ...old, productView: product, showPopup: false }));
     navigate('/product/detail/' + product.id);
   };
 
-  const handleChange = (type: number) => {
-    if (type === 1) handleAddProduct();
-    else handleRemoveProduct();
-  };
-
-  const handleAddProduct = () => {
-    product.quantitySold = 1;
-    addRemoveProduct(product);
-  };
-
-  const handleRemoveProduct = () => {
-    product.quantitySold = -1;
-    addRemoveProduct(product);
+  const handleChange = (value: number) => {
+    addRemoveProduct(product, value);
+    if (value === 1)
+      updateContext(old => ({ ...old, showPopup: true }));
   };
 
   // Component
@@ -46,16 +37,17 @@ export const ProductCard = ({ product, showControls = true, className, selected 
     <div
       className={`
           relative flex flex-col flex-shrink-0 justify-between items-center
+          h-64 w-40 md:w-[16.815rem] md:h-[365px]
           ${className}
         `}
     >
       <div
         className={`
           relative flex flex-col flex-shrink-0 justify-between items-center 
-          cursor-pointer h-64 w-40 p-3 pb-8 rounded-2xl bg-white 
+          cursor-pointer p-3 pb-8 rounded-2xl bg-white 
           ring-0 ring-primary transform transition-all 
-          ${selected ? 'scale-110 lg:scale-100' : 'scale-90'}
-          md:w-[16.815rem] md:h-[357px]
+          ${selected && (selected ? 'scale-110 lg:scale-100' : 'scale-90')}
+          w-full h-full
           hover:ring-1 ${className}
         `}
         onClick={handleSubmit}
@@ -81,11 +73,11 @@ export const ProductCard = ({ product, showControls = true, className, selected 
           )}
         </div>
         <div className='text-center text-xs md:text-lg  w-full'>
-          <h4 className='text-red-600 mb-1'>{capitalize(product.name)}</h4>
+          <h4 className='text-primary mb-1'>{capitalize(product.name)}</h4>
           <div className='flex items-center justify-around'>
-            <p className='text-gray-800 font-subTitles font-black text-base'>
-              ${product.price}{' '}
-              <span className='text-xs hidden lg:inline-flex'>{product.presentation.toLocaleLowerCase()}</span>
+            <p className='font-sanzBold text-xl'>
+              $ {product.price}{' '}
+              <span className='text-xs font-semibold hidden lg:inline-flex '>{product.presentation.toLocaleLowerCase()}</span>
             </p>
             {showControls && (
               <div className='w-16 h-6 md:w-20 md:h-8'>
@@ -97,14 +89,14 @@ export const ProductCard = ({ product, showControls = true, className, selected 
       </div>
       {showControls && (
         <IconButton.mini
-          className='absolute -bottom-[0.65rem] bg-primary text-white md:-bottom-1 z-40 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'
+          className='absolute -bottom-[0.65rem] bg-primary text-white md:-bottom-4 z-40 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'
           imgClassName='w-7 h-7'
-          sizeContainer='w-10 h-10'
+          sizeContainer='w-[43px] h-[43px]'
           img={basket}
           name='basket'
           type='outlined'
           size='xs'
-          onClick={handleAddProduct}
+          onClick={() => handleChange(+1)}
         />
       )}
     </div>

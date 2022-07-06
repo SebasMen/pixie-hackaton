@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 import ProductCard from '../../components/common/productCard';
 import Carrousel from '../../components/common/carrousel';
@@ -7,18 +7,21 @@ import Button from '../../components/common/button';
 
 import { ProductListResponse } from '../../interfaces/product';
 import { PetFeedData } from '../../helpers/calculator';
-import { useFetch, useAppContext } from '../../hooks';
+import { useFetch } from '../../hooks';
+import calculatorService from '../../services/calculatorService';
 
 const ResultSection = ({ data, reset }: ResultSectionProps) => {
   // Hooks
-  const { api } = useAppContext();
   const [selected, setSelected] = useState(0);
   const { current: feedData } = useRef(data);
 
-  // Fetch
-  const { loading, response } = useFetch<ProductListResponse>(
-    `${api}/products/filter-calculator?gramos=${feedData?.grams}&type=${feedData?.type}&age=${feedData?.range}`
+  const getCalculateProduct = useCallback(
+    () => calculatorService.getCalculateProduct(feedData),
+    [feedData],
   );
+
+  // Fetch
+  const { loading, response } = useFetch<ProductListResponse>(getCalculateProduct);
 
   // Component
   return (

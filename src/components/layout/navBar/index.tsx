@@ -10,7 +10,7 @@ import Menu from './menu';
 
 import { useAppContext } from '../../../hooks';
 
-import { basket, logoFooter } from '../../../assets/vectors';
+import { basket, logoFooter, searchIcon } from '../../../assets/vectors';
 import { logo } from '../../../assets/images';
 import { NavItem } from './navItem';
 
@@ -34,13 +34,13 @@ export const NavBar = () => {
   const isCalculator = pathname.includes('/calculator');
 
   const pixie = isCatalogue ? logoFooter : logo;
-  const color = (isCatalogue || isCalculator ? 'grayText' : 'red-500') || 'grayText';
+  const color = (isCatalogue || isCalculator ? 'grayText' : 'primary') || 'grayText';
 
   if (!showNavbar) return <></>;
 
   // Component
   return (
-    <div className='w-full relative max-w-[1440px]'>
+    <div className='w-full relative  max-w-[1440px]'>
       {/* Mobile Menu */}
       <Menu collapsed={collapsed} toggle={toggleCollapsed} />
 
@@ -65,21 +65,21 @@ export const NavBar = () => {
             {color === 'grayText' ? (
               <Button
                 rounded
-                className='font-extrabold font-subTitles bg-transparent py-1 border-grayText border-[1px]'
-                padding='py-0 px-3'
+                className='font-sanzSemiBold bg-transparent border-grayText border-[1px] leading-[17px] text-sm'
+                padding='py-[0.19rem] px-[1.10]'
               >
                 Ingresar
               </Button>
             ) : (
               <Button
                 rounded
-                className='font-extrabold font-subTitles bg-transparent py-1 border-primary border-[1px]'
-                padding='py-0 px-3'
+                className='font-sanzSemiBold bg-transparent border-primary border-[1px] leading-[17px] text-sm'
+                padding='py-[0.19rem] px-[1.19rem]'
               >
                 Ingresar
               </Button>
             )}
-            <div className='flex'>
+            <div className='flex text-sm'>
               <span className='font-medium font-subTitles'>EN</span>
               <span className='font-extrabold font-subTitles'> &nbsp;|&nbsp;</span>
               <span className='font-black font-subTitles'>ES</span>
@@ -89,16 +89,16 @@ export const NavBar = () => {
           {/* Bottom */}
           <div className={`flex flex-grow-0 items-top pt-3.5 w-full md:flex-grow text-${color}`}>
             {/* Social */}
-            <div className='hidden md:flex md:flex-row md:space-x-8 md:w-2/3'>
-              <Icon.awesome icon='fa-facebook-f' size='2xl' />
-              <Icon.awesome icon='fa-instagram' size='2xl' />
-              <Icon.awesome icon='fa-twitter' size='2xl' />
+            <div className='hidden md:flex md:flex-row md:space-x-10 md:w-2/3 md:ml-4'>
+              <Icon.awesome icon='fa-facebook-f' size='3xl' />
+              <Icon.awesome icon='fa-instagram' size='3xl' />
+              <Icon.awesome icon='fa-twitter' size='3xl' />
             </div>
 
             {/* Items */}
             <div className='w-1/3 flex-grow justify-end gap-2 md:pt-0 md:flex md:flex-row md:w-auto lg:gap-6'>
               {/* Navs */}
-              <div className='hidden md:flex md:flex-row justify-between md:font-bold md:gap-5'>
+              <div className='hidden md:flex md:flex-row justify-between md:gap-5 md:mr-6'>
                 <NavItem name='Tienda' path='/catalogue' color={color} />
                 <NavItem name='Calculadora' path='/calculator' color={color} />
               </div>
@@ -106,12 +106,15 @@ export const NavBar = () => {
               {/* Buttons */}
               <div className='hidden md:flex md:flex-row md:justify-end'>
                 <IconButton.mini
-                  name='search'
-                  className={`${isCatalogue || isCalculator ? 'text-white' : 'text-amber-100'} bg-${color}`}
+                  img={searchIcon}
+                  name={searchIcon}
+                  type='outlined'
+                  imgClassName={`${(isCatalogue || isCalculator) && 'w-8 h-8 brightness-200'} w-7 h-7`}
+                  sizeContainer={'w-11 h-11 md:w-[42px] md:h-[42px]'}
+                  className={`mr-4 md:mr-0 bg-${color} p-[10px]`}
+                  size='xs'
                   shadow={false}
-                  size='2xl'
-                  sizeContainer={'w-10 h-10'}
-                  onClick={() => console.log('search')}
+                  onClick={() => toogleShoppingCar()}
                   color={isCatalogue || isCalculator ? undefined : '#df2f44'}
                 />
               </div>
@@ -122,7 +125,7 @@ export const NavBar = () => {
                   name={basket}
                   type='outlined'
                   imgClassName={`${(isCatalogue || isCalculator) && 'w-8 h-8 brightness-200'} w-7 h-7`}
-                  sizeContainer={'w-11 h-11 md:w-10 md:h-10'}
+                  sizeContainer={'w-11 h-11 md:w-[42px] md:h-[42px]'}
                   className={`mr-4 md:mr-0 bg-${color}`}
                   size='md'
                   shadow={false}

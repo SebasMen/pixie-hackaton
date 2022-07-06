@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { MultiValue, SingleValue } from 'react-select';
 import { SelectItem } from '../components/form/selectField';
@@ -57,7 +57,15 @@ export const useForm = <T>(
     });
   };
 
-  return { form, handleFormChange, handleSelectChange, setForm, clear, onSubmit: submit };
+  // On Radio change event
+  const handleRadioChange = (selected: string, name: string) => {
+    setForm({
+      ...form,
+      [name]: selected,
+    });
+  };
+
+  return { form, handleFormChange, handleSelectChange, handleRadioChange, setForm, clear, onSubmit: submit };
 };
 
 export default useForm;

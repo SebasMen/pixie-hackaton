@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 
 import Page from '../../components/layout/page';
 import Button from '../../components/common/button';
@@ -13,20 +15,17 @@ import BannerDetailDT from './BannerDetailDT';
 import ExtraInfoContainer from './ExtraInfoContainer';
 
 // DBFake
-import { Product } from '../../interfaces/product';
-import { useAppContext } from '../../hooks';
-
 import { ingredients } from '../../@fake/detailFake';
+
+import { capitalize } from '../../helpers/capitalize';
+import { useAppContext } from '../../hooks';
 
 import { dog, backArrow } from '../../assets/vectors';
 import '../../styles/banner.css';
-import { capitalize } from '../../helpers/capitalize';
-import { useNavigate } from 'react-router-dom';
 
 const Detail = () => {
   // Hooks
   const { productView, updateContext } = useAppContext();
-  const [product, setproduct] = useState<Product>({ ...productView, quantitySold: 1, totalPrice: productView.price });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,16 +40,16 @@ const Detail = () => {
     <Page>
       <div className='lg:px-[126px] max-w-[1440px]'>
         <div className='md:hidden px-7 mt-7 mb'>
-          <img src={backArrow} onClick={() => navigate(-1)}/>
+          <img src={backArrow} onClick={() => navigate(-1)} />
         </div>
         <div className='flex flex-col w-full flex-shrink-0 overflow-hidden'>
-          <p className='hidden md:mt-3 md:mb-1 md:block text-fourth font-paragraph text-sm lg:mb-10'>{'Catálogo > '} {capitalize(product.name)}</p>
+          <p className='hidden md:mt-3 md:mb-1 md:block text-fourth font-paragraph text-sm lg:mb-10'>{'Catálogo > '} {capitalize(productView.name)}</p>
           <div className='w-full flex-grow flex flex-col flex-shrink-0 md:flex-row md:pb-10 md:gap-1'>
             {/* Banner Detail to mobile */}
-            <BannerDetail product={product} />
+            <BannerDetail product={productView} />
             {/* Banner Detail to desktop */}
             <BannerDetailDT />
-            <InfoSection product={product} setproduct={setproduct} />
+            <InfoSection product={productView} />
           </div>
         </div>
 
@@ -63,7 +62,7 @@ const Detail = () => {
         {/* Nutrition */}
         <NutritionSection ingredients={ingredients} />
 
-        <ExtraInfoContainer />
+        <ExtraInfoContainer product={productView} />
 
         {/* FAB */}
         <IconButton
@@ -76,7 +75,7 @@ const Detail = () => {
         />
       </div>
       {/* Other Info */}
-      <InfoAccordion />
+      <InfoAccordion product={productView} />
       {/* Footer */}
       <Footer className='md:mt-16' />
     </Page >

@@ -26,13 +26,21 @@ body {
   src: local('RNS Camelia'), url(../assets/fonts/RNSCamelia-ExtraBold.otf) format('opentype');
 }
 
-/* @font-face {
-  font-family: 'RNS Camelia';
-  src: local('RNS Camelia'), url(../assets/fonts/RNSCamelia-Light.otf) format('opentype');
-} */
 @font-face {
   font-family: 'RNS Sanz';
   src: local('RNS Camelia'), url(../assets/fonts/RNSSanz-Normal.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'RNS Sanz Bold';
+  src: local('RNS Camelia'), url(../assets/fonts/RNSSanz-Bold.otf) format('opentype');
+}
+@font-face {
+  font-family: 'RNS Sanz Extra Bold';
+  src: local('RNS Camelia'), url(../assets/fonts/RNSSanz-ExtraBold.otf) format('opentype');
+}
+@font-face {
+  font-family: 'RNS Sanz Semi Bold';
+  src: local('RNS Camelia'), url(../assets/fonts/RNSSanz-SemiBold.otf) format('opentype');
 }
 
 

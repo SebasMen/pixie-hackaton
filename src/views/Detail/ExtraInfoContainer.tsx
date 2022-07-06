@@ -1,7 +1,9 @@
 import ExtraInfo from './ExtraInfo';
 import { extraInfo } from '../../@fake/detailFake';
+import { Product } from '../../interfaces/product';
+import { separateByCommas } from '../../helpers/productHelper';
 
-const ExtraInfoContainer = () => (
+const ExtraInfoContainer = ({ product }: ExtraInfoContainerProps) => (
   <div className='hidden md:flex md:flex-col mt-7 w-full'>
     <div className='flex gap-4 mb-8'>
       <div className='rounded-lg w-1/2 text-sm pl-12 pr-16 bg-fifth'>
@@ -9,7 +11,7 @@ const ExtraInfoContainer = () => (
           <span className='text-lg font-bold text-fourth'>Beneficios y Características:</span>
         </div>
         <div className='pb-8 pl-5'>
-          <ExtraInfo type='list' infoList={extraInfo.infoBenefits} />
+          <ExtraInfo type='list' infoList={separateByCommas(product.benefits)} />
         </div>
       </div>
       <div className='rounded-lg text-sm	w-1/2 px-16 bg-fifth'>
@@ -27,7 +29,7 @@ const ExtraInfoContainer = () => (
           <span className='text-lg font-bold text-fourth'>Composición Garantizada-MS%</span>
         </div>
         <div className='pb-8 pl-5'>
-          <ExtraInfo type='list' infoList={extraInfo.infoComposition}/>
+          <ExtraInfo type='list' infoList={separateByCommas(product.nutrition_information)}/>
         </div>
       </div>
       <div className='w-3/5'>
@@ -42,5 +44,9 @@ const ExtraInfoContainer = () => (
 
   </div>
 );
+
+interface ExtraInfoContainerProps {
+  product: Product;
+}
 
 export default ExtraInfoContainer;

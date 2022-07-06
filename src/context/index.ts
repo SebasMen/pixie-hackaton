@@ -5,6 +5,7 @@ import { ReactSweetAlert } from 'sweetalert2-react-content';
 
 import { appProvider as provider } from './provider';
 import { Product } from '../interfaces/product';
+import { CartItem } from '../interfaces/basket';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const AppContext = createContext<AppContextType>(null!);
@@ -20,13 +21,16 @@ export interface AppContextType {
   isAuthenticated: boolean;
 
   // Products
-  products: Product[];
+  products: CartItem[];
 
   // Productview
   productView: Product;
 
   // ShowNavbar
   showNavbar: boolean;
+
+  // ShowPopup
+  showPopup: boolean;
 }
 
 export const appProvider: AppContextType = provider;

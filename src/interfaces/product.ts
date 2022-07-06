@@ -12,6 +12,7 @@ export interface Product {
   id: string;
   name: string;
   age: string;
+  benefits: string;
   category: 'Alimentos' | 'Snack' | 'Accesorios';
   description: string;
   ingredients: string;
