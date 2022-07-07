@@ -63,6 +63,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       <Carrousel
         onSlideChange={setSelected}
         className='pt-12 pb-10 h-max lg:px-32 max-w-[1440px]'
+        /// bulletClassName='mt-[60px]'
         breakpoints={{
           300: {
             slidesPerView: 1.7,
@@ -96,8 +97,8 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
             initialSlide: 2,
           },
           1200: {
-            slidesPerView: 3.5,
-            spaceBetween: 0,
+            slidesPerView: 4,
+            spaceBetween: 10,
             initialSlide: 2,
           },
           1280: {
@@ -106,8 +107,8 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
             initialSlide: 2,
           },
           1366: {
-            slidesPerView: 4.25,
-            spaceBetween: 10,
+            slidesPerView: 4.3,
+            spaceBetween: 0,
             initialSlide: 2,
           }
         }}
@@ -124,7 +125,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
               selected={selected === i}
               far={isFar}
               img={card.img}
-              className={`${isLeft && 'lg:translate-x-16'} ${isRight && 'lg:-translate-x-16'}`}
+              className={`${isLeft && 'lg2:translate-x-16 xl2:translate-x-12'} ${isRight && 'lg2:-translate-x-16 xl2:-translate-x-12'}`}
             />
           );
         })}

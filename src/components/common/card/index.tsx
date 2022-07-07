@@ -8,12 +8,12 @@ export const Card = ({ title, description, selected, far, className, img }: Card
         ${className}
     `}
   >
-    <div className='flex flex-grow flex-shrink-0 items-center justify-center lg:pt-3'>
+    <div className='flex flex-grow flex-shrink-0 items-center justify-center'>
       <img src={img} className={`${selected ? 'w-[138px] h-[138px] xl:w-48 xl:h-48' : far ? 'w-[138px] h-[138px] xl:w-36 xl:h-36' : 'w-[138px] h-[138px] xl:w-36 xl:h-36'}`} />
     </div>
     <div className='flex-grow flex-shrink-0 overflow-y-auto'>
       <h2
-        className={`text-lg mb-3 
+        className={`text-lg mb-3
         ${selected ? 'lg:text-xl' : far ? 'lg:text-lg' : 'lg:text-lg'}`}
       >
         {title}

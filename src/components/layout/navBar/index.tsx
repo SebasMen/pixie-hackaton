@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -66,7 +66,7 @@ export const NavBar = () => {
               <Button
                 rounded
                 className='font-sanzSemiBold bg-transparent border-grayText border-[1px] leading-[17px] text-sm'
-                padding='py-[0.19rem] px-[1.10]'
+                padding='py-[0.19rem] px-[1.19rem]'
               >
                 Ingresar
               </Button>
@@ -79,10 +79,10 @@ export const NavBar = () => {
                 Ingresar
               </Button>
             )}
-            <div className='flex text-sm'>
-              <span className='font-medium font-subTitles'>EN</span>
+            <div className='flex items-center justify-center text-sm'>
+              <span className='font-subTitles'>EN</span>
               <span className='font-extrabold font-subTitles'> &nbsp;|&nbsp;</span>
-              <span className='font-black font-subTitles'>ES</span>
+              <span className='font-subTitles font-black'>ES</span>
             </div>
           </div>
 
