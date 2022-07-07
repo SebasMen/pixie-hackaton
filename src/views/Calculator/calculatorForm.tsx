@@ -37,7 +37,7 @@ export const CalculatorForm = ({
   // Component
   return (
     <form
-      className='w-full relative overflow-hidden flex-grow flex flex-col gap-2 text-primary py-14 p-2 lg:pr-28 md:px-5 md:w-1/2'
+      className='w-full relative overflow-hidden flex-grow flex flex-col gap-2 text-primary py-16 p-2 lg:pr-28 md:px-5 md:w-1/2 lg:pt-14 lg:pb-9'
       onSubmit={onSubmit}
     >
       <div className='flex w-full relative'>
@@ -48,12 +48,12 @@ export const CalculatorForm = ({
             ${page === 0 ? 'flex animate__fadeInRight' : 'hidden'}
           `}
         >
-          <div className='font-bold text-center mb-16 text-xl'>
+          <div className='font-sanzBold text-center mb-[50px] text-xl'>
             <p>Descubre cuál es el plan que más le conviene</p>
-            <p className='font-extrabold'>¡GET STARTED!</p>
+            <p>¡GET STARTED!</p>
           </div>
 
-          <TextField name='name' value={name} handler={onChange} label='¿Cómo se llama tu mascota? *' required />
+          <TextField name='name' value={name} handler={onChange} label='¿Cómo se llama tu mascota?*' required />
           <SelectField
             name='type'
             value={type}
@@ -61,13 +61,13 @@ export const CalculatorForm = ({
             onChange={onSelectChange}
             label='Tu mascota es un... *'
           />
-          <SelectField name='age' value={age} options={ageOptions} onChange={onSelectChange} label='Edad *' />
+          <SelectField name='age' value={age} options={ageOptions} onChange={onSelectChange} label='Edad*' />
           <TextField
             name='exactAge'
             value={exactAge}
             handler={onChange}
             type='number'
-            label={`Edad exacta en ${age.value === 'cachorros' ? 'meses' : 'años'} *`}
+            label={`Edad exacta en ${age.value === 'cachorros' ? 'meses' : 'años'}*`}
             required
           />
           <div className='flex flex-col gap-5 items-center mt-4 md:gap-0 md:justify-between md:flex-row'>
@@ -76,9 +76,9 @@ export const CalculatorForm = ({
               <div className='w-3 h-3 bg-gray-400 rounded-full' />
             </div>
 
-            <div className='flex justify-center gap-7 md:justify-end'>
+            <div className='flex justify-center gap-7 md:justify-end md:mt-2'>
               <Button
-                className='bg-primary text-white w-36'
+                className='bg-primary text-[#FAD7B1] w-36'
                 onClick={exactAge && name ? () => handleChangeView(1) : undefined}
               >
                 Siguiente

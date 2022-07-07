@@ -91,8 +91,8 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
           <div className='w-full flex gap-2 max-w-[1440px]'>
             {/* Background */}
             <div className='hidden tall:hidden md:w-1/2 md:overflow-hidden md:block'>
-              <img src={backgroundCalculator} className='md:absolute md:-z-10' />
-              <img src={dogCalculator} className='w-full z-10' />
+              <img src={backgroundCalculator} className='md:absolute md:-z-10 md:ml-24 md:mt-7' />
+              <img src={dogCalculator} className='mt-28 mb-48 w-full z-10' />
             </div>
             {/* Form */}
             <CalculatorForm
