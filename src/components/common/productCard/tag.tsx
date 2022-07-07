@@ -6,7 +6,7 @@ export const Tag = ({ name, className }: TagProps) => (
   <div
     className={`
       rounded-full pl-px pr-2 h-[1.95rem]
-      flex items-center justify-between
+      flex items-center
       border border-primary text-primary 
       font-subTitles font-semibold 
       md:py-px md:gap-1 md:pr-3 md:pl-[6px]

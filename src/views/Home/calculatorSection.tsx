@@ -10,7 +10,7 @@ export const CalculatorSection = () => {
     <div className='relative flex flex-col pt-11 w-full items-center justify-center text-center rounded-t-3xl overflow-hidden transform -mt-4 z-10 md:flex-row-reverse bg-secondaryOpacity'>
       <img src={fillets} className='object-cover h-full w-full float-none absolute' />
       <div className='flex flex-col h-full md:flex-row-reverse max-w-[1440px]'>
-        <div className='flex flex-col items-center justify-center md:w-1/3 z-10 lg:mx-20'>
+        <div className='flex flex-col items-center justify-center md:w-[31%] z-10 lg:mr-24'>
           <div className='lg:mb-[3.2rem]'>
             <span className='text-3xl text-grayText font-extrabold'>
               ¿Cuál es el Pixie ideal para mi perrito o michi?
@@ -25,7 +25,7 @@ export const CalculatorSection = () => {
             </Button>
           </div>
         </div>
-        <div className='z-10 md:w-2/3 xl:h-full md:flex md:items-center md:justify-center md:pr-16 md:pl-16 md:mt-7 max-w-[1440px]'>
+        <div className='z-10 md:w-[69%] xl:h-full md:flex md:items-center md:justify-center md:pl-10 md:mt-6 max-w-[1440px]'>
           <img src={dogs} className='md:w-full md:object-contain' />
         </div>
       </div>

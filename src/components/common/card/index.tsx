@@ -4,7 +4,7 @@ export const Card = ({ title, description, selected, far, className, img }: Card
     className={`
         w-[14.6rem] h-[22.9rem] md:h-[26rem] p-2 lg:h-120 lg:w-[17.1rem] rounded-3xl flex flex-col lg:p-5 
         shadow-xl transform transition-all overflow-hidden flex-shrink-0
-        ${selected ? 'bg-[#f5baba]' : far ? 'bg-[#e96b76] scale-50 xl1:scale-[0.55] xl2:scale-[0.668]' : 'bg-[#ef9298] scale-75 xl1:scale-[0.8] xl2:scale-[0.82]'}
+        ${selected ? 'bg-[#f5baba]' : far ? 'bg-[#e96b76] scale-50 xl1:scale-[0.55] xl2:scale-x-[0.668] xl2:scale-y-[0.67]' : 'bg-[#ef9298] scale-75 xl1:scale-[0.8] xl2:scale-[0.83]'}
         ${className}
     `}
   >

@@ -5,21 +5,21 @@ import instagramLogo from '../../../assets/vectors/Instagram.svg';
 
 export const Footer = ({ className }: FooterProps) => (
   <footer
-    className={`flex flex-col filter w-full items-center justify-center pb-24 z-10 md:pt-16 ${className} `}
+    className={`flex flex-col filter w-full items-center justify-center pb-28 z-10 md:pt-20 md:text-lg ${className} `}
     style={{ backgroundColor: '#DF2F44' }}
   >
-    <div className='hidden md:absolute md:bottom-56 md:block'>
+    <div className='hidden md:absolute md:bottom-[15.5rem] md:block'>
       <img src={logoFooter} />
     </div>
     <div className='mt-9 md:hidden'>
       <img src={logoFooter} />
     </div>
-    <div className='hidden space-x-7 mb-8 md:flex md:flex-row'>
+    <div className='hidden space-x-8 mt-3 md:flex md:flex-row'>
       <img src={facebookLogo} />
       <img src={instagramLogo} />
       <img src={twitterLogo} />
     </div>
-    <div className='text-center text-[#FAD7B1] font-extrabold md:flex md:flex-row md:space-x-20'>
+    <div className='text-center text-[#FAD7B1] font-extrabold md:flex md:flex-row md:justify-around md:space-x-24 md:mt-7'>
       <div className='my-3.5'>
         <span>Contacto</span>
       </div>

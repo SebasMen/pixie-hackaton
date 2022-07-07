@@ -50,7 +50,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
   const redirectCatalogue = () => navigate('/catalogue');
 
   return (
-    <div className='flex flex-col items-center bg-gray-100 w-full rounded-t-3xl transform -mt-4 pb-20 relative overflow-hidden'>
+    <div className='flex flex-col items-center bg-gray-100 w-full rounded-t-3xl transform -mt-4 pb-[4.5rem] relative overflow-hidden'>
       {/* Backgrounds */}
       <img className='absolute w-full h-full object-cover object-right -z-20' src={vegetables} />
       <div className='hidden absolute bottom-0 -z-10 left-[0] right-[0] m-auto w-full max-w-[1440px] lg:block xl2:w-[1440px]'>
@@ -62,7 +62,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       {/* Carrousel */}
       <Carrousel
         onSlideChange={setSelected}
-        className='pt-12 pb-10 h-max lg:px-32 max-w-[1440px]'
+        className='pt-10 pb-10 h-max lg:px-28 max-w-[1440px]'
         /// bulletClassName='mt-[60px]'
         breakpoints={{
           300: {
@@ -132,7 +132,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       </Carrousel>
 
       {/* Products */}
-      <div className='flex flex-wrap justify-center items-start gap-4 gap-y-20 mt-20 p-4 lg:pt-10 lg:px-36 lg:pb-12 xl:justify-between 2xl:p-32 max-w-[1440px]'>
+      <div className='flex flex-wrap justify-center items-start gap-4 gap-y-[4.3rem] mt-36 p-4 lg:pt-10 lg:px-36 lg:pb-12 xl:justify-between 2xl:p-32 max-w-[1440px]'>
         {products?.slice(0, 7).map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

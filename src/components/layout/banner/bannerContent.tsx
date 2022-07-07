@@ -1,8 +1,8 @@
 
 export const BannerContent = ({ title, text, img, showBotton }: BannerContentProps) =>
-  <div className='flex flex-col w-full h-auto lg:h-full overflow-hidden sm:flex-row-reverse tall:flex-col'>
+  <div className='flex flex-col w-full h-auto lg:h-full overflow-hidden sm:flex-row-reverse tall:flex-col lg:mb-4'>
     {img &&
-      <div className='flex flex-shrink-0 flex-grow w-full h-full overflow-hidden sm:flex-grow-0 sm:w-1/2 tall:w-full tall:flex-grow taller:flex-grow-0 taller:h-2/3 lg:mt-5 lg:mr-16'>
+      <div className='flex flex-shrink-0 flex-grow w-full h-full overflow-hidden sm:flex-grow-0 sm:w-1/2 tall:w-full tall:flex-grow taller:flex-grow-0 taller:h-2/3 lg:mr-[4.5rem] lg:pl-[2.8rem] lg:pt-1'>
         <img src={img} className='w-full sm:object-contain h-[265px] lg:h-full' />
       </div>
     }
