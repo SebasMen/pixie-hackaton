@@ -37,7 +37,7 @@
 
 @media (min-width: 1440px) {
   .banner {
-    height: calc(100vh - 200px);
+    height: 565px;
   }
 }
 

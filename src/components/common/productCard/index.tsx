@@ -47,12 +47,12 @@ export const ProductCard = ({ product, showControls = true, className, selected 
           cursor-pointer p-3 pb-8 rounded-2xl bg-white 
           ring-0 ring-primary transform transition-all 
           ${selected && (selected ? 'scale-110 lg:scale-100' : 'scale-90')}
-          w-full h-full
+          w-full h-full lg:pb-11
           hover:ring-1 ${className}
         `}
         onClick={handleSubmit}
       >
-        <div className='flex justify-between gap-1 w-full mb-2'>
+        <div className='flex justify-between w-full mb-2'>
           <div className='flex flex-col items-start justify-center gap-1'>
             {ages.map(age => (
               <Tag key={`${product.id}-age-${age}`} name={age} className='w-full' />
@@ -61,7 +61,7 @@ export const ProductCard = ({ product, showControls = true, className, selected 
           <IconButton.mini
             img={product.kind_pet === 'CAT' ? CatIcon : DogIcon}
             name={product.name + '-tag-' + product.kind_pet}
-            className='text-primary border-[1px] border-primary p-1 shadow-none'
+            className='text-primary border-[1px] border-primary p-1 shadow-none mr-1'
             onClick={() => console.log(product.kind_pet)}
           />
         </div>

@@ -54,18 +54,18 @@ export const NavBar = () => {
         </div>
 
         {/* Logo */}
-        <div className='w-14 flex-shrink-0 flex justify-center items-center md:w-[6.75rem] md:justify-start'>
+        <div className='w-14 flex-shrink-0 flex justify-center items-center md:w-[6.75rem] md:justify-start md:pt-2'>
           <img src={pixie} className='w-full cursor-pointer' onClick={toHome} />
         </div>
 
         {/* Content */}
         <div className='flex flex-col flex-grow-0 md:flex-grow'>
           {/* Top */}
-          <div className={`w-full hidden text-${color} gap-[22px] md:flex md:flex-row md:justify-end md:items-center`}>
+          <div className={`w-full hidden text-${color} gap-[22px] md:flex md:flex-row md:justify-end md:items-center md:pt-[0.20rem]`}>
             {color === 'grayText' ? (
               <Button
                 rounded
-                className='font-sanzSemiBold bg-transparent border-grayText border-[1px] leading-[17px] text-sm'
+                className='font-sanzBold bg-transparent border-grayText border-[1px] leading-[17px] text-sm md:mr-2'
                 padding='py-[0.19rem] px-[1.19rem]'
               >
                 Ingresar
@@ -73,13 +73,13 @@ export const NavBar = () => {
             ) : (
               <Button
                 rounded
-                className='font-sanzSemiBold bg-transparent border-primary border-[1px] leading-[17px] text-sm'
+                className='font-sanzBold bg-transparent border-primary border-[1px] leading-[17px] text-sm md:mr-2'
                 padding='py-[0.19rem] px-[1.19rem]'
               >
                 Ingresar
               </Button>
             )}
-            <div className='flex items-center justify-center text-sm'>
+            <div className='flex items-center justify-center text-sm '>
               <span className='font-subTitles'>EN</span>
               <span className='font-extrabold font-subTitles'> &nbsp;|&nbsp;</span>
               <span className='font-subTitles font-black'>ES</span>
@@ -87,9 +87,9 @@ export const NavBar = () => {
           </div>
 
           {/* Bottom */}
-          <div className={`flex flex-grow-0 items-top pt-3.5 w-full md:flex-grow text-${color}`}>
+          <div className={`flex flex-grow-0 items-top pt-3.5 w-full md:flex-grow text-${color} md:pt-4`}>
             {/* Social */}
-            <div className='hidden md:flex md:flex-row md:space-x-10 md:w-2/3 md:ml-4'>
+            <div className='hidden md:flex md:flex-row md:space-x-10 md:w-2/3 md:ml-4 md:pt-[0.40rem]'>
               <Icon.awesome icon='fa-facebook-f' size='3xl' />
               <Icon.awesome icon='fa-instagram' size='3xl' />
               <Icon.awesome icon='fa-twitter' size='3xl' />
@@ -98,7 +98,7 @@ export const NavBar = () => {
             {/* Items */}
             <div className='w-1/3 flex-grow justify-end gap-2 md:pt-0 md:flex md:flex-row md:w-auto lg:gap-6'>
               {/* Navs */}
-              <div className='hidden md:flex md:flex-row justify-between md:gap-5 md:mr-6'>
+              <div className='hidden md:flex md:flex-row justify-between md:gap-7 md:mr-6'>
                 <NavItem name='Tienda' path='/catalogue' color={color} />
                 <NavItem name='Calculadora' path='/calculator' color={color} />
               </div>
@@ -119,7 +119,7 @@ export const NavBar = () => {
                 />
               </div>
 
-              <div className='flex-shrink-0 flex justify-end'>
+              <div className='flex-shrink-0 flex justify-end lg:mr-1'>
                 <IconButton.mini
                   img={basket}
                   name={basket}
@@ -136,7 +136,7 @@ export const NavBar = () => {
                   <div
                     className={`flex w-5 h-5 font-subTitles text-xs rounded-full
                      absolute justify-center items-center  text-white top-[3.9rem] right-7
-                     md:right-4 lg:right-11 md:top-[5.5rem] animate__animated animate__bounceIn
+                     md:right-4 lg:right-[49px] md:top-[5.85rem] animate__animated animate__bounceIn
                      ${isCatalogue || isCalculator ? 'bg-primary' : 'bg-gray-600'}
                      `}
                   >

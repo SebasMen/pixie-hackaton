@@ -19,11 +19,11 @@ export const ProductsSection = ({ data, filter }: ProductsSectionProps) => {
                 ${i % 2 === 0 ? 'bg-thirdOpacity' : 'bg-third'}
               `}
             >
-              <div className='max-w-[1440px] xl2:px-2 2xl1:px-36'>
-                <h2 className='text-center text-[40px] lg:text-5xl mb-6 lg:mb-10 text-gray-700 stroke-zinc-50 text_withoutbg opacity-50 md:text-7xl'>{category.name}</h2>
+              <div className='max-w-[1440px] xl2:px-1 2xl1:px-36'>
+                <h2 className='text-center text-[40px] mb-6 text-gray-700 stroke-zinc-50 text_withoutbg opacity-50 md:text-7xl lg:text-7xl lg:mb-[70px]'>{category.name}</h2>
                 <div
                   className={`
-                    flex flex-wrap justify-center gap-1 gap-y-20 
+                    flex flex-wrap justify-center gap-3 md:gap-6 gap-y-20 
                     items-start
                   `}
                 >
