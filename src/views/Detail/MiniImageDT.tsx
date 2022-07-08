@@ -10,7 +10,7 @@ const MiniImageDT = ({ src, handleChangeImage, index = 0 }: MiniImageDTProps) =>
       </div>
       :
       <div className='mb-6 cursor-pointer hover:' onClick={() => handleChangeImage(index)}>
-        <img src={transformUrlGDrive(src)} className='w-36 h-36 object-contain'/>
+        <img src={transformUrlGDrive(src)} className='w-[146px] h-[123px] object-contain'/>
       </div>
     }
   </>

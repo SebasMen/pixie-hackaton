@@ -7,16 +7,16 @@ const BannerSection = ({ view }: BannerSectionProps) => (
         flex flex-col justify-end pb-14 text-center w-full h-full 
         md:pb-5 md:text-left md:ml-10 md:justify-center 
         lg:pb-0 lg:ml-36 
-        xl:ml-28
+        xl:ml-32
         xl2:w-2/3 
         2xl:w-1/2
       `}
     >
       {view === 0 && (
-        <div className='flex flex-col w-full px-10 text-xl font-extrabold md:truncate md:pl-0 md:text-3xl lg:text-4xl lg:mb-20'>
-          <span>Cambiar la forma en que</span>
-          <span>alimentas a tu mascota</span>
-          <span>comienza aquí!</span>
+        <div className='flex flex-col w-full px-10 text-xl font-extrabold md:truncate md:pl-0 md:text-3xl lg:text-[35px] lg:mb-[5.8rem]'>
+          <span className='leading-10'>Cambiar la forma en que</span>
+          <span className='leading-10'>alimentas a tu mascota</span>
+          <span className='leading-10'>comienza aquí!</span>
         </div>
       )}
       {view === 1 && (

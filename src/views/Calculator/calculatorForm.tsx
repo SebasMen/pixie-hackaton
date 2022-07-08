@@ -37,7 +37,7 @@ export const CalculatorForm = ({
   // Component
   return (
     <form
-      className='w-full relative overflow-hidden flex-grow flex flex-col gap-2 text-primary py-16 p-2 lg:pr-28 md:px-5 md:w-1/2 lg:pt-14 lg:pb-9'
+      className='w-full relative overflow-hidden flex-grow flex flex-col gap-2 text-primary py-16 p-2 xl2:pr-44 md:px-5 md:w-1/2 lg:pt-16 lg:pb-9'
       onSubmit={onSubmit}
     >
       <div className='flex w-full relative'>
@@ -48,7 +48,7 @@ export const CalculatorForm = ({
             ${page === 0 ? 'flex animate__fadeInRight' : 'hidden'}
           `}
         >
-          <div className='font-sanzBold text-center mb-[50px] text-xl'>
+          <div className='font-sanzBold text-center mb-9 text-xl'>
             <p>Descubre cuál es el plan que más le conviene</p>
             <p>¡GET STARTED!</p>
           </div>
@@ -102,14 +102,14 @@ export const CalculatorForm = ({
             <div className='flex w-full px-3 justify-center items-center gap-3 sm:gap-6 lg2:gap-4 sm:flex-row md:px-0'>
               <Button
                 className='ring-primary ring-1 w-full md:w-max'
-                padding={'py-[0.4rem] px-2 md:py-[0.3rem] xl1:px-8 xl2:px-[3.4rem] lg2:px-6'}
+                padding={'py-[0.4rem] px-2 md:py-[0.3rem] xl1:px-8 xl2:px-[2.4rem] lg2:px-6'}
               >
                 <span className='font-subTitles text-sm md:text-base font-bold truncate'>Tabla peso ideal gato</span>
               </Button>
 
               <Button
                 className='ring-primary ring-1 w-full sm:w-max'
-                padding={'py-[0.4rem] px-2 md:py-[0.3rem] xl1:px-8 xl2:px-[3.4rem] lg2:px-6'}
+                padding={'py-[0.4rem] px-2 md:py-[0.3rem] xl1:px-8 xl2:px-[2.4rem] lg2:px-6'}
               >
                 <span className='font-subTitles text-sm md:text-base font-bold truncate'>Tabla peso ideal perro</span>
               </Button>

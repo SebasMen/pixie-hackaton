@@ -35,6 +35,7 @@ import cataloguePointsM from './cataloguePointsM.svg';
 import backArrow from './backArrow.svg';
 import notImage from './notImage.svg';
 import tagIcon from './tagIcon.svg';
+import arrow from './arrow.svg';
 
 export {
   basket,
@@ -73,5 +74,6 @@ export {
   cataloguePointsM,
   backArrow,
   notImage,
-  tagIcon
+  tagIcon,
+  arrow
 };

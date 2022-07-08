@@ -28,15 +28,15 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
     // Check loading & products array
     !loading && response?.products && feedData ? (
       <div className='w-full rounded-t-3xl bg-sixth -mt-5 z-10 animate__animated animate__fadeIn flex flex-col justify-center xl1:items-center'>
-        <div className='max-w-[1440px] md:px-20 xl1:px-[12.8rem] xl2:px-[17.8rem] '>
-          <div className='mb-8 mt-14 text-center px-9 md:px-0'>
-            <span className='text-primary text-xl font-bold lg:text-[24px]'>{feedData.msg}</span>
+        <div className='max-w-[1440px] md:px-20 xl1:px-[16.8rem]'>
+          <div className='mb-10 mt-20 text-center px-9 md:px-0'>
+            <span className='text-primary text-xl font-bold lg:text-[25px]'>{feedData.msg}</span>
           </div>
-          <span className='ml-3 px-3 md:px-0'>Recomendados:</span>
+          <span className='ml-3 px-3 md:px-0 md:text-lg'>Recomendados:</span>
 
           {/* Carrousel */}
           <Carrousel
-            className='pt-10 pb-10 lg:px-[9rem]'
+            className='pt-3 pb-10 lg:px-[9rem]'
             onSlideChange={setSelected}
             navigation
             breakpoints={{
@@ -69,7 +69,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
               ))
             }
           </Carrousel>
-          <div className='text-center mt-8 mb-5 font-subTitles font-bold'>
+          <div className='text-center mt-10 mb-5 font-sanzBold md:text-lg md:leading-normal'>
             <span>
               Dieta recomendada para 4 semanas = {Math.round((feedData.grams * 28) / 500)} rollitos,
               <span className='text-primary'> ¡combínalas como tu quieras!</span>

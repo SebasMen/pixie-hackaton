@@ -46,7 +46,7 @@ export const ProductCard = ({ product, showControls = true, className, selected 
           relative flex flex-col flex-shrink-0 justify-between items-center 
           cursor-pointer p-3 pb-8 rounded-2xl bg-white 
           ring-0 ring-primary transform transition-all 
-          ${selected && (selected ? 'scale-110 lg:scale-100' : 'scale-90')}
+          ${selected ? 'scale-110 lg:scale-100' : 'scale-90'}
           w-full h-full lg:pb-11
           hover:ring-1 ${className}
         `}
