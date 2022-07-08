@@ -14,8 +14,8 @@ const BannerDetailDT = () => {
   const arrayUrlImages = transUrlImages(product);
 
   return (
-    <div className='hidden lg:flex w-full overflow-hidden lg:h-full md:w-2/3 '>
-      <div className='flex flex-col w-1/4 items-start'>
+    <div className='hidden lg:flex w-full overflow-hidden lg:h-full md:w-[63%] '>
+      <div className='flex flex-col w-1/5 items-start'>
         {arrayUrlImages.map((url, index) => index < 3 ? (
           <MiniImageDT key={url} src={url} handleChangeImage={setImage} index={index}/>
         )
@@ -23,15 +23,15 @@ const BannerDetailDT = () => {
       </div>
       {arrayUrlImages[0] === ''
         ?
-        <div className='flex w-3/4 justify-center'>
+        <div className='flex w-3/5 justify-center'>
           <div>
-            <img src={notImage} className='w-[529px] h-[446px]'/>
+            <img src={notImage} className='w-[529px]'/>
           </div>
         </div>
         :
         <div className='flex w-3/4 justify-center'>
           <div>
-            <img src={transformUrlGDrive(arrayUrlImages[image])} className='w-[529px] h-[446px] object-contain'/>
+            <img src={transformUrlGDrive(arrayUrlImages[image])} className='w-[529px] object-contain'/>
           </div>
         </div>
       }

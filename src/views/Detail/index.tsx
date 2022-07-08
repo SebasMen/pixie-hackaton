@@ -38,12 +38,12 @@ const Detail = () => {
   // Component
   return (
     <Page>
-      <div className='lg:px-[126px] max-w-[1440px]'>
+      <div className='lg:px-[123px] max-w-[1440px]'>
         <div className='md:hidden px-7 mt-7 mb'>
           <img src={backArrow} onClick={() => navigate(-1)} />
         </div>
         <div className='flex flex-col w-full flex-shrink-0 overflow-hidden'>
-          <p className='hidden md:mt-3 md:mb-1 md:block text-fourth font-paragraph text-sm lg:mb-10'>{'Catálogo > '} {capitalize(productView.name)}</p>
+          <p className='hidden md:mt-3 md:mb-1 md:block text-fourth font-subTitles text-sm lg:mb-9'>{'Catálogo > '} {capitalize(productView.name)}</p>
           <div className='w-full flex-grow flex flex-col flex-shrink-0 md:flex-row md:pb-10 md:gap-1'>
             {/* Banner Detail to mobile */}
             <BannerDetail product={productView} />
@@ -66,7 +66,7 @@ const Detail = () => {
 
         {/* FAB */}
         <IconButton
-          className='fixed bottom-5 hidden z-50 p-1 pt-1.5 pl-1.5 text-white md:block md:right-10 md:bottom-1/2'
+          className='fixed bottom-5 hidden z-50 p-1 pt-1.5 pl-1.5 text-white md:block md:right-6 md:bottom-[53%]'
           color='#DF2F44'
           name='DogButton'
           img={dog}

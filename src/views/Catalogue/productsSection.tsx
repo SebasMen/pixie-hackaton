@@ -23,7 +23,7 @@ export const ProductsSection = ({ data, filter }: ProductsSectionProps) => {
                 <h2 className='text-center text-[40px] mb-6 text-gray-700 stroke-zinc-50 text_withoutbg opacity-50 md:text-7xl lg:text-7xl lg:mb-[70px]'>{category.name}</h2>
                 <div
                   className={`
-                    flex flex-wrap justify-center gap-3 md:gap-6 gap-y-20 
+                    flex flex-wrap justify-center gap-3 gap-y-20 md:gap-6 md:gap-y-[94px]
                     items-start
                   `}
                 >

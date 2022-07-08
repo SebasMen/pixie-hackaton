@@ -4,6 +4,7 @@ import TextField from '../../form/textField';
 
 import { Product, ResultProduct } from '../../../interfaces/product';
 import useForm from '../../../hooks/useForm';
+import { capitalize } from '../../../helpers/capitalize';
 
 const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 500 }: RecomendationItemProps) => {
   // Hooks
@@ -42,7 +43,7 @@ const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 
           </div>
         </div>
         {/* name */}
-        <div className='font-extrabold text-primary text-xl lg:mr-10'>{data.product.name}</div>
+        <div className='font-extrabold text-primary text-xl lg:mr-10'>{capitalize(data.product.name)}</div>
       </div>
 
       <div className='flex items-center lg:w-[57%] lg2:w-[50%] xl2:w-[57%]'>

@@ -10,6 +10,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import '../../../styles/carrousel.css';
+import { arrow } from '../../../assets/vectors';
 
 export const Carrousel = ({
   children,
@@ -66,8 +67,8 @@ export const Carrousel = ({
       {
         navigation &&
         <div className='absolute w-full h-full top-0 left-0 hidden md:block'>
-          <IconButton name='arrow_back_ios' onClick={() => swipeTo((swiper?.realIndex || 0) - 1)} shadow={false} className='absolute top-1/2  -left-20' />
-          <IconButton name='arrow_forward_ios' onClick={() => swipeTo((swiper?.realIndex || 0) + 1)} shadow={false} className='absolute top-1/2 -right-20' />
+          <IconButton.mini img={arrow} name={arrow} onClick={() => swipeTo((swiper?.realIndex || 0) - 1)} shadow={false} className='absolute top-1/2  -left-20' />
+          <IconButton.mini img={arrow} name={arrow} onClick={() => swipeTo((swiper?.realIndex || 0) + 1)} shadow={false} className='absolute top-1/2 -right-20 rotate-180' />
         </div>
       }
     </div>

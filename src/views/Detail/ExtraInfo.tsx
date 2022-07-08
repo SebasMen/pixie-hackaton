@@ -1,6 +1,6 @@
 const ExtraInfo = ({ type, infoList, infoTable, infoConservation }: ExtraInfoProps) => {
   if (type === 'list')
-    return <ul className='font-subTitles'>
+    return <ul className='font-subTitles text-sm'>
       {infoList?.map((text, i) => <li className='list-disc text-gray-700 text-base' key={`li${i}${text}`}>{ text }.</li>)}
     </ul>;
   if (type === 'table')

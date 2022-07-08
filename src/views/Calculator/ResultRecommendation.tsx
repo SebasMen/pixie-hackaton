@@ -74,7 +74,7 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
 
   // Component
   return (
-    <div className='flex flex-col gap-[38px] w-full mb-10 px-5 md:px-0'>
+    <div className='flex flex-col gap-[38px] w-full mb-10 px-5 md:pl-0'>
       <ColoredScrollbars style={{ height: 390 }}>
         {productList.map(listed => (
           <RecomendationItem
@@ -93,7 +93,7 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
             <h2 className='text-xl text-primary font-extrabold'>Resumen</h2>
           </div>
           <div className='flex-grow md:text-sm flex-shrink-0 text-left border-r-primary lg:border-r pr-30'>
-            <p className='font-subTitles font-bold'>{names}</p>
+            <p className='font-subTitles'>{names}</p>
             <p className='text-[#7AC5BE] font-subTitles font-semibold text-[11px] lg:text-sm'>
               {maxQuantity < quantity
                 ? `(Te hacen falta ${quantity - maxQuantity} porciones para completar las 4 semanas)`
