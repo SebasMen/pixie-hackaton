@@ -62,6 +62,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
               response.products.map((product, i) => (
                 <ProductCard
                   selected={selected === i}
+                  isCarrousel={true}
                   key={`calculatorCart-${product.id}`}
                   product={product}
                   showControls={false}

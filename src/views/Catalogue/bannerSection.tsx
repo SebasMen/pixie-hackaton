@@ -14,7 +14,7 @@ export const BannerSection = () => (
         lg:scale-[0.8] lg:-bottom-24 lg:w-auto
         lg2:scale-[0.90] lg2:-bottom-10
         xl:scale-90 xl:left-32 xl:-bottom-10
-        xl2:left-56 xl2:-bottom-6 xl2:scale-100
+        xl2:left-56 xl2:-bottom-[1.8rem] xl2:scale-100
         3xl:right-0 3xl:left-32
 
         tall:scale-125 tall:-bottom-20

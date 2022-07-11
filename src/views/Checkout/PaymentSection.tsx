@@ -10,9 +10,9 @@ const PaymentSection = ({
   form: {
     country,
     address,
-    apartament,
+    apartment,
     city,
-    postalCode,
+    zip_code,
     email,
     typePayment,
     billingAddress
@@ -24,7 +24,7 @@ const PaymentSection = ({
   return (
     <>
       <ResumenShipping
-        location = {`${postalCode}, ${address}, ${apartament}, ${city}, ${country.label}`}
+        location = {`${zip_code}, ${address}, ${apartment}, ${city}, ${country.label}`}
         email={email}
       />
       <div className='flex flex-col pt-4'>

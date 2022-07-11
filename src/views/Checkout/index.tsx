@@ -1,53 +1,79 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { SelectItem } from '../../components/form/selectField';
 import Page from '../../components/layout/page';
-import { useForm } from '../../hooks';
-import { SubmissionFormInterface } from '../../interfaces/checkout';
+import { useFetch, useForm } from '../../hooks';
+import { selectCountry, selectCountryService, SubmissionFormInterface } from '../../interfaces/checkout';
 import ResumenSection from './ResumenProductSection';
 import StepsSection from './StepsSection';
 import SubmissionForm from './SubmissionForm';
 import ShippingSection from './ShippingSection';
 import PaymentSection from './PaymentSection';
 import TotalSection from '../Basket/TotalSection';
+import checkOutService from '../../services/checkOutService';
+import { mexicanStates } from '../../@fake/statesFake';
 
 const countriesOptions: SelectItem[] = [
   { value: '1', label: 'Colombia' },
   { value: '2', label: 'Ecuador' },
 ];
 
-const statesOptions: SelectItem[] = [
-  { value: '1', label: 'Bogota' },
-  { value: '2', label: 'Medellin' },
-];
-
 const CheckOut = () => {
   const [step, setStep] = useState(2);
+
+  const { loading, response } = useFetch<selectCountryService>(checkOutService.getOneCountry);
   // Hooks
-  const { form, onSubmit, handleFormChange, handleSelectChange, handleRadioChange } = useForm<SubmissionFormInterface>(
+  const { form, onSubmit, handleFormChange, handleSelectChange, handleRadioChange, setForm } = useForm<SubmissionFormInterface>(
     {
       address: '',
-      apartament: '',
+      apartment: '',
       city: '',
       country: countriesOptions[0],
       countries: countriesOptions,
       document: '',
       email: '',
-      lastNames: '',
-      names: '',
+      last_name: '',
+      name: '',
       phone: '',
-      postalCode: '',
-      state: statesOptions[0],
-      states: statesOptions,
+      zip_code: '',
+      state: mexicanStates[0],
+      states: mexicanStates,
       typeShipping: 'estandar',
       typePayment: 'credito',
-      billingAddress: ''
+      billingAddress: '',
+      receive_information: '0'
     },
     form => handleSubmit(form)
   );
 
+  useEffect(() => {
+    // Manage loading empty response
+    if (loading || !response) return;
+
+    // Destructure response
+    const { data, err } = response;
+
+    // Manage response errores or no data
+    if (!data || err) return;
+
+    // Sorting out data
+    const countries: SelectItem[] = data.map(country => ({
+      label: country.name,
+      value: country.id,
+    }));
+
+    setForm(old => ({
+      ...old,
+      countries
+    }));
+  }, [loading, response]);
+
   // Methods
-  const handleSubmit = (form: SubmissionFormInterface) => {
-    console.log(form);
+  const handleSubmit = async (form: SubmissionFormInterface) => {
+    const { error } = await checkOutService.sendUserInformation(form);
+    if (error)
+      console.log(error.map(er => console.log(er.msg)));
+    else
+      console.log('bien');
   };
 
   return (
@@ -63,9 +89,11 @@ const CheckOut = () => {
                 <span>RESUMEN DE TU PEDIDO</span>
               </div>
               <ResumenSection
-                padding='px-0'
+                padding='p-3 md:px-0'
               />
-              <TotalSection showTaxes={true}/>
+              <div className='hidden md:block'>
+                <TotalSection showTaxes={true}/>
+              </div>
             </div>
           </div>
           {/* Form */}

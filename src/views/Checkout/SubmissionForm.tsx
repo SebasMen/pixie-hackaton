@@ -12,15 +12,15 @@ const SubmissionForm = ({
   form: {
     countries,
     country,
-    names,
-    lastNames,
+    name,
+    last_name,
     document,
     address,
-    apartament,
+    apartment,
     city,
     states,
     state,
-    postalCode,
+    zip_code,
     phone,
     email
   },
@@ -46,12 +46,12 @@ const SubmissionForm = ({
         borderColor='#000'
       />
       <div className='lg:flex lg:gap-3'>
-        <TextField name='names' border='border border-primary ring-1 ring-black' value={names} handler={onChange} placeholder='Nombre*' className='lg:w-1/2'/>
-        <TextField name='lastNames' border='border border-primary ring-1 ring-black' value={lastNames} handler={onChange} placeholder='Apellido*' className='lg:w-1/2'/>
+        <TextField name='name' border='border border-primary ring-1 ring-black' value={name} handler={onChange} placeholder='Nombre*' className='lg:w-1/2'/>
+        <TextField name='last_name' border='border border-primary ring-1 ring-black' value={last_name} handler={onChange} placeholder='Apellido*' className='lg:w-1/2'/>
       </div>
       <TextField name='document' border='border border-primary ring-1 ring-black' value={document} handler={onChange} placeholder='Documento*' />
       <TextField name='address' border='border border-primary ring-1 ring-black' value={address} handler={onChange} placeholder='Dirección*' />
-      <TextField name='apartament' border='border border-primary ring-1 ring-black' value={apartament} handler={onChange} placeholder='Apartamento, local, etc'/>
+      <TextField name='apartment' border='border border-primary ring-1 ring-black' value={apartment} handler={onChange} placeholder='Apartamento, local, etc'/>
       <div className='lg:flex lg:gap-3'>
         <TextField name='city' border='border border-primary ring-1 ring-black' value={city} handler={onChange} placeholder='Ciudad*' className='lg:w-1/2'/>
         <SelectField
@@ -65,7 +65,7 @@ const SubmissionForm = ({
           className='lg:w-1/2'
         />
       </div>
-      <TextField name='postalCode' border='border border-primary ring-1 ring-black' value={postalCode} handler={onChange} placeholder='Código postal' />
+      <TextField name='zip_code' border='border border-primary ring-1 ring-black' value={zip_code} handler={onChange} placeholder='Código postal' />
       <TextField name='phone' border='border border-primary ring-1 ring-black' value={phone} handler={onChange} placeholder='Teléfono*'/>
       <div className='lg:flex lg:flex-row-reverse lg:items-center'>
         <Button className='bg-primary text-white mt-7 lg:w-72' onClick={() => changeStep(3)}>

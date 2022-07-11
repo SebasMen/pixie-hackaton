@@ -13,9 +13,9 @@ const ShippingSection = ({
     typeShipping,
     country,
     address,
-    apartament,
+    apartment,
     city,
-    postalCode,
+    zip_code,
     email
   }
 }: SubmissionFormProps) => {
@@ -25,7 +25,7 @@ const ShippingSection = ({
   return (
     <>
       <ResumenShipping
-        location = {`${postalCode}, ${address}, ${apartament}, ${city}, ${country.label}`}
+        location = {`${zip_code}, ${address}, ${apartment}, ${city}, ${country.label}`}
         email={email}
       />
       <div className='pt-5'>
