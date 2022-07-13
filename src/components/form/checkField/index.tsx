@@ -10,6 +10,7 @@ export const CheckField = ({
   onClick,
   disabled = false,
   border,
+  sizeContainer,
   labelClassName
 }: CheckFieldProps) => {
   // Hooks
@@ -25,8 +26,9 @@ export const CheckField = ({
   return (
     <div className={`flex items-center gap-2 ${className}`} onClick={onClick}>
       <div
-        className={`w-10 h-10 bg-white flex items-center justify-center rounded-md cursor-pointer
+        className={`bg-white flex items-center justify-center rounded-md cursor-pointer
         ${border}
+        ${sizeContainer ? sizeContainer : 'w-10 h-10'}
         `}
         onClick={disabled || checked ? undefined : () => setChecked(old => !old)}
       >
@@ -52,6 +54,7 @@ interface CheckFieldProps {
   border?: string;
   onChange?: (value: boolean) => void;
   labelClassName?: string;
+  sizeContainer?: string;
   onClick: VoidFunction;
 }
 

@@ -1,132 +1,73 @@
-import { useCallback, useEffect, useState } from 'react';
-import { SelectItem } from '../../components/form/selectField';
+import { useState } from 'react';
+
 import Page from '../../components/layout/page';
-import { useFetch, useForm } from '../../hooks';
-import { selectCountry, selectCountryService, SubmissionFormInterface } from '../../interfaces/checkout';
 import ResumenSection from './ResumenProductSection';
 import StepsSection from './StepsSection';
 import SubmissionForm from './SubmissionForm';
 import ShippingSection from './ShippingSection';
 import PaymentSection from './PaymentSection';
 import TotalSection from '../Basket/TotalSection';
-import checkOutService from '../../services/checkOutService';
-import { mexicanStates } from '../../@fake/statesFake';
 
-const countriesOptions: SelectItem[] = [
-  { value: '1', label: 'Colombia' },
-  { value: '2', label: 'Ecuador' },
-];
+import { basketRed } from '../../assets/vectors/';
+import { shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
+import Footer from '../../components/layout/footer';
 
 const CheckOut = () => {
   const [step, setStep] = useState(2);
-
-  const { loading, response } = useFetch<selectCountryService>(checkOutService.getOneCountry);
-  // Hooks
-  const { form, onSubmit, handleFormChange, handleSelectChange, handleRadioChange, setForm } = useForm<SubmissionFormInterface>(
-    {
-      address: '',
-      apartment: '',
-      city: '',
-      country: countriesOptions[0],
-      countries: countriesOptions,
-      document: '',
-      email: '',
-      last_name: '',
-      name: '',
-      phone: '',
-      zip_code: '',
-      state: mexicanStates[0],
-      states: mexicanStates,
-      typeShipping: 'estandar',
-      typePayment: 'credito',
-      billingAddress: '',
-      receive_information: '0'
-    },
-    form => handleSubmit(form)
-  );
-
-  useEffect(() => {
-    // Manage loading empty response
-    if (loading || !response) return;
-
-    // Destructure response
-    const { data, err } = response;
-
-    // Manage response errores or no data
-    if (!data || err) return;
-
-    // Sorting out data
-    const countries: SelectItem[] = data.map(country => ({
-      label: country.name,
-      value: country.id,
-    }));
-
-    setForm(old => ({
-      ...old,
-      countries
-    }));
-  }, [loading, response]);
-
-  // Methods
-  const handleSubmit = async (form: SubmissionFormInterface) => {
-    const { error } = await checkOutService.sendUserInformation(form);
-    if (error)
-      console.log(error.map(er => console.log(er.msg)));
-    else
-      console.log('bien');
-  };
+  const [userInfo, setuserInfo] = useState<SubmissionFormInterface>();
+  const [idCustomer, setIdCustomer] = useState('');
+  const [shippingInfo, setShippingInfo] = useState<shippingTypeForm>({ type: 'estandar', price: 12000 });
 
   return (
-    <Page>
-      <div className='w-full font-paragraph mb-16 lg:px-14'>
-        <div className='px-6 flex flex-col gap-2 text-left'>
-          <span className='text-[25px] font-bold lg:text-[36px]'>Tu canasta</span>
+    <Page className='bg-sixth'>
+      <div className='px-6 w-full mb-16 max-w-[1440px] lg:px-32 lg:pt-5 lg:pb-20'>
+        <div className='flex gap-5 lg:pl-4'>
+          <img src={basketRed} />
+          <span className='text-primary text-[25px] lg:text-[36px] tracking-[-1.5px]'>Tu canasta</span>
+        </div>
+        {/* payments steps */}
+        <div className='mt-5 font-subTitles text-fourth lg:pl-4 '>
+          <StepsSection step={step}/>
         </div>
         <div className='lg:flex lg:flex-row-reverse'>
           <div className='lg:w-1/2'>
-            <div className='lg:bg-[#E4E4E4] lg:ml-52 lg:px-6 lg:pb-8 lg:pt-5 lg:rounded-xl lg:mt-7'>
-              <div className='hidden font-bold pb-4 lg:text-base lg:block'>
+            <div className='bg-white lg:ml-[8.5rem] lg:pl-6 lg:pr-8 lg:pb-8 lg:pt-6 lg:rounded-xl lg:mt-3'>
+              <div className='hidden font-bold pb-4 tracking-[-0.55px] text-primary lg:text-base lg:block'>
                 <span>RESUMEN DE TU PEDIDO</span>
               </div>
-              <ResumenSection
-                padding='p-3 md:px-0'
-              />
               <div className='hidden md:block'>
-                <TotalSection showTaxes={true}/>
+                <TotalSection/>
               </div>
             </div>
           </div>
-          {/* Form */}
-          <form className='px-6 lg:w-1/2' onSubmit={onSubmit}>
-            <StepsSection step={step}/>
-            { step === 2
-              &&
-              <SubmissionForm
-                form={form}
-                onChange={handleFormChange}
-                onSelectChange={handleSelectChange}
-                changeStep={setStep}
-              />
-            }
-            { step === 3
-              &&
-              <ShippingSection
-                form={form}
-                onRadioChange={handleRadioChange}
-                changeStep={setStep}
-              />
-            }
-            { step === 4
+          { step === 2
             &&
-            <PaymentSection
-              form={form}
-              onRadioChange={handleRadioChange}
+            <SubmissionForm
+              setData={setuserInfo}
+              setIdCustomer={setIdCustomer}
               changeStep={setStep}
             />
-            }
-          </form>
+          }
+          { step === 3
+              &&
+              <ShippingSection
+                changeStep={setStep}
+                userData={userInfo}
+                setData={setShippingInfo}
+              />
+          }
+          { step === 4
+          &&
+          <PaymentSection
+            userData={userInfo}
+            shippingData={shippingInfo}
+            idCustomer={idCustomer}
+            changeStep={setStep}
+          />
+          }
         </div>
       </div>
+      <Footer />
     </Page>
   );
 };

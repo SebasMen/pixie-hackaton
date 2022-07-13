@@ -1,5 +1,4 @@
-import { AxiosResponse } from 'axios';
-import { selectCountryService, sendFormCheckout, SubmissionFormInterface } from '../../interfaces/checkout';
+import { selectCountryService, postSendFormCheckout, SubmissionFormInterface } from '../../interfaces/checkout';
 import api from '../axios';
 
 export class CheckOutService {
@@ -23,11 +22,13 @@ export class CheckOutService {
     }
   };
 
-  sendUserInformation = async (data: SubmissionFormInterface): Promise<sendFormCheckout> => {
+  sendUserInformation = async (data: SubmissionFormInterface): Promise<postSendFormCheckout> => {
     const defError = 'Error al enviar los datos del checkout.';
     try {
       const response = await api.post('pixie-customers/api/customers', {
         ...data,
+        apartment: data.apartment === '' ? data.houseNumber : data.apartment,
+        address: data.address.concat(` ${data.houseNumber}`),
         countries_id: data.country.value,
         province: data.state.label
       });
@@ -35,13 +36,13 @@ export class CheckOutService {
       // Handle empty response
       if (!response) throw new Error(defError);
 
-      return {};
+      return { data: response.data };
     } catch (error: any) {
       // Handle response errors
-      if (error.response.data.errors) return { error: error.response.data.errors };
+      if (error.response.data.errors) return { error: error.response.data.errors, data: { id: '' } };
 
       // Handle basic errors
-      return { error: [{ msg: (error as Error)?.message || defError, param: 'global', location: 'global' }] };
+      return { error: [{ msg: (error as Error)?.message || defError, param: 'global', location: 'global' }], data: { id: '' } };
     }
   };
 }

@@ -21,33 +21,16 @@ const PromotionalSection = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className='my-7 flex flex-col gap-3 w-full'>
+      <div className='my-7 flex flex-col gap-3 w-full font-subTitles text-sm'>
         <TextArea
           handler={handleFormChange}
           name='note'
-          fieldClassName='h-[60px]'
+          fieldClassName='h-[100px] px-[22px] py-4'
           value={form.note}
           labelClassName='text-sm mb-2'
-          label='Agrega una nota a tu pedido'
-          border='border border-primary'/>
-        <div className='flex'>
-          <TextField
-            handler={handleFormChange}
-            name='promotionalCode'
-            className='w-5/6'
-            fieldClassName='h-[30px]'
-            labelClassName='text-sm mb-2'
-            value={form.promotionalCode}
-            label='Código promocional'
-            border='border border-primary ring-1 ring-primary'
-            required
-          />
-          <div className='flex justify-end items-end'>
-            <Button className='bg-primary text-white h-[32px] rounded-none' type='submit'>
-              Enviar
-            </Button>
-          </div>
-        </div>
+          placeholder='Agrega una nota a tu pedido'
+          border='outline-none ring-0 transform transition-all border-0 ring-primary rounded-[20px]'
+        />
       </div>
     </form>
   );

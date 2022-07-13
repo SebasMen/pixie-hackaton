@@ -1,23 +1,39 @@
 import { SelectItem } from '../components/form/selectField';
 import { Service } from './service';
 export interface SubmissionFormInterface {
-  countries: SelectItem[];
-  country: SelectItem;
+  email: string;
+  phone: string;
   name: string;
   last_name: string;
-  document: string
   address: string;
+  houseNumber: string;
   apartment : string;
+  reference: string;
+  zip_code: string;
+  colony: string;
+  delegation: string;
   city: string;
   states: SelectItem[];
   state: SelectItem;
-  zip_code: string;
-  phone: string;
-  email: string;
-  typeShipping: 'rapido' | 'estandar';
-  typePayment: 'credito' | 'debito';
-  billingAddress: string;
+  countries: SelectItem[];
+  country: SelectItem;
   receive_information: string;
+}
+
+export interface paymentForm {
+  card_name: string;
+  card_number: string;
+  expirationDate: string;
+  card_cvv: string;
+  billingAddress: string;
+  numberOfInstallments: SelectItem;
+  numberOfInstallmentsSelect: SelectItem[];
+  amount: number;
+}
+
+export interface shippingTypeForm {
+  type: 'rapido' | 'estandar',
+  price: number
 }
 
 export interface selectCountry {
@@ -26,12 +42,15 @@ export interface selectCountry {
   name: string
 }
 
-export interface sendFormCheckout {
+export type selectCountryService = Service<Array<selectCountry>>;
+
+export interface postSendFormCheckout {
   error?: [{
     msg: string,
     param: string,
     location: string
-  }]
+  }],
+  data: {
+    id: string,
+  }
 }
-
-export type selectCountryService = Service<Array<selectCountry>>

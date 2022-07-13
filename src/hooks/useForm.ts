@@ -58,7 +58,7 @@ export const useForm = <T>(
   };
 
   // On Radio change event
-  const handleRadioChange = (selected: string, name: string) => {
+  const handleRadioChange = (selected: string | boolean, name: string) => {
     setForm({
       ...form,
       [name]: selected,

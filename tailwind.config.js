@@ -55,6 +55,7 @@ module.exports = {
         sanzSemiBold: ['RNS Sanz Semi Bold'],
         sanzBold: ['RNS Sanz Bold'],
         sanzExtraBold: ['RNS Sanz Extra Bold'],
+        publicSans: ['Public Sans']
       }
     },
   },
