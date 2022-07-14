@@ -30,12 +30,12 @@ export const RadioField = ({
         ?
         <Icon
           name='radio_button_checked'
-          className='text-primary'
+          className='text-fourth'
         />
         :
         <Icon
           name='radio_button_unchecked'
-          className='text-primary'
+          className='text-fourth'
         />
       }
       <span className={`${labelClassName}`}>{label}</span>
@@ -44,10 +44,10 @@ export const RadioField = ({
 };
 
 interface RadioFieldProps {
-  value : string;
-  currentState: string;
+  value : string | boolean;
+  currentState: string | boolean;
   changeState: React.Dispatch<React.SetStateAction<any>>;
-  handleRadioChange: (selected: string, name: string) => void;
+  handleRadioChange: (selected: string | boolean, name: string) => void;
   name: string;
   label?: string;
   className?: string;

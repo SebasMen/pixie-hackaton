@@ -6,15 +6,17 @@ const TotalSection = ({ showTaxes }:TotalSectionProps) => {
 
   return (
     <div className='mt-4'>
-      <div className='flex justify-between text-xs mb-2 lg:text-sm'>
-        <span>Subtotal</span>
-        <span>${calculateTotal(products)}</span>
+      <div className='flex flex-col font-sanzSemiBold text-xs tracking-[-0.3px] lg:text-sm lg:border-b lg:border-[#a4a09b] lg:pb-3'>
+        <div className='mb-3 flex justify-between'>
+          <span>Subtotal</span>
+          <span>${calculateTotal(products)}</span>
+        </div>
+        <div className='flex justify-between'>
+          <span>Lorem ipsum</span>
+          <span>$0</span>
+        </div>
       </div>
-      <div className='flex justify-between text-xs mb-4 lg:border-b lg:border-primary lg:pb-4 lg:text-sm'>
-        <span>codigo</span>
-        <span>$0</span>
-      </div>
-      <div className='ring-1 ring-primary rounded-xl px-3 flex justify-between items-center py-1 font-bold text-lg lg:mt-11 lg:py-2'>
+      <div className='bg-[#dbdbdb] rounded-xl px-2 flex justify-between items-center py-1 font-bold text-lg lg:mt-6 lg:py-2'>
         <div>
             Total
           {showTaxes && <div className='text-[10px]'>Incluye $23,000 de impuestos</div>}

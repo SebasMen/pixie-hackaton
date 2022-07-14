@@ -32,6 +32,14 @@ export interface Product {
   // };
 }
 
+export interface productShort {
+  id: string,
+  title: string,
+  price: number,
+  sku: string,
+  quantity: number
+}
+
 export interface productCatalogue {
   name: string;
   products: Array<Product>;

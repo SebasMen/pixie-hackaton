@@ -1,4 +1,5 @@
 import basket from './basket.svg';
+import basketRed from './basketRed.svg';
 import bean from './bean.svg';
 import car from './car.svg';
 import carrot from './carrot.svg';
@@ -39,6 +40,7 @@ import arrow from './arrow.svg';
 
 export {
   basket,
+  basketRed,
   bean,
   car,
   carrot,

@@ -1,33 +1,35 @@
 const ResumenShipping = ({ location, email }: ResumenShippingProps) => (
-  <div className='pt-3 font-paragraph'>
-    <div className='border border-primary p-2.5'>
-      <div className='border-b border-primary grid grid-flow-col pb-5'>
-        <div className='text-left flex flex-col'>
-          <span className='text-xs'>Contacto</span>
-          <span className='text-sm mt-1'>{email}</span>
-        </div>
-        <div className='text-right text-xs text-[#7D7D7D]'>
-          <span>Cambiar</span>
+  <div className='pt-3 font-subTitles'>
+    <div className='bg-[#d9eeef] px-4 rounded-2xl'>
+      <div className='border-b border-[#B8B8B8]'>
+        <div className='text-left flex justify-between items-center py-4'>
+          <div className='flex gap-3 items-center'>
+            <span className='font-sanzBold text-xs'>Contacto</span>
+            <span className='text-sm'>{email}</span>
+          </div>
+          <div>
+            <span className='text-fourth text-xs'>Cambiar</span>
+          </div>
         </div>
       </div>
-      <div className='grid grid-flow-col pt-2'>
-        <div className='text-left flex flex-col'>
-          <span className='text-xs'>Enviar a</span>
-          <span className='text-sm mt-1 leading-4'>
-            <p>{location}</p>
+      <div className='text-left flex justify-between py-4'>
+        <div className='flex gap-3 items-center'>
+          <span className='font-sanzBold text-xs'>Enviar a</span>
+          <span className='text-sm leading-4'>
+            {location}
           </span>
         </div>
-        <div className='text-right text-xs text-[#7D7D7D]'>
-          <span>Cambiar</span>
+        <div>
+          <span className='text-fourth text-sm'>Cambiar</span>
         </div>
       </div>
     </div>
-  </div>
+</div>
 );
 
 interface ResumenShippingProps {
   location: string;
-  email: string;
+  email?: string;
 }
 
 export default ResumenShipping;
