@@ -19,9 +19,9 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
     addRemoveProduct(item.product, value);
 
   return (
-    <div className='grid grid-flow-col mb-4 bg-white rounded-[20px] p-4 lg:flex lg:gap-5'>
+    <div className='grid grid-flow-col mb-3 py-2 px-4 bg-white rounded-[20px] lg:p-4 lg:mb-4 lg:flex lg:gap-5'>
       <figure>
-        <img src={transformUrlGDrive(item.product.url_image)} className='w-[130px] h-[130px] rounded-2xl object-cover lg:w-[10rem] lg:h-32' />
+        <img src={transformUrlGDrive(item.product.url_image)} className='w-[77px] h-[90px] rounded-2xl object-cover lg:w-[10rem] lg:h-32' />
       </figure>
       <div className='grid grid-flow-col lg:flex lg:justify-between lg:w-full'>
         <div className='flex flex-col text-xs justify-between'>
@@ -31,10 +31,10 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
           </div>
           {showOptions && <span className='font-publicSans underline cursor-pointer lg:text-xs lg:leading-5' onClick={handleDeleteProduct}>Quitar</span>}
         </div>
-        <div className='flex flex-col lg:pt-3 lg:items-center lg:gap-3 lg:pr-1'>
+        <div className='flex flex-col items-end justify-between lg:pt-3 lg:justify-start lg:gap-3 lg:pr-1'>
           <span className='text-sm font-bold lg:text-[22px] lg:leading-7'>${item.quantity * item.product.price}</span>
           {showOptions && (
-            <div className='w-[71px] h-[30px] lg:w-[79px] lg:h-[29px]'>
+            <div className='w-[65px] h-[23px] lg:w-[79px] lg:h-[29px]'>
               <AddRemoveItem handleChance={handleChange} />
             </div>
           )}

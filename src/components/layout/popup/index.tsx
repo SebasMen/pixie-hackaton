@@ -33,20 +33,20 @@ const Popup = () => {
             sizeContainer='w-5 h-5'
           />
         </div>
-        <div className='px-[23px] text-xl lg:px-[5.6rem] lg:pt-5'>
-          <div className='flex gap-4 items-center text-[#7ac5be] '>
+        <div className='px-[21px] text-[15px] lg:text-xl lg:px-[5.6rem] lg:pt-5'>
+          <div className='flex items-center gap-2 text-[#7ac5be] lg:gap-4'>
             <div className='text-[#7ac5be]'>
               <Icon
                 name='done'
-                size='3xl'
+                className='lg:text-3xl'
               />
             </div>
             <span>Tu Pixie se agregó a la canasta</span>
           </div>
           <div className='md:ml-[50px]'>
-            <span className='text-sm font-bold font-paragraph md:text-base'>Agrega a tu compra:</span>
+            <span className='text-xs font-bold font-paragraph md:text-base'>Agrega a tu compra:</span>
           </div>
-          <div className='flex scale-75 lg:scale-[0.87] lg:gap-6 '>
+          <div className='flex scale-75 gap-4 lg:scale-[0.87] lg:gap-6 '>
             <ProductCard product={products[0]} />
             <ProductCard product={products[1]} />
           </div>

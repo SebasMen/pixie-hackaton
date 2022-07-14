@@ -11,6 +11,7 @@ export const SelectField = ({
   border,
   borderRadius,
   borderColor,
+  paddingY,
   isMulti = false,
 }: SelectFieldProps) => (
   <div className={'w-full flex flex-col items-start ' + className}>
@@ -44,6 +45,8 @@ export const SelectField = ({
           borderRadius: borderRadius ? '9999px' : '',
           paddingLeft: '10px',
           paddingRight: '10px',
+          paddingBottom: paddingY ? paddingY : '',
+          paddingTop: paddingY ? paddingY : ''
         }),
         menu: base => ({
           ...base,
@@ -65,6 +68,7 @@ interface SelectFieldProps {
   border?: boolean;
   borderRadius?: boolean;
   borderColor? : string;
+  paddingY? : string;
   options: SelectItem[];
   onChange: (selected: MultiValue<SelectItem> | SingleValue<SelectItem>, name: string) => void;
 }

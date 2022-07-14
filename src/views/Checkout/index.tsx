@@ -32,11 +32,12 @@ const CheckOut = () => {
         <div className='lg:flex lg:flex-row-reverse'>
           <div className='lg:w-1/2'>
             <div className='bg-white lg:ml-[8.5rem] lg:pl-6 lg:pr-8 lg:pb-8 lg:pt-6 lg:rounded-xl lg:mt-3'>
-              <div className='hidden font-bold pb-4 tracking-[-0.55px] text-primary lg:text-base lg:block'>
+              <div className='hidden font-bold tracking-[-0.55px] text-primary lg:text-base lg:block'>
                 <span>RESUMEN DE TU PEDIDO</span>
               </div>
+              <ResumenSection />
               <div className='hidden md:block'>
-                <TotalSection/>
+                <TotalSection showTaxes={true}/>
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@ const ResumenShipping = ({ location, email }: ResumenShippingProps) => (
             <span className='text-sm'>{email}</span>
           </div>
           <div>
-            <span className='text-fourth text-xs'>Cambiar</span>
+            <span className='text-fourth text-xs font-sanzBold'>Cambiar</span>
           </div>
         </div>
       </div>
@@ -20,7 +20,7 @@ const ResumenShipping = ({ location, email }: ResumenShippingProps) => (
           </span>
         </div>
         <div>
-          <span className='text-fourth text-sm'>Cambiar</span>
+          <span className='text-fourth text-xs font-sanzBold'>Cambiar</span>
         </div>
       </div>
     </div>

@@ -75,7 +75,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
         <div className='text-center text-xs md:text-lg  w-full'>
           <h4 className='text-primary mb-1'>{capitalize(product.name)}</h4>
           <div className='flex items-center justify-around'>
-            <p className='font-sanzBold text-xl'>
+            <p className='font-sanzBold text-base md:text-xl'>
               $ {product.price}{' '}
               <span className='text-xs font-semibold hidden lg:inline-flex '>{product.presentation.toLocaleLowerCase()}</span>
             </p>
@@ -89,9 +89,9 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
       </div>
       {showControls && (
         <IconButton.mini
-          className='absolute -bottom-[0.65rem] bg-primary text-white md:-bottom-4 z-40 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'
-          imgClassName='w-7 h-7'
-          sizeContainer='w-[43px] h-[43px]'
+          className='absolute -bottom-[1rem] bg-primary text-white md:-bottom-4 z-40 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'
+          imgClassName='w-6 h-6 md:w-7 md:h-7'
+          sizeContainer='w-[35px] h-[35px] md:w-[43px] md:h-[43px]'
           img={basket}
           name='basket'
           type='outlined'

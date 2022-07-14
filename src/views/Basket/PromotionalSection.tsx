@@ -1,6 +1,4 @@
-import Button from '../../components/common/button';
 import TextArea from '../../components/form/textArea';
-import TextField from '../../components/form/textField';
 import { useForm } from '../../hooks';
 import { PromotionalForm } from '../../interfaces/basket';
 
@@ -21,11 +19,11 @@ const PromotionalSection = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className='my-7 flex flex-col gap-3 w-full font-subTitles text-sm'>
+      <div className='text-xs my-5 flex flex-col gap-3 w-full font-subTitles lg:text-sm lg:my-7'>
         <TextArea
           handler={handleFormChange}
           name='note'
-          fieldClassName='h-[100px] px-[22px] py-4'
+          fieldClassName='h-[60px] px-[22px] lg:py-4 lg:h-[100px]'
           value={form.note}
           labelClassName='text-sm mb-2'
           placeholder='Agrega una nota a tu pedido'
