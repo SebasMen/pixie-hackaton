@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { basket } from '../../assets/vectors';
+import { basketRed } from '../../assets/vectors';
 import Icon from '../../components/common/icon';
-import ItemShoppingCar from '../../components/common/itemShoppingCar';
 import TotalSection from '../../views/Basket/TotalSection';
 import { calculateTotal } from '../../helpers/productHelper';
 import { useAppContext } from '../../hooks';
+import ItemShoppingCarMini from '../../components/common/itemShoppingCarMini';
 
 const ResumenProductSection = ({ padding }:ResumenProductSectionProps) => {
   const [isActive, setIsActive] = useState(false);
@@ -13,38 +13,44 @@ const ResumenProductSection = ({ padding }:ResumenProductSectionProps) => {
   return (
     <>
       <div
-        className={`flex justify-between bg-[#E4E4E4] px-6 py-5 items-center h-[70px]
-        ${padding ? padding : 'px-6'}`}
+        className={'flex justify-between py-5 items-center h-[70px]'}
         onClick={() => setIsActive(!isActive)}>
-        <div className='flex gap-5 items-center w-4/6'>
-          <img src={basket} className='w-5 h-5 brightness-0' />
-          <div>
-            <span className='text-sm font-bold'>
-              Mostrar resumen del pedido
-            </span>
-            {isActive
-              ?
-              <Icon
-                name='expand_less'
-                size='xs'
-              />
-              :
-              <Icon
-                name='expand_more'
-                size='xs'
-              />
-            }
+        <div className='flex gap-5 w-4/6'>
+          <img src={basketRed} className='w-5 h-5' />
+          <div className='text-sm font-sanzBold text-primary'>
+            <p>
+              Mostrar resumen del
+            </p>
+            <p>
+              pedido
+              {isActive
+                ?
+                <Icon
+                  name='expand_less'
+                  size='xs'
+                />
+                :
+                <Icon
+                  name='expand_more'
+                  size='xs'
+                />
+              }
+            </p>
           </div>
         </div>
-        <div className='text-[17px] w-2/6 text-right font-bold'>
+        <div className='text-lg w-2/6 text-right font-bold font-paragraph text-primary'>
           ${calculateTotal(products)}
         </div>
       </div>
       <div>
         {isActive && (
-          <div className='bg-[#E4E4E4]'>
+          <div>
             {/* Product list */}
-            {products.map(item => <ItemShoppingCar key={`item-${item.product.id}`} item={item} showOptions={false}/>)}
+            {products.map((item, index) =>
+              <div key={`item-${item.product.id}`} className={`${(index + 1) < products.length && 'border-b border-[#c9c9c9]'} mb-4`}>
+                <ItemShoppingCarMini item={item}/>
+              </div>
+            )}
             {/* Sections */}
             <div className='lg:hidden'>
               <TotalSection showTaxes={true}/>

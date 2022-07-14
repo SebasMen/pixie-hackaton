@@ -31,10 +31,17 @@ export const NavBar = () => {
 
   // Constants
   const isCatalogue = pathname.includes('/catalogue');
+  const isBasket = pathname.includes('/basket');
+  const isCheckout = pathname.includes('/checkout');
   const isCalculator = pathname.includes('/calculator');
 
-  const pixie = isCatalogue ? logoFooter : logo;
-  const color = (isCatalogue || isCalculator ? 'grayText' : 'primary') || 'grayText';
+  const itemsBlack = ['/catalogue', '/basket', '/checkout', '/calculator'];
+  const showItemsBlack = itemsBlack.map(rute => pathname.includes(rute));
+
+  const itemsLogoBlack = ['/catalogue'];
+  const showLogoBlack = itemsLogoBlack.map(rute => pathname.includes(rute));
+  const pixie = showLogoBlack.includes(true) ? logoFooter : logo;
+  const color = (isCatalogue || isCalculator || isCheckout || isBasket ? 'grayText' : 'primary') || 'grayText';
 
   if (!showNavbar) return <></>;
 
@@ -109,13 +116,13 @@ export const NavBar = () => {
                   img={searchIcon}
                   name={searchIcon}
                   type='outlined'
-                  imgClassName={`${(isCatalogue || isCalculator) && 'w-8 h-8 brightness-200'} w-7 h-7`}
+                  imgClassName={`${showItemsBlack.includes(true) && 'w-8 h-8 brightness-200'} w-7 h-7`}
                   sizeContainer={'w-11 h-11 md:w-[42px] md:h-[42px]'}
                   className={`mr-4 md:mr-0 bg-${color} p-[10px]`}
                   size='xs'
                   shadow={false}
                   onClick={() => toogleShoppingCar()}
-                  color={isCatalogue || isCalculator ? undefined : '#df2f44'}
+                  color={showItemsBlack.includes(true) ? undefined : '#df2f44'}
                 />
               </div>
 
@@ -124,20 +131,20 @@ export const NavBar = () => {
                   img={basket}
                   name={basket}
                   type='outlined'
-                  imgClassName={`${(isCatalogue || isCalculator) && 'w-8 h-8 brightness-200'} w-7 h-7`}
+                  imgClassName={`${showItemsBlack.includes(true) && 'w-8 h-8 brightness-200'} w-7 h-7`}
                   sizeContainer={'w-11 h-11 md:w-[42px] md:h-[42px]'}
                   className={`mr-4 md:mr-0 bg-${color}`}
                   size='md'
                   shadow={false}
-                  onClick={() => toogleShoppingCar()}
-                  color={isCatalogue || isCalculator ? undefined : '#df2f44'}
+                  onClick={() => navigate('/basket')}
+                  color={showItemsBlack.includes(true) ? undefined : '#df2f44'}
                 />
                 {products.length > 0 && (
                   <div
                     className={`flex w-5 h-5 font-subTitles text-xs rounded-full
                      absolute justify-center items-center  text-white top-[3.9rem] right-7
                      md:right-4 lg:right-[49px] md:top-[5.85rem] animate__animated animate__bounceIn
-                     ${isCatalogue || isCalculator ? 'bg-primary' : 'bg-gray-600'}
+                     ${showItemsBlack.includes(true) ? 'bg-primary' : 'bg-gray-600'}
                      `}
                   >
                     {products.length}

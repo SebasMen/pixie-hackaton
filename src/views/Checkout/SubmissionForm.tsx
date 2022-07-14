@@ -89,6 +89,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer }:SubmissionFormPro
     setLoadingSt(false);
   };
 
+  // Update send infomation to email in the form
   const sendNewsInMyMail = () => {
     let state = '1';
     if (form.receive_information === '1')
@@ -141,6 +142,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer }:SubmissionFormPro
             borderRadius={true}
             borderColor='#000'
             className='lg:w-1/2'
+            paddingY='0.43rem'
           />
         </div>
         <SelectField
@@ -150,6 +152,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer }:SubmissionFormPro
           onChange={handleSelectChange}
           borderRadius={true}
           borderColor='#000'
+          paddingY='0.43rem'
         />
         <CheckField
           onClick={() => console.log('aa')}

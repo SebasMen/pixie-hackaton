@@ -59,39 +59,39 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer }:Payme
   };
 
   return (
-    <div className='px-6 lg:w-1/2'>
+    <div className='font-subTitles text-sm lg:w-1/2 lg:pl-4'>
       <ResumenShipping
         location = {`${userData?.zip_code}, ${userData?.city}, ${userData?.country.label}`}
         email={userData?.email}
       />
       <form onSubmit={onSubmit} >
         <div className='flex flex-col pt-4'>
-          <span className='font-bold text-lg'>Pago</span>
-          <p className='font-medium text-xs'>Todas las transacciones son seguras y están encriptadas</p>
+          <span className='font-titles text-lg'>Pago</span>
+          <p className='text-xs'>Todas las transacciones son seguras y están encriptadas</p>
           <div className='pt-4 mb-10 flex flex-col gap-2'>
             <div className='md:flex md:gap-2'>
-              <TextField name='card_name' className='md:w-1/2' border='border border-primary ring-1 ring-black' value={form.card_name} handler={handleFormChange} placeholder='Nombre de la tarjeta*' required/>
-              <TextField name='card_number' className='md:w-1/2' border='border border-primary ring-1 ring-black' value={form.card_number} handler={handleFormChange} placeholder='Número de la tarjeta*' required/>
+              <TextField name='card_name' className='md:w-1/2' value={form.card_name} handler={handleFormChange} placeholder='Nombre de la tarjeta*' fieldClassName='py-[0.95rem]' required/>
+              <TextField name='card_number' className='md:w-1/2' value={form.card_number} handler={handleFormChange} placeholder='Número de la tarjeta*' fieldClassName='py-[0.95rem]' required/>
             </div>
             <div className='md:flex md:gap-2'>
-              <TextField name='expirationDate' className='md:w-1/2' border='border border-primary ring-1 ring-black' value={form.expirationDate} handler={handleFormChange} placeholder='Fecha de vencimiento MM/AA*' required/>
-              <TextField name='card_cvv' className='md:w-1/2' border='border border-primary ring-1 ring-black' value={form.card_cvv} handler={handleFormChange} placeholder='Código de seguridad*' required/>
+              <TextField name='expirationDate' className='md:w-1/2' value={form.expirationDate} handler={handleFormChange} placeholder='Fecha de vencimiento MM/AA*' fieldClassName='py-[0.95rem]' required/>
+              <TextField name='card_cvv' className='md:w-1/2' value={form.card_cvv} handler={handleFormChange} placeholder='Código de seguridad*' fieldClassName='py-[0.95rem]' required/>
             </div>
             <SelectField
               placeholder='Número de cuotas*'
               name='numberOfInstallments'
               options={form.numberOfInstallmentsSelect}
               onChange={handleSelectChange}
-              border={true}
-              borderRadius={false}
+              borderRadius={true}
               borderColor='#000'
               className='lg:w-1/2'
+              paddingY='0.43rem'
             />
           </div>
         </div>
-        <span className='font-bold text-lg'>Dirección de facturación</span>
-        <div className='border border-primary px-2.5'>
-          <div className='border-b border-primary py-5'>
+        <span className='font-titles text-lg'>Dirección de facturación</span>
+        <div className='bg-white rounded-2xl px-5 mt-2'>
+          <div className='border-b border-[#B8B8B8] py-5'>
             <div className='text-left text-sm'>
               <RadioField
                 label='Misma dirección de envío'
@@ -121,14 +121,14 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer }:Payme
             ?
             <Spinner/>
             :
-            <>
-              <Button className='bg-primary text-white mt-7 w-full ' type='submit'>
+            <div className='lg:flex lg:flex-row-reverse lg:items-center'>
+              <Button className='font-paragraph font-bold bg-primary text-[#fad7b1] mt-7 lg:w-72 lg:text-lg' type='submit'>
                 Pagar
               </Button>
-              <div className='text-center mt-5 cursor-pointer text-sm' onClick={() => changeStep(3)}>
+              <div className='text-center text-base text-primary mt-6 cursor-pointer lg:mr-14' onClick={() => changeStep(3)}>
                 {'<'} Volver a envíos
               </div>
-            </>
+            </div>
           }
         </div>
       </form>
