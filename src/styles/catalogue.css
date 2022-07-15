@@ -13,7 +13,7 @@
   .animation-image-point {
     animation-name: animationImagePoint;
     animation-delay: 0s;
-    animation-duration: 2.5s;
+    animation-duration: 1s;
   }
   
   .animation-text{
@@ -52,9 +52,9 @@
   @keyframes animationImagePoint {
     0%{opacity: 0.0; zoom: 0%;}
     20%{opacity: 0.0; zoom: 0%;}
-    30%{opacity: 0.1; zoom: 10%;}
-    40%{opacity: 0.2; zoom: 30%;}
-    50%{opacity: 0.5; zoom: 45%}
+    30%{opacity: 0.1; zoom: 30%;}
+    40%{opacity: 0.2; zoom: 40%;}
+    50%{opacity: 0.5; zoom: 55%}
     60%{opacity: 0.6; zoom: 60%;}
     70%{opacity: 0.7; zoom: 70%;}
     80%{opacity: 0.8; zoom: 80%;}

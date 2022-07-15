@@ -1,0 +1,10 @@
+.animation-section-calculate {
+    animation-name: sectionCalculateAnimate;
+    animation-delay: 0s;
+    animation-duration: 1.5s;
+  }
+
+  @keyframes sectionCalculateAnimate {
+    0%{margin-left: -100rem;}
+    100%{margin-left: -0rem;}
+  }

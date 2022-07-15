@@ -14,6 +14,7 @@ import Spinner from '../../components/common/spinner';
 import { ProductListResponse } from '../../interfaces/product';
 import { useEffect } from 'react';
 import productService from '../../services/productService';
+import '../../styles/home.css';
 
 const Home = () => {
   const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
