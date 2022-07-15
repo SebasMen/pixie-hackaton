@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 
 import ProductCard from '../../components/common/productCard';
 import Carrousel from '../../components/common/carrousel';
@@ -86,7 +86,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
               onClick={reset}
               padding='p-3 md:px-10'
               className='bg-transparent text-sm ring-1 ring-primary font-bold truncate transform transition-all lg:text-base hover:ring-2'>
-              Calcular de nuevo!
+              Calcular de nuevo
             </Button>
           </div>
           {/* <img src={backgroundCalculator} className='absolute -z-10' /> */}

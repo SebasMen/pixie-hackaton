@@ -32,15 +32,15 @@ const Basket = () => {
   // Component
   return (
     <Page className='bg-sixth'>
-      <div className='px-[11px] w-full mb-16 max-w-[1440px] tracking-[-0.55px] lg:px-32 lg:pt-5'>
-        <div className='flex items-center gap-5 lg:pl-4'>
-          <img src={basketRed} className='w-5 h-5'/>
-          <span className='text-primary text-[25px] lg:text-[36px] tracking-[-1.5px]'>Tu canasta</span>
+      <div className='px-[11px] w-full mb-16 max-w-[1440px] lg:tracking-[-0.55px] pt-1 lg:px-32 lg:pt-5'>
+        <div className='pl-2 flex items-center gap-5 lg:pl-4'>
+          <img src={basketRed} className='w-5 h-5 lg:w-7 lg:h-7'/>
+          <span className='text-primary text-[25px] lg:text-[36px] lg:tracking-[-1.5px]'>Tu canasta</span>
         </div>
-        <div className='mt-6 lg:flex lg:mt-14'>
+        <div className='mt-[20px] lg:flex lg:mt-14'>
           <div className='lg:w-1/2'>
             {/* Deleted message */}
-            {showMessage && <div className='font-subTitles text-fourth w-full animate__animated animate__fadeIn pb-4 tracking-normal lg:pl-4'>Se quitó <span className='underline font-sanzBold'>{messageDelete}</span> al horno de tu bolsa</div>}
+            {showMessage && <div className='font-subTitles text-[13px] text-fourth w-full animate__animated animate__fadeIn pb-4 tracking-normal lg:pl-4 lg:text-base'>Se quitó <span className='underline font-sanzBold'>{messageDelete}</span> al horno de tu bolsa</div>}
 
             <div className='border-b border-[#a4a09b] pb-2 lg:pb-5'>
               {/* Product list */}
@@ -58,10 +58,10 @@ const Basket = () => {
               </div>
               <TotalSection />
               <div className='flex justify-around font-sanzBold mt-[10px] w-full gap-3 lg:mt-5'>
-                <Button className='text-sm ring-1 ring-primary text-primary w-[54%] lg:text-base lg:font-subTitles'>
+                <Button className='text-sm ring-1 ring-primary text-primary w-[54%] lg:text-base lg:font-subTitles' padding='py-2'>
                   Seguir comprando
                 </Button>
-                <Button className='bg-primary text-sm text-[#FAD7B1] w-[46%] tracking-normal lg:font-sanzSemiBold' onClick={() => navigate('/checkout')}>
+                <Button className='bg-primary text-sm text-[#FAD7B1] w-[46%] tracking-normal lg:text-lg lg:font-sanzBold' padding='py-2' onClick={() => navigate('/checkout')}>
                   Siguiente
                 </Button>
               </div>

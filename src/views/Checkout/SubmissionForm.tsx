@@ -102,37 +102,38 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer }:SubmissionFormPro
   };
 
   return (
-    <form className='pl-4 lg:w-1/2 font-subTitles text-sm' onSubmit={onSubmit}>
+    <form className='mt-5 px-6 font-subTitles text-sm lg:mt-0 lg:px-0' onSubmit={onSubmit}>
       <div className='flex flex-col gap-[10px] lg:mt-[38px]'>
-        <span className='text-lg font-titles lg:text-xl mb-1'>Información de contacto</span>
+        <span className='text-base font-titles lg:text-xl mb-1'>Información de contacto</span>
         <TextField name='email' value={form.email} handler={handleFormChange} placeholder='Correo electrónico*' fieldClassName='py-[0.95rem]' required/>
         <TextField name='phone' value={form.phone} handler={handleFormChange} placeholder='Celular (10 dígitos)*' fieldClassName='py-[0.95rem]' required/>
         <CheckField
           onClick={sendNewsInMyMail}
           label='Enviarme novedades y ofertas por correo electrónico'
           border='border border-primary'
-          sizeContainer='w-5 h-5 mr-1'
-          className='ml-5 mt-1'
+          sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+          className='mt-1 ml-1 lg:ml-5'
+          labelClassName='text-xs lg:text-sm'
         />
-        <span className='text-lg font-titles lg:text-xl lg:mt-6'>Direccion de envío</span>
-        <div className='lg:flex lg:gap-1'>
+        <span className='text-base mt-3 mb-1 font-titles lg:text-xl lg:mt-6'>Direccion de envío</span>
+        <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
           <TextField name='name' value={form.name} handler={handleFormChange} placeholder='Nombre*' className='lg:w-1/2' fieldClassName='py-[0.95rem]' required/>
           <TextField name='last_name' value={form.last_name} handler={handleFormChange} placeholder='Apellido*' className='lg:w-1/2' fieldClassName='py-[0.95rem]' required/>
         </div>
         <TextField name='address' value={form.address} handler={handleFormChange} placeholder='Nombre de la calle*' fieldClassName='py-[0.95rem]' required/>
-        <div className='lg:flex lg:gap-3'>
+        <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
           <TextField name='houseNumber' value={form.houseNumber} handler={handleFormChange} placeholder='Número de Condominio, Casa o Edificio*' className='lg:w-1/2' fieldClassName='py-[0.95rem]' required/>
           <TextField name='apartment' value={form.apartment} handler={handleFormChange} placeholder='Número Interior ( Ej: Piso, Oficina, Dpto)' className='lg:w-1/2' fieldClassName='py-[0.95rem]'/>
         </div>
-        <div className='lg:flex lg:gap-3'>
+        <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
           <TextField name='reference' value={form.reference} handler={handleFormChange} placeholder='Entre calles (Referencias)' className='lg:w-1/2' fieldClassName='py-[0.95rem]'/>
           <TextField name='zip_code' value={form.zip_code} handler={handleFormChange} placeholder='Código postal' className='lg:w-1/2' fieldClassName='py-[0.95rem]' required/>
         </div>
-        <div className='lg:flex lg:gap-3'>
+        <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
           <TextField name='colony' value={form.colony} handler={handleFormChange} placeholder='Colonia*' className='lg:w-1/2' fieldClassName='py-[0.95rem]' required/>
           <TextField name='delegation' value={form.delegation} handler={handleFormChange} placeholder='Delegación o Municipio*'className='lg:w-1/2' fieldClassName='py-[0.95rem]' required/>
         </div>
-        <div className='lg:flex lg:gap-3'>
+        <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
           <TextField name='city' value={form.city} handler={handleFormChange} placeholder='Ciudad*' className='lg:w-1/2' fieldClassName='py-[0.95rem]' required/>
           <SelectField
             placeholder='Estado*'
@@ -158,15 +159,17 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer }:SubmissionFormPro
           onClick={() => console.log('aa')}
           label='Guardar mi información y consultar más rápidamente la próxima vez'
           border='border border-primary'
-          sizeContainer='w-5 h-5 mr-1'
-          className='ml-5 mt-1'
+          sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+          className='mt-1 ml-1 lg:ml-5'
+          labelClassName='text-xs lg:text-sm'
         />
         <CheckField
           onClick={() => setAcceptConditions(!acceptConditions)}
           label='Acepto los terminos y condiciones y la política de privacidad*'
           border='border border-primary'
-          sizeContainer='w-5 h-5 mr-1'
-          className='ml-5 mt-1'
+          sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+          className='mt-1 ml-1 lg:ml-5'
+          labelClassName='text-xs lg:text-sm'
         />
         {showMessageConditions && <div className='text-primary'>debe aceptar terminos y condiciones</div>}
 
@@ -174,11 +177,11 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer }:SubmissionFormPro
           ?
           <Spinner/>
           :
-          <div className='lg:flex lg:flex-row-reverse lg:items-center'>
-            <Button className='font-paragraph font-bold bg-primary text-[#fad7b1] mt-7 lg:w-72 lg:text-lg' type='submit'>
+          <div className='lg:flex lg:flex-row-reverse lg:items-center lg:mt-4'>
+            <Button className='w-full font-paragraph font-bold bg-primary text-[#fad7b1] mt-4 lg:w-72 lg:text-lg' type='submit'>
               Seguir con envios
             </Button>
-            <div className='text-center text-base text-primary mt-6 cursor-pointer lg:mr-14' onClick={() => navigate('/basket')}>
+            <div className='font-sanzBold text-sm text-center mt-[1.40rem] text-primary cursor-pointer lg:mt-6 lg:text-base lg:mr-14' onClick={() => navigate('/basket')}>
               <span>{'<'} Volver a la canasta</span>
             </div>
           </div>

@@ -59,21 +59,21 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer }:Payme
   };
 
   return (
-    <div className='font-subTitles text-sm lg:w-1/2 lg:pl-4'>
+    <div className='font-subTitles text-sm'>
       <ResumenShipping
-        location = {`${userData?.zip_code}, ${userData?.city}, ${userData?.country.label}`}
+        location = {`${userData?.phone}, ${userData?.address}, ${userData?.houseNumber}, ${userData?.apartment}, ${userData?.reference}, ${userData?.city}`}
         email={userData?.email}
       />
-      <form onSubmit={onSubmit} >
-        <div className='flex flex-col pt-4'>
-          <span className='font-titles text-lg'>Pago</span>
+      <form onSubmit={onSubmit} className='px-5 pt-6 lg:px-0 lg:pt-11'>
+        <div className='flex flex-col'>
+          <span className='font-titles text-base lg:text-xl'>Pago</span>
           <p className='text-xs'>Todas las transacciones son seguras y están encriptadas</p>
-          <div className='pt-4 mb-10 flex flex-col gap-2'>
-            <div className='md:flex md:gap-2'>
+          <div className='pt-4 mb-5 flex flex-col gap-2 lg:mb-10 lg:pt-7'>
+            <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
               <TextField name='card_name' className='md:w-1/2' value={form.card_name} handler={handleFormChange} placeholder='Nombre de la tarjeta*' fieldClassName='py-[0.95rem]' required/>
               <TextField name='card_number' className='md:w-1/2' value={form.card_number} handler={handleFormChange} placeholder='Número de la tarjeta*' fieldClassName='py-[0.95rem]' required/>
             </div>
-            <div className='md:flex md:gap-2'>
+            <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
               <TextField name='expirationDate' className='md:w-1/2' value={form.expirationDate} handler={handleFormChange} placeholder='Fecha de vencimiento MM/AA*' fieldClassName='py-[0.95rem]' required/>
               <TextField name='card_cvv' className='md:w-1/2' value={form.card_cvv} handler={handleFormChange} placeholder='Código de seguridad*' fieldClassName='py-[0.95rem]' required/>
             </div>
@@ -89,9 +89,9 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer }:Payme
             />
           </div>
         </div>
-        <span className='font-titles text-lg'>Dirección de facturación</span>
-        <div className='bg-white rounded-2xl px-5 mt-2'>
-          <div className='border-b border-[#B8B8B8] py-5'>
+        <span className='font-titles text-base lg:text-xl'>Dirección de facturación</span>
+        <div className='bg-white rounded-2xl mt-4 lg:mt-2 px-6'>
+          <div className='border-b border-[#B8B8B8] py-4 lg:py-5'>
             <div className='text-left text-sm'>
               <RadioField
                 label='Misma dirección de envío'
@@ -103,7 +103,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer }:Payme
               />
             </div>
           </div>
-          <div className='py-5'>
+          <div className='py-4 lg:py-4'>
             <div className='text-left text-sm'>
               <RadioField
                 label=' Usar una dirección de facturación diferente'
@@ -122,10 +122,10 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer }:Payme
             <Spinner/>
             :
             <div className='lg:flex lg:flex-row-reverse lg:items-center'>
-              <Button className='font-paragraph font-bold bg-primary text-[#fad7b1] mt-7 lg:w-72 lg:text-lg' type='submit'>
+              <Button className='w-full font-paragraph font-bold bg-primary text-[#fad7b1] mt-7 lg:w-[14.4rem] lg:text-lg' type='submit'>
                 Pagar
               </Button>
-              <div className='text-center text-base text-primary mt-6 cursor-pointer lg:mr-14' onClick={() => changeStep(3)}>
+              <div className='text-center font-sanzBold text-sm text-primary cursor-pointer mt-5 lg:mt-6 lg:mr-20 lg:text-base lg:font-subTitles' onClick={() => changeStep(3)}>
                 {'<'} Volver a envíos
               </div>
             </div>
