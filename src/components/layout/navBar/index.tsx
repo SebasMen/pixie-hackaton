@@ -54,10 +54,10 @@ export const NavBar = () => {
       {/* Cart */}
       <ShoppingCar onClose={toogleShoppingCar} show={showShoppingCar} />
 
-      <div className='flex justify-between w-full py-5 px-3 overflow-hidden md:justify-start md:gap-10 lg:px-12 '>
+      <div className='flex justify-between w-full items-center md:items-start py-4 px-2 overflow-hidden md:py-5 md:justify-start md:gap-10 lg:px-12 '>
         {/* Menu Toggle */}
         <div className={`flex-shrink-0 md:hidden text-${color}`}>
-          <IconButton name='menu' size='3xl' shadow={false} onClick={toggleCollapsed} className='pt-3 scale-x-110' />
+          <IconButton name='menu' size='3xl' shadow={false} onClick={toggleCollapsed} className='-scale-x-125 -scale-y-125' />
         </div>
 
         {/* Logo */}
@@ -94,7 +94,7 @@ export const NavBar = () => {
           </div>
 
           {/* Bottom */}
-          <div className={`flex flex-grow-0 items-top pt-3.5 w-full md:flex-grow text-${color} md:pt-4`}>
+          <div className={`flex flex-grow-0 items-top w-full md:flex-grow text-${color} md:pt-4 `}>
             {/* Social */}
             <div className='hidden md:flex md:flex-row md:space-x-10 md:w-2/3 md:ml-4 md:pt-[0.40rem]'>
               <Icon.awesome icon='fa-facebook-f' size='3xl' />
@@ -142,7 +142,7 @@ export const NavBar = () => {
                 {products.length > 0 && (
                   <div
                     className={`flex w-5 h-5 font-subTitles text-xs rounded-full
-                     absolute justify-center items-center  text-white top-[3.9rem] right-7
+                     absolute justify-center items-center  text-white top-[3.1rem] right-6
                      md:right-4 lg:right-[49px] md:top-[5.85rem] animate__animated animate__bounceIn
                      ${showItemsBlack.includes(true) ? 'bg-primary' : 'bg-gray-600'}
                      `}

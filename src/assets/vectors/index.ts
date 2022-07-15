@@ -37,6 +37,7 @@ import backArrow from './backArrow.svg';
 import notImage from './notImage.svg';
 import tagIcon from './tagIcon.svg';
 import arrow from './arrow.svg';
+import expand_more from './expand_more.svg';
 
 export {
   basket,
@@ -77,5 +78,6 @@ export {
   backArrow,
   notImage,
   tagIcon,
-  arrow
+  arrow,
+  expand_more
 };

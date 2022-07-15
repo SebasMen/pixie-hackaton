@@ -78,7 +78,7 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
                 md:w-52 md:flex md:justify-between md:items-center 
                 rounded-full transform transition-all 
                 md:ring-2 md:ring-primary lg:shadow-xl lg:px-1
-                ${filter.typePet.includes(key as any) ? 'bg-primary gap-3' : 'bg-transparent gap-2'}
+                ${filter.typePet.includes(key as any) ? 'bg-primary gap-3' : 'bg-white gap-2'}
               `}
             >
               <div className='text-left'>
@@ -107,14 +107,19 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
         {categories.map(cat => (
           <Button
             key={`cat-${cat.key}`}
-            className={'font-bold text-white gap-1 h-full transform transition-all duration-300 md:rounded-b-none lg:rounded-t-3xl'}
+            className={'font-bold text-white gap-1 h-full transform transition-all duration-300 md:rounded-b-none lg:rounded-t-[30px]'}
             color={`${filter.agePet.includes(cat.key) ? '#7ac5be' : '#bee0e1'}`}
             onClick={() => handleFilterChange('agePet', cat.key)}
-            padding={'px-[1.0rem] lg:py-5 lg:px-5'}
+            padding={'px-[1.0rem] lg:py-4 lg:px-6'}
             rounded={true}
           >
-            <Icon name='done' size='2xl' className={`${filter.agePet.includes(cat.key) ? 'w-6 md:w-7' : 'w-0'} overflow-hidden transform transition-all`} />
-            <span className='tracking-wide md:tracking-widest text-sm lg:text-[27px]'>{cat.name}</span>
+            { filter.agePet.includes(cat.key)
+              ?
+              <Icon name='done' size='3xl' className={'w-6 md:w-7 overflow-hidden transform transition-all md:mr-2'} />
+              :
+              <Icon name='circle' size='2xl' className={'w-6 md:w-7 overflow-hidden transform transition-all md:mr-2'} />
+            }
+            <span className='tracking-wide md:tracking-normal text-sm lg:text-[27px]'>{cat.name}</span>
           </Button>
         ))}
       </div>

@@ -144,7 +144,7 @@ export const CalculatorForm = ({
               >
                 Anterior
               </Button>
-              <Button className='bg-primary text-white w-36' type='submit'>
+              <Button className='bg-primary text-[#FAD7B1] w-36' type='submit'>
                 Consultar
               </Button>
             </div>
