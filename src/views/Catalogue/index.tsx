@@ -15,6 +15,7 @@ import { ProductListResponse } from '../../interfaces/product';
 import { filterShop } from '../../interfaces/filter';
 import { useAppContext, useFetch } from '../../hooks';
 import productService from '../../services/productService';
+import '../../styles/catalogue.css';
 
 const Catalogue = () => {
   const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);

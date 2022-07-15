@@ -2,11 +2,12 @@ import { catalogCat } from '../../assets/images';
 import { cataloguePoints, cataloguePointsM } from '../../assets/vectors';
 
 export const BannerSection = () => (
-  <div className='banner relative w-full flex transform transition-all overflow-hidden pb-10 md:px-[3.2rem] md:pb-0 md:pt-2 max-w-[1440px] max-h-[755px]'>
+  <div className='banner relative w-full flex transform transition-all overflow-hidden pb-10 md:px-[3.2rem] md:pb-0 md:pt-2 max-w-[1440px]  max-h-[755px]'>
     {/* Cat */}
     <img
       src={catalogCat}
       className={`
+      animation-image-cat
         absolute w-full scale-150
         m-auto right-0 left-0 -bottom-5
         sm:scale-75 sm:-bottom-20
@@ -26,6 +27,7 @@ export const BannerSection = () => (
     <img
       src={cataloguePoints}
       className={`
+      animation-image-point
         absolute hidden
         m-auto right-0 -left-24 bottom-8
         lg:block lg:scale-90
@@ -56,9 +58,9 @@ export const BannerSection = () => (
           tall:text-3xl
         `}
       >
-        <p className='leading-[2.6rem]'>¿QUIÉN NO QUISIERA QUE</p>
-        <p className='leading-[2.6rem]'>NUESTRAS MASCOTAS</p>
-        <p className='leading-[2.6rem]'>DUREN MÁS?</p>
+        <p className='animation-text leading-[2.6rem]'>¿QUIÉN NO QUISIERA QUE</p>
+        <p className='animation-text leading-[2.6rem]'>NUESTRAS MASCOTAS</p>
+        <p className='animation-text leading-[2.6rem]'>DUREN MÁS?</p>
       </div>
       <img
         src={cataloguePointsM}
