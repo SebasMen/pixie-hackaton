@@ -20,7 +20,7 @@ export const CalculatorSection = () => {
 
   const sectionPage = (ev: Event) => {
     const div :any = sectionRef.current;
-    if (div?.getBoundingClientRect().y && div?.getBoundingClientRect().y <= 650) {
+    if (div?.getBoundingClientRect().y && div?.getBoundingClientRect().y <= 700) {
       setInitAnimate(true);
     }
   };

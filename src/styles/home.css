@@ -1,17 +1,13 @@
 .animation-section-calculate {
     animation-name: sectionCalculateAnimate;
     animation-delay: 0s;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
   }
 
   .animation-background {
     animation-name: animationtText;
     animation-delay: 0s;
     animation-duration: 1s;
-  }
-
-  .hidden {
-      visibility: hidden;
   }
 
   .animation-text{
