@@ -25,13 +25,13 @@ const BannerDetailDT = () => {
         ?
         <div className='flex w-3/5 justify-center'>
           <div>
-            <img src={notImage} className='w-[529px]'/>
+            <img src={notImage} className='w-[529px] h-[446px]'/>
           </div>
         </div>
         :
         <div className='flex w-3/4 justify-center'>
           <div>
-            <img src={transformUrlGDrive(arrayUrlImages[image])} className='w-[529px] object-contain'/>
+            <img src={transformUrlGDrive(arrayUrlImages[image])} className='w-[529px] h-[446px] object-contain'/>
           </div>
         </div>
       }

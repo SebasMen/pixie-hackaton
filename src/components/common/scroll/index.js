@@ -18,7 +18,7 @@ export default class ColoredScrollbars extends Component {
   renderView({ style, ...props }) {
     return (
       <div
-        className='box md:pr-5'
+        className='box'
         style={{ ...style }}
         {...props}/>
     );

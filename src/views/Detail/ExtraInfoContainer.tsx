@@ -4,7 +4,7 @@ import { Product } from '../../interfaces/product';
 import { separateByCommas } from '../../helpers/productHelper';
 
 const ExtraInfoContainer = ({ product }: ExtraInfoContainerProps) => (
-  <div className='hidden md:flex md:flex-col mt-7 w-full'>
+  <div className='hidden md:flex md:flex-col mt-1 w-full'>
     <div className='flex gap-4 mb-8'>
       <div className='rounded-lg w-1/2 text-sm pl-12 pr-16 bg-fifth'>
         <div className='py-7'>
