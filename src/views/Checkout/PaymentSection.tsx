@@ -7,7 +7,7 @@ import { useAppContext, useForm } from '../../hooks';
 import { paymentForm, shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
 import ResumenShipping from './ResumenShipping';
 import paymentService from '../../services/paymentService';
-import { postSendTokenCard } from '../../interfaces/payment';
+import { postSendPayment, postSendTokenCard } from '../../interfaces/payment';
 import { calculateTotalPayment, organiceInformationPayment } from '../../helpers/paymentHelper';
 import Spinner from '../../components/common/spinner';
 
@@ -18,7 +18,7 @@ const numberOfInstallmentsOptions: SelectItem[] = [
   { value: '24', label: '24 Cuota' },
 ];
 
-const PaymentSection = ({ shippingData, userData, changeStep, idCustomer }:PaymentSectionProps) => {
+const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPaymentAnswer }:PaymentSectionProps) => {
   const [billingAdressSt, setBillingAdressSt] = useState<string>(userData?.address ? userData?.address : '');
   const [loading, setLoading] = useState(false);
   const { products } = useAppContext();
@@ -46,16 +46,33 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer }:Payme
       console.log('ocurrio error en la api');
   };
 
-  const sendDataPayment = async (data: postSendTokenCard) => {
+  const sendDataPayment = async (dataPost: postSendTokenCard) => {
     // Organize data
-    const paymentData = organiceInformationPayment(idCustomer, data.token_card, userData, products, shippingData);
+    const paymentData = organiceInformationPayment(idCustomer, dataPost.token_card, userData, products, shippingData);
     // Send data to API
-    const response = await paymentService.sendPayment(paymentData);
-    if (response.data.status === 'OK')
-      console.log('guardado correctamente');
+    const { data } = await paymentService.sendPayment(paymentData);
+    // Set data to show in the answerSection
+    if (data.error)
+      setAnswerData(form.amount, (data.error ? data.error.details.transactionId : ''), data.status);
+    else if (data.status === 'OK')
+      setAnswerData(data.data.order_detail.details.approvedTransactionAmount, data.data.order_detail.details.transactionId, data.status);
     else
-      console.log('ocurrio un error de la api');
+      console.error('error en la api');
+    changeStep(5);
     setLoading(false);
+  };
+
+  const setAnswerData = (amount: number, transaccionId: string, state: string) => {
+    setPaymentAnswer(old => ({ ...old,
+      status: state,
+      data: {
+        order_detail: {
+          details: {
+            approvedTransactionAmount: amount,
+            transactionId: transaccionId
+          }
+        }
+      } }));
   };
 
   return (
@@ -141,6 +158,7 @@ interface PaymentSectionProps {
   shippingData : shippingTypeForm;
   idCustomer: string;
   changeStep: React.Dispatch<React.SetStateAction<number>>;
+  setPaymentAnswer: React.Dispatch<React.SetStateAction<postSendPayment>>;
 }
 
 export default PaymentSection;

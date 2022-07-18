@@ -7,16 +7,29 @@ import SubmissionForm from './SubmissionForm';
 import ShippingSection from './ShippingSection';
 import PaymentSection from './PaymentSection';
 import TotalSection from '../Basket/TotalSection';
+import AnswerSection from './AnswerSection';
 
 import { basketRed } from '../../assets/vectors/';
 import { shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
 import Footer from '../../components/layout/footer';
+import { postSendPayment } from '../../interfaces/payment';
 
 const CheckOut = () => {
   const [step, setStep] = useState(2);
   const [userInfo, setuserInfo] = useState<SubmissionFormInterface>();
   const [idCustomer, setIdCustomer] = useState('');
   const [shippingInfo, setShippingInfo] = useState<shippingTypeForm>({ type: 'estandar', price: 12000 });
+  const [paymentAnswer, setPaymentAnswer] = useState<postSendPayment>({
+    status: 'wait',
+    data: {
+      order_detail: {
+        details: {
+          approvedTransactionAmount: 0,
+          transactionId: ''
+        },
+      }
+    }
+  });
 
   return (
     <Page className='bg-sixth'>
@@ -35,47 +48,54 @@ const CheckOut = () => {
         <div className='px-5 mt-4 font-subTitles text-fourth lg:px-4 lg:mt-5'>
           <StepsSection step={step}/>
         </div>
-        <div className='lg:flex lg:flex-row-reverse'>
-          <div className='lg:w-[48%]'>
-            <div className='bg-white lg:ml-[7.2rem] lg:pl-6 lg:pr-4 lg:pb-8 lg:pt-6 lg:rounded-xl lg:mt-[0.8rem]'>
-              <div className='hidden font-bold tracking-[-0.55px] text-primary lg:text-base lg:block'>
-                <span>RESUMEN DE TU PEDIDO</span>
-              </div>
-              {/* resumen section desktop */}
-              <div className='hidden lg:block'>
-                <ResumenSection shippingInfo={shippingInfo} />
-                <TotalSection showTaxes={true} />
+        {step === 5 ?
+          <AnswerSection
+            paymentAnswer={paymentAnswer}
+          />
+          :
+          <div className='lg:flex lg:flex-row-reverse'>
+            <div className='lg:w-[48%]'>
+              <div className='bg-white lg:ml-[7.2rem] lg:pl-6 lg:pr-4 lg:pb-8 lg:pt-6 lg:rounded-xl lg:mt-[0.8rem]'>
+                <div className='hidden font-bold tracking-[-0.55px] text-primary lg:text-base lg:block'>
+                  <span>RESUMEN DE TU PEDIDO</span>
+                </div>
+                {/* resumen section desktop */}
+                <div className='hidden lg:block'>
+                  <ResumenSection shippingInfo={shippingInfo} />
+                  <TotalSection showTaxes={true} />
+                </div>
               </div>
             </div>
-          </div>
-          <div className='lg:w-[52%] lg:pl-4 lg:pr-2'>
-            { step === 2
-              &&
-              <SubmissionForm
-                setData={setuserInfo}
-                setIdCustomer={setIdCustomer}
-                changeStep={setStep}
-              />
-            }
-            { step === 3
+            <div className='lg:w-[52%] lg:pl-4 lg:pr-2'>
+              { step === 2
                 &&
-                <ShippingSection
+                <SubmissionForm
+                  setData={setuserInfo}
+                  setIdCustomer={setIdCustomer}
                   changeStep={setStep}
-                  userData={userInfo}
-                  setData={setShippingInfo}
                 />
-            }
-            { step === 4
-            &&
-            <PaymentSection
-              userData={userInfo}
-              shippingData={shippingInfo}
-              idCustomer={idCustomer}
-              changeStep={setStep}
-            />
-            }
+              }
+              { step === 3
+                  &&
+                  <ShippingSection
+                    changeStep={setStep}
+                    userData={userInfo}
+                    setData={setShippingInfo}
+                  />
+              }
+              { step === 4
+              &&
+              <PaymentSection
+                userData={userInfo}
+                shippingData={shippingInfo}
+                idCustomer={idCustomer}
+                changeStep={setStep}
+                setPaymentAnswer={setPaymentAnswer}
+              />
+              }
+            </div>
           </div>
-        </div>
+        }
       </div>
       <Footer />
     </Page>

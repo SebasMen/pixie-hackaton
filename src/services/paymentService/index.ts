@@ -37,10 +37,10 @@ export class PaymentService {
       return { data: response.data };
     } catch (error: any) {
       // Handle response errors
-      if (error.data) return { err: error.data.msg, data: { status: 'error' } };
+      if (error.data) return { err: error.data.msg, data: { status: 'error', data: { order_detail: { details: { approvedTransactionAmount: 0, transactionId: '00' } } }, error: error.response.data.error } };
 
       // Handle basic errors
-      return { err: (error as Error)?.message || defError, data: { status: 'error' } };
+      return { err: (error as Error)?.message || defError, data: { status: 'error', data: { order_detail: { details: { approvedTransactionAmount: 0, transactionId: '00' } } }, error: error.response.data.error } };
     }
   };
 }

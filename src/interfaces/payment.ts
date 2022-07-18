@@ -53,6 +53,22 @@ export interface generatePayment {
 
 export interface postSendPayment {
   status: string;
+  error?: {
+    code: string,
+    details: {
+      transactionId: string
+    },
+    message: string,
+    transactionReference: string
+  },
+  data: {
+    order_detail: {
+      details: {
+          approvedTransactionAmount: number,
+          transactionId: string
+        }
+    }
+  }
 }
 
 export type postSendPaymentService = Service<postSendPayment>

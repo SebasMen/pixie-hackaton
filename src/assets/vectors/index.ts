@@ -38,6 +38,7 @@ import notImage from './notImage.svg';
 import tagIcon from './tagIcon.svg';
 import arrow from './arrow.svg';
 import expand_more from './expand_more.svg';
+import dogIconCheckout from './dogIconCheckout.svg';
 
 export {
   basket,
@@ -79,5 +80,6 @@ export {
   notImage,
   tagIcon,
   arrow,
-  expand_more
+  expand_more,
+  dogIconCheckout
 };
