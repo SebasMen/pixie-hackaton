@@ -103,7 +103,7 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
             />
           </div>
           {/* Mobile Dog */}
-          <img src={fullDogCalculator} className='block w-full z-10 pb-5 sm:hidden' />
+          <img src={fullDogCalculator} className='block w-full z-10 pb-10 pr-5 sm:hidden' />
         </div>
       )}
     </>

@@ -9,17 +9,17 @@ export const Footer = ({ className }: FooterProps) => (
     style={{ backgroundColor: '#DF2F44' }}
   >
     <div className='hidden md:absolute md:bottom-[15.5rem] md:block'>
-      <img src={logoFooter} />
+      <img src={logoFooter}/>
     </div>
     <div className='mt-9 md:hidden'>
-      <img src={logoFooter} />
+      <img src={logoFooter} className='w-20 h-20' />
     </div>
     <div className='hidden space-x-8 mt-3 md:flex md:flex-row'>
       <img src={facebookLogo} />
       <img src={instagramLogo} />
       <img src={twitterLogo} />
     </div>
-    <div className='text-center text-[#FAD7B1] font-extrabold md:flex md:flex-row md:justify-around md:space-x-24 md:mt-7'>
+    <div className='text-center text-[#FAD7B1] mt-2 text-lg font-extrabold md:flex md:flex-row md:justify-around md:space-x-24 md:mt-7 md:text-base'>
       <div className='my-3.5'>
         <span>Contacto</span>
       </div>

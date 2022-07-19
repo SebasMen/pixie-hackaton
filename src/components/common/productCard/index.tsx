@@ -37,7 +37,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
     <div
       className={`
           relative flex flex-col flex-shrink-0 justify-between items-center
-          h-64 w-40 md:w-[16.815rem] md:h-[365px]
+          h-[15.5rem] w-40 md:w-[16.815rem] md:h-[365px]
           ${className}
         `}
     >
@@ -46,7 +46,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
           relative flex flex-col flex-shrink-0 justify-between items-center 
           cursor-pointer p-3 pb-8 rounded-2xl bg-white 
           ring-0 ring-primary transform transition-all 
-          ${isCarrousel && (selected ? 'scale-110 lg:scale-100' : 'scale-90')}
+          ${isCarrousel && (selected ? 'scale-150 lg:scale-100' : 'scale-125 lg:scale-90')}
           w-full h-full lg:pb-11
           hover:ring-1 ${className}
         `}

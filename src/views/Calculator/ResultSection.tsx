@@ -36,7 +36,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
 
           {/* Carrousel */}
           <Carrousel
-            className='pt-3 pb-10 lg:px-[9rem]'
+            className='mt-5 pb-[7.5rem] pt-[4.75rem] md:pt-3 md:pb-10 lg:px-[9rem] md:mt-5'
             onSlideChange={setSelected}
             navigation
             breakpoints={{
@@ -46,7 +46,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
                 initialSlide: 1,
               },
               300: {
-                slidesPerView: 2,
+                slidesPerView: 1.5,
                 spaceBetween: 0,
                 initialSlide: 1,
               },

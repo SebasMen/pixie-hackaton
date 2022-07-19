@@ -31,15 +31,15 @@ const InfoSection = ({ product }: InfoSectionProps) => {
   };
 
   return (
-    <div className='flex flex-col w-full md:h-full md:w-[37%] md:pr-9'>
-      <div className='flex-shrink-0 px-7 mb-[26px] md:px-0 md:mb-4'>
-        <div className='flex gap-3 mb-3'>
+    <div className='flex flex-col w-full mt-4 md:mt-0 md:h-full md:w-[37%] md:pr-9'>
+      <div className='flex-shrink-0 px-7 mb-2 md:px-0 md:mb-4'>
+        <div className='hidden gap-3 mb-3 md:flex'>
           {ages.map(age => <Tag key={`${product.id}-age-${age}`} name={age} className='mb-1 mt-2 md:mt-0'/>)}
         </div>
-        <div className='text-2xl font-bold mb-2 md:text-3xl text-primary'>
+        <div className='text-2xl font-bold mb-3 md:mb-2 md:text-3xl text-primary'>
           {capitalize(product.name)}
         </div>
-        <div className='mb-2 font-subTitles text-lg'>
+        <div className='mb-2 font-subTitles md:text-lg'>
           {product.description}
         </div>
         <div className='text-sm text-fourth	font-paragraph'>

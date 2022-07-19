@@ -4,7 +4,7 @@ const BannerSection = ({ view }: BannerSectionProps) => (
   <div className='bg-transparent banner-calculator w-full flex justify-center items-center lg:items-start max-w-[1440px] max-h-[755px]'>
     <div
       className={`
-        flex flex-col justify-end pb-14 text-center w-full h-full 
+        flex flex-col justify-end pb-[3.75rem] text-center w-full h-full 
         md:pb-5 md:text-left md:ml-10 md:justify-center 
         lg:pb-0 lg:ml-36 
         xl:ml-32
@@ -14,9 +14,9 @@ const BannerSection = ({ view }: BannerSectionProps) => (
     >
       {view === 0 && (
         <div className='flex flex-col w-full px-10 text-xl font-extrabold md:truncate md:pl-0 md:text-3xl lg:text-[35px] lg:mb-[5.8rem]'>
-          <span className='leading-10'>Cambiar la forma en que</span>
-          <span className='leading-10'>alimentas a tu mascota</span>
-          <span className='leading-10'>comienza aquí!</span>
+          <span className='leading-6 md:leading-10'>Cambiar la forma en que</span>
+          <span className='leading-6 md:leading-10'>alimentas a tu mascota</span>
+          <span className='leading-6 md:leading-10'>comienza aquí!</span>
         </div>
       )}
       {view === 1 && (

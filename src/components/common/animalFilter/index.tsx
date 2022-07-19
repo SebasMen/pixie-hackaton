@@ -64,40 +64,42 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
     }
   };
 
+  console.log(filter);
   // Component
   return (
     <div className='w-full flex flex-col items-center justify-center rounded-t-3xl overflow-hidden transform -mt-4 lg:gap-9' style={{ backgroundColor: '#FFF6EC' }}>
       {/* Backgrounds */}
       {/* <img className='absolute w-full md:pt-20 object-cover object-right -z-10' src={vegetablesCatalogue} /> */}
 
-      <div className='flex flex-row mb-14 mt-[5.4rem] gap-14 md:gap-14'>
+      <div className='flex flex-row mb-7 md:mb-14 mt-[5.4rem] gap-12 md:gap-14'>
         {filters.map(({ name, key, img, imgSelected }) => (
-          <div key={key} className='text-center cursor-pointer' onClick={() => handleFilterChange('typePet', key)}>
+          <div key={key} className='flex justify-center items-center flex-col text-center cursor-pointer' onClick={() => handleFilterChange('typePet', key)}>
             <div
               className={`
                 md:w-52 md:flex md:justify-between md:items-center 
                 rounded-full transform transition-all 
                 md:ring-2 md:ring-primary lg:shadow-xl lg:px-1
-                ${filter.typePet.includes(key as any) ? 'bg-primary gap-3' : 'bg-white gap-2'}
+                ${filter.typePet.includes(key as any) ? 'bg-primary md:gap-3' : 'bg-white md:gap-2'}
               `}
             >
-              <div className='text-left'>
+              <div className='md:text-left'>
                 <IconButton.xl
                   img={filter.typePet.includes(key as any) ? imgSelected : img}
                   name={name}
                   className={`z-10 rounded-full ring-1 ring-primary md:ring-0  shadow-none transform transition-all
-                  ${filter.typePet.includes(key as any) ? 'px-2' : 'px-3'}
+                  ${filter.typePet.includes(key as any) ? 'px-3 md:px-2' : 'px-2 md:px-3'}
                   `}
                   onClick={() => { }}
                   shadow={false}
-                  sizeContainer={'h-[4.8rem] w-[4.8rem]'}
+                  sizeContainer={`md:h-[4.8rem] md:w-[4.8rem]
+                  ${filter.typePet.includes(key as any) ? 'h-[4.8rem] w-[4.8rem]' : 'h-[3.8rem] w-[3.8rem]'}`}
                 />
               </div>
               <div className={`hidden text-[27px] font-bold text-white md:flex-grow md:flex ${filter.typePet.includes(key as any) ? 'md:text-amber-100' : 'md:text-primary'}`}>
                 <span>{name}</span>
               </div>
             </div>
-            <div className={'md:hidden text-2xl font-bold text-primary md:flex-grow'}>
+            <div className={'md:hidden text-lg font-bold text-primary md:flex-grow'}>
               <span>{name}</span>
             </div>
           </div>
@@ -110,14 +112,14 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
             className={'font-bold text-white gap-1 h-full transform transition-all duration-300 md:rounded-b-none lg:rounded-t-[30px]'}
             color={`${filter.agePet.includes(cat.key) ? '#7ac5be' : '#bee0e1'}`}
             onClick={() => handleFilterChange('agePet', cat.key)}
-            padding={'px-[1.0rem] lg:py-4 lg:px-6'}
+            padding={'px-2 lg:py-4 lg:px-6'}
             rounded={true}
           >
             { filter.agePet.includes(cat.key)
               ?
-              <Icon name='done' size='3xl' className={'w-6 md:w-7 overflow-hidden transform transition-all md:mr-2'} />
+              <Icon name='done' className={'w-6 text-xs overflow-hidden transform transition-all md:mr-2 md:w-7 md:text-3xl'} />
               :
-              <Icon name='circle' size='2xl' className={'w-6 md:w-7 overflow-hidden transform transition-all md:mr-2'} />
+              <Icon name='circle' className={'w-6 text-xs overflow-hidden transform transition-all md:mr-2 md:w-7 md:text-2xl'} />
             }
             <span className='tracking-wide md:tracking-normal text-sm lg:text-[27px]'>{cat.name}</span>
           </Button>

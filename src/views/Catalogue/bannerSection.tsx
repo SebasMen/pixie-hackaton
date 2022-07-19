@@ -1,4 +1,4 @@
-import { catalogCat } from '../../assets/images';
+import { catalogCat, catalogCatMobile } from '../../assets/images';
 import { cataloguePoints, cataloguePointsM } from '../../assets/vectors';
 
 export const BannerSection = () => (
@@ -8,10 +8,11 @@ export const BannerSection = () => (
       src={catalogCat}
       className={`
       animation-image-cat
+        hidden
         absolute w-full scale-150
         m-auto right-0 left-0 -bottom-5
-        sm:scale-75 sm:-bottom-20
-        md:-bottom-[9.5rem]
+        sm:scale-75 sm:-bottom-20 sm:block
+        md:-bottom-[9.5rem] 
         lg:scale-[0.8] lg:-bottom-24 lg:w-auto
         lg2:scale-[0.90] lg2:-bottom-10
         xl:scale-90 xl:left-32 xl:-bottom-10
@@ -20,6 +21,15 @@ export const BannerSection = () => (
 
         tall:scale-125 tall:-bottom-20
         taller:-bottom-10
+      `}
+    />
+    <img
+      src={catalogCatMobile}
+      className={`
+      animation-image-cat
+      absolute w-full scale-90
+      m-auto right-0 left-0 -bottom-36
+      md:hidden
       `}
     />
 
@@ -51,16 +61,16 @@ export const BannerSection = () => (
     >
       <div
         className={`
-          text-center text-xl text-[#D9EEEF] font-bold tracking-normal
-          lg:text-left 
-          xl:text-3xl 
-          xl2:text-[35px]
-          tall:text-3xl
+          text-center text-xl text-[#D9EEEF] font-bold tracking-normal pt-2
+          lg:text-left lg:pt-0
+          xl:text-3xl  xl:pt-0
+          xl2:text-[35px]  xl2:pt-0
+          tall:text-3xl  tall:pt-0
         `}
       >
-        <p className='animation-text leading-[2.6rem]'>¿QUIÉN NO QUISIERA QUE</p>
-        <p className='animation-text leading-[2.6rem]'>NUESTRAS MASCOTAS</p>
-        <p className='animation-text leading-[2.6rem]'>DUREN MÁS?</p>
+        <p className='animation-text lg:leading-[2.6rem]'>¿QUIÉN NO QUISIERA QUE</p>
+        <p className='animation-text lg:leading-[2.6rem]'>NUESTRAS MASCOTAS</p>
+        <p className='animation-text lg:leading-[2.6rem]'>DUREN MÁS?</p>
       </div>
       <img
         src={cataloguePointsM}

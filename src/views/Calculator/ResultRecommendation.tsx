@@ -88,11 +88,11 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
         ))}
       </ColoredScrollbars>
       <div className='flex justify-center lg:mr-5'>
-        <div className='flex flex-col flex-shrink-0 justify-center items-center gap-5 w-full h-auto px-5 py-10 rounded-2xl shadow-xl ring-1 ring-primary lg:flex-row lg:h-28 lg:pl-4 lg:pr-6 lg:gap-1'>
+        <div className='flex flex-col flex-shrink-0 justify-center pt-3 pb-4 gap-2 w-full h-auto px-5 rounded-2xl shadow-xl ring-1 ring-primary lg:flex-row lg:h-28 lg:pl-4 lg:pr-6 lg:gap-1 md:py-10'>
           <div className='flex lg:items-center w-full text-left justify-start lg:justify-center lg:w-[20%] h-full  border-b-primary border-r-primary lg:border-r lg:border-b-0'>
-            <h2 className='text-xl text-primary font-extrabold'>Resumen</h2>
+            <h2 className='text-primary font-extrabold md:text-xl'>Resumen</h2>
           </div>
-          <div className='flex-grow md:text-sm flex-shrink-0 text-left border-r-primary lg:border-r pr-30 lg:w-[53%] lg:pl-3'>
+          <div className='flex-grow text-sm flex-shrink-0 text-left border-r-primary lg:border-r pr-30 lg:w-[53%] lg:pl-3'>
             <p className='font-sanzBold'>{names}</p>
             <p className='text-[#7AC5BE] font-subTitles font-semibold text-[11px] lg:text-sm'>
               {maxQuantity < quantity
@@ -100,7 +100,7 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
                 : `(Bien has seleccionado ${maxQuantity} porciones)`}
             </p>
           </div>
-          <div className='w-full lg:w-[22%] flex flex-col flex-shrink-0 justify-between items-center text-primary md:flex-row md:w-max gap-6'>
+          <div className='w-full lg:w-[22%] flex flex-col flex-shrink-0 justify-between items-center text-primary md:flex-row md:w-max gap-1 md:gap-6'>
             <div className='flex justify-between lg:flex-col lg:justify-center items-center w-full'>
               <p className='text-sm'>Total</p>
               <p className='font-subTitles font-bold text-lg md:text-xl'>${total}</p>

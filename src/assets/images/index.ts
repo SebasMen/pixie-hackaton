@@ -10,6 +10,7 @@ import dogCalculator from './dogCalculator.png';
 import backgroundCalculator from './backgroundCalculator.png';
 import catalogCat from './catalogCat.png';
 import fullDogCalculator from './fullDogCalculator.png';
+import catalogCatMobile from './catalogCatMobile.png';
 
 export {
   backgroundWood,
@@ -23,5 +24,6 @@ export {
   dogCalculator,
   backgroundCalculator,
   catalogCat,
-  fullDogCalculator
+  fullDogCalculator,
+  catalogCatMobile
 };
