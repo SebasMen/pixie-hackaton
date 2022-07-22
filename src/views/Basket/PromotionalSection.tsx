@@ -1,9 +1,11 @@
+import { useEffect } from 'react';
 import TextArea from '../../components/form/textArea';
-import { useForm } from '../../hooks';
+import { useAppContext, useForm } from '../../hooks';
 import { PromotionalForm } from '../../interfaces/basket';
 
 const PromotionalSection = () => {
   // Hooks
+  const { updateContext } = useAppContext();
   const { form, onSubmit, handleFormChange } = useForm<PromotionalForm>(
     {
       note: '',
@@ -16,6 +18,11 @@ const PromotionalSection = () => {
   const handleSubmit = (form: PromotionalForm) => {
     console.log(form);
   };
+
+  // Update context with the text
+  useEffect(() => {
+    updateContext(old => ({ ...old, deliveryNote: form.note }));
+  }, [form.note]);
 
   return (
     <form onSubmit={onSubmit}>

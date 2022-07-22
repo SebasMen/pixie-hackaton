@@ -27,7 +27,9 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
         <div className='flex flex-col text-xs justify-between'>
           <div className='flex flex-col lg:pt-1'>
             <span className='text-sm text-primary lg:text-lg'>{capitalize(item.product.name)}</span>
-            <span className='font-sanzBold lg:text-sm'>{calculateGrs(item)}</span>
+            <span className='font-sanzBold lg:text-sm'>
+              {item.quantity === 1 ? `${item.quantity} unidad ` : `${item.quantity} unidades `}
+              - {calculateGrs(item)}</span>
           </div>
           {showOptions && <span className='font-publicSans pb-3 text-[11px] underline cursor-pointer lg:text-xs lg:leading-5 lg:pb-0' onClick={handleDeleteProduct}>Quitar</span>}
         </div>

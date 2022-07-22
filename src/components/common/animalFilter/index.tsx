@@ -64,7 +64,6 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
     }
   };
 
-  console.log(filter);
   // Component
   return (
     <div className='w-full flex flex-col items-center justify-center rounded-t-3xl overflow-hidden transform -mt-4 lg:gap-9' style={{ backgroundColor: '#FFF6EC' }}>

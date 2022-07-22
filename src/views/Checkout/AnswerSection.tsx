@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { dogIconCheckout } from '../../assets/vectors';
 import Button from '../../components/common/button';
-import { useAppContext } from '../../hooks';
+import useShoppingCar from '../../hooks/useShoppingCar';
 import { postSendPayment } from '../../interfaces/payment';
 
 const AnswerSection = ({ paymentAnswer: { data, status } }:AnswerSectionProps) => {
   // Hooks
   const navigate = useNavigate();
-  const { updateContext } = useAppContext();
+  const { deleteAllProducts } = useShoppingCar();
   const now = new Date();
 
   // Show Date
@@ -25,7 +25,7 @@ const AnswerSection = ({ paymentAnswer: { data, status } }:AnswerSectionProps) =
   useEffect(() => {
     // Clear Basket
     if (status === 'OK')
-      updateContext(old => ({ ...old, products: [] }));
+      deleteAllProducts();
   }, [status]);
 
   return (

@@ -136,7 +136,7 @@ export const NavBar = () => {
                   className={`mr-4 md:mr-0 bg-${color}`}
                   size='md'
                   shadow={false}
-                  onClick={() => navigate('/basket')}
+                  onClick={() => toogleShoppingCar()}
                   color={showItemsBlack.includes(true) ? undefined : '#df2f44'}
                 />
                 {products.length > 0 && (

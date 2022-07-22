@@ -28,27 +28,30 @@ export interface generatePayment {
     orderDetails: {
         siteDomain: string,
         shippingDetails: {
-        name: string,
-        phone: string,
-        address1: string,
-        city: string,
-        region: string,
-        country: string
+          name: string,
+          phone: string,
+          address1: string,
+          city: string,
+          region: string,
+          country: string
         },
-        billingDetails: {
-        name: string,
-        phone: string,
-        address1: string,
-        city: string,
-        region: string,
-        country: string
-        }
+        billingDetails: billingDetailsInterface
     },
     productDetails: {
         product: Array<productShort>
     },
     fullResponse: boolean
     }
+}
+
+export interface billingDetailsInterface {
+  name: string,
+  phone: string,
+  address1: string,
+  address2?: string,
+  city: string,
+  region: string,
+  country: string
 }
 
 export interface postSendPayment {

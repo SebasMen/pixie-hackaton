@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Page from '../../components/layout/page';
 import ResumenSection from './ResumenProductSection';
@@ -10,12 +10,17 @@ import TotalSection from '../Basket/TotalSection';
 import AnswerSection from './AnswerSection';
 
 import { basketRed } from '../../assets/vectors/';
-import { shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
+import { selectCountryService, shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
 import Footer from '../../components/layout/footer';
 import { postSendPayment } from '../../interfaces/payment';
+import checkOutService from '../../services/checkOutService';
+import { useFetch } from '../../hooks';
+import { SelectItem } from '../../components/form/selectField';
 
 const CheckOut = () => {
+  // Hooks
   const [step, setStep] = useState(2);
+  const [countries, setcountries] = useState<SelectItem[]>();
   const [userInfo, setuserInfo] = useState<SubmissionFormInterface>();
   const [idCustomer, setIdCustomer] = useState('');
   const [shippingInfo, setShippingInfo] = useState<shippingTypeForm>({ type: 'estandar', price: 12000 });
@@ -30,6 +35,28 @@ const CheckOut = () => {
       }
     }
   });
+
+  // Get countries
+  const { loading, response } = useFetch<selectCountryService>(checkOutService.getOneCountry);
+
+  useEffect(() => {
+    // Manage loading empty response
+    if (loading || !response) return;
+
+    // Destructure response
+    const { data, err } = response;
+
+    // Manage response errores or no data
+    if (!data || err) return;
+
+    // Sorting out data
+    const countries: SelectItem[] = data.map(country => ({
+      label: country.name,
+      value: country.id,
+    }));
+
+    setcountries(countries);
+  }, [loading, response]);
 
   return (
     <Page className='bg-sixth'>
@@ -73,6 +100,7 @@ const CheckOut = () => {
                   setData={setuserInfo}
                   setIdCustomer={setIdCustomer}
                   changeStep={setStep}
+                  countriesOptions={countries}
                 />
               }
               { step === 3
@@ -91,6 +119,7 @@ const CheckOut = () => {
                 idCustomer={idCustomer}
                 changeStep={setStep}
                 setPaymentAnswer={setPaymentAnswer}
+                countriesOptions={countries}
               />
               }
             </div>

@@ -58,7 +58,7 @@ const Basket = () => {
               </div>
               <TotalSection />
               <div className='flex justify-around font-sanzBold mt-[10px] w-full gap-3 lg:mt-5'>
-                <Button className='text-sm ring-1 ring-primary text-primary w-[54%] lg:text-base lg:font-subTitles' padding='py-2'>
+                <Button className='text-sm ring-1 ring-primary text-primary w-[54%] lg:text-base lg:font-subTitles' padding='py-2' onClick={() => navigate('/catalogue')}>
                   Seguir comprando
                 </Button>
                 <Button className='bg-primary text-sm text-[#FAD7B1] w-[46%] tracking-normal lg:text-lg lg:font-sanzBold' padding='py-2' onClick={() => navigate('/checkout')}>

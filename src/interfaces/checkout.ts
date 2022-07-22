@@ -18,6 +18,7 @@ export interface SubmissionFormInterface {
   countries: SelectItem[];
   country: SelectItem;
   receive_information: string;
+  delivery_note: string;
 }
 
 export interface paymentForm {
@@ -29,6 +30,17 @@ export interface paymentForm {
   numberOfInstallments: SelectItem;
   numberOfInstallmentsSelect: SelectItem[];
   amount: number;
+
+  // Change shipping
+  email?: string;
+  phone?: string;
+  name?: string;
+  last_name?: string;
+  address?: string;
+  addressOptional?: string;
+  city?: string;
+  countries?: SelectItem[];
+  country?: SelectItem;
 }
 
 export interface shippingTypeForm {

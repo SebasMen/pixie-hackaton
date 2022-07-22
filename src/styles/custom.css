@@ -14,3 +14,7 @@
   -webkit-text-stroke: 1px #379C93;
   color: transparent;
 }
+
+.max_size_shoppingcar {
+  max-height: calc(100vh - 280px);
+}

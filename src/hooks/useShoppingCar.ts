@@ -26,7 +26,9 @@ export const useShoppingCar = () => {
 
   const deleteProduct = (productId: string) => updateContext(old => ({ ...old, products: [...old.products.filter(item => item.product.id !== productId)] }));
 
-  return { addRemoveProduct, deleteProduct };
+  const deleteAllProducts = () => updateContext(old => ({...old, products: [] }));
+
+  return { addRemoveProduct, deleteProduct, deleteAllProducts };
 };
 
 export default useShoppingCar;

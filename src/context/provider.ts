@@ -51,4 +51,5 @@ export const appProvider: AppContextType = {
 
   showNavbar: true,
   showPopup: false,
+  deliveryNote: '',
 };

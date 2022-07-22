@@ -31,6 +31,9 @@ export interface AppContextType {
 
   // ShowPopup
   showPopup: boolean;
+
+  // Delivery note
+  deliveryNote: string;
 }
 
 export const appProvider: AppContextType = provider;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 
 export default class ColoredScrollbars extends Component {
@@ -57,6 +57,7 @@ export default class ColoredScrollbars extends Component {
         renderThumbVertical={this.renderThumb}
         renderTrackVertical={this.renderTrack}
         onUpdate={this.handleUpdate}
+        autoHeightMax={200}
         {...this.props}/>
     );
   }
