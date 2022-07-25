@@ -10,11 +10,12 @@ import ResumenShipping from './ResumenShipping';
 import Spinner from '../../components/common/spinner';
 import FormBilling from '../../components/common/formBilling';
 
-import { paymentForm, shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
+import { paymentForm, PaymentFormValidate, shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
 import paymentService from '../../services/paymentService';
 import { postSendPayment, postSendTokenCard } from '../../interfaces/payment';
 
 import { calculateTotalPayment, organiceInformationPayment } from '../../helpers/paymentHelper';
+import useValidator from '../../hooks/useValidator';
 
 const numberOfInstallmentsOptions: SelectItem[] = [
   { value: '1', label: '1 Cuota' },
@@ -49,101 +50,126 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   },
   form => validateForm());
 
-  const [showMessageValidate, setShowMessageValidate] = useState({
-    country: {
-      state: false,
-      message: ''
-    },
-    email: {
-      state: false,
-      message: ''
-    },
-    phone: {
-      state: false,
-      message: ''
-    },
-    expirationDate: {
-      state: false,
+  const { handlePutMessageError, validatorBody, resetValidator } = useValidator<PaymentFormValidate>({
+    card_name: {
       message: ''
     },
     card_number: {
-      state: false,
+      message: ''
+    },
+    expirationDate: {
+      message: ''
+    },
+    card_cvv: {
+      message: ''
+    },
+    billingAddress: {
+      message: ''
+    },
+    numberOfInstallments: {
+      message: ''
+    },
+    amount: {
+      message: ''
+    },
+
+    // Optional
+    email: {
+      message: ''
+    },
+    phone: {
+      message: ''
+    },
+    name: {
+      message: ''
+    },
+    last_name: {
+      message: ''
+    },
+    country: {
       message: ''
     },
   });
 
   // Methods
   const validateForm = () => {
-    resetValidate();
+    // Clear all errors
+    resetValidator();
+    let error = false;
+    // Regular expression to Date mm/yy
+    const date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1[1-9]|2[1-9]|3[1-9]|4[1-9])$/;
+
+    if (!validator.isAlpha(form.card_name, 'es-ES', { ignore: ' ' })) {
+      handlePutMessageError('card_name', 'Solo se debe escribir letras');
+      error = true;
+    }
+
     if (!validator.isLength(form.card_number, { min: 16, max: 16 })) {
-      setShowMessageValidate(old => ({ ...old, card_number: { state: true, message: 'El número de targeta debe tener 16 digitos' } }));
-      return;
+      handlePutMessageError('card_number', 'El número de targeta debe tener 16 digitos');
+      error = true;
     }
 
     if (!validator.isNumeric(form.card_number)) {
-      setShowMessageValidate(old => ({ ...old, card_number: { state: true, message: 'El campo solo debe tener números' } }));
-      return;
+      handlePutMessageError('card_number', 'El campo solo debe tener números');
+      error = true;
+    }
+
+    if (!validator.isLength(form.card_cvv, { min: 3 })) {
+      handlePutMessageError('card_cvv', 'El número de targeta debe mas de 3 digitos');
+      error = true;
     }
 
     if (!validator.isLength(form.expirationDate, { min: 5, max: 5 })) {
-      setShowMessageValidate(old => ({ ...old, expirationDate: { state: true, message: 'El campo solo debe tener 5 caracteres' } }));
-      return;
+      handlePutMessageError('expirationDate', 'El campo solo debe tener 5 caracteres');
+      error = true;
+    }
+
+    if (!date_regex.test(form.expirationDate)) {
+      handlePutMessageError('expirationDate', 'El formato del cambo debe ser MM/YY');
+      error = true;
     }
 
     // Validate optional information
     if (!sameBillingAdressSt) {
+      if (form.name)
+        if (!validator.isAlpha(form.name, 'es-ES', { ignore: ' ' })) {
+          handlePutMessageError('name', 'Solo se debe escribir letras');
+          error = true;
+        }
+
+      if (form.last_name)
+        if (!validator.isAlpha(form.last_name, 'es-ES', { ignore: ' ' })) {
+          handlePutMessageError('last_name', 'Solo se debe escribir letras');
+          error = true;
+        }
+
       if (form.phone) {
         if (!validator.isLength(form.phone, { min: 10, max: 10 })) {
-          setShowMessageValidate(old => ({ ...old, phone: { state: true, message: 'El celular solo debe tener 10 digitos' } }));
-          return;
+          handlePutMessageError('phone', 'El celular solo debe tener 10 digitos');
+          error = true;
         }
 
         if (!validator.isNumeric(form.phone)) {
-          setShowMessageValidate(old => ({ ...old, phone: { state: true, message: 'Solo se pueden escribir numeros' } }));
-          return;
+          handlePutMessageError('phone', 'Solo se pueden escribir numeros');
+          error = true;
         }
       }
 
       if (form.email)
         if (!validator.isEmail(form.email)) {
-          setShowMessageValidate(old => ({ ...old, email: { state: true, message: 'El texto debe ser un email' } }));
-          return;
+          handlePutMessageError('email', 'El texto debe ser un email');
+          error = true;
         }
 
       if (form.country)
         if (validator.equals(form.country.value, '')) {
-          setShowMessageValidate(old => ({ ...old, country: { state: true, message: 'Se debe seleccionar un país' } }));
-          /// eslint-disable-next-line no-useless-return
-          return;
+          handlePutMessageError('country', 'Se debe seleccionar un país');
+          error = true;
         }
-
-      handleSubmit(form);
     }
-  };
 
-  const resetValidate = () => {
-    setShowMessageValidate({
-      country: {
-        state: false,
-        message: ''
-      },
-      email: {
-        state: false,
-        message: ''
-      },
-      phone: {
-        state: false,
-        message: ''
-      },
-      expirationDate: {
-        state: false,
-        message: ''
-      },
-      card_number: {
-        state: false,
-        message: ''
-      },
-    });
+    if (!error)
+      handleSubmit(form);
   };
 
   const handleSubmit = async (form: paymentForm) => {
@@ -160,7 +186,6 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   const sendDataPayment = async (dataPost: postSendTokenCard) => {
     // Organize data
     const paymentData = organiceInformationPayment(idCustomer, dataPost.token_card, userData, products, shippingData, form, sameBillingAdressSt);
-    console.log(paymentData);
     // Send data to API
     const { data } = await paymentService.sendPayment(paymentData);
     // Set data to show in the answerSection
@@ -206,6 +231,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
                 handler={handleFormChange}
                 placeholder='Nombre de la tarjeta*'
                 fieldClassName='py-[0.95rem]'
+                messageError={validatorBody.card_name.message}
                 required
               />
               <TextField
@@ -215,9 +241,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
                 handler={handleFormChange}
                 placeholder='Número de la tarjeta*'
                 fieldClassName='py-[0.95rem]'
-                showMessageError={showMessageValidate.card_number.state}
-                messageError={showMessageValidate.card_number.message}
-                required
+                messageError={validatorBody.card_number.message}
               />
             </div>
             <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
@@ -228,8 +252,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
                 handler={handleFormChange}
                 placeholder='Fecha de vencimiento MM/AA*'
                 fieldClassName='py-[0.95rem]'
-                showMessageError={showMessageValidate.expirationDate.state}
-                messageError={showMessageValidate.expirationDate.message}
+                messageError={validatorBody.expirationDate.message}
                 required
               />
               <TextField
@@ -239,10 +262,11 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
                 handler={handleFormChange}
                 placeholder='Código de seguridad*'
                 fieldClassName='py-[0.95rem]'
+                messageError={validatorBody.card_cvv.message}
                 required
               />
             </div>
-            <SelectField
+            {/* <SelectField
               placeholder='Número de cuotas*'
               name='numberOfInstallments'
               options={form.numberOfInstallmentsSelect}
@@ -251,7 +275,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
               borderColor='#000'
               className='lg:w-1/2'
               paddingY='0.43rem'
-            />
+            /> */}
           </div>
         </div>
         <span className='font-titles text-base lg:text-xl'>Dirección de facturación</span>
@@ -286,7 +310,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
             form={form}
             handleFormChange={handleFormChange}
             handleSelectChange={handleSelectChange}
-            messageError={showMessageValidate}
+            messageError={validatorBody}
           />}
         <div className='pt-3'>
           { loadingST

@@ -1,5 +1,6 @@
 import { SelectItem } from '../components/form/selectField';
 import { Service } from './service';
+import { validatorBody } from './validator';
 export interface SubmissionFormInterface {
   email: string;
   phone: string;
@@ -19,6 +20,15 @@ export interface SubmissionFormInterface {
   country: SelectItem;
   receive_information: string;
   delivery_note: string;
+}
+
+export interface SubmissionFormValidate {
+  email: validatorBody;
+  phone: validatorBody;
+  name: validatorBody;
+  last_name: validatorBody;
+  state: validatorBody;
+  country: validatorBody;
 }
 
 export interface paymentForm {
@@ -41,6 +51,23 @@ export interface paymentForm {
   city?: string;
   countries?: SelectItem[];
   country?: SelectItem;
+}
+
+export interface PaymentFormValidate {
+  card_name: validatorBody;
+  card_number: validatorBody;
+  expirationDate: validatorBody;
+  card_cvv: validatorBody;
+  billingAddress: validatorBody;
+  numberOfInstallments: validatorBody;
+  amount: validatorBody;
+
+  // Change shipping
+  email: validatorBody;
+  phone: validatorBody;
+  name: validatorBody;
+  last_name: validatorBody;
+  country: validatorBody;
 }
 
 export interface shippingTypeForm {

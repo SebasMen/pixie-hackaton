@@ -1,10 +1,10 @@
 import { MultiValue, SingleValue } from 'react-select';
-import { paymentForm } from '../../../interfaces/checkout';
+import { paymentForm, PaymentFormValidate } from '../../../interfaces/checkout';
 import SelectField, { SelectItem } from '../../form/selectField';
 import TextField from '../../form/textField';
 
 const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError }: FormBillingProps) => (
-  <div className='flex flex-col gap-[10px] lg:mt-[38px]'>
+  <div className='mt-4 flex flex-col gap-[10px] lg:mt-[38px]'>
     <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
       <TextField
         name='name'
@@ -13,6 +13,7 @@ const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError 
         placeholder='Nombre*'
         className='lg:w-1/2'
         fieldClassName='py-[0.95rem]'
+        messageError={messageError.name.message}
         required
       />
       <TextField
@@ -22,6 +23,7 @@ const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError 
         placeholder='Apellido*'
         className='lg:w-1/2'
         fieldClassName='py-[0.95rem]'
+        messageError={messageError.last_name.message}
         required
       />
     </div>
@@ -60,7 +62,6 @@ const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError 
         className='lg:w-1/2'
         paddingY='0.43rem'
         messageError={messageError.country.message}
-        showMessageError={messageError.country.state}
       />
     </div>
     <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
@@ -72,7 +73,6 @@ const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError 
         className='lg:w-1/2'
         fieldClassName='py-[0.95rem]'
         messageError={messageError.email.message}
-        showMessageError={messageError.email.state}
         required
       />
       <TextField
@@ -83,7 +83,6 @@ const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError 
         className='lg:w-1/2'
         fieldClassName='py-[0.95rem]'
         messageError={messageError.phone.message}
-        showMessageError={messageError.phone.state}
         required
       />
     </div>
@@ -94,28 +93,7 @@ interface FormBillingProps {
   form: paymentForm;
   handleSelectChange: (selected: MultiValue<SelectItem> | SingleValue<SelectItem>, name: string) => void;
   handleFormChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  messageError: {
-    country: {
-      state: boolean,
-      message: string
-    },
-    email: {
-      state: boolean,
-      message: string
-    },
-    phone: {
-      state: boolean,
-      message: string
-    },
-    expirationDate: {
-      state: boolean,
-      message: string
-    },
-    card_number: {
-      state: boolean,
-      message: string
-    },
-  }
+  messageError: PaymentFormValidate
 }
 
 export default FormBilling;

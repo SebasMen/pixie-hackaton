@@ -9,11 +9,10 @@ import CheckField from '../../components/form/checkField';
 import TextField from '../../components/form/textField';
 import SelectField, { SelectItem } from '../../components/form/selectField';
 
-import { SubmissionFormInterface } from '../../interfaces/checkout';
+import { SubmissionFormInterface, SubmissionFormValidate } from '../../interfaces/checkout';
 import { mexicanStates } from '../../@fake/statesFake';
 import checkOutService from '../../services/checkOutService';
 import useValidator from '../../hooks/useValidator';
-import { validatorBody } from '../../interfaces/validator';
 
 const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }:SubmissionFormProps) => {
   // Hooks
@@ -46,80 +45,73 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
     form => validateForm()
   );
 
-  const [showMessageValidate, setShowMessageValidate] = useState({
+  const { handlePutMessageError, validatorBody, resetValidator } = useValidator<SubmissionFormValidate>({
     country: {
-      state: false,
       message: ''
     },
     email: {
-      state: false,
       message: ''
     },
     phone: {
-      state: false,
+      message: ''
+    },
+    name: {
+      message: ''
+    },
+    last_name: {
       message: ''
     },
     state: {
-      state: false,
       message: ''
     },
   });
 
+  // Set countries in select
   useEffect(() => {
     setForm(old => ({ ...old, countries: countriesOptions ? countriesOptions : [] }));
   }, [countriesOptions]);
 
   const validateForm = () => {
-    // Reset validator
-    resetValidate();
+    // Clear all errors
+    resetValidator();
+    let error = false;
     if (!validator.isEmail(form.email)) {
-      setShowMessageValidate(old => ({ ...old, email: { state: true, message: 'El texto debe ser un email' } }));
-      return;
+      handlePutMessageError('email', 'El texto debe ser un email');
+      error = true;
     }
 
     if (!validator.isNumeric(form.phone)) {
-      setShowMessageValidate(old => ({ ...old, phone: { state: true, message: 'Solo se pueden escribir numeros' } }));
-      return;
+      handlePutMessageError('phone', 'Solo se pueden escribir numeros');
+      error = true;
     }
 
     if (!validator.isLength(form.phone, { min: 10, max: 10 })) {
-      setShowMessageValidate(old => ({ ...old, phone: { state: true, message: 'El celular solo debe tener 10 digitos' } }));
-      return;
+      handlePutMessageError('phone', 'El celular solo debe tener 10 digitos');
+      error = true;
+    }
+
+    if (!validator.isAlpha(form.name, 'es-ES', { ignore: ' ' })) {
+      handlePutMessageError('name', 'Solo se debe escribir letras');
+      error = true;
+    }
+
+    if (!validator.isAlpha(form.last_name, 'es-ES', { ignore: ' ' })) {
+      handlePutMessageError('last_name', 'Solo se debe escribir letras');
+      error = true;
     }
 
     if (validator.equals(form.state.value, '')) {
-      setShowMessageValidate(old => ({ ...old, state: { state: true, message: 'Se debe seleccionar un estado' } }));
-      return;
+      handlePutMessageError('state', 'Se debe seleccionar un estado');
+      error = true;
     }
 
     if (validator.equals(form.country.value, '')) {
-      setShowMessageValidate(old => ({ ...old, country: { state: true, message: 'Se debe seleccionar un país' } }));
-      /// eslint-disable-next-line no-useless-return
-      return;
+      handlePutMessageError('country', 'Se debe seleccionar un país');
+      error = true;
     }
 
-    handleSubmit(form);
-  };
-
-  const resetValidate = () => {
-    setShowMessageValidate({
-      country: {
-        state: false,
-        message: ''
-      },
-      email: {
-        state: false,
-        message: ''
-      },
-      phone: {
-        state: false,
-        message: ''
-      },
-      state: {
-        state: false,
-        message: ''
-      },
-    });
+    if (!error)
+      handleSubmit(form);
   };
 
   // Methods
@@ -165,8 +157,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           handler={handleFormChange}
           placeholder='Correo electrónico*'
           fieldClassName='py-[0.95rem]'
-          messageError={showMessageValidate.email.message}
-          showMessageError={showMessageValidate.email.state}
+          messageError={validatorBody.email.message}
           required
         />
         <TextField
@@ -175,8 +166,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           handler={handleFormChange}
           placeholder='Celular (10 dígitos)*'
           fieldClassName='py-[0.95rem]'
-          messageError={showMessageValidate.phone.message}
-          showMessageError={showMessageValidate.phone.state}
+          messageError={validatorBody.phone.message}
           required/>
         <CheckField
           onClick={sendNewsInMyMail}
@@ -195,6 +185,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             placeholder='Nombre*'
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
+            messageError={validatorBody.name.message}
             required/>
           <TextField
             name='last_name'
@@ -203,6 +194,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             placeholder='Apellido*'
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
+            messageError={validatorBody.last_name.message}
             required/>
         </div>
         <TextField
@@ -290,8 +282,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             borderColor='#000'
             className='lg:w-1/2'
             paddingY='0.43rem'
-            messageError={showMessageValidate.state.message}
-            showMessageError={showMessageValidate.state.state}
+            messageError={validatorBody.state.message}
           />
         </div>
         <SelectField
@@ -302,8 +293,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           borderRadius={true}
           borderColor='#000'
           paddingY='0.43rem'
-          messageError={showMessageValidate.country.message}
-          showMessageError={showMessageValidate.country.state}
+          messageError={validatorBody.country.message}
         />
         <CheckField
           onClick={() => console.log('aa')}
@@ -321,7 +311,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           className='mt-1 ml-1 lg:ml-5'
           labelClassName='text-xs lg:text-sm'
         />
-        {showMessageConditions && <div className='text-primary'>Debe aceptar terminos y condiciones para continuar</div>}
+        {showMessageConditions && <div className='text-primary text-xs lg:text-base'>Debe aceptar terminos y condiciones para continuar</div>}
 
         {loadingSt
           ?
@@ -349,26 +339,3 @@ interface SubmissionFormProps {
 }
 
 export default SubmissionForm;
-
-/// const { validatorBody, handlePutMessageError } = useValidator([
-//   {
-//     message: '',
-//     name: 'country',
-//     state: false
-//   },
-//   {
-//     message: '',
-//     name: 'email',
-//     state: false
-//   },
-//   {
-//     message: '',
-//     name: 'phone',
-//     state: false
-//   },
-//   {
-//     message: '',
-//     name: 'state',
-//     state: false
-//   },
-// ]);

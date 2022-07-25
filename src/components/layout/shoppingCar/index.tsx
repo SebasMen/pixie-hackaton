@@ -29,13 +29,24 @@ const ShoppingCar = ({ onClose, show }: shoppingCarProps) => {
         <span>RESUMEN DE TU PEDIDO</span>
       </div>
       <div className='max_size_shoppingcar'>
-        <Scrollbars style={{ height: 'calc(100vh - 280px)' }}>
-          {products.map((product, index) =>
-            <div key={`cartItem-${product.product.id}`} className={`${(index + 1) < products.length && 'border-b border-[#c9c9c9]'} lg:px-0`}>
-              <ItemShoppingCarMini item={product} />
-            </div>
-          )}
-        </Scrollbars>
+        { products.length > 6
+          ?
+          <Scrollbars style={{ height: 'calc(100vh - 280px)' }}>
+            {products.map((product, index) =>
+              <div key={`cartItem-${product.product.id}`} className={`${(index + 1) < products.length && 'border-b border-[#c9c9c9]'} lg:px-0`}>
+                <ItemShoppingCarMini item={product} />
+              </div>
+            )}
+          </Scrollbars>
+          :
+          <div>
+            {products.map((product, index) =>
+              <div key={`cartItem-${product.product.id}`} className={`${(index + 1) < products.length && 'border-b border-[#c9c9c9]'} lg:px-0`}>
+                <ItemShoppingCarMini item={product} />
+              </div>
+            )}
+          </div>
+        }
       </div>
       <div className='bg-[#dbdbdb] rounded-xl px-4 mt-[6px] mb-3 flex justify-between items-center py-2 font-bold text-lg lg:mt-6 lg:py-2 lg:pl-3 lg:pr-4'>
         <p>

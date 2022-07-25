@@ -12,7 +12,6 @@ export const SelectField = ({
   borderRadius,
   borderColor,
   messageError,
-  showMessageError = false,
   paddingY,
   isMulti = false,
 }: SelectFieldProps) => (
@@ -57,7 +56,7 @@ export const SelectField = ({
         }),
       }}
     />
-    {showMessageError && <p className='text-primary lg:pl-2'>{messageError}</p>}
+    {messageError && <p className='text-primary pl-2 text-xs lg:text-base'>{messageError}</p>}
   </div>
 );
 
@@ -75,7 +74,6 @@ interface SelectFieldProps {
   options: SelectItem[];
   onChange: (selected: MultiValue<SelectItem> | SingleValue<SelectItem>, name: string) => void;
   messageError?: string;
-  showMessageError?: boolean;
 }
 
 export interface SelectItem {

@@ -1,29 +1,26 @@
 import { useState } from 'react';
-import { validatorBody } from '../interfaces/validator';
 
-export const useValidator = (
-  initialState: validatorBody[]
+export const useValidator = <T>(
+  initialState: T
 ) => {
   const [validatorBody, setValidator] = useState(initialState);
 
   // Set and Show message error
   const handlePutMessageError = (nameInput:string, message: string) => {
-    /// setValidator({
-    //   ...validatorBody,
-    //   [nameInput]: {
-    //     state: true,
-    //     message
-    //   },
-    // });
-
-    const index = validatorBody.findIndex(item => item.name === nameInput);
-    const newState = validatorBody[index];
-    newState.message = message;
-    newState.state = true;
-    setValidator(validatorBody.filter(item => item.name !== nameInput));
+    setValidator(old => ({
+      ...old,
+      [nameInput]: {
+        state: true,
+        message
+      },
+    }));
   };
 
-  return { validatorBody, handlePutMessageError };
+  const resetValidator = () => {
+    setValidator(initialState);
+  };
+
+  return { validatorBody, handlePutMessageError, resetValidator, setValidator };
 };
 
 export default useValidator;

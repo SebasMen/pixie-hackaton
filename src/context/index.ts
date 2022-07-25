@@ -29,6 +29,9 @@ export interface AppContextType {
   // ShowNavbar
   showNavbar: boolean;
 
+  // Add margin button Whatsapp
+  marginWhatsApp : boolean;
+
   // ShowPopup
   showPopup: boolean;
 

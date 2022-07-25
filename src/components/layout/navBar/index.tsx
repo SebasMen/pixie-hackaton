@@ -17,17 +17,20 @@ import { NavItem } from './navItem';
 export const NavBar = () => {
   // Hooks
   const navigate = useNavigate();
-  const { products, showNavbar } = useAppContext();
+  const { products, showNavbar, updateContext } = useAppContext();
   const { pathname } = useLocation();
 
-  const [showShoppingCar, setShowShoppingCar] = useState<boolean | null>(null);
+  const [showShoppingCar, setShowShoppingCar] = useState<boolean>(false);
   const [collapsed, setCollapsed] = useState<boolean | null>(null);
 
   // Methods
   const toHome = () => navigate('/');
 
   const toggleCollapsed = () => setCollapsed(old => !old);
-  const toogleShoppingCar = () => setShowShoppingCar(!showShoppingCar);
+  const toogleShoppingCar = () => {
+    updateContext(old => ({ ...old, marginWhatsApp: !showShoppingCar }));
+    setShowShoppingCar(!showShoppingCar);
+  };
 
   // Constants
   const isCatalogue = pathname.includes('/catalogue');

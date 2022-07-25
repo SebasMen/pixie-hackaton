@@ -1,5 +1,6 @@
 import { productShort } from './product';
 import { Service } from './service';
+import { validatorBody } from './validator';
 
 export interface postSendTokenCard {
   status: string;
@@ -74,4 +75,4 @@ export interface postSendPayment {
   }
 }
 
-export type postSendPaymentService = Service<postSendPayment>
+export type postSendPaymentService = Service<postSendPayment>;

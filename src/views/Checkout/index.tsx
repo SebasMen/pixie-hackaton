@@ -67,9 +67,11 @@ const CheckOut = () => {
         </div>
 
         {/* resumen section movil */}
+        { step !== 5 &&
         <div className='block bg-white mb-7 lg:hidden'>
           <ResumenSection shippingInfo={shippingInfo}/>
         </div>
+        }
 
         {/* payments steps */}
         <div className='px-5 mt-4 font-subTitles text-fourth lg:px-4 lg:mt-5'>

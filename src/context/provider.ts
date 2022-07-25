@@ -50,6 +50,7 @@ export const appProvider: AppContextType = {
   },
 
   showNavbar: true,
+  marginWhatsApp: false,
   showPopup: false,
   deliveryNote: '',
 };

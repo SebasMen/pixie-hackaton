@@ -19,7 +19,7 @@ import '../../styles/home.css';
 const Home = () => {
   const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
 
-  const { updateContext } = useAppContext();
+  const { updateContext, marginWhatsApp } = useAppContext();
 
   useEffect(() => {
     updateContext(old => ({ ...old, showNavbar: true }));
@@ -49,7 +49,7 @@ const Home = () => {
 
           {/* FAB */}
           <IconButton
-            className='fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:right-6 md:bottom-[53%]'
+            className={`${marginWhatsApp ? 'md:right-[25rem]' : 'md:right-6'} fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:bottom-[53%]`}
             color='#DF2F44'
             name='DogButton'
             img={dog}

@@ -12,7 +12,6 @@ export const TextField = ({
   pattern,
   handler,
   messageError,
-  showMessageError = false,
   type = 'text',
   disabled = false,
   required = false,
@@ -33,7 +32,7 @@ export const TextField = ({
       onChange={handler}
       disabled={disabled}
     />
-    {showMessageError && <p className='text-primary lg:pl-2'>{messageError}</p>}
+    {messageError && <p className='text-primary pl-2 text-xs lg:text-base'>{messageError}</p>}
   </div>
 );
 
@@ -52,7 +51,6 @@ interface TextFieldProps {
   placeholder?: string;
   handler: ChangeEventHandler<HTMLInputElement>;
   messageError?: string;
-  showMessageError?: boolean;
 }
 
 export default TextField;
