@@ -25,7 +25,7 @@ import '../../styles/banner.css';
 
 const Detail = () => {
   // Hooks
-  const { productView, updateContext } = useAppContext();
+  const { productView, updateContext, marginWhatsApp } = useAppContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const Detail = () => {
 
         {/* FAB */}
         <IconButton
-          className='fixed bottom-5 hidden z-50 p-1 pt-1.5 pl-1.5 text-white md:block md:right-6 md:bottom-[53%]'
+          className={`${marginWhatsApp ? 'animation-buttonWhatsapp md:right-[25rem]' : 'md:right-6 animate__animated animate__bounceInRight'} fixed bottom-5 hidden z-50 p-1 pt-1.5 pl-1.5 text-white md:block md:right-6 md:bottom-[53%]`}
           color='#DF2F44'
           name='DogButton'
           img={dog}

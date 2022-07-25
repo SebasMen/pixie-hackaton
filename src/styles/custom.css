@@ -18,3 +18,19 @@
 .max_size_shoppingcar {
   max-height: calc(100vh - 280px);
 }
+
+.animation-buttonWhatsapp{
+  animation-name: buttonWhatsapp;
+  animation-delay: 0s;
+  animation-duration: 0.5s;
+}
+
+@keyframes buttonWhatsapp {
+  0%{right: 0rem;}
+  10%{right: 0rem;}
+  20%{right: 0rem;}
+  30%{right: 0rem;}
+  40%{right: 0rem;}
+  50%{right: 0rem;}
+  100%{right: 25rem;}
+}

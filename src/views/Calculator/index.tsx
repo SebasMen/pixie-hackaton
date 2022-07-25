@@ -23,7 +23,7 @@ const Calculator = () => {
 
       {/* FAB */}
       <IconButton
-        className={`${marginWhatsApp ? 'md:right-[25rem]' : 'md:right-6'} hidden md:block fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:right-6 md:bottom-[53%]`}
+        className={`${marginWhatsApp ? 'animation-buttonWhatsapp md:right-[25rem]' : 'md:right-6 animate__animated animate__bounceInRight'} hidden md:block fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:right-6 md:bottom-[53%]`}
         color='#DF2F44'
         name='DogButton'
         img={dog}

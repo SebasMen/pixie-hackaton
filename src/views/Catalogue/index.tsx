@@ -43,7 +43,7 @@ const Catalogue = () => {
 
             {/* FAB */}
             <IconButton
-              className={`${marginWhatsApp ? 'md:right-[25rem]' : 'md:right-6'} fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:bottom-[53%]`}
+              className={`${marginWhatsApp ? 'animation-buttonWhatsapp md:right-[25rem]' : 'md:right-6 animate__animated animate__bounceInRight'} fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:bottom-[53%]`}
               color='#DF2F44'
               name='DogButton'
               img={dog}

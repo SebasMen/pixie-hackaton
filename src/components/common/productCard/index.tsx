@@ -72,8 +72,8 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
             <img src={transformUrlGDrive(product.url_image)} className='w-24 h-24 md:w-36 md:h-36 object-contain' />
           )}
         </div>
-        <div className='text-center text-xs md:text-lg  w-full'>
-          <h4 className='text-primary mb-1'>{capitalize(product.name)}</h4>
+        <div className={'text-center text-xs md:text-lg w-full'}>
+          <h4 className={`${product.name.length > 18 && 'leading-none'} text-primary mb-1`}>{capitalize(product.name)}</h4>
           <div className='flex items-center justify-around'>
             <p className='font-sanzBold text-base md:text-xl'>
               $ {product.price}{' '}
