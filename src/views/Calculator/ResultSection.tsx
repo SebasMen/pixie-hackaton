@@ -72,7 +72,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
           </Carrousel>
           <div className='text-center mt-10 mb-5 font-sanzBold md:text-lg md:leading-normal'>
             <span>
-              Dieta recomendada para 4 semanas = {Math.round((feedData.grams * 28) / 500)} rollitos,
+              Dieta recomendada para 4 semanas = {Math.round((feedData.grams * 30) / 500)} rollitos,
               <span className='text-primary'> ¡combínalas como tu quieras!</span>
             </span>
           </div>
@@ -89,7 +89,6 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
               Calcular de nuevo
             </Button>
           </div>
-          {/* <img src={backgroundCalculator} className='absolute -z-10' /> */}
         </div>
       </div>
     ) : (

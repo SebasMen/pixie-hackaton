@@ -181,19 +181,21 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   const handleSubmit = async (form: paymentForm) => {
     setLoadingST(true);
     const response = await paymentService.sendCardInformation(form);
-    if (response.err)
+    if (response.err) {
       toast.fire({
         icon: 'warning',
         title: response.err,
       });
-    else if (response.data.status === 'OK')
+      setLoadingST(false);
+    } else if (response.data.status === 'OK')
       sendDataPayment(response.data);
-    else
+    else {
       toast.fire({
         icon: 'warning',
         title: 'Hubo un error en la api.',
       });
-    setLoadingST(false);
+      setLoadingST(false);
+    }
   };
 
   const sendDataPayment = async (dataPost: postSendTokenCard) => {

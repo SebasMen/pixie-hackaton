@@ -2,11 +2,17 @@ import { calculateGrs } from '../../../helpers/productHelper';
 import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import { capitalize } from '../../../helpers/capitalize';
 import { CartItem } from '../../../interfaces/basket';
+import { notImage } from '../../../assets/vectors';
 
 const ItemShoppingCarMini = ({ item }: ItemShoppingCarMiniProps) => (
   <div className='flex pt-[0.8rem] pb-[1rem] lg:py-4'>
     <figure className='w-[22.33%] lg:w-[24%]'>
-      <img src={transformUrlGDrive(item.product.url_image)} className='w-[60px] h-[70px] rounded-2xl object-cover lg:w-20 lg:h-[82px]' />
+      {item.product.url_image
+        ?
+        <img src={transformUrlGDrive(item.product.url_image)} className='w-[60px] h-[70px] rounded-2xl object-cover lg:w-20 lg:h-[82px]' />
+        :
+        <img src={notImage} className='w-[60px] h-[70px] rounded-2xl lg:w-20 lg:h-[82px]' />
+      }
     </figure>
     <div className='flex justify-between w-[78.67%] lg:w-[76%] lg:pt-3'>
       <div className='flex flex-col text-xs justify-between'>

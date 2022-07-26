@@ -6,6 +6,7 @@ import { calculateGrs } from '../../../helpers/productHelper';
 import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import { capitalize } from '../../../helpers/capitalize';
 import { CartItem } from '../../../interfaces/basket';
+import { notImage } from '../../../assets/vectors';
 
 const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingCarProps) => {
   // Hooks
@@ -24,7 +25,12 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
   return (
     <div className='flex mb-2 py-3 px-2 bg-white rounded-[20px] lg:p-4 lg:mb-4 lg:gap-5 lg:px-4 lg:py-4'>
       <figure className='w-[26.33%] lg:w-auto'>
-        <img src={transformUrlGDrive(item.product.url_image)} className='w-[77px] h-[90px] rounded-2xl object-cover lg:w-[10rem] lg:h-32' />
+        {item.product.url_image
+          ?
+          <img src={transformUrlGDrive(item.product.url_image)} className='w-[77px] h-[90px] rounded-2xl object-cover lg:w-[10rem] lg:h-32' />
+          :
+          <img src={notImage} className='w-[77px] h-[90px] rounded-2xl lg:w-[10rem] lg:h-32' />
+        }
       </figure>
       <div className='flex justify-between pt-[2px] w-[73.67%] pr-[2px] lg:w-full lg:pt-0'>
         <div className='flex flex-col text-xs justify-between'>
