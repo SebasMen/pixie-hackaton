@@ -27,7 +27,7 @@ const numberOfInstallmentsOptions: SelectItem[] = [
 const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPaymentAnswer, countriesOptions }:PaymentSectionProps) => {
   const [sameBillingAdressSt, setSameBillingAdressSt] = useState<boolean>(true);
   const [loadingST, setLoadingST] = useState(false);
-  const { products } = useAppContext();
+  const { products, toast } = useAppContext();
   const { form, onSubmit, handleRadioChange, handleSelectChange, handleFormChange } = useForm<paymentForm>({
     billingAddress: userData?.address ? userData.address : '',
     card_name: '',
@@ -92,12 +92,13 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   });
 
   // Methods
+  // eslint-disable-next-line complexity
   const validateForm = () => {
     // Clear all errors
     resetValidator();
     let error = false;
     // Regular expression to Date mm/yy
-    const date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1[1-9]|2[1-9]|3[1-9]|4[1-9])$/;
+    const date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1[1-9]|2[0-9]|3[0-9]|4[0-9])$/;
 
     if (!validator.isAlpha(form.card_name, 'es-ES', { ignore: ' ' })) {
       handlePutMessageError('card_name', 'Solo se debe escribir letras');
@@ -114,8 +115,13 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
       error = true;
     }
 
-    if (!validator.isLength(form.card_cvv, { min: 3 })) {
-      handlePutMessageError('card_cvv', 'El número de targeta debe mas de 3 digitos');
+    if (!validator.isLength(form.card_cvv, { min: 3, max: 4 })) {
+      handlePutMessageError('card_cvv', 'El cvv debe tener mas de 3 digitos');
+      error = true;
+    }
+
+    if (!validator.isNumeric(form.card_cvv)) {
+      handlePutMessageError('card_cvv', 'El cvv solo recibe digitos');
       error = true;
     }
 
@@ -176,11 +182,18 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     setLoadingST(true);
     const response = await paymentService.sendCardInformation(form);
     if (response.err)
-      console.error(response.err);
+      toast.fire({
+        icon: 'warning',
+        title: response.err,
+      });
     else if (response.data.status === 'OK')
       sendDataPayment(response.data);
     else
-      console.log('ocurrio error en la api');
+      toast.fire({
+        icon: 'warning',
+        title: 'Hubo un error en la api.',
+      });
+    setLoadingST(false);
   };
 
   const sendDataPayment = async (dataPost: postSendTokenCard) => {
@@ -194,7 +207,10 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     else if (data.status === 'OK')
       setAnswerData(data.data.order_detail.details.approvedTransactionAmount, data.data.order_detail.details.transactionId, data.status);
     else
-      console.error('error en la api');
+      toast.fire({
+        icon: 'warning',
+        title: 'Hubo un error en la api.',
+      });
     changeStep(5);
     setLoadingST(false);
   };
