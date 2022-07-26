@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
+import { useFetch } from '../../hooks';
 
 import ProductCard from '../../components/common/productCard';
 import Carrousel from '../../components/common/carrousel';
@@ -7,7 +8,6 @@ import Button from '../../components/common/button';
 
 import { ProductListResponse } from '../../interfaces/product';
 import { PetFeedData } from '../../helpers/calculator';
-import { useFetch } from '../../hooks';
 import calculatorService from '../../services/calculatorService';
 
 const ResultSection = ({ data, reset }: ResultSectionProps) => {

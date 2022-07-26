@@ -6,7 +6,6 @@ import Icon from '../icon';
 
 import { filterShop, typePet, agePet } from '../../../interfaces/filter';
 
-/// import { vegetablesCatalogue } from '../../../assets/images';
 import {
   CatIcon,
   DogIcon,
@@ -67,8 +66,6 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
   // Component
   return (
     <div className='w-full flex flex-col items-center justify-center rounded-t-3xl overflow-hidden transform -mt-4 lg:gap-9' style={{ backgroundColor: '#FFF6EC' }}>
-      {/* Backgrounds */}
-      {/* <img className='absolute w-full md:pt-20 object-cover object-right -z-10' src={vegetablesCatalogue} /> */}
 
       <div className='flex flex-row mb-7 md:mb-14 mt-[5.4rem] gap-12 md:gap-14'>
         {filters.map(({ name, key, img, imgSelected }) => (
@@ -88,7 +85,7 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
                   className={`z-10 rounded-full ring-1 ring-primary md:ring-0  shadow-none transform transition-all
                   ${filter.typePet.includes(key as any) ? 'px-3 md:px-2' : 'px-2 md:px-3'}
                   `}
-                  onClick={() => { }}
+                  onClick={() => handleFilterChange('typePet', key) }
                   shadow={false}
                   sizeContainer={`md:h-[4.8rem] md:w-[4.8rem]
                   ${filter.typePet.includes(key as any) ? 'h-[4.8rem] w-[4.8rem]' : 'h-[3.8rem] w-[3.8rem]'}`}

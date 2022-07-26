@@ -1,18 +1,19 @@
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../../../hooks';
+import { useShoppingCar } from '../../../hooks/useShoppingCar';
 
-import AddRemoveItem from '../../addRemoveItem/AddRemoveItem';
+import AddRemoveItem from '../addRemoveItem/AddRemoveItem';
 import IconButton from '../iconButton';
 import Tag from './tag';
 
 import { Product } from '../../../interfaces/product';
-
 import { transformAge } from '../../../helpers/productHelper';
 import { capitalize } from '../../../helpers/capitalize';
-import { useAppContext } from '../../../hooks';
-import { useShoppingCar } from '../../../hooks/useShoppingCar';
 
 import { basket, CatIcon, DogIcon, notImage } from '../../../assets/vectors/index';
 import { transformUrlGDrive } from '../../../helpers/imgHelper';
+import Tooltiped from '../tooltiped';
+import { useEffect, useState } from 'react';
 
 export const ProductCard = ({ product, showControls = true, className, isCarrousel, selected }: ProductCardProps) => {
   // Hooks
@@ -20,7 +21,14 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
   const ages = transformAge(product);
   const { updateContext } = useAppContext();
   const { addRemoveProduct } = useShoppingCar();
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    if (screen.width < 800)
+      setIsMobile(true);
+  }, [screen.width]);
+
+  // Handle
   const handleSubmit = () => {
     updateContext(old => ({ ...old, productView: product, showPopup: false }));
     navigate('/product/detail/' + product.id);
@@ -73,7 +81,14 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
           )}
         </div>
         <div className={'text-center text-xs md:text-lg w-full'}>
-          <h4 className={`${product.name.length > 18 && 'leading-none'} text-primary mb-1`}>{capitalize(product.name)}</h4>
+          {product.name.length > 18 && !isMobile
+            ?
+            <Tooltiped label={product.name}>
+              <h4 className='text-primary mb-1'>{capitalize(product.name.slice(0, 18) + '...')}</h4>
+            </Tooltiped>
+            :
+            <h4 className={`${product.name.length > 18 && 'leading-none'} text-primary mb-1`}>{capitalize(product.name)}</h4>
+          }
           <div className='flex items-center justify-around'>
             <p className='font-sanzBold text-base md:text-xl'>
               $ {product.price}{' '}

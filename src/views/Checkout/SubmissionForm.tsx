@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext, useForm } from '../../hooks';
 import validator from 'validator';
+import useValidator from '../../hooks/useValidator';
 
 import Button from '../../components/common/button';
 import Spinner from '../../components/common/spinner';
@@ -12,7 +13,6 @@ import SelectField, { SelectItem } from '../../components/form/selectField';
 import { SubmissionFormInterface, SubmissionFormValidate } from '../../interfaces/checkout';
 import { mexicanStates } from '../../@fake/statesFake';
 import checkOutService from '../../services/checkOutService';
-import useValidator from '../../hooks/useValidator';
 
 const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }:SubmissionFormProps) => {
   // Hooks
@@ -20,7 +20,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
   const [loadingSt, setLoadingSt] = useState(false);
   const [acceptConditions, setAcceptConditions] = useState(false);
   const [showMessageConditions, setShowMessageConditions] = useState(false);
-  const { deliveryNote } = useAppContext();
+  const { deliveryNote, toast } = useAppContext();
   const { form, onSubmit, handleFormChange, handleSelectChange, setForm } = useForm<SubmissionFormInterface>(
     {
       city: '',
@@ -125,7 +125,10 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
     // Send information to api
     const { data, error } = await checkOutService.sendUserInformation(form);
     if (error)
-      console.log(error.map(er => console.log(er.msg)));
+      toast.fire({
+        icon: 'warning',
+        title: error.map(er => er.msg),
+      });
     else {
       setData(form);
       setIdCustomer(data.id);
@@ -296,7 +299,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           messageError={validatorBody.country.message}
         />
         <CheckField
-          onClick={() => console.log('aa')}
+          onClick={() => console.log('Hi')}
           label='Guardar mi información y consultar más rápidamente la próxima vez'
           border='border border-primary'
           sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'

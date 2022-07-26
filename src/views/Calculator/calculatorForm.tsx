@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { MultiValue, SingleValue } from 'react-select';
-
 import Button from '../../components/common/button';
 import TextField from '../../components/form/textField';
 import SelectField, { SelectItem } from '../../components/form/selectField';

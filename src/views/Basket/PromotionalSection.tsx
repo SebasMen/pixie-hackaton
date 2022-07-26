@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
-import TextArea from '../../components/form/textArea';
 import { useAppContext, useForm } from '../../hooks';
+
+import TextArea from '../../components/form/textArea';
+
 import { PromotionalForm } from '../../interfaces/basket';
 
 const PromotionalSection = () => {

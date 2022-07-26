@@ -10,7 +10,6 @@ export const useValidator = <T>(
     setValidator(old => ({
       ...old,
       [nameInput]: {
-        state: true,
         message
       },
     }));

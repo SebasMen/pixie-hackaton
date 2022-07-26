@@ -1,15 +1,15 @@
 import { useState } from 'react';
+import { useForm } from '../../hooks';
+import useAppContext from '../../hooks/useAppContext';
 
 import CalculatorForm from './calculatorForm';
 import ResultSection from './ResultSection';
 
-import { CalculatorForm as CalculatorFormType } from '../../interfaces/calculator';
 import { SelectItem } from '../../components/form/selectField';
-import { useForm } from '../../hooks';
 
 import { dogCalculator, fullDogCalculator, backgroundCalculator } from '../../assets/images';
 import { getPetFeedData, PetFeedData, PetInfo } from '../../helpers/calculator';
-import useAppContext from '../../hooks/useAppContext';
+import { CalculatorForm as CalculatorFormType } from '../../interfaces/calculator';
 
 const ages: SelectItem[] = [
   { value: 'cachorros', label: 'Cachorro (2 a 12 meses)' },

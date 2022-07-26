@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import useForm from '../../../hooks/useForm';
+
 import CheckField from '../../form/checkField';
 import TextField from '../../form/textField';
 
 import { Product, ResultProduct } from '../../../interfaces/product';
-import useForm from '../../../hooks/useForm';
 import { capitalize } from '../../../helpers/capitalize';
 
 const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 500 }: RecomendationItemProps) => {

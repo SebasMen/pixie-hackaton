@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { dogIconCheckout } from '../../assets/vectors';
-import Button from '../../components/common/button';
 import useShoppingCar from '../../hooks/useShoppingCar';
+
+import Button from '../../components/common/button';
+
 import { postSendPayment } from '../../interfaces/payment';
+
+import { dogIconCheckout } from '../../assets/vectors';
 
 const AnswerSection = ({ paymentAnswer: { data, status } }:AnswerSectionProps) => {
   // Hooks

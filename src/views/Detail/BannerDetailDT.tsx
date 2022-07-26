@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import { transformUrlGDrive } from '../../helpers/imgHelper';
-import { transUrlImages } from '../../helpers/productHelper';
 import { useAppContext } from '../../hooks';
-import { notImage } from '../../assets/vectors/index';
+
 import MiniImageDT from './MiniImageDT';
 
+import { transformUrlGDrive } from '../../helpers/imgHelper';
+import { transUrlImages } from '../../helpers/productHelper';
+import { notImage } from '../../assets/vectors/index';
+
 const BannerDetailDT = () => {
-  const [image, setImage] = useState(0);
-  /// const [showMoreImg, setShowMoreImg] = useState(false);
   // Hooks
+  const [image, setImage] = useState(0);
   const { productView: product } = useAppContext();
-  /// const [product, setproduct] = useState<Product>(productView);
+
   const arrayUrlImages = transUrlImages(product);
 
   return (

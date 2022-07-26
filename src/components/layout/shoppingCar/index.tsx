@@ -1,10 +1,12 @@
-import Scrollbars from 'react-custom-scrollbars-2';
-import { useNavigate } from 'react-router-dom';
-import { calculateTotal } from '../../../helpers/productHelper';
 import { useAppContext } from '../../../hooks';
+import { useNavigate } from 'react-router-dom';
+
+import Scrollbars from 'react-custom-scrollbars-2';
 import Button from '../../common/button';
 import IconButton from '../../common/iconButton';
 import ItemShoppingCarMini from '../../common/itemShoppingCarMini';
+
+import { calculateTotal } from '../../../helpers/productHelper';
 
 const ShoppingCar = ({ onClose, show }: shoppingCarProps) => {
   // Hooks

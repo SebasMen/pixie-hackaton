@@ -1,9 +1,11 @@
+import { useForm } from '../../hooks';
+import { useState } from 'react';
+
 import Button from '../../components/common/button';
 import ResumenShipping from './ResumenShipping';
 import RadioField from '../../components/form/radioField';
+
 import { shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
-import { useForm } from '../../hooks';
-import { useState } from 'react';
 
 const ShippingSection = ({ changeStep, userData, setData }: SubmissionFormProps) => {
   // Hooks

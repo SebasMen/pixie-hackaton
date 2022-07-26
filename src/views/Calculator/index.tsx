@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { useAppContext } from '../../hooks';
+
 import IconButton from '../../components/common/iconButton';
 import Footer from '../../components/layout/footer';
 import Page from '../../components/layout/page';
@@ -5,12 +8,12 @@ import BannerSection from './BannerSection';
 import CalculatorSection from './calculatorSection';
 
 import { dog } from '../../assets/vectors';
-import { useState } from 'react';
-import { useAppContext } from '../../hooks';
 
 const Calculator = () => {
+  // Hooks
   const [view, setView] = useState(0);
   const { marginWhatsApp } = useAppContext();
+
   return (
     <Page color='#F9D864' className='bg-secondary'>
       {/* Banner */}

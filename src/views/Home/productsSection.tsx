@@ -63,7 +63,6 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       <Carrousel
         onSlideChange={setSelected}
         className='pt-10 pb-10 h-max lg:px-28 max-w-[1440px]'
-        /// bulletClassName='mt-[60px]'
         breakpoints={{
           300: {
             slidesPerView: 1.7,
@@ -137,8 +136,6 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
           <ProductCard key={product.id} product={product} />
         ))}
         <div className='h-[357px] w-[16.815rem] hidden xl:block' />
-        {/* <div className='h-[357px] w-[16.815rem] hidden 3xl:block' /> */}
-        {/* <div className='h-[357px] w-[16.815rem] hidden 3xl:block' /> */}
       </div>
       <Button
         className='mt-10 mb-10 text-primary font-bold font-sanzBold w-4/5 border border-primary md:w-80 lg:mb-12 xl:-ml-[19rem] 2xl:-ml-[21rem]'

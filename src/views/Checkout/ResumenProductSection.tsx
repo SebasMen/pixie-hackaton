@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import { basketRed, expand_more } from '../../assets/vectors';
-import Icon from '../../components/common/icon';
-import TotalSection from '../../views/Basket/TotalSection';
-import { calculateTotal } from '../../helpers/productHelper';
 import { useAppContext } from '../../hooks';
+
+import TotalSection from '../../views/Basket/TotalSection';
 import ItemShoppingCarMini from '../../components/common/itemShoppingCarMini';
+
+import { calculateTotal } from '../../helpers/productHelper';
 import { shippingTypeForm } from '../../interfaces/checkout';
 
+import { basketRed, expand_more } from '../../assets/vectors';
+
 const ResumenProductSection = ({ shippingInfo }:ResumenProductSectionProps) => {
+  // Hooks
   const [isActive, setIsActive] = useState(false);
   const { products } = useAppContext();
 

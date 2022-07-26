@@ -1,14 +1,17 @@
-import AddRemoveItem from '../../addRemoveItem/AddRemoveItem';
-
 import useShoppingCar from '../../../hooks/useShoppingCar';
+
+import AddRemoveItem from '../addRemoveItem/AddRemoveItem';
+
 import { calculateGrs } from '../../../helpers/productHelper';
 import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import { capitalize } from '../../../helpers/capitalize';
 import { CartItem } from '../../../interfaces/basket';
 
 const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingCarProps) => {
+  // Hooks
   const { deleteProduct, addRemoveProduct } = useShoppingCar();
 
+  // Handle
   const handleDeleteProduct = () => {
     deleteProduct(item.product.id);
     if (showMessageDelete)

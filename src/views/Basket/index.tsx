@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../../hooks';
 
 import ItemShoppingCar from '../../components/common/itemShoppingCar';
 import Button from '../../components/common/button';
@@ -10,7 +11,7 @@ import TotalSection from './TotalSection';
 
 import { CartItem } from '../../interfaces/basket';
 import { capitalize } from '../../helpers/capitalize';
-import { useAppContext } from '../../hooks';
+
 import { basketRed } from '../../assets/vectors/';
 
 const Basket = () => {

@@ -1,28 +1,28 @@
+import { useNavigate } from 'react-router-dom';
+import { useRef, useEffect, useState } from 'react';
+
 import Button from '../../components/common/button';
 
 import { fillets } from '../../assets/vectors';
 import { dogs } from '../../assets/images/';
-import { useNavigate } from 'react-router-dom';
-import { useRef, useEffect, useState } from 'react';
 
 export const CalculatorSection = () => {
-
+  // Hooks
   const sectionRef = useRef<HTMLInputElement | null>(null);
   const [initAnimate, setInitAnimate] = useState(false);
 
   useEffect(() => {
-   window.addEventListener('scroll', sectionPage, true);
+    window.addEventListener('scroll', sectionPage, true);
 
-   return () => {
-     window.removeEventListener('scroll', sectionPage);
-   };
+    return () => {
+      window.removeEventListener('scroll', sectionPage);
+    };
   }, []);
 
   const sectionPage = (ev: Event) => {
     const div :any = sectionRef.current;
-    if (div?.getBoundingClientRect().y && div?.getBoundingClientRect().y <= 700) {
+    if (div?.getBoundingClientRect().y && div?.getBoundingClientRect().y <= 700)
       setInitAnimate(true);
-    }
   };
 
   const navigate = useNavigate();

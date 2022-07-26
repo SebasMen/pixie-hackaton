@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { useAppContext, useFetch } from '../../hooks';
+
 import Page from '../../components/layout/page';
 import ProductsSection from './productsSection';
 import Banner from '../../components/layout/banner';
@@ -5,16 +8,14 @@ import IconButton from '../../components/common/iconButton';
 import Footer from '../../components/layout/footer';
 import CalculatorSection from './calculatorSection';
 
-import { backgroundWood } from '../../assets/images';
-import { dog } from '../../assets/vectors';
-
 import { dataBanner } from '../../@fake/bannerFake';
-import { useAppContext, useFetch } from '../../hooks';
 import Spinner from '../../components/common/spinner';
 import { ProductListResponse } from '../../interfaces/product';
-import { useEffect } from 'react';
 import productService from '../../services/productService';
+
 import '../../styles/home.css';
+import { backgroundWood } from '../../assets/images';
+import { dog } from '../../assets/vectors';
 
 const Home = () => {
   const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);

@@ -4,6 +4,8 @@ import { billingDetailsInterface, generatePayment } from '../interfaces/payment'
 import { productShort } from '../interfaces/product';
 import { calculateTotal } from './productHelper';
 
+// Organize the data to send them to the api
+// eslint-disable-next-line max-params
 export const organiceInformationPayment = (idCustomer: string, tokenId: string, userData: SubmissionFormInterface | undefined, products: CartItem[], shippingData: shippingTypeForm, form: paymentForm, sameBillingAddress: boolean): generatePayment => {
   const dataBilling = organiceBillingDetails(userData, form, sameBillingAddress);
 
@@ -59,6 +61,7 @@ const organiceProducts = (products: CartItem[]) : Array<productShort> => {
   return productsArray;
 };
 
+// If the person send other billing details is change here
 const organiceBillingDetails = (userData: SubmissionFormInterface | undefined, form:paymentForm, sameBillingAddress: boolean) => {
   // Data base
   let dataIsFromForm: billingDetailsInterface = {
@@ -84,6 +87,7 @@ const organiceBillingDetails = (userData: SubmissionFormInterface | undefined, f
   return dataIsFromForm;
 };
 
+// Calculate the total with the shipping price
 export const calculateTotalPayment = (productsCar: CartItem[], shippingData: shippingTypeForm): number => {
   const totalProduct = calculateTotal(productsCar);
   return totalProduct + shippingData.price;

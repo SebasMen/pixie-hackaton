@@ -1,16 +1,16 @@
 import { useState } from 'react';
+import { useAppContext } from '../../hooks';
+import useShoppingCar from '../../hooks/useShoppingCar';
 
 import Button from '../../components/common/button';
 import Tag from '../../components/common/productCard/tag';
 import ProductCounter from './productCounter';
 
-import { basket } from '../../assets/vectors';
-
 import { Product } from '../../interfaces/product';
 import { transformAge } from '../../helpers/productHelper';
-import useShoppingCar from '../../hooks/useShoppingCar';
 import { capitalize } from '../../helpers/capitalize';
-import { useAppContext } from '../../hooks';
+
+import { basket } from '../../assets/vectors';
 
 const InfoSection = ({ product }: InfoSectionProps) => {
   // Hooks

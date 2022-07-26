@@ -1,7 +1,9 @@
 import { MultiValue, SingleValue } from 'react-select';
-import { paymentForm, PaymentFormValidate } from '../../../interfaces/checkout';
+
 import SelectField, { SelectItem } from '../../form/selectField';
 import TextField from '../../form/textField';
+
+import { paymentForm, PaymentFormValidate } from '../../../interfaces/checkout';
 
 const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError }: FormBillingProps) => (
   <div className='mt-4 flex flex-col gap-[10px] lg:mt-[38px]'>

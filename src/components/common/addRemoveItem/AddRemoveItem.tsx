@@ -1,4 +1,4 @@
-import IconButton from '../common/iconButton';
+import IconButton from '../iconButton';
 
 const AddRemoveItem = ({ handleChance }: AddRemoveItemProps) => (
   <div className='flex items-center rounded-3xl text-white font-sanzBold w-full h-full' style={{ backgroundColor: '#929292' }}>

@@ -6,9 +6,9 @@ import IconButton from '../../components/common/iconButton';
 import Button from '../../components/common/button';
 
 import { Product, ResultProduct } from '../../interfaces/product';
+import { capitalize } from '../../helpers/capitalize';
 
 import { basket } from '../../assets/vectors';
-import { capitalize } from '../../helpers/capitalize';
 
 const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendationProps) => {
   // Hooks

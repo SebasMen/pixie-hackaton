@@ -1,16 +1,19 @@
-import Icon from '../../common/icon';
-import ProductCard from '../../common/productCard';
-import { products } from '../../../@fake/productsFake';
-import Button from '../../common/button';
-import IconButton from '../../common/iconButton';
 import { useAppContext } from '../../../hooks';
 import { useNavigate } from 'react-router-dom';
+
+import Icon from '../../common/icon';
+import ProductCard from '../../common/productCard';
+import Button from '../../common/button';
+import IconButton from '../../common/iconButton';
+
+import { products } from '../../../@fake/productsFake';
 
 const Popup = () => {
   // Hooks
   const { updateContext } = useAppContext();
   const navigate = useNavigate();
 
+  // Methods
   const handleClosePopup = () => {
     updateContext(old => ({ ...old, showPopup: false }));
   };
@@ -62,9 +65,6 @@ const Popup = () => {
       </div>
     </div>
   );
-
 };
-
-
 
 export default Popup;

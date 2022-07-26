@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useAppContext, useFetch } from '../../hooks';
 
 // Components
 import Page from '../../components/layout/page';
@@ -9,15 +10,15 @@ import ProductsSection from './productsSection';
 import Spinner from '../../components/common/spinner';
 import BannerSection from './bannerSection';
 
-import { dog } from '../../assets/vectors';
-
 import { ProductListResponse } from '../../interfaces/product';
 import { filterShop } from '../../interfaces/filter';
-import { useAppContext, useFetch } from '../../hooks';
 import productService from '../../services/productService';
+
 import '../../styles/catalogue.css';
+import { dog } from '../../assets/vectors';
 
 const Catalogue = () => {
+  // Hooks
   const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
   const [filterSelected, setfilterSelected] = useState<filterShop>({
     agePet: [],

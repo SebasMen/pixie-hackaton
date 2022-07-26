@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../../hooks';
 
 import Page from '../../components/layout/page';
 import Button from '../../components/common/button';
@@ -16,9 +16,7 @@ import ExtraInfoContainer from './ExtraInfoContainer';
 
 // DBFake
 import { ingredients } from '../../@fake/detailFake';
-
 import { capitalize } from '../../helpers/capitalize';
-import { useAppContext } from '../../hooks';
 
 import { dog, backArrow } from '../../assets/vectors';
 import '../../styles/banner.css';

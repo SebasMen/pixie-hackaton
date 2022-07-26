@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useFetch } from '../../hooks';
 
 import Page from '../../components/layout/page';
 import ResumenSection from './ResumenProductSection';
@@ -8,14 +9,14 @@ import ShippingSection from './ShippingSection';
 import PaymentSection from './PaymentSection';
 import TotalSection from '../Basket/TotalSection';
 import AnswerSection from './AnswerSection';
-
-import { basketRed } from '../../assets/vectors/';
-import { selectCountryService, shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
 import Footer from '../../components/layout/footer';
+import { SelectItem } from '../../components/form/selectField';
+
+import { selectCountryService, shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
 import { postSendPayment } from '../../interfaces/payment';
 import checkOutService from '../../services/checkOutService';
-import { useFetch } from '../../hooks';
-import { SelectItem } from '../../components/form/selectField';
+
+import { basketRed } from '../../assets/vectors/';
 
 const CheckOut = () => {
   // Hooks

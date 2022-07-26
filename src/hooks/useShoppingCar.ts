@@ -6,6 +6,7 @@ import { Product } from '../interfaces/product';
 export const useShoppingCar = () => {
   const { updateContext, products } = useContext(AppContext);
 
+  // Add or remove a product
   const addRemoveProduct = (product: Product, value: number) => {
     const itemIndex = getProductIndex(product.id);
 
@@ -26,7 +27,7 @@ export const useShoppingCar = () => {
 
   const deleteProduct = (productId: string) => updateContext(old => ({ ...old, products: [...old.products.filter(item => item.product.id !== productId)] }));
 
-  const deleteAllProducts = () => updateContext(old => ({...old, products: [] }));
+  const deleteAllProducts = () => updateContext(old => ({ ...old, products: [] }));
 
   return { addRemoveProduct, deleteProduct, deleteAllProducts };
 };

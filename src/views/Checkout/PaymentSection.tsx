@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useAppContext, useForm } from '../../hooks';
 import validator from 'validator';
+import useValidator from '../../hooks/useValidator';
 
 import Button from '../../components/common/button';
 import RadioField from '../../components/form/radioField';
-import SelectField, { SelectItem } from '../../components/form/selectField';
+import { SelectItem } from '../../components/form/selectField';
 import TextField from '../../components/form/textField';
 import ResumenShipping from './ResumenShipping';
 import Spinner from '../../components/common/spinner';
@@ -13,9 +14,7 @@ import FormBilling from '../../components/common/formBilling';
 import { paymentForm, PaymentFormValidate, shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
 import paymentService from '../../services/paymentService';
 import { postSendPayment, postSendTokenCard } from '../../interfaces/payment';
-
 import { calculateTotalPayment, organiceInformationPayment } from '../../helpers/paymentHelper';
-import useValidator from '../../hooks/useValidator';
 
 const numberOfInstallmentsOptions: SelectItem[] = [
   { value: '1', label: '1 Cuota' },
@@ -25,6 +24,7 @@ const numberOfInstallmentsOptions: SelectItem[] = [
 ];
 
 const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPaymentAnswer, countriesOptions }:PaymentSectionProps) => {
+  // Hooks
   const [sameBillingAdressSt, setSameBillingAdressSt] = useState<boolean>(true);
   const [loadingST, setLoadingST] = useState(false);
   const { products, toast } = useAppContext();

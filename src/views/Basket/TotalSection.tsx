@@ -1,9 +1,12 @@
+import { useAppContext } from '../../hooks';
+
 import { calculateTotalPayment } from '../../helpers/paymentHelper';
 import { calculateTotal } from '../../helpers/productHelper';
-import { useAppContext } from '../../hooks';
+
 import { shippingTypeForm } from '../../interfaces/checkout';
 
 const TotalSection = ({ showTaxes, shippingInfo = { type: 'estandar', price: 12000 } }:TotalSectionProps) => {
+  // Hooks
   const { products } = useAppContext();
 
   return (
@@ -34,6 +37,5 @@ interface TotalSectionProps {
   showTaxes?: boolean;
   shippingInfo?: shippingTypeForm;
 }
-
 
 export default TotalSection;
