@@ -1,11 +1,11 @@
-const ExtraInfo = ({ type, infoList, infoTable, infoConservation }: ExtraInfoProps) => {
+const ExtraInfo = ({ type, infoList, infoTable, nameTable, infoConservation }: ExtraInfoProps) => {
   if (type === 'list')
     return <ul className='font-subTitles text-sm'>
       {infoList?.map((text, i) => <li className='list-disc text-gray-700 text-base' key={`li${i}${text}`}>{ text }.</li>)}
     </ul>;
   if (type === 'table')
     return <div className='my-8'>
-      <div className='w-full bg-fourth text-center text-white rounded-lg font-bold py-2 font-paragraph'>Etapa: Senior mayores de 7 años</div>
+      <div className='w-full bg-fourth text-center text-white rounded-lg font-bold py-2 font-paragraph'>Etapa: {nameTable}</div>
       <table className='table-auto border-collapse font-subTitles w-full'>
         <tbody>
           {infoTable?.map(({ grams, kl }) =>
@@ -21,10 +21,7 @@ const ExtraInfo = ({ type, infoList, infoTable, infoConservation }: ExtraInfoPro
   return (
     <div className='font-subTitles'>
       <p className='text-sm text-gray-700'>
-        <strong className='text-fourth'>Congelado:</strong> {infoConservation?.frozen}
-      </p>
-      <p className='text-sm text-gray-700'>
-        <strong className='text-fourth'>Refrigerado:</strong> {infoConservation?.cooled}
+        {infoConservation}
       </p>
     </div>);
 };
@@ -33,16 +30,13 @@ interface ExtraInfoProps {
     type: 'list' | 'table' | 'conservation',
     infoList?: Array<string>,
     infoTable?:Array<interfaceTable>
-    infoConservation? : interfaceConservation
+    nameTable?: string
+    infoConservation? : string
 }
 
 interface interfaceTable {
   kl: string,
   grams: string
-}
-interface interfaceConservation{
-  frozen: string,
-  cooled: string
 }
 
 export default ExtraInfo;

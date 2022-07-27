@@ -54,7 +54,8 @@ const organiceProducts = (products: CartItem[]) : Array<productShort> => {
       title: item.product.name,
       price: parseInt(String(item.product.price), 10),
       sku: item.product.id,
-      quantity: item.quantity
+      quantity: item.quantity,
+      image: item.product.url_image
     };
     return productItem;
   });

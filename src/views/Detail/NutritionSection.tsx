@@ -1,4 +1,5 @@
 import NutritionItem from '../../components/common/nutritionItem';
+import { ingredientesProps } from '../../interfaces/product';
 
 const NutritionSection = ({ ingredients }: NutritionSectionProps) => (
   <div className='flex flex-col w-full md:bg-transparent mt-1 px-5 md:px-0 md:pr-2'>
@@ -6,18 +7,16 @@ const NutritionSection = ({ ingredients }: NutritionSectionProps) => (
       <span className='text-lg font-bold text-primary '>Ingredientes y Nutrición</span>
     </div>
     <div className='mb-6 p-3 ring-1 ring-primary text-[11px] grid grid-cols-4 gap-4 md:grid-cols-12 text-primary font-extrabold md:pt-3 rounded-3xl md:mx-0 md:py-4 md:px-3 md:gap-0'>
-      {ingredients.map(({ img, name }) => (<NutritionItem key={name} name={name} img={img} />))}
+      {ingredients.map(({ img, name }) => (
+        img &&
+        <NutritionItem key={name} name={name} img={img} />
+      ))}
     </div>
   </div>
 );
 
 interface NutritionSectionProps {
   ingredients: Array<ingredientesProps>;
-}
-
-interface ingredientesProps {
-  name: string,
-  img: string
 }
 
 export default NutritionSection;

@@ -26,10 +26,7 @@ export interface Product {
   quantitySold?: number;
   totalPrice?: number;
   url_image: string;
-  /// tag: {
-  //   name: string;
-  //   key: string;
-  // };
+  recommendation_for_use: string;
 }
 
 export interface productShort {
@@ -38,9 +35,15 @@ export interface productShort {
   price: number,
   sku: string,
   quantity: number
+  image: string
 }
 
 export interface productCatalogue {
   name: string;
   products: Array<Product>;
+}
+
+export interface ingredientesProps {
+  name: string,
+  img: string
 }

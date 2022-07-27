@@ -17,7 +17,8 @@ export const products: Array<Product> = [
     presentation: '500grs',
     status: '',
     benefits: '',
-    url_image: 'https://drive.google.com/file/d/1QCNeXCukJaRdP9H6KdZRKfYGESxY8024/view?usp=sharing4'
+    url_image: 'https://drive.google.com/file/d/1QCNeXCukJaRdP9H6KdZRKfYGESxY8024/view?usp=sharing4',
+    recommendation_for_use: ''
   },
   {
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -35,7 +36,8 @@ export const products: Array<Product> = [
     presentation: '150grs',
     status: '',
     benefits: '',
-    url_image: 'https://drive.google.com/file/d/1QCNeXCukJaRdP9H6KdZRKfYGESxY8024/view?usp=sharing'
+    url_image: 'https://drive.google.com/file/d/1QCNeXCukJaRdP9H6KdZRKfYGESxY8024/view?usp=sharing',
+    recommendation_for_use: ''
   },
   {
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -53,7 +55,8 @@ export const products: Array<Product> = [
     presentation: '200grs',
     status: '',
     benefits: '',
-    url_image: 'https://drive.google.com/file/d/12PbpxuUarR6JVyy7GrMffIEywNX9FVa2/view?usp=sharing'
+    url_image: 'https://drive.google.com/file/d/12PbpxuUarR6JVyy7GrMffIEywNX9FVa2/view?usp=sharing',
+    recommendation_for_use: ''
   },
   {
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -71,7 +74,8 @@ export const products: Array<Product> = [
     presentation: '500grs',
     status: '',
     benefits: '',
-    url_image: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+    url_image: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+    recommendation_for_use: ''
   },
   {
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -89,7 +93,8 @@ export const products: Array<Product> = [
     presentation: '500grs',
     status: '',
     benefits: '',
-    url_image: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+    url_image: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+    recommendation_for_use: ''
   },
   {
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -107,7 +112,8 @@ export const products: Array<Product> = [
     presentation: '500grs',
     status: '',
     benefits: '',
-    url_image: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+    url_image: 'https://images.unsplash.com/photo-1625316708582-7c38734be31d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+    recommendation_for_use: ''
   },
   // {
   //   id: '4',

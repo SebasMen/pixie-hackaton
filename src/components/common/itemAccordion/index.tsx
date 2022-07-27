@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ExtraInfo from '../../../views/Detail/ExtraInfo';
 import Icon from '../icon';
 
-const ItemAccordion = ({ name, infoList, infoTable, infoConservation, type }: ItemAccordionProps) => {
+const ItemAccordion = ({ name, infoList, infoTable, nameTable, infoConservation, type }: ItemAccordionProps) => {
   // Hooks
   const [isOpen, setIsOpen] = useState(false);
 
@@ -22,7 +22,7 @@ const ItemAccordion = ({ name, infoList, infoTable, infoConservation, type }: It
         <div className='pl-5'>
           {type === 'list' && <ExtraInfo type={type} infoList={infoList}/>}
         </div>
-        {type === 'table' && <ExtraInfo type={type} infoTable={infoTable}/>}
+        {type === 'table' && <ExtraInfo type={type} infoTable={infoTable} nameTable={nameTable}/>}
         {type === 'conservation' && <ExtraInfo type={type} infoConservation={infoConservation}/>}
       </div>
     </li>
@@ -33,16 +33,13 @@ interface ItemAccordionProps {
   name: string,
   type: 'list' | 'table' | 'conservation',
   infoList?: Array<string>,
-  infoTable?:Array<interfaceTable>
-  infoConservation? : interfaceConservation
+  infoTable?:Array<interfaceTable>,
+  nameTable? : string,
+  infoConservation? : string
 }
 interface interfaceTable {
   kl: string,
   grams: string
-}
-interface interfaceConservation{
-  frozen: string,
-  cooled: string
 }
 
 export default ItemAccordion;

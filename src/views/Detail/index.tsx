@@ -14,9 +14,8 @@ import InfoSection from './InfoSection';
 import BannerDetailDT from './BannerDetailDT';
 import ExtraInfoContainer from './ExtraInfoContainer';
 
-// DBFake
-import { ingredients } from '../../@fake/detailFake';
 import { capitalize } from '../../helpers/capitalize';
+import { organizeIngredients } from '../../helpers/detailHelper';
 
 import { dog, backArrow } from '../../assets/vectors';
 import '../../styles/banner.css';
@@ -58,7 +57,7 @@ const Detail = () => {
         </div>
 
         {/* Nutrition */}
-        <NutritionSection ingredients={ingredients} />
+        <NutritionSection ingredients={organizeIngredients(productView.ingredients)} />
 
         <ExtraInfoContainer product={productView} />
 

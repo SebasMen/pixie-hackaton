@@ -79,24 +79,116 @@ export const extraInfo = {
     'Reducción en la cantidad de deposiciones.',
   ],
 
-  infoConsumer: [
-    {
-      kl: '1-10',
-      grams: '40 - 200'
+  infoConsumer: {
+    DOG: {
+      Cachorros: [
+        {
+          kl: '1-10',
+          grams: '60 - 600'
+        },
+        {
+          kl: '11-16',
+          grams: '660 - 1560'
+        },
+        {
+          kl: '17-28',
+          grams: '1620 - 2880'
+        },
+      ],
+      Adultos: [
+        {
+          kl: '1-10',
+          grams: '30 - 310'
+        },
+        {
+          kl: '11-26',
+          grams: '341 - 806'
+        },
+        {
+          kl: '27-48',
+          grams: '837 - 1448'
+        },
+        {
+          kl: '49-60',
+          grams: '1519 - 1860'
+        },
+      ],
+      Senior: [
+        {
+          kl: '1-10',
+          grams: '28 - 280'
+        },
+        {
+          kl: '11-26',
+          grams: '308 - 728'
+        },
+        {
+          kl: '27-48',
+          grams: '756 - 1344'
+        },
+        {
+          kl: '49-60',
+          grams: '1372 - 1680'
+        },
+      ],
     },
-    {
-      kl: '11-16',
-      grams: '40 - 200'
-    },
-    {
-      kl: '27-48',
-      grams: '40 - 200'
-    },
-    {
-      kl: '1-10',
-      grams: '49 - 60'
-    },
-  ],
+    CAT: {
+      Cachorros: [
+        {
+          kl: '1-10',
+          grams: '40 - 200'
+        },
+        {
+          kl: '11-16',
+          grams: '40 - 200'
+        },
+        {
+          kl: '27-48',
+          grams: '40 - 200'
+        },
+        {
+          kl: '1-10',
+          grams: '49 - 60'
+        },
+      ],
+      Adultos: [
+        {
+          kl: '1-10',
+          grams: '40 - 200'
+        },
+        {
+          kl: '11-16',
+          grams: '40 - 200'
+        },
+        {
+          kl: '27-48',
+          grams: '40 - 200'
+        },
+        {
+          kl: '1-10',
+          grams: '49 - 60'
+        },
+      ],
+      Senior: [
+        {
+          kl: '1-10',
+          grams: '40 - 200'
+        },
+        {
+          kl: '11-16',
+          grams: '40 - 200'
+        },
+        {
+          kl: '27-48',
+          grams: '40 - 200'
+        },
+        {
+          kl: '1-10',
+          grams: '49 - 60'
+        },
+      ],
+    }
+  },
 
   infoComposition: [
     'Proteína Min 20%',

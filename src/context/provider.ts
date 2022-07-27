@@ -47,6 +47,7 @@ export const appProvider: AppContextType = {
     status: '',
     url_image: '',
     benefits: '',
+    recommendation_for_use: ''
   },
 
   showNavbar: true,
