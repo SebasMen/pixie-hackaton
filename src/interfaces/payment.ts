@@ -10,6 +10,7 @@ export type postSendTokenCardService = Service<postSendTokenCard>
 
 export interface generatePayment {
     customer_id: string,
+    delivery_price: number,
     details_payments: {
     token: string,
     amount: {

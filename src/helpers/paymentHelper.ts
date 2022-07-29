@@ -11,6 +11,7 @@ export const organiceInformationPayment = (idCustomer: string, tokenId: string, 
 
   const paymentData: generatePayment = {
     customer_id: idCustomer,
+    delivery_price: shippingData.price,
     details_payments: {
       amount: {
         currency: 'MXN',
@@ -55,7 +56,8 @@ const organiceProducts = (products: CartItem[]) : Array<productShort> => {
       price: parseInt(String(item.product.price), 10),
       sku: item.product.id,
       quantity: item.quantity,
-      image: item.product.url_image
+      image: item.product.url_image,
+      presentation: item.product.presentation
     };
     return productItem;
   });
