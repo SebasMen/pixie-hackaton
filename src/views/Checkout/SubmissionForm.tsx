@@ -20,27 +20,27 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
   const [loadingSt, setLoadingSt] = useState(false);
   const [acceptConditions, setAcceptConditions] = useState(false);
   const [showMessageConditions, setShowMessageConditions] = useState(false);
-  const { deliveryNote, toast } = useAppContext();
+  const { toast, dataFormCheckOut, updateContext } = useAppContext();
   const { form, onSubmit, handleFormChange, handleSelectChange, setForm } = useForm<SubmissionFormInterface>(
     {
-      city: '',
-      country: countriesOptions ? countriesOptions[0] : { label: '', value: '' },
-      countries: countriesOptions ? countriesOptions : [],
-      email: '',
-      last_name: '',
-      name: '',
-      phone: '',
-      zip_code: '',
-      state: { label: '', value: '' },
+      city: dataFormCheckOut.city,
+      country: dataFormCheckOut.country,
+      countries: countriesOptions ? countriesOptions : dataFormCheckOut.countries,
+      email: dataFormCheckOut.email,
+      last_name: dataFormCheckOut.last_name,
+      name: dataFormCheckOut.name,
+      phone: dataFormCheckOut.phone,
+      zip_code: dataFormCheckOut.zip_code,
+      state: dataFormCheckOut.state,
       states: mexicanStates,
-      receive_information: '0',
-      reference: '',
-      houseNumber: '',
-      apartment: '',
-      delegation: '',
-      address: '',
-      colony: '',
-      delivery_note: deliveryNote
+      receive_information: dataFormCheckOut.receive_information,
+      reference: dataFormCheckOut.reference,
+      houseNumber: dataFormCheckOut.houseNumber,
+      apartment: dataFormCheckOut.apartment,
+      delegation: dataFormCheckOut.apartment,
+      address: dataFormCheckOut.address,
+      colony: dataFormCheckOut.colony,
+      delivery_note: dataFormCheckOut.delivery_note
     },
     form => validateForm()
   );
@@ -130,6 +130,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
         title: error.map(er => er.msg),
       });
     else {
+      updateContext(old => ({ ...old, dataFormCheckOut: form }));
       setData(form);
       setIdCustomer(data.id);
       changeStep(3);

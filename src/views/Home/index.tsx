@@ -26,6 +26,10 @@ const Home = () => {
     updateContext(old => ({ ...old, showNavbar: true }));
   }, [screen.width]);
 
+  useEffect(() => {
+    updateContext(old => ({ ...old, productsToShowPopup: response?.products ? response.products.slice(0, 2) : [] }));
+  }, [response]);
+
   return (
     <Page color='#efd1b0'>
       {loading ? (

@@ -40,7 +40,10 @@ const Detail = () => {
           <img src={backArrow} onClick={() => navigate(-1)} />
         </div>
         <div className='flex flex-col w-full flex-shrink-0 overflow-hidden'>
-          <p className='hidden md:mt-3 md:mb-1 md:block text-fourth font-subTitles text-sm lg:mb-9'>{'Catálogo > '} {capitalize(productView.name)}</p>
+          <p className='hidden md:mt-3 md:mb-1 md:block text-fourth font-subTitles text-sm lg:mb-9'>
+            <span onClick={() => navigate('/catalogue')} className='cursor-pointer'>Catálogo &gt; </span>
+            {capitalize(productView.name)}
+          </p>
           <div className='w-full flex-grow flex flex-col flex-shrink-0 md:flex-row md:pb-10 md:gap-1'>
             {/* Banner Detail to mobile */}
             <BannerDetail product={productView} />

@@ -35,7 +35,7 @@ export const ProductCounter = ({ price = 0, onPriceChange }: ProductCounterProps
           <h2 className={`animate__animated animate__faster ${showTotal ? 'text-base text-gray-500 animate__fadeIn' : 'text-3xl font-bold animate__bounceIn'}`}>${price}</h2>
           {showTotal && <h2 className='text-3xl font-bold animate__animated animate__bounceIn'>${totalPrice}</h2>}
         </div>
-        <p className='text-primary font-paragraph text-sm'>{(count * 500) + ' grs'}</p>
+        <p className='text-primary font-paragraph text-sm'>{(count * 500) + ' gr'}</p>
       </div>
     </div>
   );

@@ -7,10 +7,10 @@ import { PromotionalForm } from '../../interfaces/basket';
 
 const PromotionalSection = () => {
   // Hooks
-  const { updateContext } = useAppContext();
+  const { updateContext, dataFormCheckOut } = useAppContext();
   const { form, onSubmit, handleFormChange } = useForm<PromotionalForm>(
     {
-      note: '',
+      note: dataFormCheckOut.delivery_note,
       promotionalCode: ''
     },
     form => handleSubmit(form)
@@ -23,7 +23,7 @@ const PromotionalSection = () => {
 
   // Update context with the text
   useEffect(() => {
-    updateContext(old => ({ ...old, deliveryNote: form.note }));
+    updateContext(old => ({ ...old, dataFormCheckOut: { ...old.dataFormCheckOut, delivery_note: form.note } }));
   }, [form.note]);
 
   return (

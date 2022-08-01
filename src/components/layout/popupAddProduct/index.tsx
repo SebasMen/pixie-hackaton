@@ -8,9 +8,9 @@ import IconButton from '../../common/iconButton';
 
 import { products } from '../../../@fake/productsFake';
 
-const Popup = () => {
+const PopupAddProduct = () => {
   // Hooks
-  const { updateContext } = useAppContext();
+  const { updateContext, productsToShowPopup } = useAppContext();
   const navigate = useNavigate();
 
   // Methods
@@ -50,8 +50,7 @@ const Popup = () => {
             <span className='text-xs font-bold font-paragraph md:text-base'>Agrega a tu compra:</span>
           </div>
           <div className='flex scale-75 gap-4 lg:scale-[0.87] lg:gap-6 '>
-            <ProductCard product={products[0]} />
-            <ProductCard product={products[1]} />
+            {productsToShowPopup.map(product => <ProductCard key={`popup-product-${product.id}`} product={product} />)}
           </div>
           <div className='flex flex-col w-full text-base gap-3 mt-4 font-sanzBold lg:flex-row-reverse lg:justify-center lg:items-center lg:mt-7 lg:px-[3.5rem] lg:gap-5'>
             <Button className='bg-primary text-[#fad7b1] lg:w-1/2' onClick={handleNavigateBasket}>
@@ -67,4 +66,4 @@ const Popup = () => {
   );
 };
 
-export default Popup;
+export default PopupAddProduct;

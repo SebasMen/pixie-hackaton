@@ -6,6 +6,7 @@ import { ReactSweetAlert } from 'sweetalert2-react-content';
 import { appProvider as provider } from './provider';
 import { Product } from '../interfaces/product';
 import { CartItem } from '../interfaces/basket';
+import { SubmissionFormInterface } from '../interfaces/checkout';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const AppContext = createContext<AppContextType>(null!);
@@ -35,8 +36,11 @@ export interface AppContextType {
   // ShowPopup
   showPopup: boolean;
 
-  // Delivery note
-  deliveryNote: string;
+  // DataFormCheck
+  dataFormCheckOut: SubmissionFormInterface;
+
+  // Provitional data to popup add product
+  productsToShowPopup : Product[];
 }
 
 export const appProvider: AppContextType = provider;

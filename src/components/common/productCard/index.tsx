@@ -22,6 +22,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
   const { updateContext } = useAppContext();
   const { addRemoveProduct } = useShoppingCar();
   const [isMobile, setIsMobile] = useState(false);
+  const [counter, setCounter] = useState<number>(1);
 
   useEffect(() => {
     if (screen.width < 800)
@@ -34,10 +35,14 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
     navigate('/product/detail/' + product.id);
   };
 
-  const handleChange = (value: number) => {
-    addRemoveProduct(product, value);
-    if (value === 1)
-      updateContext(old => ({ ...old, showPopup: true }));
+  const handleChange = () => {
+    addRemoveProduct(product, counter);
+    updateContext(old => ({ ...old, showPopup: true }));
+  };
+
+  const addCounter = (value: number) => {
+    if (!(value === -1 && counter === 1))
+      setCounter(old => (old + value));
   };
 
   // Component
@@ -96,7 +101,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
             </p>
             {showControls && (
               <div className='w-16 h-6 md:w-20 md:h-8'>
-                <AddRemoveItem handleChance={handleChange} />
+                <AddRemoveItem handleChance={addCounter} counter={counter}/>
               </div>
             )}
           </div>
@@ -111,7 +116,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
           name='basket'
           type='outlined'
           size='xs'
-          onClick={() => handleChange(+1)}
+          onClick={() => handleChange()}
         />
       )}
     </div>

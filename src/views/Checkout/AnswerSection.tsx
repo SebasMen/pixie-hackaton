@@ -7,11 +7,13 @@ import Button from '../../components/common/button';
 import { postSendPayment } from '../../interfaces/payment';
 
 import { dogIconCheckout } from '../../assets/vectors';
+import { useAppContext } from '../../hooks';
 
 const AnswerSection = ({ paymentAnswer: { data, status } }:AnswerSectionProps) => {
   // Hooks
   const navigate = useNavigate();
   const { deleteAllProducts } = useShoppingCar();
+  const { updateContext } = useAppContext();
   const now = new Date();
 
   // Show Date
@@ -27,8 +29,30 @@ const AnswerSection = ({ paymentAnswer: { data, status } }:AnswerSectionProps) =
 
   useEffect(() => {
     // Clear Basket
-    if (status === 'OK')
+    if (status === 'OK') {
       deleteAllProducts();
+      // Reset data saved in context
+      updateContext(old => ({ ...old, dataFormCheckOut: {
+        address: '',
+        apartment: '',
+        city: '',
+        colony: '',
+        countries: [],
+        country: { label: '', value: '' },
+        delegation: '',
+        delivery_note: '',
+        email: '',
+        houseNumber: '',
+        last_name: '',
+        name: '',
+        phone: '',
+        receive_information: '0',
+        reference: '',
+        state: { label: '', value: '' },
+        states: [],
+        zip_code: ''
+      } }));
+    }
   }, [status]);
 
   return (

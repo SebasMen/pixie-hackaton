@@ -49,9 +49,30 @@ export const appProvider: AppContextType = {
     benefits: '',
     recommendation_for_use: ''
   },
+  dataFormCheckOut: {
+    address: '',
+    apartment: '',
+    city: '',
+    colony: '',
+    countries: [],
+    country: { label: '', value: '' },
+    delegation: '',
+    delivery_note: '',
+    email: '',
+    houseNumber: '',
+    last_name: '',
+    name: '',
+    phone: '',
+    receive_information: '0',
+    reference: '',
+    state: { label: '', value: '' },
+    states: [],
+    zip_code: ''
+  },
 
   showNavbar: true,
   marginWhatsApp: false,
   showPopup: false,
-  deliveryNote: '',
+  // Provitional data to show popup
+  productsToShowPopup: []
 };

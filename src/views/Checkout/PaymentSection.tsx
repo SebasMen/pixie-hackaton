@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppContext, useForm } from '../../hooks';
 import validator from 'validator';
 import useValidator from '../../hooks/useValidator';
@@ -15,6 +15,7 @@ import { paymentForm, PaymentFormValidate, shippingTypeForm, SubmissionFormInter
 import paymentService from '../../services/paymentService';
 import { postSendPayment, postSendTokenCard } from '../../interfaces/payment';
 import { calculateTotalPayment, organiceInformationPayment } from '../../helpers/paymentHelper';
+import PopupDecision from '../../components/layout/popupDecision';
 
 const numberOfInstallmentsOptions: SelectItem[] = [
   { value: '1', label: '1 Cuota' },
@@ -27,8 +28,13 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   // Hooks
   const [sameBillingAdressSt, setSameBillingAdressSt] = useState<boolean>(true);
   const [loadingST, setLoadingST] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [postSendTokenCard, setPostSendTokenCard] = useState<postSendTokenCard>({
+    status: '',
+    token_card: ''
+  });
   const { products, toast } = useAppContext();
-  const { form, onSubmit, handleRadioChange, handleSelectChange, handleFormChange } = useForm<paymentForm>({
+  const { form, onSubmit, handleRadioChange, handleSelectChange, handleFormChange, setForm} = useForm<paymentForm>({
     billingAddress: userData?.address ? userData.address : '',
     card_name: '',
     card_number: '',
@@ -90,6 +96,18 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
       message: ''
     },
   });
+
+  // Validate format expirationDate
+  useEffect(() => {
+    if (form.expirationDate.length === 4) {
+      let expirationDate = '';
+      if (form.expirationDate.includes('/'))
+        expirationDate = form.expirationDate;
+      else
+        expirationDate = `${form.expirationDate.substring(0, 2)}/${form.expirationDate.substring(2, 4)}`;
+      setForm(old => ({ ...old, expirationDate }));
+    }
+  }, [form.expirationDate]);
 
   // Methods
   // eslint-disable-next-line complexity
@@ -187,9 +205,10 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
         title: response.err,
       });
       setLoadingST(false);
-    } else if (response.data.status === 'OK')
-      sendDataPayment(response.data);
-    else {
+    } else if (response.data.status === 'OK') {
+      setPostSendTokenCard(response.data);
+      setShowPopup(true);
+    } else {
       toast.fire({
         icon: 'warning',
         title: 'Hubo un error en la api.',
@@ -198,9 +217,11 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     }
   };
 
-  const sendDataPayment = async (dataPost: postSendTokenCard) => {
+  const sendDataPayment = async () => {
+    // Close popup
+    setShowPopup(false);
     // Organize data
-    const paymentData = organiceInformationPayment(idCustomer, dataPost.token_card, userData, products, shippingData, form, sameBillingAdressSt);
+    const paymentData = organiceInformationPayment(idCustomer, postSendTokenCard.token_card, userData, products, shippingData, form, sameBillingAdressSt);
     // Send data to API
     const { data } = await paymentService.sendPayment(paymentData);
     // Set data to show in the answerSection
@@ -217,6 +238,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     setLoadingST(false);
   };
 
+  // Save response to show un the answerSection
   const setAnswerData = (amount: number, transaccionId: string, state: string) => {
     setPaymentAnswer(old => ({ ...old,
       status: state,
@@ -228,6 +250,11 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
           }
         }
       } }));
+  };
+
+  const handleClosePopup = () => {
+    setLoadingST(false);
+    setShowPopup(false);
   };
 
   return (
@@ -346,6 +373,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
           }
         </div>
       </form>
+      {showPopup && <PopupDecision handleAccept={sendDataPayment} handleDeny={handleClosePopup} text='¿Realmente desea realizar el pago?'/>}
     </div>
   );
 };
