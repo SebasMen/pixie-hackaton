@@ -82,7 +82,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
           {product.url_image === '' ? (
             <img src={notImage} className='w-24 h-24 md:w-36 md:h-36' />
           ) : (
-            <img src={transformUrlGDrive(product.url_image)} className='w-24 h-24 md:w-36 md:h-36 object-contain' />
+            <img src={transformUrlGDrive(product.url_image)} className='w-24 h-24 md:w-36 md:h-36 object-contain hover:scale-[1.75]' />
           )}
         </div>
         <div className={'text-center text-xs md:text-lg w-full'}>
