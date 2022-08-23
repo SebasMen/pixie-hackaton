@@ -15,6 +15,9 @@ import fillet from './fillet.svg';
 import fillets from './fillets.svg';
 import Instagram from './Instagram.svg';
 import InstagramRed from './InstagramRed.svg';
+import Instagramgray from './Instagramgray.svg';
+import iconGlass from './lupa.svg';
+import basketWhite from './canasta.svg';
 import linaza from './linaza.svg';
 import logoFooter from './logoFooter.svg';
 import mineral from './mineral.svg';
@@ -39,6 +42,16 @@ import tagIcon from './tagIcon.svg';
 import arrow from './arrow.svg';
 import expand_more from './expand_more.svg';
 import dogIconCheckout from './dogIconCheckout.svg';
+import homeIconCard from './icon1.svg';
+import homeIconCardOrange from './icon1O.svg';
+import poopIconCard from './icon2.svg';
+import poopIconCardOrange from './icon2O.svg';
+import foodIconCard from './icon3.svg';
+import foodIconCardOrange from './icon3O.svg';
+import dogIconCard from './icon4.svg';
+import dogIconCardOrange from './icon4O.svg';
+import catIconCard from './icon5.svg';
+import catIconCardOrange from './icon5O.svg';
 
 export {
   basket,
@@ -58,6 +71,7 @@ export {
   fillets,
   Instagram,
   InstagramRed,
+  Instagramgray,
   linaza,
   logoFooter,
   mineral,
@@ -81,5 +95,17 @@ export {
   tagIcon,
   arrow,
   expand_more,
-  dogIconCheckout
+  dogIconCheckout,
+  iconGlass,
+  basketWhite,
+  homeIconCard,
+  homeIconCardOrange,
+  poopIconCard,
+  poopIconCardOrange,
+  foodIconCard,
+  foodIconCardOrange,
+  dogIconCard,
+  dogIconCardOrange,
+  catIconCard,
+  catIconCardOrange
 };

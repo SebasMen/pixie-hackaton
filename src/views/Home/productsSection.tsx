@@ -9,37 +9,53 @@ import Button from '../../components/common/button';
 import { Product } from '../../interfaces/product';
 
 import { dogDesktop, vegetables } from '../../assets/images';
-import { cardHomePets, cardHomeStool, cardHomeFood, cardHomeLoveDog, cardHomePets2 } from '../../assets/vectors';
+import {
+  homeIconCard,
+  homeIconCardOrange,
+  poopIconCard,
+  poopIconCardOrange,
+  foodIconCard,
+  foodIconCardOrange,
+  dogIconCard,
+  dogIconCardOrange,
+  catIconCard,
+  catIconCardOrange,
+} from '../../assets/vectors';
 
 const cardsData = [
   {
     title: 'DIRECTO A TU CASA:',
     description: 'Nosotros te llevamos la comida fresca y cuando la necesites hasta la puerta de tu casa.',
-    img: cardHomePets,
+    img: homeIconCard,
+    imgSelected: homeIconCardOrange,
   },
   {
     title: 'MENOS Y MEJORES HECES: ',
     description: `Por su alta digestibilidad los perros y gatos absorben
                   de mejor forma los nutrientes por lo que recogerás menos popós.`,
-    img: cardHomeStool,
+    img: poopIconCard,
+    imgSelected: poopIconCardOrange,
   },
   {
     title: 'COMIDA REAL HORNEADA',
     description: `Cumpliendo nuestro propósito de generar bienestar aseguramos
                   que solo usamos los mejores ingredientes de grado humano dentro del rollo.`,
-    img: cardHomeFood,
+    img: foodIconCard,
+    imgSelected: foodIconCardOrange,
   },
   {
     title: 'DESARROLLADA POR NUTRIÓLOGOS VETERINARIOS:',
     description: `Sin conservadores y con los nutrientes necesarios para
                   una dieta diaria balanceada y saludable.`,
-    img: cardHomeLoveDog,
+    img: dogIconCard,
+    imgSelected: dogIconCardOrange,
   },
   {
     title: 'VARIEDAD DE PRODUCTOS: ',
     description:
       'Cada dieta y cada ingrediente, está pensada para cada tamaño, edad, condición física y condición médica.',
-    img: cardHomePets2,
+    img: catIconCard,
+    imgSelected: catIconCardOrange,
   },
 ];
 
@@ -56,7 +72,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       <div className='hidden absolute bottom-0 -z-10 left-[0] right-[0] m-auto w-full max-w-[1440px] lg:block xl2:w-[1440px]'>
         <img className='absolute bottom-0 right-0 object-none' src={dogDesktop} />
       </div>
-      <div className='hidden lg:block mt-28 text-primary text-3xl mx-72 text-center pb-16'>
+      <div className='hidden lg:block mt-28 text-pixieLightBlue text-3xl mx-72 text-center pb-16'>
         <span>Tu amor de 4 patas debería de comer igual de saludable que toda tu familia.</span>
       </div>
       {/* Carrousel */}
@@ -124,6 +140,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
               selected={selected === i}
               far={isFar}
               img={card.img}
+              imgselected={card.imgSelected}
               className={`${isLeft && 'lg2:translate-x-16 xl2:translate-x-12'} ${isRight && 'lg2:-translate-x-16 xl2:-translate-x-12'}`}
             />
           );

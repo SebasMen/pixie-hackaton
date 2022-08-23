@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export const NavItem = ({ name, path, color = 'red-500' }: NavItemProps) => {
+export const NavItem = ({ name, path, color = 'gray-600' }: NavItemProps) => {
   // Hooks
   const { pathname } = useLocation();
   const navigate = useNavigate();

@@ -33,6 +33,10 @@ module.exports = {
         1000: '1000',
       },
       colors: {
+        pixieGreen: 'rgba(122, 197, 190, 0.7)',
+        pixieGreenOpacity: 'rgba(122, 197, 190, 0.3)',
+        pixieGreenSemiOpacity: 'rgba(122, 197, 190, 0.5)',
+        pixieLightBlue: '#33B5A9',
         grayText: '#4A4A4A',
         primary: '#DF2F44',
         primaryOpacity: '#f9d5da',

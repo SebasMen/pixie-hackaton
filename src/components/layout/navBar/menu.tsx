@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Icon from '../../common/icon';
 import IconButton from '../../common/iconButton';
 
-import { InstagramRed, FacebookRed, TwitterRed } from '../../../assets/vectors';
+import { Instagramgray, FacebookRed, TwitterRed } from '../../../assets/vectors';
 import { logo } from '../../../assets/images';
 
 export const Menu = ({ collapsed, toggle }: MenuProps) => {
@@ -60,9 +60,10 @@ export const Menu = ({ collapsed, toggle }: MenuProps) => {
       {/* Social */}
       <div className='flex justify-around items-center w-full flex-shrink-0 gap-2'>
         <img src={FacebookRed} className='w-4' />
-        <img src={InstagramRed} className='w-7' />
+        <img src={Instagramgray} className='w-7' />
         <img src={TwitterRed} className='w-7' />
       </div>
+      hola
     </div>
   );
 };

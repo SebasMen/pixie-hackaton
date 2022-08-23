@@ -9,7 +9,7 @@ import Button from '../../common/button';
 import Menu from './menu';
 import { NavItem } from './navItem';
 
-import { basket, logoFooter, searchIcon } from '../../../assets/vectors';
+import { logoFooter, iconGlass, basketWhite } from '../../../assets/vectors';
 import { logo } from '../../../assets/images';
 
 export const NavBar = () => {
@@ -35,6 +35,7 @@ export const NavBar = () => {
   const isBasket = pathname.includes('/basket');
   const isCheckout = pathname.includes('/checkout');
   const isCalculator = pathname.includes('/calculator');
+  const isHome = pathname.includes('/');
 
   const itemsBlack = ['/catalogue', '/basket', '/checkout', '/calculator'];
   const showItemsBlack = itemsBlack.map(rute => pathname.includes(rute));
@@ -42,7 +43,8 @@ export const NavBar = () => {
   const itemsLogoBlack = ['/catalogue'];
   const showLogoBlack = itemsLogoBlack.map(rute => pathname.includes(rute));
   const pixie = showLogoBlack.includes(true) ? logoFooter : logo;
-  const color = (isCatalogue || isCalculator || isCheckout || isBasket ? 'grayText' : 'primary') || 'grayText';
+  const color = (isCatalogue || isCalculator || isCheckout || isBasket || isHome ? 'grayText' : 'primary') || 'grayText';
+  const bgIconColor = 'gray-600';
 
   if (!showNavbar) return <></>;
 
@@ -98,47 +100,47 @@ export const NavBar = () => {
           <div className={`flex flex-grow-0 items-top w-full md:flex-grow text-${color} md:pt-4 `}>
             {/* Social */}
             <div className='hidden md:flex md:flex-row md:space-x-10 md:w-2/3 md:ml-4 md:pt-[0.40rem]'>
-              <Icon.awesome icon='fa-facebook-f' size='3xl' />
-              <Icon.awesome icon='fa-instagram' size='3xl' />
-              <Icon.awesome icon='fa-twitter' size='3xl' />
+              <Icon.awesome className='text-gray-600' icon='fa-facebook-f' size='3xl' />
+              <Icon.awesome className='text-gray-600' icon='fa-instagram' size='3xl' />
+              <Icon.awesome className='text-gray-600' icon='fa-twitter' size='3xl' />
             </div>
 
             {/* Items */}
             <div className='w-1/3 flex-grow justify-end gap-2 md:pt-0 md:flex md:flex-row md:w-auto lg:gap-6'>
               {/* Navs */}
               <div className='hidden md:flex md:flex-row justify-between md:gap-7 md:mr-6'>
-                <NavItem name='Tienda' path='/catalogue' color={color} />
+                <NavItem name='Tienda' path='/catalogue' color={color}/>
                 <NavItem name='Calculadora' path='/calculator' color={color} />
               </div>
 
               {/* Buttons */}
               <div className='hidden md:flex md:flex-row md:justify-end'>
                 <IconButton.mini
-                  img={searchIcon}
-                  name={searchIcon}
+                  img={iconGlass}
+                  name={iconGlass}
                   type='outlined'
                   imgClassName={`${showItemsBlack.includes(true) && 'w-8 h-8 brightness-200'} w-7 h-7`}
                   sizeContainer={'w-11 h-11 md:w-[42px] md:h-[42px]'}
-                  className={`mr-4 md:mr-0 bg-${color} p-[10px]`}
+                  className={`mr-4 md:mr-0 bg-${bgIconColor} p-[10px]`}
                   size='xs'
                   shadow={false}
                   onClick={() => toogleShoppingCar()}
-                  color={showItemsBlack.includes(true) ? undefined : '#df2f44'}
+                  color={showItemsBlack.includes(true) ? undefined : bgIconColor}
                 />
               </div>
 
               <div className='flex-shrink-0 flex justify-end lg:mr-1'>
                 <IconButton.mini
-                  img={basket}
-                  name={basket}
+                  img={basketWhite}
+                  name={basketWhite}
                   type='outlined'
                   imgClassName={`${showItemsBlack.includes(true) && 'w-8 h-8 brightness-200'} w-7 h-7`}
                   sizeContainer={'w-11 h-11 md:w-[42px] md:h-[42px]'}
-                  className={`mr-4 md:mr-0 bg-${color}`}
+                  className={`mr-4 md:mr-0 bg-${bgIconColor}`}
                   size='md'
                   shadow={false}
                   onClick={() => toogleShoppingCar()}
-                  color={showItemsBlack.includes(true) ? undefined : '#df2f44'}
+                  color={showItemsBlack.includes(true) ? undefined : bgIconColor}
                 />
                 {products.length > 0 && (
                   <div
