@@ -52,6 +52,8 @@ import dogIconCard from './icon4.svg';
 import dogIconCardOrange from './icon4O.svg';
 import catIconCard from './icon5.svg';
 import catIconCardOrange from './icon5O.svg';
+import iconButtonDog from './buttonDog.svg';
+import iconButtonCat from './iconButtonCat.svg';
 
 export {
   basket,
@@ -107,5 +109,7 @@ export {
   dogIconCard,
   dogIconCardOrange,
   catIconCard,
-  catIconCardOrange
+  catIconCardOrange,
+  iconButtonDog,
+  iconButtonCat
 };
