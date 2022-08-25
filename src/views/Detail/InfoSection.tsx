@@ -36,7 +36,7 @@ const InfoSection = ({ product }: InfoSectionProps) => {
         <div className='hidden gap-3 mb-3 md:flex'>
           {ages.map(age => <Tag key={`${product.id}-age-${age}`} name={age} className='mb-1 mt-2 md:mt-0'/>)}
         </div>
-        <div className='text-2xl font-bold mb-3 md:mb-2 md:text-3xl text-primary'>
+        <div className='text-2xl font-bold mb-3 md:mb-2 md:text-3xl text-pixieLightBlue'>
           {capitalize(product.name)}
         </div>
         <div className='mb-2 font-subTitles md:text-lg'>
@@ -52,10 +52,10 @@ const InfoSection = ({ product }: InfoSectionProps) => {
 
       {/* typeProduct */}
       <div className='my-4 mx-2 pl-6 flex gap-4 opacity-60 lg:mx-0 lg:pl-0'>
-        <div className='ring-1 ring-primary rounded-full w-[50px] h-[50px]'></div>
-        <div className='ring-1 ring-primary rounded-full w-[50px] h-[50px]'></div>
-        <div className='ring-1 ring-primary rounded-full w-[50px] h-[50px]'></div>
-        <div className='ring-1 ring-primary rounded-full w-[50px] h-[50px]'></div>
+        <div className='ring-1 ring-pixieLightBlue rounded-full w-[50px] h-[50px]'></div>
+        <div className='ring-1 ring-pixieLightBlue rounded-full w-[50px] h-[50px]'></div>
+        <div className='ring-1 ring-pixieLightBlue rounded-full w-[50px] h-[50px]'></div>
+        <div className='ring-1 ring-pixieLightBlue rounded-full w-[50px] h-[50px]'></div>
       </div>
 
       {/* Cart Button */}

@@ -54,6 +54,9 @@ import catIconCard from './icon5.svg';
 import catIconCardOrange from './icon5O.svg';
 import iconButtonDog from './buttonDog.svg';
 import iconButtonCat from './iconButtonCat.svg';
+import iconTagBlue from './iconTagBlue.svg';
+import FacebookGray from './FacebookGray.svg';
+import Twittergray from './Twittergray.svg';
 
 export {
   basket,
@@ -111,5 +114,8 @@ export {
   catIconCard,
   catIconCardOrange,
   iconButtonDog,
-  iconButtonCat
+  iconButtonCat,
+  iconTagBlue,
+  FacebookGray,
+  Twittergray
 };

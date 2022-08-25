@@ -1,4 +1,4 @@
-import { tagIcon } from '../../../assets/vectors';
+import { iconTagBlue } from '../../../assets/vectors';
 import { capitalize } from '../../../helpers/capitalize';
 
 export const Tag = ({ name, className }: TagProps) => (
@@ -6,13 +6,13 @@ export const Tag = ({ name, className }: TagProps) => (
     className={`
       rounded-full pl-px pr-2 h-[1.18rem]
       flex items-center
-      border border-primary text-primary 
+      border border-pixieLightBlue text-pixieLightBlue 
       font-subTitles font-semibold 
       md:py-px md:gap-1 md:pr-3 md:pl-[6px] md:h-[1.95rem]
       ${className}
     `}
   >
-    <img src={tagIcon} className='text-md scale-[55%] sm:block md:scale-100' />
+    <img src={iconTagBlue} className='text-md scale-[55%] sm:block md:scale-100' />
     <span className='text-[11px] md:text-sm capitalize ml-1'>{capitalize(name)}</span>
   </div>
 );

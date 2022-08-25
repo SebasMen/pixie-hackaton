@@ -161,7 +161,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
         className='mt-10 mb-10 text-primary font-bold font-sanzBold w-4/5 border border-primary md:w-80 lg:mb-12 xl:-ml-[19rem] 2xl:-ml-[21rem]'
         onClick={redirectCatalogue}
       >
-        Ver más opciones
+        Ver catálogo
       </Button>
     </div>
   );
