@@ -9,16 +9,19 @@ import { Product, ResultProduct } from '../../interfaces/product';
 import { capitalize } from '../../helpers/capitalize';
 
 import { basket } from '../../assets/vectors';
+import useShoppingCar from '../../hooks/useShoppingCar';
 
 const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendationProps) => {
   // Hooks
   const [selected, setSelected] = useState<ResultProduct[]>([]);
   const [productList, setProductList] = useState<ResultProduct[]>(
     products.map(product => ({
-      quantity: Math.round((grams / parseInt(product.presentation, 10)) * 28),
+      quantity: Math.round((grams / parseInt(product.presentation, 10)) * 30),
       product,
     }))
   );
+
+  const { addRemoveProduct } = useShoppingCar();
 
   // Handlers
   const toggleSelect = (product: Product, cant?: number) => {
@@ -72,6 +75,13 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
     10
   );
 
+  // Save product to car
+  const handleAddProductsToShopping = () => {
+    selected.forEach(item =>
+      addRemoveProduct(item.product, item.quantity)
+    );
+  };
+
   // Component
   return (
     <div className='flex flex-col gap-[38px] w-full mb-10 px-5 md:pl-0'>
@@ -88,19 +98,19 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
         ))}
       </ColoredScrollbars>
       <div className='flex justify-center lg:mr-5'>
-        <div className='flex flex-col flex-shrink-0 justify-center pt-3 pb-4 gap-2 w-full h-auto px-5 rounded-2xl shadow-xl ring-1 ring-primary lg:flex-row lg:h-28 lg:pl-4 lg:pr-6 lg:gap-1 md:py-10'>
-          <div className='flex lg:items-center w-full text-left justify-start lg:justify-center lg:w-[20%] h-full  border-b-primary border-r-primary lg:border-r lg:border-b-0'>
-            <h2 className='text-primary font-extrabold md:text-xl'>Resumen</h2>
+        <div className='flex flex-col flex-shrink-0 justify-center pt-3 pb-4 gap-2 w-full h-auto px-5 rounded-2xl shadow-xl ring-1 ring-[#33B5A9] lg:flex-row lg:h-28 lg:pl-4 lg:pr-6 lg:gap-1 md:py-10'>
+          <div className='flex lg:items-center w-full text-left justify-start lg:justify-center lg:w-[20%] h-full  border-b-pixieLightBlue border-r-pixieLightBlue lg:border-r lg:border-b-0'>
+            <h2 className='text-pixieLightBlue font-extrabold md:text-xl'>Resumen</h2>
           </div>
-          <div className='flex-grow text-sm flex-shrink-0 text-left border-r-primary lg:border-r pr-30 lg:w-[53%] lg:pl-3'>
+          <div className='flex-grow text-sm flex-shrink-0 text-left border-r-pixieLightBlue lg:border-r pr-30 lg:w-[53%] lg:pl-3'>
             <p className='font-sanzBold'>{names}</p>
-            <p className='text-[#7AC5BE] font-subTitles font-semibold text-[11px] lg:text-sm'>
+            <p className='text-pixieLightBlue font-subTitles font-semibold text-[11px] lg:text-sm'>
               {maxQuantity < quantity
                 ? `(Te hacen falta ${quantity - maxQuantity} porciones para completar las 4 semanas)`
                 : `(Bien has seleccionado ${maxQuantity} porciones)`}
             </p>
           </div>
-          <div className='w-full lg:w-[22%] flex flex-col flex-shrink-0 justify-between items-center text-primary md:flex-row md:w-max gap-1 md:gap-6'>
+          <div className='w-full lg:w-[22%] flex flex-col flex-shrink-0 justify-between items-center text-pixieLightBlue md:flex-row md:w-max gap-1 md:gap-6'>
             <div className='flex justify-between lg:flex-col lg:justify-center items-center w-full'>
               <p className='text-sm'>Total</p>
               <p className='font-subTitles font-bold text-lg md:text-xl'>${total}</p>
@@ -111,7 +121,7 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
                 className='bg-primary scale-75 shadow-[0px_2px_10px_0_rgba(65,65,65,0.4)]'
                 img={basket}
                 imgClassName='w-9 h-9'
-                onClick={() => { }}
+                onClick={handleAddProductsToShopping}
                 sizeContainer={'h-14 w-14'}
               />
             </div>

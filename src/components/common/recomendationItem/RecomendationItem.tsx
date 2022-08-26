@@ -27,11 +27,11 @@ const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 
     <div
       className={`
           flex flex-col justify-between rounded-2xl items-start 
-          gap-5 bg-primary px-5 transform transition-all
+          gap-5 bg-fourth px-5 transform transition-all
           duration-150 animate__animated animate__fadeIn py-5
           md:items-center md:gap-0 md:py-0 md:flex-row lg:px-[4rem]
           mb-[10px]
-          ${checked ? 'bg-opacity-[0.2]' : 'bg-opacity-[0.1]'} 
+          ${checked ? 'bg-opacity-[0.3]' : 'bg-opacity-[0.1]'} 
         `}
     >
       {/* Check */}
@@ -39,13 +39,13 @@ const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 
         <div className='flex items-center gap-3 md:gap-11'>
           <CheckField onClick={() => toggle(data.product, cant)} sizeContainer='w-5 h-5 lg:w-[30px] lg:h-[30px]' />
           {/* name */}
-          <div className='font-extrabold text-primary lg:text-xl'>{capitalize(data.product.name)}</div>
+          <div className='font-extrabold text-pixieLightBlue lg:text-xl'>{capitalize(data.product.name)}</div>
         </div>
       </div>
 
       <div className='flex items-center lg:w-[57%] lg2:w-[50%] xl2:w-[58%]'>
         {/* Quantity */}
-        <div className='flex gap-4 text-sm flex-shrink-0 lg:text-xl lg:gap-10'>
+        <div className='flex gap-4 text-sm flex-shrink-0 lg:text-xl lg:gap-10 items-center'>
           <TextField
             value={cant}
             handler={handleFormChange}

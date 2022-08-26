@@ -1,22 +1,21 @@
 import { useState } from 'react';
-import { useAppContext } from '../../hooks';
 import useShoppingCar from '../../hooks/useShoppingCar';
 
 import Button from '../../components/common/button';
 import Tag from '../../components/common/productCard/tag';
 import ProductCounter from './productCounter';
 
-import { Product } from '../../interfaces/product';
+import { attributesType, Product } from '../../interfaces/product';
 import { transformAge } from '../../helpers/productHelper';
 import { capitalize } from '../../helpers/capitalize';
 
 import { basket } from '../../assets/vectors';
+import AttributesItem from '../../components/common/attributesItem';
 
-const InfoSection = ({ product }: InfoSectionProps) => {
+const InfoSection = ({ product, attributes }: InfoSectionProps) => {
   // Hooks
   const [quantity, setQuantity] = useState(1);
   const { addRemoveProduct } = useShoppingCar();
-  const { updateContext } = useAppContext();
 
   // Methods
   const handlePriceChange = (quantity: number, totalPrice: number) => {
@@ -27,16 +26,15 @@ const InfoSection = ({ product }: InfoSectionProps) => {
 
   const handleAddProduct = () => {
     addRemoveProduct(product, quantity);
-    updateContext(old => ({ ...old, showPopup: true }));
   };
 
   return (
     <div className='flex flex-col w-full mt-4 md:mt-0 md:h-full md:w-[37%] md:pr-9'>
       <div className='flex-shrink-0 px-7 mb-2 md:px-0 md:mb-4'>
         <div className='hidden gap-3 mb-3 md:flex'>
-          {ages.map(age => <Tag key={`${product.id}-age-${age}`} name={age} className='mb-1 mt-2 md:mt-0'/>)}
+          {ages.map(age => <Tag key={`${product.id}-age-${age}`} name={age} className='mb-1 mt-2 md:mt-0' sizeTags={ages.length}/>)}
         </div>
-        <div className='text-2xl font-bold mb-3 md:mb-2 md:text-3xl text-primary'>
+        <div className='text-2xl font-bold mb-3 md:mb-2 md:text-3xl text-pixieLightBlue'>
           {capitalize(product.name)}
         </div>
         <div className='mb-2 font-subTitles md:text-lg'>
@@ -50,12 +48,11 @@ const InfoSection = ({ product }: InfoSectionProps) => {
       {/* Product Counter */}
       <ProductCounter price={product.price} onPriceChange={handlePriceChange} />
 
-      {/* typeProduct */}
+      {/* attributesProduct */}
       <div className='my-4 mx-2 pl-6 flex gap-4 opacity-60 lg:mx-0 lg:pl-0'>
-        <div className='ring-1 ring-primary rounded-full w-[50px] h-[50px]'></div>
-        <div className='ring-1 ring-primary rounded-full w-[50px] h-[50px]'></div>
-        <div className='ring-1 ring-primary rounded-full w-[50px] h-[50px]'></div>
-        <div className='ring-1 ring-primary rounded-full w-[50px] h-[50px]'></div>
+        {attributes.map(att =>
+          <AttributesItem img={att.img} key={att.name}/>
+        )}
       </div>
 
       {/* Cart Button */}
@@ -76,7 +73,8 @@ const InfoSection = ({ product }: InfoSectionProps) => {
 };
 
 interface InfoSectionProps {
-  product: Product
+  product: Product,
+  attributes: attributesType[]
 }
 
 export default InfoSection;

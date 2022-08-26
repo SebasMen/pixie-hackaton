@@ -39,8 +39,8 @@ export interface AppContextType {
   // DataFormCheck
   dataFormCheckOut: SubmissionFormInterface;
 
-  // Provitional data to popup add product
-  productsToShowPopup : Product[];
+  // Provitional data to recomendations section
+  productsToShowRecomendation : Product[];
 }
 
 export const appProvider: AppContextType = provider;

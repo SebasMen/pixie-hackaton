@@ -30,19 +30,25 @@ const exercises: SelectItem[] = [
 
 export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
   // Hooks
-  const { form, onSubmit, handleFormChange, handleSelectChange } = useForm<CalculatorFormType>(
+  const { form, onSubmit, handleFormChange, handleRadioChange, handleSelectChange, setForm } = useForm<CalculatorFormType>(
     {
       name: '',
-      type: types[0],
+      type: {label: 'Selecciona', value: '' },
       typeOptions: types,
       age: ages[0],
       ageOptions: ages,
       exactAge: 0,
-      allergies: '',
-      diseases: '',
+      allergies: {
+        alergies: false,
+        hepatics: false,
+        obesity: false,
+        renal: false,
+        sensitive_stomach: false
+      },
       exercise: exercises[0],
       exerciseOptions: exercises,
       idealWeight: 0,
+      hasAllergies: false
     },
     form => handleSubmit(form)
   );
@@ -63,6 +69,7 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
       type: form.type.value as PetInfo['type'],
       name: form.name,
       weight: form.idealWeight,
+      allergies: form.allergies
     });
 
     if (!data)
@@ -100,6 +107,8 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
               onSubmit={onSubmit}
               onChange={handleFormChange}
               onSelectChange={handleSelectChange}
+              onRadioChange={handleRadioChange}
+              setForm={setForm}
             />
           </div>
           {/* Mobile Dog */}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { MultiValue, SingleValue } from 'react-select';
 import Button from '../../components/common/button';
@@ -6,11 +6,16 @@ import TextField from '../../components/form/textField';
 import SelectField, { SelectItem } from '../../components/form/selectField';
 
 import { CalculatorForm as CalculatorFormType } from '../../interfaces/calculator';
+import RadioField from '../../components/form/radioField';
+import CheckField from '../../components/form/checkField';
+import { useAppContext } from '../../hooks';
 
 export const CalculatorForm = ({
   onChange,
   onSelectChange,
+  onRadioChange,
   onSubmit,
+  setForm,
   form: {
     name,
     type,
@@ -19,24 +24,70 @@ export const CalculatorForm = ({
     ageOptions,
     exactAge,
     exerciseOptions,
-    allergies,
-    diseases,
+    allergies: {
+      alergies,
+      hepatics,
+      obesity,
+      renal,
+      sensitive_stomach
+    },
     exercise,
     idealWeight,
   },
 }: CalculatorFormProps) => {
   // Hooks
   const [page, setPage] = useState(0);
+  const [allergiesST, setAllergiesST] = useState(false);
+  const [textTitleForm, setTextTitleForm] = useState('Descubre cuál es el plan que más le conviene');
+  const { toast } = useAppContext();
 
   const handleChangeView = (page: number) => {
-    setPage(page);
+    let hasError = false;
+    // Validate age
+    if (age.value === 'cachorros' && exactAge > 12) {
+      hasError = true;
+      showToast('¡Wow, tu amigo ha crecido! Si tu mascota tiene más de 12 meses ya es un adulto.');
+    }
+
+    if (age.value === 'cachorros' && exactAge < 2) {
+      hasError = true;
+      showToast('¡Auch! Pixie está diseñado para cachorros a partir de los 2 meses.');
+    }
+
+    // Adult
+    if (age.value === 'adultos' && exactAge > 7 && type.value === 'dog') {
+      hasError = true;
+      showToast('¡Woow, tu amigo ya ha llegado a su etapa senior!, Si tu perrito tiene más de 7 años ya es considerado senior');
+    }
+
+    if (age.value === 'adultos' && exactAge > 8 && type.value === 'cat') {
+      hasError = true;
+      showToast('¡Woow, tu amigo ya ha llegado a su etapa senior!, Si tu michi tiene más de 8 años ya es considerado senior');
+    }
+
+    if (!hasError)
+      setPage(page);
     /// setView(page);
   };
+
+  const showToast = (text: string) =>
+    toast.fire({
+      timer: 5000,
+      icon: 'warning',
+      title: text,
+    });
+
+  useEffect(() => {
+    if (type.value === 'dog')
+      setTextTitleForm('Consiente a tu perrito con nuestra dieta rica en proteína satisfaciendo sus necesidades nutricionales.');
+    if (type.value === 'cat')
+      setTextTitleForm('Consiente a tu michi con nuestra dieta rica en proteína satisfaciendo sus necesidades nutricionales.');
+  }, [type]);
 
   // Component
   return (
     <form
-      className='w-full relative overflow-hidden flex-grow flex flex-col gap-2 text-primary pt-12 pb-4 p-2 xl2:pr-44 md:px-5 md:w-1/2 lg:pt-16 lg:pb-9'
+      className='w-full relative overflow-hidden flex-grow flex flex-col gap-2 text-pixieLightBlue pt-12 pb-4 p-2 xl2:pr-44 md:px-5 md:w-1/2 lg:pt-16 lg:pb-9'
       onSubmit={onSubmit}
     >
       <div className='flex w-full relative'>
@@ -48,8 +99,7 @@ export const CalculatorForm = ({
           `}
         >
           <div className='font-sanzBold text-center mb-9 text-xl'>
-            <p>Descubre cuál es el plan que más le conviene<span className='md:hidden'> ¡GET STARTED!</span></p>
-            <p className='hidden md:block'>¡GET STARTED!</p>
+            <p>{textTitleForm}</p>
           </div>
 
           <TextField name='name' value={name} handler={onChange} label='¿Cómo se llama tu mascota?*' required />
@@ -100,14 +150,14 @@ export const CalculatorForm = ({
             </div>
             <div className='flex w-full px-3 justify-center items-center gap-3 sm:gap-6 lg2:gap-4 sm:flex-row md:px-0'>
               <Button
-                className='ring-primary ring-1 w-full md:w-max'
+                className='ring-pixieLightBlue ring-1 w-full md:w-max'
                 padding={'py-[0.4rem] px-2 md:py-[0.3rem] xl1:px-8 xl2:px-[2.4rem] lg2:px-6'}
               >
                 <span className='font-subTitles text-sm md:text-base font-bold truncate'>Tabla peso ideal gato</span>
               </Button>
 
               <Button
-                className='ring-primary ring-1 w-full sm:w-max'
+                className='ring-pixieLightBlue ring-1 w-full sm:w-max'
                 padding={'py-[0.4rem] px-2 md:py-[0.3rem] xl1:px-8 xl2:px-[2.4rem] lg2:px-6'}
               >
                 <span className='font-subTitles text-sm md:text-base font-bold truncate'>Tabla peso ideal perro</span>
@@ -129,8 +179,111 @@ export const CalculatorForm = ({
             onChange={onSelectChange}
             label='Actividad fisica*'
           />
-          <TextField name='diseases' value={diseases} handler={onChange} label='Enfermedades' />
-          <TextField name='allergies' value={allergies} handler={onChange} label='Alergias' />
+          <label>Enfermedades y alergias</label>
+          <div className='flex gap-5'>
+            <RadioField
+              label=' Si'
+              changeState={setAllergiesST}
+              currentState={allergiesST}
+              name='hasAllergies'
+              handleRadioChange={onRadioChange}
+              value={true}
+            />
+            <RadioField
+              label=' No'
+              changeState={setAllergiesST}
+              currentState={allergiesST}
+              name='hasAllergies'
+              handleRadioChange={onRadioChange}
+              value={false}
+            />
+          </div>
+          {allergiesST &&
+          <div className='flex'>
+            <div className='flex flex-col'>
+              <CheckField
+                onClick={() =>
+                  setForm(old => ({ ...old,
+                    allergies: {
+                      ...old.allergies,
+                      hepatics: !hepatics
+                    }
+                  }))}
+                label='Hepática'
+                border='border border-pixieLightBlue'
+                sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+                className='mt-1'
+                labelClassName='text-xs lg:text-sm'
+              />
+              <CheckField
+                onClick={() =>
+                  setForm(old => ({ ...old,
+                    allergies: {
+                      ...old.allergies,
+                      renal: !renal
+                    }
+                  }))}
+                label='Renal'
+                border='border border-pixieLightBlue'
+                sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+                className='mt-1 '
+                labelClassName='text-xs lg:text-sm'
+              />
+              <CheckField
+                onClick={() =>
+                  setForm(old => ({ ...old,
+                    allergies: {
+                      ...old.allergies,
+                      obesity: !obesity
+                    }
+                  }))}
+                label='Obesidad'
+                border='border border-pixieLightBlue'
+                sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+                className='mt-1'
+                labelClassName='text-xs lg:text-sm'
+              />
+            </div>
+            <div className='flex flex-col'>
+              <CheckField
+                onClick={() =>
+                  setForm(old => ({ ...old,
+                    allergies: {
+                      ...old.allergies,
+                      alergies: !alergies
+                    }
+                  }))}
+                label='Alergia'
+                border='border border-pixieLightBlue'
+                sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+                className='mt-1 ml-1 lg:ml-5'
+                labelClassName='text-xs lg:text-sm'
+              />
+              <CheckField
+                onClick={() =>
+                  setForm(old => ({ ...old,
+                    allergies: {
+                      ...old.allergies,
+                      sensitive_stomach: !sensitive_stomach
+                    }
+                  }))}
+                label='Estómago sensible'
+                border='border border-pixieLightBlue'
+                sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+                className='mt-1 ml-1 lg:ml-5'
+                labelClassName='text-xs lg:text-sm'
+              />
+              <CheckField
+                onClick={() => {}}
+                label='Otras'
+                border='border border-pixieLightBlue'
+                sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+                className='mt-1 ml-1 lg:ml-5'
+                labelClassName='text-xs lg:text-sm'
+              />
+            </div>
+          </div>
+          }
           <div className='flex flex-col gap-5 items-center mt-4 md:gap-0 md:justify-between md:flex-row'>
             <div className='flex gap-2 items-center px-5'>
               <div className='w-3 h-3 bg-gray-400 rounded-full' />
@@ -163,6 +316,8 @@ interface CalculatorFormProps {
   onSelectChange: (selected: MultiValue<SelectItem> | SingleValue<SelectItem>, name: string) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onRadioChange: (selected: string | boolean, name: string) => void,
+  setForm: React.Dispatch<React.SetStateAction<CalculatorFormType>>,
   form: CalculatorFormType;
   /// setView: React.Dispatch<React.SetStateAction<number>>;
 }

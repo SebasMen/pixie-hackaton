@@ -1,18 +1,52 @@
 import { separateByCommas } from './productHelper';
 import {
-  fillet,
-  rice,
-  potato,
-  carrot,
+  inLeg,
+  inChickenMeat,
   bean,
-  quinua,
-  linaza,
-  vegetableOil,
-  egg,
-  vitamin,
   mineral,
+  inFillet,
+  inTurkeyMeat,
+  inIntegralRice,
+  inPotatoes,
+  inCarrot,
+  inSpinach,
+  inQuinua,
+  inLinaza,
+  inVegetableOil,
+  inEggs,
+  inVitamines,
+  inBatata,
+  inInstarchCassava,
+  inTilapia,
+  inWater,
+  inFishOil,
+  inSpirulina,
+  inCarobtree,
+  inOatmeAlflakes,
+  inJelly,
+  inWheatFlour,
+  inRabbitMeat,
+  inFlourOats,
+  inPeanutButter,
+  inhoneyBees,
+  inMango,
+  inPeanut,
+  inYogurt,
+  inBanana,
+  atDigestibility,
+  atNaturalIngredients,
+  atHighVitamine,
+  atHightProbiotics,
+  atLowProtein,
+  atGlutenFree,
+  atFreshNatural,
+  atSensitiveAllergic,
+  atHighProtein,
+  atKidneyCare,
+  atHighEnergy,
+  atRefreshing
 } from '../assets/vectors';
-import { ingredientesProps } from '../interfaces/product';
+import { attributesType, ingredientesProps } from '../interfaces/product';
 
 export const organizeIngredients = (ingredients: string): Array<ingredientesProps> => {
   const arrayIngredients = separateByCommas(ingredients);
@@ -21,60 +55,219 @@ export const organizeIngredients = (ingredients: string): Array<ingredientesProp
   return objectIngredients;
 };
 
+export const organizeAttributes = (attributes: string): Array<attributesType> => {
+  let arrayAttributes = separateByCommas(attributes);
+  // Delete one element because is the same icon
+  if (arrayAttributes.find(element => element === 'Fresco') && arrayAttributes.find(element => element === 'natural'))
+    arrayAttributes = arrayAttributes.filter(item => item !== 'Fresco');
+  const objectAttributes: Array<attributesType> = [];
+  arrayAttributes.forEach(item => objectAttributes.push(switchOrganiceAttributes(item)));
+  return objectAttributes;
+};
+
+// eslint-disable-next-line complexity
 const switchOrganiceIngredients = (ingredient: string) => {
   const objectIngredient = {
     name: ingredient,
     img: ''
   };
 
-  if (ingredient.includes('Vitaminas')) {
-    objectIngredient.img = vitamin;
+  if (ingredient.toLocaleLowerCase().includes('vitaminas')) {
+    objectIngredient.img = inVitamines;
     objectIngredient.name = 'Vitaminas';
   }
 
-  switch (ingredient.trim()) {
-    case 'Carne de Res':
-      objectIngredient.img = fillet;
+  if (ingredient.toLocaleLowerCase().includes('quinua')) {
+    objectIngredient.img = inQuinua;
+    objectIngredient.name = 'quinua';
+  }
+
+  if (ingredient.toLocaleLowerCase().includes('quinoa')) {
+    objectIngredient.img = inQuinua;
+    objectIngredient.name = 'Quinoa';
+  }
+
+  if (ingredient.toLocaleLowerCase().includes('harina de quinua')) {
+    objectIngredient.img = inQuinua;
+    objectIngredient.name = 'Harina de quinua';
+  }
+
+  if (ingredient.toLocaleLowerCase().includes('batata')) {
+    objectIngredient.img = inBatata;
+    objectIngredient.name = 'Batata';
+  }
+
+  if (ingredient.toLocaleLowerCase().includes('hígado de res')) {
+    objectIngredient.img = inFillet;
+    objectIngredient.name = 'Hígado de Res';
+  }
+
+  if (ingredient.toLocaleLowerCase().includes('harina de arroz')) {
+    objectIngredient.img = inIntegralRice;
+    objectIngredient.name = 'Harina de Arroz';
+  }
+
+  if (ingredient.toLocaleLowerCase().includes('cacahuate')) {
+    objectIngredient.img = inPeanut;
+    objectIngredient.name = 'Cacahuate';
+  }
+
+  if (ingredient.toLocaleLowerCase().includes('yogurt')) {
+    objectIngredient.img = inYogurt;
+    objectIngredient.name = 'Yogurt';
+  }
+
+  switch (ingredient.trim().toLocaleLowerCase()) {
+    case 'carne de cordero':
+      objectIngredient.img = inLeg;
       break;
-    case 'Corazón de Res':
-      objectIngredient.img = fillet;
+    case 'carne de pollo':
+      objectIngredient.img = inChickenMeat;
       break;
-    case 'Pulmón de Res':
-      objectIngredient.img = fillet;
+    case 'carne de res':
+      objectIngredient.img = inFillet;
       break;
-    case 'Arroz integral':
-      objectIngredient.img = rice;
+    case 'carne de pavo':
+      objectIngredient.img = inTurkeyMeat;
       break;
-    case 'Zanahoria':
-      objectIngredient.img = carrot;
+    case 'arroz integral':
+      objectIngredient.img = inIntegralRice;
       break;
-    case 'Quinoa':
-      objectIngredient.img = quinua;
+    case 'papa':
+      objectIngredient.img = inPotatoes;
       break;
-    case 'Huevo de gallina':
-      objectIngredient.name = 'Huevo';
-      objectIngredient.img = egg;
+    case 'zanahoria':
+      objectIngredient.img = inCarrot;
       break;
-    case 'Aceite Vegetal':
-      objectIngredient.img = vegetableOil;
+    case 'espinaca y/o ejotes':
+      objectIngredient.img = inSpinach;
       break;
-    case 'Linaza':
-      objectIngredient.img = linaza;
+    case 'linaza':
+      objectIngredient.img = inLinaza;
       break;
-    case ('Hierro' || 'Yodo' || 'Cobre' || 'Selenio'):
+    case 'aceite vegetal':
+      objectIngredient.img = inVegetableOil;
+      break;
+    case 'almidón de mandioca':
+      objectIngredient.img = inInstarchCassava;
+      break;
+    case 'tilapia':
+      objectIngredient.img = inTilapia;
+      break;
+    case 'agua':
+      objectIngredient.img = inWater;
+      break;
+    case 'aceite de pescado':
+      objectIngredient.img = inFishOil;
+      break;
+    case 'espirulina':
+      objectIngredient.img = inSpirulina;
+      break;
+    case 'harina de algarrobo':
+      objectIngredient.img = inCarobtree;
+      break;
+    case 'avena en hojuelas':
+      objectIngredient.img = inOatmeAlflakes;
+      break;
+    case 'gelatina':
+      objectIngredient.img = inJelly;
+      break;
+    case 'corazón de res':
+      objectIngredient.img = inFillet;
+      break;
+    case 'harina de trigo integral':
+      objectIngredient.img = inWheatFlour;
+      break;
+    case 'carne de conejo':
+      objectIngredient.img = inRabbitMeat;
+      break;
+    case 'harina de avena':
+      objectIngredient.img = inFlourOats;
+      break;
+    case 'crema de cacahuate':
+      objectIngredient.img = inPeanutButter;
+      break;
+    case 'miel de abejas':
+      objectIngredient.img = inhoneyBees;
+      break;
+    case 'mango':
+      objectIngredient.img = inMango;
+      break;
+    case 'pulmón de res':
+      objectIngredient.img = inFillet;
+      break;
+    case 'huevo de gallina':
+      objectIngredient.img = inEggs;
+      break;
+    case 'huevo':
+      objectIngredient.img = inEggs;
+      break;
+    case 'banano':
+      objectIngredient.img = inBanana;
+      break;
+    case ('hierro' || 'yodo' || 'cobre' || 'selenio'):
       objectIngredient.name = 'Minerales';
       objectIngredient.img = mineral;
       break;
-    case 'Habichuela':
+    case 'habichuela':
       objectIngredient.img = bean;
-      break;
-    case 'Papa':
-      objectIngredient.img = potato;
       break;
     default:
       break;
   }
 
   return objectIngredient;
+};
+
+const switchOrganiceAttributes = (attribute: string): attributesType => {
+  const objectAttributes: attributesType = {
+    name: attribute,
+    img: ''
+  };
+
+  if (attribute.toLocaleLowerCase().includes('digestiva')) {
+    objectAttributes.img = atSensitiveAllergic;
+    objectAttributes.name = 'digestiva';
+  }
+
+  switch (attribute.trim().toLocaleLowerCase()) {
+    case 'alta digestibilidad':
+      objectAttributes.img = atDigestibility;
+      break;
+    case 'ingredientes naturales':
+      objectAttributes.img = atNaturalIngredients;
+      break;
+    case 'rico en vitaminas':
+      objectAttributes.img = atHighVitamine;
+      break;
+    case 'rico en probioticos':
+      objectAttributes.img = atHightProbiotics;
+      break;
+    case 'bajo en proteína':
+      objectAttributes.img = atLowProtein;
+      break;
+    case 'libre de gluten':
+      objectAttributes.img = atGlutenFree;
+      break;
+    case 'fresco':
+      objectAttributes.img = atFreshNatural;
+      break;
+    case 'alto en proteína':
+      objectAttributes.img = atHighProtein;
+      break;
+    case 'cuidado hepatico y renal':
+      objectAttributes.img = atKidneyCare;
+      break;
+    case 'alta energía':
+      objectAttributes.img = atHighEnergy;
+      break;
+    case 'refrescante':
+      objectAttributes.img = atRefreshing;
+      break;
+    default:
+      break;
+  }
+
+  return objectAttributes;
 };
 

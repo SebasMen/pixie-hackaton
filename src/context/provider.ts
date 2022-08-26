@@ -47,7 +47,8 @@ export const appProvider: AppContextType = {
     status: '',
     url_image: '',
     benefits: '',
-    recommendation_for_use: ''
+    recommendation_for_use: '',
+    atributos: ''
   },
   dataFormCheckOut: {
     address: '',
@@ -73,6 +74,6 @@ export const appProvider: AppContextType = {
   showNavbar: true,
   marginWhatsApp: false,
   showPopup: false,
-  // Provitional data to show popup
-  productsToShowPopup: []
+  // Provitional data to show recomendation
+  productsToShowRecomendation: []
 };

@@ -10,7 +10,7 @@ import { products } from '../../../@fake/productsFake';
 
 const PopupAddProduct = () => {
   // Hooks
-  const { updateContext, productsToShowPopup } = useAppContext();
+  const { updateContext, productsToShowRecomendation } = useAppContext();
   const navigate = useNavigate();
 
   // Methods
@@ -50,7 +50,7 @@ const PopupAddProduct = () => {
             <span className='text-xs font-bold font-paragraph md:text-base'>Agrega a tu compra:</span>
           </div>
           <div className='flex scale-75 gap-4 lg:scale-[0.87] lg:gap-6 '>
-            {productsToShowPopup.map(product => <ProductCard key={`popup-product-${product.id}`} product={product} />)}
+            {productsToShowRecomendation.map(product => <ProductCard key={`popup-product-${product.id}`} product={product} />)}
           </div>
           <div className='flex flex-col w-full text-base gap-3 mt-4 font-sanzBold lg:flex-row-reverse lg:justify-center lg:items-center lg:mt-7 lg:px-[3.5rem] lg:gap-5'>
             <Button className='bg-primary text-[#fad7b1] lg:w-1/2' onClick={handleNavigateBasket}>

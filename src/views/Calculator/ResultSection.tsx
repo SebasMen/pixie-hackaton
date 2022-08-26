@@ -1,5 +1,5 @@
-import { useState, useRef, useCallback } from 'react';
-import { useFetch } from '../../hooks';
+import { useState, useRef, useCallback, useEffect } from 'react';
+import { useAppContext, useFetch } from '../../hooks';
 
 import ProductCard from '../../components/common/productCard';
 import Carrousel from '../../components/common/carrousel';
@@ -14,11 +14,20 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
   // Hooks
   const [selected, setSelected] = useState(0);
   const { current: feedData } = useRef(data);
+  const { toast } = useAppContext();
 
   const getCalculateProduct = useCallback(
     () => calculatorService.getCalculateProduct(feedData),
     [feedData],
   );
+  useEffect(() => {
+    if (data?.allergies.obesity)
+      toast.fire({
+        timer: 5000,
+        icon: 'warning',
+        title: 'Estas son las dietas para obecidad pero recomendamos tomar una asesoría nutricional con nuestros veterinarios para evaluar mejor tu caso.',
+      });
+  }, []);
 
   // Fetch
   const { loading, response } = useFetch<ProductListResponse>(getCalculateProduct);
@@ -30,7 +39,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
       <div className='w-full rounded-t-3xl bg-sixth -mt-5 z-10 animate__animated animate__fadeIn flex flex-col justify-center xl1:items-center'>
         <div className='max-w-[1440px] md:px-20 xl1:px-[16.8rem]'>
           <div className='mb-10 mt-20 text-center px-9 md:px-0'>
-            <span className='text-primary text-xl font-bold lg:text-[25px]'>{feedData.msg}</span>
+            <span className='text-pixieLightBlue text-xl font-bold lg:text-[25px]'>{feedData.msg}</span>
           </div>
           <span className='ml-3 px-3 md:px-0 md:text-lg'>Recomendados:</span>
 
@@ -72,20 +81,20 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
           </Carrousel>
           <div className='text-center mt-10 mb-5 font-sanzBold md:text-lg md:leading-normal'>
             <span>
-              Dieta recomendada para 4 semanas = {Math.round((feedData.grams * 30) / 500)} rollitos,
-              <span className='text-primary'> ¡combínalas como tu quieras!</span>
+              Dieta recomendada para 4 semanas = {Math.round((feedData.grams * 30) / 500)} Pixies,
+              <span className='text-pixieLightBlue'> ¡combínalas como tu quieras!</span>
             </span>
           </div>
           <ResultRecommendation
             products={response.products}
-            quantity={Math.round((feedData.grams * 28) / 500)}
+            quantity={Math.round((feedData.grams * 30) / 500)}
             grams={feedData.grams}
           />
           <div className='w-full flex items-center justify-center mb-16 '>
             <Button
               onClick={reset}
               padding='p-3 md:px-10'
-              className='bg-transparent text-sm ring-1 ring-primary font-bold truncate transform transition-all lg:text-base hover:ring-2'>
+              className='bg-transparent text-sm ring-1 ring-pixieLightBlue text-pixieLightBlue font-bold truncate transform transition-all lg:text-base hover:ring-2'>
               Calcular de nuevo
             </Button>
           </div>

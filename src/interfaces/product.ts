@@ -27,6 +27,7 @@ export interface Product {
   totalPrice?: number;
   url_image: string;
   recommendation_for_use: string;
+  atributos: string;
 }
 
 export interface productShort {
@@ -47,4 +48,9 @@ export interface productCatalogue {
 export interface ingredientesProps {
   name: string,
   img: string
+}
+
+export interface attributesType {
+  img: string,
+  name: string
 }

@@ -15,7 +15,7 @@ import BannerDetailDT from './BannerDetailDT';
 import ExtraInfoContainer from './ExtraInfoContainer';
 
 import { capitalize } from '../../helpers/capitalize';
-import { organizeIngredients } from '../../helpers/detailHelper';
+import { organizeAttributes, organizeIngredients } from '../../helpers/detailHelper';
 
 import { dog, backArrow } from '../../assets/vectors';
 import '../../styles/banner.css';
@@ -49,7 +49,7 @@ const Detail = () => {
             <BannerDetail product={productView} />
             {/* Banner Detail to desktop */}
             <BannerDetailDT />
-            <InfoSection product={productView} />
+            <InfoSection product={productView} attributes={organizeAttributes(productView.atributos)} />
           </div>
         </div>
 

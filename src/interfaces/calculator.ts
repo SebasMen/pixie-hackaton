@@ -10,6 +10,13 @@ export interface CalculatorForm {
   idealWeight: number;
   exercise: SelectItem;
   exerciseOptions: SelectItem[];
-  diseases: string;
-  allergies: string;
+  allergies: allergies,
+  hasAllergies: boolean
+}
+export interface allergies {
+  hepatics: boolean
+  alergies: boolean
+  renal: boolean
+  obesity: boolean
+  sensitive_stomach: boolean
 }

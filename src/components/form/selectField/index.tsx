@@ -24,8 +24,8 @@ export const SelectField = ({
         ...old,
         colors: {
           ...old.colors,
-          primary: '#DF2F44',
-          primary25: '#df2f4422',
+          primary: '#33B5A9',
+          primary25: '#33b5a9b0',
         },
       })}
       isMulti={isMulti}

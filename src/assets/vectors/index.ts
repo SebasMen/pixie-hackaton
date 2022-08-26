@@ -2,16 +2,13 @@ import basket from './basket.svg';
 import basketRed from './basketRed.svg';
 import bean from './bean.svg';
 import car from './car.svg';
-import carrot from './carrot.svg';
 import CatIcon from './CatIcon.svg';
 import CatIconSelected from './CatIconSelected.svg';
 import dog from './dog.svg';
 import DogIcon from './DogIcon.svg';
 import DogIconSelected from './DogIconSelected.svg';
-import egg from './egg.svg';
 import Facebook from './Facebook.svg';
 import FacebookRed from './FacebookRed.svg';
-import fillet from './fillet.svg';
 import fillets from './fillets.svg';
 import Instagram from './Instagram.svg';
 import InstagramRed from './InstagramRed.svg';
@@ -21,14 +18,9 @@ import basketWhite from './canasta.svg';
 import linaza from './linaza.svg';
 import logoFooter from './logoFooter.svg';
 import mineral from './mineral.svg';
-import potato from './potato.svg';
-import quinua from './quinua.svg';
-import rice from './rice.svg';
 import searchIcon from './searchIcon.svg';
 import Twitter from './Twitter.svg';
 import TwitterRed from './TwitterRed.svg';
-import vegetableOil from './vegetableOil.svg';
-import vitamin from './vitamin.svg';
 import cardHomePets from './cardHomePets.svg';
 import cardHomeStool from './cardHomeStool.svg';
 import cardHomeFood from './cardHomeFood.svg';
@@ -53,21 +45,63 @@ import dogIconCardOrange from './icon4O.svg';
 import catIconCard from './icon5.svg';
 import catIconCardOrange from './icon5O.svg';
 
+import inLeg from './inLeg.svg';
+import inChickenMeat from './inChickenMeat.svg';
+import inFillet from './inFillet.svg';
+import inTurkeyMeat from './inTurkeyMeat.svg';
+import inIntegralRice from './inIntegralRice.svg';
+import inPotatoes from './inPotatoes.svg';
+import inCarrot from './inCarrot.svg';
+import inSpinach from './inSpinach.svg';
+import inQuinua from './inQuinua.svg';
+import inLinaza from './inLinaza.svg';
+import inVegetableOil from './inVegetableOil.svg';
+import inEggs from './inEggs.svg';
+import inVitamines from './inVitamines.svg';
+import inBatata from './inBatata.svg';
+import inInstarchCassava from './inInstarchCassava.svg';
+import inTilapia from './inTilapia.svg';
+import inWater from './inWater.svg';
+import inFishOil from './inFishOil.svg';
+import inSpirulina from './inSpirulina.svg';
+import inCarobtree from './inCarobtree.svg';
+import inOatmeAlflakes from './inOatmeAlflakes.svg';
+import inJelly from './inJelly.svg';
+import inWheatFlour from './inWheatFlour.svg';
+import inRabbitMeat from './inRabbitMeat.svg';
+import inFlourOats from './inFlourOats.svg';
+import inPeanutButter from './inPeanutButter.svg';
+import inhoneyBees from './inhoneyBees.svg';
+import inMango from './inMango.svg';
+import inPeanut from './inPeanut.svg';
+import inYogurt from './inYogurt.svg';
+import inBanana from './inBanana.svg';
+
+import atDigestibility from './atDigestibility.svg';
+import atNaturalIngredients from './atNaturalIngredients.svg';
+import atHighVitamine from './atHighVitamine.svg';
+import atHightProbiotics from './atHightProbiotics.svg';
+import atLowProtein from './atLowProtein.svg';
+import atGlutenFree from './atGlutenFree.svg';
+import atFreshNatural from './atFreshNatural.svg';
+import atSensitiveAllergic from './atSensitiveAllergic.svg';
+import atHighProtein from './atHighProtein.svg';
+import atKidneyCare from './atKidneyCare.svg';
+import atHighEnergy from './atHighEnergy.svg';
+import atRefreshing from './atRefreshing.svg';
+
 export {
   basket,
   basketRed,
   bean,
   car,
-  carrot,
   CatIcon,
   CatIconSelected,
   dog,
   DogIcon,
   DogIconSelected,
-  egg,
   Facebook,
   FacebookRed,
-  fillet,
   fillets,
   Instagram,
   InstagramRed,
@@ -75,14 +109,9 @@ export {
   linaza,
   logoFooter,
   mineral,
-  potato,
-  quinua,
-  rice,
   searchIcon,
   Twitter,
   TwitterRed,
-  vegetableOil,
-  vitamin,
   cardHomePets,
   cardHomeStool,
   cardHomeFood,
@@ -107,5 +136,48 @@ export {
   dogIconCard,
   dogIconCardOrange,
   catIconCard,
-  catIconCardOrange
+  catIconCardOrange,
+  inLeg,
+  inChickenMeat,
+  inFillet,
+  inTurkeyMeat,
+  inIntegralRice,
+  inPotatoes,
+  inCarrot,
+  inSpinach,
+  inQuinua,
+  inLinaza,
+  inVegetableOil,
+  inEggs,
+  inVitamines,
+  inBatata,
+  inInstarchCassava,
+  inTilapia,
+  inWater,
+  inFishOil,
+  inSpirulina,
+  inCarobtree,
+  inOatmeAlflakes,
+  inJelly,
+  inWheatFlour,
+  inRabbitMeat,
+  inFlourOats,
+  inPeanutButter,
+  inhoneyBees,
+  inMango,
+  inPeanut,
+  inYogurt,
+  inBanana,
+  atDigestibility,
+  atNaturalIngredients,
+  atHighVitamine,
+  atHightProbiotics,
+  atLowProtein,
+  atGlutenFree,
+  atFreshNatural,
+  atSensitiveAllergic,
+  atHighProtein,
+  atKidneyCare,
+  atHighEnergy,
+  atRefreshing
 };

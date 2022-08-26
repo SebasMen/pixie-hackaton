@@ -21,7 +21,7 @@ export const TextField = ({
     <input
       className={`${fieldClassName} px-4 p-2
        focus:ring-1 focus:outline-none
-       ${border ? border : 'outline-none rounded-full ring-0 transform transition-all border-0 ring-primary'}
+       ${border ? border : 'outline-none rounded-full ring-0 transform transition-all border-0 ring-pixieLightBlue'}
        `}
       placeholder={placeholder}
       pattern={pattern}

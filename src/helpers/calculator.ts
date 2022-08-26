@@ -1,3 +1,5 @@
+import { allergies } from '../interfaces/calculator';
+
 export const calculator = {
   // Dogs
   dog: {
@@ -242,7 +244,7 @@ export const calculator = {
   },
 };
 
-export const getPetFeedData = ({ name, weight, age, range, type, activity }: PetInfo): PetFeedData | undefined => {
+export const getPetFeedData = ({ name, weight, age, range, type, activity, allergies }: PetInfo): PetFeedData | undefined => {
   const data = calculator[type][range];
 
   if (!data || !age) return;
@@ -259,6 +261,7 @@ export const getPetFeedData = ({ name, weight, age, range, type, activity }: Pet
     grams,
     type,
     range,
+    allergies
   };
 };
 
@@ -269,6 +272,7 @@ export interface PetInfo {
   range: 'cachorros' | 'adultos' | 'senior';
   type: 'dog' | 'cat';
   activity: 'low' | 'medium' | 'high';
+  allergies : allergies
 }
 
 export interface PetFeedData {
@@ -276,4 +280,5 @@ export interface PetFeedData {
   grams: number;
   type: 'dog' | 'cat';
   range: 'cachorros' | 'adultos' | 'senior';
+  allergies : allergies
 }

@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppContext } from '../../hooks';
+import { useAppContext, useFetch } from '../../hooks';
 
 import ItemShoppingCar from '../../components/common/itemShoppingCar';
 import Button from '../../components/common/button';
@@ -13,14 +13,22 @@ import { CartItem } from '../../interfaces/basket';
 import { capitalize } from '../../helpers/capitalize';
 
 import { basketRed } from '../../assets/vectors/';
+import RecomendationSection from './RecomendationSection';
+import { ProductListResponse } from '../../interfaces/product';
+import productService from '../../services/productService';
 
 const Basket = () => {
   // Hooks
   const [showMessage, setShowMessage] = useState(false);
   const [messageDelete, setMessageDelete] = useState('');
-  const { products } = useAppContext();
+  const { products, updateContext } = useAppContext();
+  const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    updateContext(old => ({ ...old, productsToShowRecomendation: response?.products ? response.products.slice(0, 4) : [] }));
+  }, [response]);
 
   // Handlers
   const showMessageDelete = (item: CartItem) => {
@@ -69,6 +77,7 @@ const Basket = () => {
             </div>
           </div>
         </div>
+        {!loading && <RecomendationSection />}
       </div>
       <Footer />
     </Page>

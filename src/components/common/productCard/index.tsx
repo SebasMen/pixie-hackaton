@@ -22,7 +22,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
   const { updateContext } = useAppContext();
   const { addRemoveProduct } = useShoppingCar();
   const [isMobile, setIsMobile] = useState(false);
-  const [counter, setCounter] = useState<number>(1);
+  const [counter, setCounter] = useState(1);
 
   useEffect(() => {
     if (screen.width < 800)
@@ -37,12 +37,18 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
 
   const handleChange = () => {
     addRemoveProduct(product, counter);
-    updateContext(old => ({ ...old, showPopup: true }));
   };
 
   const addCounter = (value: number) => {
-    if (!(value === -1 && counter === 1))
-      setCounter(old => (old + value));
+    const newCount = counter + value;
+
+    if (!(newCount > 0)) return;
+
+    setCounter(counter => counter + value);
+  };
+
+  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCounter(counter => parseInt(e.target.value, 10));
   };
 
   // Component
@@ -66,9 +72,9 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
         onClick={handleSubmit}
       >
         <div className='flex justify-between w-full mb-2'>
-          <div className='flex flex-col items-start justify-center gap-1'>
-            {ages.map(age => (
-              <Tag key={`${product.id}-age-${age}`} name={age} className='w-full' />
+          <div className='flex items-start justify-center gap-1'>
+            {ages.map((age, index) => (
+              <Tag key={`${product.id}-age-${age}`} name={age} className='w-full' sizeTags={ages.length}/>
             ))}
           </div>
           <IconButton.mini
@@ -82,17 +88,17 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
           {product.url_image === '' ? (
             <img src={notImage} className='w-24 h-24 md:w-36 md:h-36' />
           ) : (
-            <img src={transformUrlGDrive(product.url_image)} className='w-24 h-24 md:w-36 md:h-36 object-contain hover:scale-[1.75]' />
+            <img src={transformUrlGDrive(product.url_image)} className='w-24 h-24 md:w-36 md:h-36 object-contain hover:absolute hover:shadow-md hover:right-16 hover:scale-[1.75] hover:rounded-2xl' />
           )}
         </div>
         <div className={'text-center text-xs md:text-lg w-full'}>
-          {product.name.length > 18 && !isMobile
+          {product.name.length > 22 && !isMobile
             ?
             <Tooltiped label={product.name}>
-              <h4 className='text-primary mb-1'>{capitalize(product.name.slice(0, 18) + '...')}</h4>
+              <h4 className='text-primary mb-1'>{capitalize(product.name.slice(0, 22) + '...')}</h4>
             </Tooltiped>
             :
-            <h4 className={`${product.name.length > 18 && 'leading-none'} text-primary mb-1`}>{capitalize(product.name)}</h4>
+            <h4 className={`${product.name.length > 22 && 'leading-none'} text-primary mb-1`}>{capitalize(product.name)}</h4>
           }
           <div className='flex items-center justify-around'>
             <p className='font-sanzBold text-base md:text-xl'>
@@ -101,7 +107,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
             </p>
             {showControls && (
               <div className='w-16 h-6 md:w-20 md:h-8'>
-                <AddRemoveItem handleChance={addCounter} counter={counter}/>
+                <AddRemoveItem handleChance={addCounter} counter={counter} onhandleChangeInput={onChangeValue}/>
               </div>
             )}
           </div>

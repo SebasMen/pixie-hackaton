@@ -1,61 +1,61 @@
 import {
-  fillet,
-  rice,
-  potato,
-  carrot,
+  inFillet,
+  inIntegralRice,
+  inPotatoes,
+  inCarrot,
   bean,
-  quinua,
-  linaza,
-  vegetableOil,
-  egg,
-  vitamin,
+  inQuinua,
+  inLinaza,
+  inVegetableOil,
+  inEggs,
+  inVitamines,
   mineral,
 } from '../assets/vectors';
 
 export const ingredients = [
   {
     name: 'Corazón de res',
-    img: fillet
+    img: inFillet
   },
   {
     name: 'Pulmón de res',
-    img: fillet
+    img: inFillet
   },
   {
     name: 'Arroz integral',
-    img: rice
+    img: inIntegralRice
   },
   {
     name: 'Papa',
-    img: potato
+    img: inPotatoes
   },
   {
     name: 'Zanahoria',
-    img: carrot
+    img: inCarrot
   },
   {
     name: 'Habichuela',
     img: bean
   },
   {
-    name: 'Quinua',
-    img: quinua
+    name: 'inQuinua',
+    img: inQuinua
   },
   {
-    name: 'Linaza',
-    img: linaza
+    name: 'inLinaza',
+    img: inLinaza
   },
   {
     name: 'Aceite vegetal',
-    img: vegetableOil
+    img: inVegetableOil
   },
   {
     name: 'Huevo',
-    img: egg
+    img: inEggs
   },
   {
-    name: 'Vitaminas',
-    img: vitamin
+    name: 'inVitaminesas',
+    img: inVitamines
   },
   {
     name: 'Minerales',

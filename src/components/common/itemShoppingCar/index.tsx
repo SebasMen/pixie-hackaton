@@ -46,7 +46,7 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
           <span className='text-sm font-bold lg:text-[22px] lg:leading-7'>${item.quantity * item.product.price}</span>
           {showOptions && (
             <div className='w-[65px] h-[23px] lg:w-[79px] lg:h-[29px]'>
-              <AddRemoveItem handleChance={handleChange} />
+              <AddRemoveItem handleChance={handleChange} onlyOneNumber={true} />
             </div>
           )}
         </div>

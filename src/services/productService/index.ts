@@ -5,7 +5,7 @@ export class ProductService {
   init() {}
 
   getAllProducts = async (): Promise<ProductListResponse> => {
-    const { data } = await api.get('pixie/api/products');
+    const { data } = await api.get('pixie-payments/api/products');
     return data;
   };
 }

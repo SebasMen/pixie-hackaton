@@ -66,8 +66,8 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
   // Component
   return (
     <div className='w-full flex flex-col items-center justify-center rounded-t-3xl overflow-hidden transform -mt-4 lg:gap-9' style={{ backgroundColor: '#FFF6EC' }}>
-
-      <div className='flex flex-row mb-7 md:mb-14 mt-[5.4rem] gap-12 md:gap-14'>
+      <h4 className='mt-[5rem]'>Filtra según tu caso:</h4>
+      <div className='flex flex-row mb-7 md:mb-14 mt-[0.4rem] gap-12 md:gap-14'>
         {filters.map(({ name, key, img, imgSelected }) => (
           <div key={key} className='flex justify-center items-center flex-col text-center cursor-pointer' onClick={() => handleFilterChange('typePet', key)}>
             <div

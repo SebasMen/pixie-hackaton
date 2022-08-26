@@ -34,3 +34,12 @@
   50%{right: 0rem;}
   100%{right: 25rem;}
 }
+
+.inputWithoutArrow[type="number"]::-webkit-inner-spin-button,
+.inputWithoutArrow[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputWithoutArrow[type=number] {
+  -moz-appearance: textfield;
+}

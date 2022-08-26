@@ -16,7 +16,7 @@ const BannerSection = ({ view }: BannerSectionProps) => (
         <div className='flex flex-col w-full px-10 text-xl font-extrabold md:truncate md:pl-0 md:text-3xl lg:text-[35px] lg:mb-[5.8rem]'>
           <span className='leading-6 md:leading-10'>Cambiar la forma en que</span>
           <span className='leading-6 md:leading-10'>alimentas a tu mascota</span>
-          <span className='leading-6 md:leading-10'>comienza aquí!</span>
+          <span className='leading-6 md:leading-10'>comienza aquí</span>
         </div>
       )}
       {view === 1 && (
