@@ -15,7 +15,7 @@ import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import Tooltiped from '../tooltiped';
 import { useEffect, useState } from 'react';
 
-export const ProductCard = ({ product, showControls = true, className, isCarrousel, selected }: ProductCardProps) => {
+export const ProductCard = ({ product, showControls = true, className, isCarrousel, selected, showHeader = true }: ProductCardProps) => {
   // Hooks
   const navigate = useNavigate();
   const ages = transformAge(product);
@@ -71,7 +71,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
         `}
         onClick={handleSubmit}
       >
-        <div className='flex justify-between w-full mb-2'>
+        <div className={`${!showHeader && 'hidden'} flex justify-between w-full mb-2`}>
           <div className='flex items-start justify-center gap-1'>
             {ages.map((age, index) => (
               <Tag key={`${product.id}-age-${age}`} name={age} className='w-full' sizeTags={ages.length}/>
@@ -84,7 +84,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
             onClick={() => console.log(product.kind_pet)}
           />
         </div>
-        <div className='flex-grow overflow-hidden rounded-md'>
+        <div className={`${!showHeader && 'mt-12'} flex-grow overflow-hidden rounded-md`}>
           {product.url_image === '' ? (
             <img src={notImage} className='w-24 h-24 md:w-36 md:h-36' />
           ) : (
@@ -135,6 +135,7 @@ interface ProductCardProps {
   className?: string;
   isCarrousel? : boolean;
   selected?: boolean;
+  showHeader?: boolean;
 }
 
 export default ProductCard;

@@ -43,3 +43,28 @@
 .inputWithoutArrow[type=number] {
   -moz-appearance: textfield;
 }
+
+
+/*decorar scrollbar de ingredientes*/
+
+.scroll_ingredients::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.scroll_ingredients::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+  display: none;
+} 
+
+.scroll_ingredients::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.scroll_ingredients::-webkit-scrollbar-thumb {
+  background-color: #afafaf;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.scroll_ingredients::-webkit-scrollbar-track {
+  border-radius: 10px;  
+}

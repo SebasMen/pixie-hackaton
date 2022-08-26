@@ -61,9 +61,9 @@ const Basket = () => {
           </div>
 
           <div className='lg:w-1/2'>
-            <div className='bg-white rounded-xl py-4 px-[10px] lg:ml-[8.5rem] lg:pl-6 lg:pr-8 lg:pb-8 lg:pt-5 '>
+            <div className='bg-white rounded-xl py-4 px-[10px] lg:ml-[8.5rem] lg:pl-6 lg:pr-8 lg:pb-8 lg:pt-5 lg:sticky lg:top-[30%]'>
               <div className='text-sm font-bold lg:pb-4 lg:text-base'>
-                <span className='text-primary'>RESUMEN DE TU PEDIDO</span>
+                <span className='text-pixieLightBlue'>RESUMEN DE TU PEDIDO</span>
               </div>
               <TotalSection />
               <div className='flex justify-around font-sanzBold mt-[10px] w-full gap-3 lg:mt-5'>

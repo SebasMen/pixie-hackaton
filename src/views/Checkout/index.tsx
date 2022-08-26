@@ -85,8 +85,8 @@ const CheckOut = () => {
           :
           <div className='lg:flex lg:flex-row-reverse'>
             <div className='lg:w-[48%]'>
-              <div className='bg-white lg:ml-[7.2rem] lg:pl-6 lg:pr-4 lg:pb-8 lg:pt-6 lg:rounded-xl lg:mt-[0.8rem]'>
-                <div className='hidden font-bold tracking-[-0.55px] text-primary lg:text-base lg:block'>
+              <div className='bg-white lg:ml-[7.2rem] lg:pl-6 lg:pr-4 lg:pb-8 lg:pt-6 lg:rounded-xl lg:mt-[0.8rem] lg:sticky lg:top-[10%]'>
+                <div className='hidden font-bold tracking-[-0.55px] text-pixieLightBlue lg:text-base lg:block'>
                   <span>RESUMEN DE TU PEDIDO</span>
                 </div>
                 {/* resumen section desktop */}

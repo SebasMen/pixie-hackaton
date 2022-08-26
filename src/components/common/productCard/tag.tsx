@@ -18,7 +18,6 @@ export const Tag = ({ name, className, sizeTags }: TagProps) => {
       <span className='text-[11px] md:text-sm capitalize ml-1'>{capitalize(nameTag)}</span>
     </div>
   );
-
 };
 
 interface TagProps {

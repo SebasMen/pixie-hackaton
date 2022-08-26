@@ -1,7 +1,7 @@
 export const dataBanner = [
   {
     title: '¿ESTÁS SEGURO QUE LA COMIDA DE TU MASCOTA, ES COMIDA?',
-    text: ' Es momento de voltear a ver el plato de nuestros peludos y preguntarnos si ese alimento es realmente saludable o no.',
+    text: ' En Pixie reinventamos la manera de alimentarlos, con comida natural, horneada y fresca. Formulada por veterinarios y entregada hasta la puerta de tu casa.',
   },
   {
     title: 'Lorem ipsum dolor sit amet2',

@@ -17,7 +17,7 @@ const ItemShoppingCarMini = ({ item }: ItemShoppingCarMiniProps) => (
     <div className='flex justify-between w-[78.67%] lg:w-[76%] lg:pt-3'>
       <div className='flex flex-col text-xs justify-between'>
         <div className='flex flex-col'>
-          <span className='text-sm text-primary lg:font-sanzBold lg:text-base'>{capitalize(item.product.name)}</span>
+          <span className='text-sm text-pixieLightBlue lg:font-sanzBold lg:text-base'>{capitalize(item.product.name)}</span>
           <span className='font-sanzSemiBold lg:text-xs'>{calculateGrs(item)}</span>
         </div>
       </div>

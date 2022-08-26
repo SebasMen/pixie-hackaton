@@ -30,10 +30,6 @@ const BannerSection = ({ view }: BannerSectionProps) => (
         <div className='px-10 h-full w-full flex flex-col justify-end md:justify-center'>
           <span className='text-4xl font-extrabold mb-4 md:mb-2 lg:mb-4 lg:text-[45px]'>¡Tu amigo de cuatro patas es único!</span>
           <span className='w-full text-xl font-bold font-subTitles lg:mb-8 lg:pr-24'>Por eso en Pixie tenemos más de 12 opciones para satisfacer las distintas necesidades nutricionales de cada uno.</span>
-          <div className='flex justify-center gap-2 pb-5 pt-2 lg:pt-0 lg:pb-0 md:justify-start lg:gap-6 font-subTitles'>
-            <Button padding='px-2 md:py-3 md:px-10' className='bg-transparent border text-sm border-grayText text-grayText font-bold truncate h-8 md:h-auto lg:text-base'>Tabla peso ideal perro</Button>
-            <Button padding='px-2 md:py-3 md:px-10' className='bg-transparent border text-sm border-grayText text-grayText font-bold truncate h-8 md:h-auto lg:text-base'>Tabla peso ideal gato</Button>
-          </div>
         </div>
       )}
     </div>

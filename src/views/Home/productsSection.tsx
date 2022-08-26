@@ -78,7 +78,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       {/* Carrousel */}
       <Carrousel
         onSlideChange={setSelected}
-        className='pt-10 pb-10 h-max lg:px-28 max-w-[1440px]'
+        className='pt-16 md:pt-10 pb-10 h-max lg:px-28 max-w-[1440px]'
         breakpoints={{
           300: {
             slidesPerView: 1.7,
@@ -151,7 +151,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       <div className='hidden lg:block mt-28 text-pixieLightBlue text-3xl mx-72 text-center pb-16'>
         <span> Nuestros Productos</span>
       </div>
-      <div className='flex flex-wrap justify-center items-start gap-4 gap-y-[4.3rem] mt-36 p-4 lg:pt-10 lg:px-36 lg:pb-12 xl:justify-between 2xl:p-32 max-w-[1440px]'>
+      <div className='flex flex-wrap justify-center items-start gap-4 gap-y-[4.3rem] mt-20 md:mt-36 p-4 lg:pt-10 lg:px-36 lg:pb-12 xl:justify-between 2xl:p-32 max-w-[1440px]'>
         {products?.slice(0, 7).map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

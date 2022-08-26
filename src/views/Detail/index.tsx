@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../hooks';
 
@@ -23,18 +23,21 @@ import '../../styles/banner.css';
 const Detail = () => {
   // Hooks
   const { productView, updateContext, marginWhatsApp } = useAppContext();
+  const [showFooter, setShowFooter] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (screen.width < 800)
+    if (screen.width < 800) {
       updateContext(old => ({ ...old, showNavbar: false }));
-    else
+      setShowFooter(false);
+    } else
       updateContext(old => ({ ...old, showNavbar: true }));
   }, [screen.width]);
+  console.log(showFooter);
 
   // Component
   return (
-    <Page>
+    <Page className={`${!showFooter && 'mb-14'}`}>
       <div className='lg:px-[123px] max-w-[1440px]'>
         <div className='md:hidden px-7 mt-7 mb'>
           <img src={backArrow} onClick={() => navigate(-1)} />
@@ -77,7 +80,9 @@ const Detail = () => {
       {/* Other Info */}
       <InfoAccordion product={productView} />
       {/* Footer */}
-      <Footer className='md:mt-16' />
+      {showFooter &&
+        <Footer className='md:mt-16' />
+      }
     </Page >
   );
 };

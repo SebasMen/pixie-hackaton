@@ -49,6 +49,11 @@ import iconButtonCat from './iconButtonCat.svg';
 import iconTagBlue from './iconTagBlue.svg';
 import FacebookGray from './FacebookGray.svg';
 import Twittergray from './Twittergray.svg';
+import trashIcon from './trashIcon.svg';
+import basketBlue from './basketBlue.svg';
+import expandMoreBlue from './expandMoreBlue.svg';
+import pixieProduct from './pixieProduct.svg';
+import calculatorIcon from './calculatorIcon.svg';
 
 import inLeg from './inLeg.svg';
 import inChickenMeat from './inChickenMeat.svg';
@@ -189,5 +194,10 @@ export {
   iconButtonCat,
   iconTagBlue,
   FacebookGray,
-  Twittergray
+  Twittergray,
+  trashIcon,
+  basketBlue,
+  expandMoreBlue,
+  pixieProduct,
+  calculatorIcon
 };

@@ -75,6 +75,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
                   key={`calculatorCart-${product.id}`}
                   product={product}
                   showControls={false}
+                  showHeader={false}
                 />
               ))
             }

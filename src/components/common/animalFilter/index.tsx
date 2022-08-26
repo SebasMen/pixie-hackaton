@@ -74,8 +74,8 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
               className={`
                 md:w-52 md:flex md:justify-between md:items-center 
                 rounded-full transform transition-all 
-                md:ring-2 md:ring-primary lg:shadow-xl lg:px-1
-                ${filter.typePet.includes(key as any) ? 'bg-primary md:gap-3' : 'bg-white md:gap-2'}
+                md:ring-2 md:ring-primary lg:shadow-xl lg:px-1 
+                ${filter.typePet.includes(key as any) ? 'bg-primary md:gap-3' : 'bg-white md:gap-2 hover:bg-[#FAD7B1]'}
               `}
             >
               <div className='md:text-left'>
