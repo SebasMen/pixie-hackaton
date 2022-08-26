@@ -44,6 +44,11 @@ import dogIconCard from './icon4.svg';
 import dogIconCardOrange from './icon4O.svg';
 import catIconCard from './icon5.svg';
 import catIconCardOrange from './icon5O.svg';
+import iconButtonDog from './buttonDog.svg';
+import iconButtonCat from './iconButtonCat.svg';
+import iconTagBlue from './iconTagBlue.svg';
+import FacebookGray from './FacebookGray.svg';
+import Twittergray from './Twittergray.svg';
 
 import inLeg from './inLeg.svg';
 import inChickenMeat from './inChickenMeat.svg';
@@ -179,5 +184,10 @@ export {
   atHighProtein,
   atKidneyCare,
   atHighEnergy,
-  atRefreshing
+  atRefreshing,
+  iconButtonDog,
+  iconButtonCat,
+  iconTagBlue,
+  FacebookGray,
+  Twittergray
 };

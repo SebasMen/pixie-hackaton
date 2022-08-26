@@ -148,6 +148,9 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       </Carrousel>
 
       {/* Products */}
+      <div className='hidden lg:block mt-28 text-pixieLightBlue text-3xl mx-72 text-center pb-16'>
+        <span> Nuestros Productos</span>
+      </div>
       <div className='flex flex-wrap justify-center items-start gap-4 gap-y-[4.3rem] mt-36 p-4 lg:pt-10 lg:px-36 lg:pb-12 xl:justify-between 2xl:p-32 max-w-[1440px]'>
         {products?.slice(0, 7).map(product => (
           <ProductCard key={product.id} product={product} />
@@ -158,7 +161,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
         className='mt-10 mb-10 text-primary font-bold font-sanzBold w-4/5 border border-primary md:w-80 lg:mb-12 xl:-ml-[19rem] 2xl:-ml-[21rem]'
         onClick={redirectCatalogue}
       >
-        Ver más opciones
+        Ver catálogo
       </Button>
     </div>
   );

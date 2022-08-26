@@ -10,7 +10,7 @@ import { Product } from '../../../interfaces/product';
 import { transformAge } from '../../../helpers/productHelper';
 import { capitalize } from '../../../helpers/capitalize';
 
-import { basket, CatIcon, DogIcon, notImage } from '../../../assets/vectors/index';
+import { basket, iconButtonCat, iconButtonDog, notImage } from '../../../assets/vectors/index';
 import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import Tooltiped from '../tooltiped';
 import { useEffect, useState } from 'react';
@@ -64,7 +64,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
         className={`
           relative flex flex-col flex-shrink-0 justify-between items-center 
           cursor-pointer p-3 pb-8 rounded-2xl bg-white 
-          ring-0 ring-primary transform transition-all 
+          ring-0 ring-pixieLightBlue transform transition-all 
           ${isCarrousel && (selected ? 'scale-150 lg:scale-100' : 'scale-125 lg:scale-90')}
           w-full h-full lg:pb-11
           hover:ring-1 ${className}
@@ -78,9 +78,9 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
             ))}
           </div>
           <IconButton.mini
-            img={product.kind_pet === 'CAT' ? CatIcon : DogIcon}
+            img={product.kind_pet === 'CAT' ? iconButtonCat : iconButtonDog}
             name={product.name + '-tag-' + product.kind_pet}
-            className='text-primary border-[1px] border-primary p-1 shadow-none mr-1'
+            className='text-pixieLightBlue border-[1px] border-pixieLightBlue p-1 shadow-none mr-1'
             onClick={() => console.log(product.kind_pet)}
           />
         </div>
@@ -95,10 +95,10 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
           {product.name.length > 22 && !isMobile
             ?
             <Tooltiped label={product.name}>
-              <h4 className='text-primary mb-1'>{capitalize(product.name.slice(0, 22) + '...')}</h4>
+              <h4 className='text-pixieLightBlue mb-1'>{capitalize(product.name.slice(0, 22) + '...')}</h4>
             </Tooltiped>
             :
-            <h4 className={`${product.name.length > 22 && 'leading-none'} text-primary mb-1`}>{capitalize(product.name)}</h4>
+            <h4 className={`${product.name.length > 22 && 'leading-none'} text-pixieLightBlue mb-1`}>{capitalize(product.name)}</h4>
           }
           <div className='flex items-center justify-around'>
             <p className='font-sanzBold text-base md:text-xl'>
@@ -115,7 +115,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
       </div>
       {showControls && (
         <IconButton.mini
-          className='absolute -bottom-[1rem] bg-primary text-white md:-bottom-4 z-40 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'
+          className='absolute -bottom-[1rem] bg-pixieLightBlue text-white md:-bottom-4 z-40 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'
           imgClassName='w-6 h-6 md:w-7 md:h-7'
           sizeContainer='w-[35px] h-[35px] md:w-[43px] md:h-[43px]'
           img={basket}
