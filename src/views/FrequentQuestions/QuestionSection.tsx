@@ -48,7 +48,7 @@ const QuestionSection = () => {
           </p>
         </AccordeonList>
         <AccordeonList title='¿Pixie tiene dietas medicadas?'>
-          <p>
+          <div>
             ¡Si! Contamos con un desarrollo científico de dietas medicadas como:
             <ul className='mt-4 list-disc pl-5'>
               <li>Hepatopatias</li>
@@ -56,7 +56,7 @@ const QuestionSection = () => {
               <li>Alergias</li>
               <li>Estomago sensible</li>
             </ul>
-          </p>
+          </div>
         </AccordeonList>
         <AccordeonList title='¿Por qué PIXIE, el alimento natural, es mejor?'>
           <p>
@@ -92,15 +92,15 @@ const QuestionSection = () => {
         </AccordeonList>
         <AccordeonList title='¿Pixie es BARF?'>
           <p>
-          B.A.R.F es un acrónimo en inglés: Biologically Appropriate Raw Food, lo que traduce
-          Alimentos Crudos Biológicamente Apropiados. Como Pixie es un alimento natural
-          horneado: ¡NO ES BARF!
+            B.A.R.F es un acrónimo en inglés: Biologically Appropriate Raw Food, lo que traduce
+            Alimentos Crudos Biológicamente Apropiados. Como Pixie es un alimento natural
+            horneado: ¡NO ES BARF!
 
-          En Pixie solo usamos cortes magros para nuestras dietas, mientras que BARF usa
-          residuos de la industria cárnica y muelen huesos en la preparación de sus dietas.
-          BARF elabora sus productos basado en la idea de que los perros son carnívoros
-          estrictos, por eso se exceden con la proteína no digestible, lo que a largo plazo causa
-          problemas hepáticos y/o renales.
+            En Pixie solo usamos cortes magros para nuestras dietas, mientras que BARF usa
+            residuos de la industria cárnica y muelen huesos en la preparación de sus dietas.
+            BARF elabora sus productos basado en la idea de que los perros son carnívoros
+            estrictos, por eso se exceden con la proteína no digestible, lo que a largo plazo causa
+            problemas hepáticos y/o renales.
           </p>
         </AccordeonList>
         <AccordeonList title='¿Es necesario realizar una transición para iniciar con Pixie?'>
@@ -112,7 +112,7 @@ const QuestionSection = () => {
               puedes alternar los sabores sin problema.
             </p>
             <p>Para la transición tenemos dos formas, puedes escoger la que consideres mejor:</p>
-            <p>
+            <div>
               <ul className='list-disc flex flex-col gap-4 pl-5'>
                 <li>La primera es realizar una preparación de arroz y la proteína de origen animal que
                   escojas, siendo 50% proteína y 50% arroz, todo cocinado solamente con agua.
@@ -124,15 +124,15 @@ const QuestionSection = () => {
                   proporcionalmente
                 </li>
               </ul>
-            </p>
-            <p>
+            </div>
+            <div>
               <ul>
                 <li>Día 1-2: 75% alimento actual y 25% de la ración sugería Pixie.</li>
                 <li>Día 3-4: 50% alimento actual y 50% Pixie.</li>
                 <li>Día 5-6: 25% alimento actual y 75% Pixie.</li>
                 <li>Día 7: ya puedes empezar totalmente con Pixie.</li>
               </ul>
-            </p>
+            </div>
           </div>
         </AccordeonList>
         <AccordeonList title='¿Son los snacks también para gatitos?'>

@@ -33,7 +33,6 @@ const Detail = () => {
     } else
       updateContext(old => ({ ...old, showNavbar: true }));
   }, [screen.width]);
-  console.log(showFooter);
 
   // Component
   return (
