@@ -54,7 +54,6 @@ import basketBlue from './basketBlue.svg';
 import expandMoreBlue from './expandMoreBlue.svg';
 import pixieProduct from './pixieProduct.svg';
 import calculatorIcon from './calculatorIcon.svg';
-
 import inLeg from './inLeg.svg';
 import inChickenMeat from './inChickenMeat.svg';
 import inFillet from './inFillet.svg';
@@ -86,7 +85,6 @@ import inMango from './inMango.svg';
 import inPeanut from './inPeanut.svg';
 import inYogurt from './inYogurt.svg';
 import inBanana from './inBanana.svg';
-
 import atDigestibility from './atDigestibility.svg';
 import atNaturalIngredients from './atNaturalIngredients.svg';
 import atHighVitamine from './atHighVitamine.svg';

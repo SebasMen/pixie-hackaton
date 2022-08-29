@@ -100,9 +100,9 @@ export const NavBar = () => {
           <div className={`flex flex-grow-0 items-top w-full md:flex-grow text-${color} md:pt-4 `}>
             {/* Social */}
             <div className='hidden md:flex md:flex-row md:space-x-10 md:w-2/3 md:ml-4 md:pt-[0.40rem]'>
-              <Icon.awesome className='text-gray-600' icon='fa-facebook-f' size='3xl' />
-              <Icon.awesome className='text-gray-600' icon='fa-instagram' size='3xl' />
-              <Icon.awesome className='text-gray-600' icon='fa-twitter' size='3xl' />
+              <Icon.awesome className='text-gray-600 hover:text-red-500 hover:bg-white w-10 h-10 flex justify-center items-center' icon='fa-facebook-f' size='3xl' />
+              <Icon.awesome className='text-gray-600 hover:text-red-500  hover:bg-white w-10 h-10 flex justify-center items-center' icon='fa-instagram' size='3xl' />
+              <Icon.awesome className='text-gray-600 hover:text-red-500  hover:bg-white w-10 h-10 flex justify-center items-center' icon='fa-twitter' size='3xl' />
             </div>
 
             {/* Items */}
