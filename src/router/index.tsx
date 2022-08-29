@@ -12,6 +12,7 @@ import Detail from '../views/Detail';
 import Calculator from '../views/Calculator';
 import Basket from '../views/Basket';
 import CheckOut from '../views/Checkout';
+import FrequentQuestions from '../views/FrequentQuestions';
 
 const AppRouter = () => {
   // Hooks
@@ -86,6 +87,12 @@ const AppRouter = () => {
             path='/checkout'
             element={
               <CheckOut/>
+            }
+          />
+          <Route
+            path='/questions'
+            element={
+              <FrequentQuestions/>
             }
           />
 

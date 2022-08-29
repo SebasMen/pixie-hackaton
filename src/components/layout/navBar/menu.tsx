@@ -1,12 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 
-import Icon from '../../common/icon';
 import IconButton from '../../common/iconButton';
 
-import { Instagramgray, FacebookRed, TwitterRed, FacebookGray, Twittergray, expand_more } from '../../../assets/vectors';
+import { Instagramgray, FacebookGray, Twittergray, expand_more } from '../../../assets/vectors';
 import { logo } from '../../../assets/images';
-import TextField from '../../form/textField';
 import NavMobileItem from './navMobileItem';
+import Search from '../../common/search';
 
 export const Menu = ({ collapsed, toggle }: MenuProps) => {
   // Hooks
@@ -44,18 +43,7 @@ export const Menu = ({ collapsed, toggle }: MenuProps) => {
 
       {/* search */}
       <div className='flex w-full font-subTitles justify-center px-6'>
-        <div className='bg-white flex items-center pl-3 pr-1 rounded-l-[100%] w-1/6'>
-          <IconButton name='search' size='2xl' sizeContainer='w-6' className='text-fourth' onClick={() => {}} shadow={false} />
-        </div>
-        <TextField
-          name='navSearch'
-          handler={() => {}}
-          value={''}
-          className='w-5/6 '
-          fieldClassName='text-fourth py-[0.4rem]'
-          border='rounded-r-full ring-pixieLightBlue'
-          placeholder='Busca tu pixie favorito'
-        />
+        <Search colorIcon='text-fourth' borderColor='ring-pixieLightBlue' sizePlaceholder='text-xs'/>
       </div>
 
       {/* Items */}

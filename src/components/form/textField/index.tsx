@@ -15,6 +15,7 @@ export const TextField = ({
   type = 'text',
   disabled = false,
   required = false,
+  handleKeyDown
 }: TextFieldProps) => (
   <div className={`${className} flex flex-col`}>
     {label && <label className={`${labelClassName ? labelClassName : 'pl-6 mb-3 text-lg font-medium'}`}>{label}</label>}
@@ -31,6 +32,7 @@ export const TextField = ({
       value={value}
       onChange={handler}
       disabled={disabled}
+      onKeyDown={handleKeyDown}
     />
     {messageError && <p className='text-primary pl-2 text-xs lg:text-base'>{messageError}</p>}
   </div>
@@ -51,6 +53,7 @@ interface TextFieldProps {
   placeholder?: string;
   handler: ChangeEventHandler<HTMLInputElement>;
   messageError?: string;
+  handleKeyDown?: (e:any) => void
 }
 
 export default TextField;

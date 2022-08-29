@@ -16,19 +16,40 @@ import productService from '../../services/productService';
 
 import '../../styles/catalogue.css';
 import { dog } from '../../assets/vectors';
+import { useSearchParams } from 'react-router-dom';
 
 const Catalogue = () => {
   // Hooks
-  const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
+  const [products, setproducts] = useState<ProductListResponse>();
+  const [loading, setLoading] = useState(true);
   const [filterSelected, setfilterSelected] = useState<filterShop>({
     agePet: [],
     typePet: []
   });
   const { updateContext, marginWhatsApp } = useAppContext();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     updateContext(old => ({ ...old, showNavbar: true }));
   }, [screen.width]);
+
+  useEffect(() => {
+    getProducts();
+  }, [searchParams]);
+
+  const getProducts = async () => {
+    if (searchParams.get('query'))
+      await productService.getQueryProducts(searchParams.get('query') ? searchParams.get('query') : '')
+        .then(data => {
+          setproducts(data);
+          setLoading(false);
+        });
+    else
+      await productService.getAllProducts().then(data => {
+        setproducts(data);
+        setLoading(false);
+      });
+  };
 
   return (
     <Page color='#7AC5BE'>
@@ -55,7 +76,7 @@ const Catalogue = () => {
             <AnimalFilter setFilter={setfilterSelected} filter={filterSelected} />
 
             {/* Products */}
-            <ProductsSection data={response?.products} filter={filterSelected} />
+            <ProductsSection data={products?.products} filter={filterSelected} />
 
             {/* Footer */}
             <Footer />

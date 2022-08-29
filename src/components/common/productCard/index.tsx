@@ -115,7 +115,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
       </div>
       {showControls && (
         <IconButton.mini
-          className='absolute -bottom-[1rem] bg-pixieLightBlue text-white md:-bottom-4 z-40 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'
+          className='absolute -bottom-[1rem] bg-primary text-white md:-bottom-4 z-40 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'
           imgClassName='w-6 h-6 md:w-7 md:h-7'
           sizeContainer='w-[35px] h-[35px] md:w-[43px] md:h-[43px]'
           img={basket}

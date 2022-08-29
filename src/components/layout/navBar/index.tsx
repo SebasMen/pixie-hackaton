@@ -11,6 +11,8 @@ import { NavItem } from './navItem';
 
 import { logoFooter, iconGlass, basketWhite } from '../../../assets/vectors';
 import { logo } from '../../../assets/images';
+import TextField from '../../form/textField';
+import Search from '../../common/search';
 
 export const NavBar = () => {
   // Hooks
@@ -20,6 +22,7 @@ export const NavBar = () => {
 
   const [showShoppingCar, setShowShoppingCar] = useState<boolean>(false);
   const [collapsed, setCollapsed] = useState<boolean | null>(null);
+  const [openSearch, setOpenSearch] = useState(false);
 
   // Methods
   const toHome = () => navigate('/');
@@ -37,7 +40,7 @@ export const NavBar = () => {
   const isCalculator = pathname.includes('/calculator');
   const isHome = pathname.includes('/');
 
-  const itemsBlack = ['/catalogue', '/basket', '/checkout', '/calculator'];
+  const itemsBlack = ['/catalogue', '/basket', '/checkout', '/calculator', '/'];
   const showItemsBlack = itemsBlack.map(rute => pathname.includes(rute));
 
   const itemsLogoBlack = ['/catalogue'];
@@ -72,7 +75,7 @@ export const NavBar = () => {
         <div className='flex flex-col flex-grow-0 md:flex-grow'>
           {/* Top */}
           <div className={`w-full hidden text-${color} gap-[22px] md:flex md:flex-row md:justify-end md:items-center md:pt-[0.20rem]`}>
-            {color === 'grayText' ? (
+            {/* {color === 'grayText' ? (
               <Button
                 rounded
                 className='font-sanzBold bg-transparent border-grayText border-[1px] leading-[17px] text-sm md:mr-2'
@@ -88,7 +91,7 @@ export const NavBar = () => {
               >
                 Ingresar
               </Button>
-            )}
+            )} */}
             <div className='flex items-center justify-center text-sm '>
               <span className='font-subTitles'>EN</span>
               <span className='font-extrabold font-subTitles'> &nbsp;|&nbsp;</span>
@@ -108,26 +111,32 @@ export const NavBar = () => {
             {/* Items */}
             <div className='w-1/3 flex-grow justify-end gap-2 md:pt-0 md:flex md:flex-row md:w-auto lg:gap-6'>
               {/* Navs */}
-              <div className='hidden md:flex md:flex-row justify-between md:gap-7 md:mr-6'>
-                <NavItem name='Tienda' path='/catalogue' color={color}/>
-                <NavItem name='Calculadora' path='/calculator' color={color} />
-              </div>
-
+              { !openSearch &&
+                <div className='hidden md:flex md:flex-row justify-between md:gap-7 md:mr-6'>
+                  <NavItem name='Tienda' path='/catalogue' color={color}/>
+                  <NavItem name='Calculadora' path='/calculator' color={color} />
+                </div>
+              }
               {/* Buttons */}
-              <div className='hidden md:flex md:flex-row md:justify-end'>
-                <IconButton.mini
-                  img={iconGlass}
-                  name={iconGlass}
-                  type='outlined'
-                  imgClassName={`${showItemsBlack.includes(true) && 'w-8 h-8 brightness-200'} w-7 h-7`}
-                  sizeContainer={'w-11 h-11 md:w-[42px] md:h-[42px]'}
-                  className={`mr-4 md:mr-0 bg-${bgIconColor} p-[10px]`}
-                  size='xs'
-                  shadow={false}
-                  onClick={() => toogleShoppingCar()}
-                  color={showItemsBlack.includes(true) ? undefined : bgIconColor}
-                />
-              </div>
+              { !openSearch &&
+                <div className='hidden md:flex md:flex-row md:justify-end'>
+                  <IconButton.mini
+                    img={iconGlass}
+                    name={iconGlass}
+                    type='outlined'
+                    imgClassName={`${showItemsBlack.includes(true) && 'w-8 h-8 brightness-200'} w-7 h-7`}
+                    sizeContainer={'w-11 h-11 md:w-[42px] md:h-[42px]'}
+                    className={`mr-4 md:mr-0 bg-${bgIconColor} p-[10px]`}
+                    size='xs'
+                    shadow={false}
+                    onClick={() => setOpenSearch(!openSearch)}
+                    color={showItemsBlack.includes(true) ? undefined : bgIconColor}
+                  />
+                </div>
+              }
+              {openSearch &&
+                <Search />
+              }
 
               <div className='flex-shrink-0 flex justify-end lg:mr-1'>
                 <IconButton.mini
