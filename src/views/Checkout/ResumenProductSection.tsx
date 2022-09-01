@@ -32,12 +32,12 @@ const ResumenProductSection = ({ shippingInfo }:ResumenProductSectionProps) => {
                 ?
                 <img
                   src={expandMoreBlue}
-                  className='w-5 h-5 rotate-180 inline-flex'
+                  className='w-5 h-5 inline-flex'
                 />
                 :
                 <img
                   src={expandMoreBlue}
-                  className='w-5 h-5 inline-flex'
+                  className='w-5 h-5 rotate-180 inline-flex'
                 />
               }
             </p>

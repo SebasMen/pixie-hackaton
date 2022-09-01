@@ -14,6 +14,7 @@ import { basket, iconButtonCat, iconButtonDog, notImage } from '../../../assets/
 import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import Tooltiped from '../tooltiped';
 import { useEffect, useState } from 'react';
+import { clickBasketCard } from '../../../assets/gifts';
 
 export const ProductCard = ({ product, showControls = true, className, isCarrousel, selected, showHeader = true, showDetailInPopup = false }: ProductCardProps) => {
   // Hooks
@@ -23,6 +24,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
   const { addRemoveProduct } = useShoppingCar();
   const [isMobile, setIsMobile] = useState(false);
   const [counter, setCounter] = useState(1);
+  const [clickBasket, setClickBasket] = useState(false);
 
   useEffect(() => {
     if (screen.width < 800)
@@ -40,6 +42,10 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
 
   const handleChange = () => {
     addRemoveProduct(product, counter);
+    setClickBasket(true);
+    setTimeout(() => {
+      setClickBasket(false);
+    }, 1000);
   };
 
   const addCounter = (value: number) => {
@@ -116,17 +122,33 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
           </div>
         </div>
       </div>
+
       {showControls && (
-        <IconButton.mini
-          className='absolute -bottom-[1rem] bg-primary text-white md:-bottom-4 z-40 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'
-          imgClassName='w-6 h-6 md:w-7 md:h-7'
-          sizeContainer='w-[35px] h-[35px] md:w-[43px] md:h-[43px]'
-          img={basket}
-          name='basket'
-          type='outlined'
-          size='xs'
-          onClick={() => handleChange()}
-        />
+        <div className={`${clickBasket ? 'bottom-[-4.5rem] md:bottom-[-4.3rem]' : 'bg-primary md:-bottom-4 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'} absolute -bottom-[1rem] text-white z-40 rounded-full`}
+        >
+          { clickBasket
+            ?
+            <IconButton.mini
+              imgClassName='w-[7.3rem] h-[7.3rem] md:w-[9.2rem] md:h-[9.2rem]'
+              sizeContainer='w-36 h-36 md:w-36 md:h-36'
+              img={clickBasketCard}
+              name='clickBasketCard'
+              type='outlined'
+              size='xs'
+              onClick={() => handleChange()}
+            />
+            :
+            <IconButton.mini
+              imgClassName='w-6 h-6 md:w-7 md:h-7'
+              sizeContainer='w-[35px] h-[35px] md:w-[43px] md:h-[43px] '
+              img={basket}
+              name='basket'
+              type='outlined'
+              size='xs'
+              onClick={() => handleChange()}
+            />
+          }
+        </div>
       )}
     </div>
   );
