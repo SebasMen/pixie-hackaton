@@ -15,7 +15,7 @@ import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import Tooltiped from '../tooltiped';
 import { useEffect, useState } from 'react';
 
-export const ProductCard = ({ product, showControls = true, className, isCarrousel, selected, showHeader = true }: ProductCardProps) => {
+export const ProductCard = ({ product, showControls = true, className, isCarrousel, selected, showHeader = true, showDetailInPopup = false }: ProductCardProps) => {
   // Hooks
   const navigate = useNavigate();
   const ages = transformAge(product);
@@ -31,8 +31,11 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
 
   // Handle
   const handleSubmit = () => {
-    updateContext(old => ({ ...old, productView: product, showPopup: false }));
-    navigate('/product/detail/' + product.id);
+    updateContext(old => ({ ...old, productView: product }));
+    if (showDetailInPopup)
+      updateContext(old => ({ ...old, showPopup: true }));
+    else
+      navigate('/product/detail/' + product.id);
   };
 
   const handleChange = () => {
@@ -136,6 +139,7 @@ interface ProductCardProps {
   isCarrousel? : boolean;
   selected?: boolean;
   showHeader?: boolean;
+  showDetailInPopup?: boolean;
 }
 
 export default ProductCard;

@@ -27,6 +27,7 @@ export const Menu = ({ collapsed, toggle }: MenuProps) => {
             h-screen w-4/5 fixed z-1000
             shadow-2xl bg-[#D9EEEF]
             animate__animated animate__faster300
+            top-0
             ${collapsedClass}
         `}
     >

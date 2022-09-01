@@ -42,7 +42,7 @@ const Detail = () => {
           <img src={backArrow} onClick={() => navigate(-1)} />
         </div>
         <div className='flex flex-col w-full flex-shrink-0 overflow-hidden'>
-          <p className='hidden md:mt-3 md:mb-1 md:block text-fourth font-subTitles text-sm lg:mb-9'>
+          <p className='hidden md:mt-3 md:mb-1 md:block text-fourth font-sanzBold text-sm lg:mb-9'>
             <span onClick={() => navigate('/catalogue')} className='cursor-pointer'>Catálogo &gt; </span>
             {capitalize(productView.name)}
           </p>
@@ -58,7 +58,7 @@ const Detail = () => {
         {/* Calculator */}
         <div className='flex mx-7 mt-5 md:hidden gap-5 text-sm font-subTitles'>
           <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
-          <Button className='ring-1 ring-primary text-primary rounded-full font-bold'>Calculadora</Button>
+          <Button className='ring-1 ring-primary text-primary rounded-full font-bold' onClick={() => navigate('/calculator')}>Calculadora</Button>
         </div>
 
         {/* Nutrition */}

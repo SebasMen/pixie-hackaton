@@ -76,6 +76,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
                   product={product}
                   showControls={false}
                   showHeader={false}
+                  showDetailInPopup={true}
                 />
               ))
             }

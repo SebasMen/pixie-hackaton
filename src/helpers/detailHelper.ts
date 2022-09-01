@@ -3,7 +3,7 @@ import {
   inLeg,
   inChickenMeat,
   bean,
-  mineral,
+  inMineral,
   inFillet,
   inTurkeyMeat,
   inIntegralRice,
@@ -48,6 +48,7 @@ import {
 } from '../assets/vectors';
 import { attributesType, ingredientesProps } from '../interfaces/product';
 
+// Order nutrient adjunting with his image
 export const organizeIngredients = (ingredients: string): Array<ingredientesProps> => {
   const arrayIngredients = separateByCommas(ingredients);
   const objectIngredients: Array<ingredientesProps> = [];
@@ -207,7 +208,7 @@ const switchOrganiceIngredients = (ingredient: string) => {
       break;
     case ('hierro' || 'yodo' || 'cobre' || 'selenio'):
       objectIngredient.name = 'Minerales';
-      objectIngredient.img = mineral;
+      objectIngredient.img = inMineral;
       break;
     case 'habichuela':
       objectIngredient.img = bean;
@@ -271,3 +272,18 @@ const switchOrganiceAttributes = (attribute: string): attributesType => {
   return objectAttributes;
 };
 
+export const calculatePageNutrients = (ingredients: ingredientesProps[], divideNumber: number): ingredientesProps[][] => {
+  const ingredientsFilter = ingredients.filter(item => item.img);
+  const ingredientsTotal: ingredientesProps[][] = [];
+  let currentPosition = 0;
+
+  ingredientsFilter?.forEach((ingredient, index) => {
+    if (ingredientsFilter.length > currentPosition && currentPosition === index) {
+      const page = ingredientsFilter?.slice(currentPosition, currentPosition + divideNumber);
+      ingredientsTotal.push(page);
+      currentPosition += divideNumber;
+    }
+  });
+
+  return ingredientsTotal;
+};

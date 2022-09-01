@@ -8,10 +8,12 @@ import { capitalize } from '../../../helpers/capitalize';
 import { CartItem } from '../../../interfaces/basket';
 import { notImage, trashIcon } from '../../../assets/vectors';
 import IconButton from '../iconButton';
+import { useState } from 'react';
 
 const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingCarProps) => {
   // Hooks
   const { deleteProduct, addRemoveProduct } = useShoppingCar();
+  const [counter, setCounter] = useState(1);
 
   // Handle
   const handleDeleteProduct = () => {
@@ -20,8 +22,15 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
       showMessageDelete(item);
   };
 
-  const handleChange = (value: number) =>
+  const handleChange = (value: number) => {
+    setCounter(counter => value + counter);
     addRemoveProduct(item.product, value);
+  };
+
+  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCounter(counter => parseInt(e.target.value, 10));
+    addRemoveProduct(item.product, parseInt(e.target.value, 10));
+  };
 
   return (
     <div className='flex mb-2 py-3 px-2 bg-white rounded-[20px] lg:p-4 lg:mb-4 lg:gap-5 lg:px-4 lg:py-4'>
@@ -53,7 +62,7 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
           <span className='text-sm font-bold lg:text-[22px] lg:leading-7'>${item.quantity * item.product.price}</span>
           {showOptions && (
             <div className='w-[65px] h-[23px] lg:w-[79px] lg:h-[29px]'>
-              <AddRemoveItem handleChance={handleChange} onlyOneNumber={true} />
+              <AddRemoveItem handleChance={handleChange} counter={counter} onhandleChangeInput={onChangeValue}/>
             </div>
           )}
         </div>

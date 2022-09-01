@@ -74,6 +74,7 @@ export const appProvider: AppContextType = {
   showNavbar: true,
   marginWhatsApp: false,
   showPopup: false,
+  showMinimalNavbar: false,
   // Provitional data to show recomendation
   productsToShowRecomendation: []
 };

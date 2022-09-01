@@ -1,21 +1,35 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppContext } from '../../../hooks';
+import useScrolled from '../../../hooks/useScrolled';
 
 import NavBar from '../../layout/navBar';
-import PopupAddProduct from '../popupAddProduct';
+import PopupDetailProduct from '../popupDetailProduct';
 
 export const Page = ({ className, children, color }: PageProps) => {
   // Hooks
   const { showPopup } = useAppContext();
   const { pathname } = useLocation();
+  const { updateContext, showNavbar } = useAppContext();
+  const minimalNavbar = useCallback(
+    () => {
+      if (screen.width < 800)
+        return 20;
+
+      return 112;
+    },
+    [screen],
+  );
+
+  const { scrollTo,
+    scrolledData: { isDown },
+  } = useScrolled({
+    gap: minimalNavbar(),
+    callback: () => isDown ? updateContext(old => ({ ...old, showMinimalNavbar: true })) : updateContext(old => ({ ...old, showMinimalNavbar: false }))
+  });
 
   useEffect(() => {
-    const root = document.getElementById('root');
-
-    if (!root) return;
-
-    root.scrollTo(0, 0);
+    scrollTo(0);
 
     return () => {};
   }, [pathname]);
@@ -28,11 +42,12 @@ export const Page = ({ className, children, color }: PageProps) => {
         flex flex-col items-center justify-center 
         flex-grow relative w-full
         animate__animated animate__fadeIn animate__fast
+        ${showNavbar && 'pt-[5.5rem] md:pt-[10rem]'}
         ${className}  
       `}
       >
         <NavBar />
-        {showPopup && <PopupAddProduct />}
+        {showPopup && <PopupDetailProduct />}
         <>{children}</>
       </div>
     </>

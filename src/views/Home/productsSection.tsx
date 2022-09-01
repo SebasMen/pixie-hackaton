@@ -141,7 +141,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
               far={isFar}
               img={card.img}
               imgselected={card.imgSelected}
-              className={`${isLeft && 'lg2:translate-x-16 xl2:translate-x-12'} ${isRight && 'lg2:-translate-x-16 xl2:-translate-x-12'}`}
+              className={`${isLeft && 'lg2:translate-x-16 xl2:translate-x-12'} ${isRight && 'lg2:-translate-x-16 xl2:-translate-x-12'} cursor-pointer`}
             />
           );
         })}

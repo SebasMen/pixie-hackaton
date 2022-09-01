@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useAppContext } from '../../hooks';
+import useValidator from '../../hooks/useValidator';
+import validator from 'validator';
 
 import { MultiValue, SingleValue } from 'react-select';
 import Button from '../../components/common/button';
 import TextField from '../../components/form/textField';
 import SelectField, { SelectItem } from '../../components/form/selectField';
-
-import { CalculatorForm as CalculatorFormType } from '../../interfaces/calculator';
 import RadioField from '../../components/form/radioField';
 import CheckField from '../../components/form/checkField';
-import { useAppContext } from '../../hooks';
+
+import { CalculatorForm as CalculatorFormType, CalculatorFormValidate } from '../../interfaces/calculator';
 
 export const CalculatorForm = ({
   onChange,
@@ -40,34 +42,95 @@ export const CalculatorForm = ({
   const [allergiesST, setAllergiesST] = useState(false);
   const [textTitleForm, setTextTitleForm] = useState('Descubre cuál es el plan que más le conviene');
   const { toast } = useAppContext();
+  const { handlePutMessageError, validatorBody, resetValidator } = useValidator<CalculatorFormValidate>({
+    name: {
+      message: ''
+    },
+    type: {
+      message: ''
+    },
+    age: {
+      message: ''
+    },
+    exactAge: {
+      message: ''
+    },
+    idealWeight: {
+      message: ''
+    },
+    exercise: {
+      message: ''
+    },
+  });
 
   const handleChangeView = (page: number) => {
-    let hasError = false;
-    // Validate age
-    if (age.value === 'cachorros' && exactAge > 12) {
-      hasError = true;
-      showToast('¡Wow, tu amigo ha crecido! Si tu mascota tiene más de 12 meses ya es un adulto.');
+    const validator = validateForm(page);
+    if (!validator) {
+      let hasError = false;
+      // Validate age
+      if (age.value === 'cachorros' && exactAge > 12) {
+        hasError = true;
+        showToast('¡Wow, tu amigo ha crecido! Si tu mascota tiene más de 12 meses ya es un adulto.');
+      }
+
+      if (age.value === 'cachorros' && exactAge < 2) {
+        hasError = true;
+        showToast('¡Auch! Pixie está diseñado para cachorros a partir de los 2 meses.');
+      }
+
+      // Adult
+      if (age.value === 'adultos' && exactAge > 7 && type.value === 'dog') {
+        hasError = true;
+        showToast('¡Woow, tu amigo ya ha llegado a su etapa senior!, Si tu perrito tiene más de 7 años ya es considerado senior');
+      }
+
+      if (age.value === 'adultos' && exactAge > 8 && type.value === 'cat') {
+        hasError = true;
+        showToast('¡Woow, tu amigo ya ha llegado a su etapa senior!, Si tu michi tiene más de 8 años ya es considerado senior');
+      }
+
+      if (!hasError)
+        setPage(page);
+    }
+  };
+
+  const validateForm = (page: number): boolean => {
+    // Clear all errors
+    resetValidator();
+    let error = false;
+    if (page === 1) {
+      if (name.length < 1) {
+        handlePutMessageError('name', 'Debes escribir un nombre');
+        error = true;
+      }
+
+      if (validator.equals(type.value, '')) {
+        handlePutMessageError('type', 'Se debe seleccionar un tipo de mascota');
+        error = true;
+      }
+
+      if (validator.equals(age.value, '')) {
+        handlePutMessageError('age', 'Se debe seleccionar una edad');
+        error = true;
+      }
+
+      if (exactAge < 1) {
+        handlePutMessageError('exactAge', 'Se debe seleccionar una edad correcta');
+        error = true;
+      }
+    } else {
+      if (idealWeight < 1) {
+        handlePutMessageError('idealWeight', 'Se debe seleccionar un peso mayor a 0');
+        error = true;
+      }
+
+      if (validator.equals(exercise.value, '')) {
+        handlePutMessageError('exercise', 'Se debe seleccionar una actividad fisica');
+        error = true;
+      }
     }
 
-    if (age.value === 'cachorros' && exactAge < 2) {
-      hasError = true;
-      showToast('¡Auch! Pixie está diseñado para cachorros a partir de los 2 meses.');
-    }
-
-    // Adult
-    if (age.value === 'adultos' && exactAge > 7 && type.value === 'dog') {
-      hasError = true;
-      showToast('¡Woow, tu amigo ya ha llegado a su etapa senior!, Si tu perrito tiene más de 7 años ya es considerado senior');
-    }
-
-    if (age.value === 'adultos' && exactAge > 8 && type.value === 'cat') {
-      hasError = true;
-      showToast('¡Woow, tu amigo ya ha llegado a su etapa senior!, Si tu michi tiene más de 8 años ya es considerado senior');
-    }
-
-    if (!hasError)
-      setPage(page);
-    /// setView(page);
+    return error;
   };
 
   const showToast = (text: string) =>
@@ -78,10 +141,8 @@ export const CalculatorForm = ({
     });
 
   useEffect(() => {
-    if (type.value === 'dog')
-      setTextTitleForm('Consiente a tu perrito con nuestra dieta rica en proteína satisfaciendo sus necesidades nutricionales.');
-    if (type.value === 'cat')
-      setTextTitleForm('Consiente a tu michi con nuestra dieta rica en proteína satisfaciendo sus necesidades nutricionales.');
+    if (type.value)
+      setTextTitleForm(`Consiente a tu ${type.value === 'dog' ? 'perrito' : 'michi'} con nuestra dieta rica en proteína satisfaciendo sus necesidades nutricionales.`);
   }, [type]);
 
   // Component
@@ -102,21 +163,43 @@ export const CalculatorForm = ({
             <p>{textTitleForm}</p>
           </div>
 
-          <TextField name='name' value={name} handler={onChange} label='¿Cómo se llama tu mascota?*' required />
+          <TextField
+            name='name'
+            value={name}
+            handler={onChange}
+            label='¿Cómo se llama tu mascota?*'
+            fieldClassName='text-grayText'
+            messageError={validatorBody.name.message}
+            required
+          />
           <SelectField
             name='type'
             value={type}
             options={typeOptions}
             onChange={onSelectChange}
             label='Tu mascota es un... *'
+            dropdownIndicatorColor='#33B5A9'
+            colorText='#4A4A4A'
+            messageError={validatorBody.type.message}
           />
-          <SelectField name='age' value={age} options={ageOptions} onChange={onSelectChange} label='Edad*' />
+          <SelectField
+            name='age'
+            value={age}
+            options={ageOptions}
+            onChange={onSelectChange}
+            label='Edad*'
+            dropdownIndicatorColor='#33B5A9'
+            colorText='#4A4A4A'
+            messageError={validatorBody.age.message}
+          />
           <TextField
             name='exactAge'
             value={exactAge}
             handler={onChange}
             type='number'
             label={`Edad exacta en ${age.value === 'cachorros' ? 'meses' : 'años'}*`}
+            fieldClassName='text-grayText'
+            messageError={validatorBody.exactAge.message}
             required
           />
           <div className='flex flex-col gap-5 items-center mt-4 md:gap-0 md:justify-between md:flex-row'>
@@ -128,7 +211,7 @@ export const CalculatorForm = ({
             <div className='flex justify-center gap-7 md:justify-end md:mt-2'>
               <Button
                 className='bg-primary text-[#FAD7B1] w-32 text-sm md:w-36'
-                onClick={exactAge && name ? () => handleChangeView(1) : undefined}
+                onClick={() => handleChangeView(1)}
               >
                 Siguiente
               </Button>
@@ -170,6 +253,8 @@ export const CalculatorForm = ({
             type='number'
             handler={onChange}
             label='Peso ideal en kilogramos*'
+            fieldClassName='text-grayText'
+            messageError={validatorBody.idealWeight.message}
             required
           />
           <SelectField
@@ -178,6 +263,9 @@ export const CalculatorForm = ({
             options={exerciseOptions}
             onChange={onSelectChange}
             label='Actividad fisica*'
+            dropdownIndicatorColor='#33B5A9'
+            colorText='#4A4A4A'
+            messageError={validatorBody.exercise.message}
           />
           <label>Enfermedades y alergias</label>
           <div className='flex gap-5'>
@@ -199,7 +287,7 @@ export const CalculatorForm = ({
             />
           </div>
           {allergiesST &&
-          <div className='flex'>
+          <div className='flex gap-5 md:gap-14'>
             <div className='flex flex-col'>
               <CheckField
                 onClick={() =>

@@ -11,11 +11,13 @@ import { capitalize } from '../../helpers/capitalize';
 
 import { basket } from '../../assets/vectors';
 import AttributesItem from '../../components/common/attributesItem';
+import { useNavigate } from 'react-router-dom';
 
-const InfoSection = ({ product, attributes }: InfoSectionProps) => {
+const InfoSection = ({ product, attributes, showControls = true }: InfoSectionProps) => {
   // Hooks
   const [quantity, setQuantity] = useState(1);
   const { addRemoveProduct } = useShoppingCar();
+  const navigate = useNavigate();
 
   // Methods
   const handlePriceChange = (quantity: number, totalPrice: number) => {
@@ -54,27 +56,31 @@ const InfoSection = ({ product, attributes }: InfoSectionProps) => {
           <AttributesItem img={att.img} key={att.name}/>
         )}
       </div>
+      {showControls &&
+        <div>
+          {/* Cart Button */}
+          <Button className='fixed bottom-0 bg-primary gap-4 rounded-t-2xl py-4 rounded-b-none w-full z-20 md:rounded-b-2xl md:relative md:py-3 hover:bg-grayText focus:outline-none focus:ring focus:ring-fourth '
+            onClick={handleAddProduct}
+          >
+            <img src={basket} />
+            <span className='text-base text-[#fad7b1]'>Agregar a la bolsa</span>
+          </Button>
 
-      {/* Cart Button */}
-      <Button className='fixed bottom-0 bg-primary gap-4 rounded-t-2xl py-4 rounded-b-none w-full z-20 md:rounded-b-2xl md:relative md:py-3'
-        onClick={handleAddProduct}
-      >
-        <img src={basket} />
-        <span className='text-base text-[#fad7b1]'>Agregar a la bolsa</span>
-      </Button>
-
-      {/* Calculator */}
-      <div className='hidden justify-between mt-5 md:flex md:px-1'>
-        <span className='font-subTitles text-sm'>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
-        <Button rounded className='ring-1 ring-primary text-primary h-10 font-paragraph text-sm'>Calculadora</Button>
-      </div>
+          {/* Calculator */}
+          <div className='hidden justify-between mt-5 md:flex md:px-1'>
+            <span className='font-subTitles text-sm'>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+            <Button rounded className='ring-1 ring-primary text-primary h-10 font-paragraph text-sm' onClick={() => navigate('/calculator')}>Calculadora</Button>
+          </div>
+        </div>
+      }
     </div>
   );
 };
 
 interface InfoSectionProps {
   product: Product,
-  attributes: attributesType[]
+  attributes: attributesType[],
+  showControls? : boolean
 }
 
 export default InfoSection;

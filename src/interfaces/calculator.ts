@@ -1,4 +1,5 @@
 import { SelectItem } from '../components/form/selectField';
+import { validatorBody } from './validator';
 
 export interface CalculatorForm {
   name: string;
@@ -19,4 +20,13 @@ export interface allergies {
   renal: boolean
   obesity: boolean
   sensitive_stomach: boolean
+}
+
+export interface CalculatorFormValidate {
+  name: validatorBody;
+  type: validatorBody
+  age: validatorBody;
+  exactAge: validatorBody;
+  idealWeight: validatorBody;
+  exercise: validatorBody;
 }

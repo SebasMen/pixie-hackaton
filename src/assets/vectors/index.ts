@@ -17,7 +17,6 @@ import iconGlass from './lupa.svg';
 import basketWhite from './canasta.svg';
 import linaza from './linaza.svg';
 import logoFooter from './logoFooter.svg';
-import mineral from './mineral.svg';
 import searchIcon from './searchIcon.svg';
 import Twitter from './Twitter.svg';
 import TwitterRed from './TwitterRed.svg';
@@ -85,6 +84,7 @@ import inMango from './inMango.svg';
 import inPeanut from './inPeanut.svg';
 import inYogurt from './inYogurt.svg';
 import inBanana from './inBanana.svg';
+import inMineral from './inMineral.svg';
 import atDigestibility from './atDigestibility.svg';
 import atNaturalIngredients from './atNaturalIngredients.svg';
 import atHighVitamine from './atHighVitamine.svg';
@@ -116,7 +116,6 @@ export {
   Instagramgray,
   linaza,
   logoFooter,
-  mineral,
   searchIcon,
   Twitter,
   TwitterRed,
@@ -176,6 +175,7 @@ export {
   inPeanut,
   inYogurt,
   inBanana,
+  inMineral,
   atDigestibility,
   atNaturalIngredients,
   atHighVitamine,

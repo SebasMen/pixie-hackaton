@@ -17,6 +17,7 @@ import productService from '../../services/productService';
 import '../../styles/catalogue.css';
 import { dog } from '../../assets/vectors';
 import { useSearchParams } from 'react-router-dom';
+import useScrolled from '../../hooks/useScrolled';
 
 const Catalogue = () => {
   // Hooks
@@ -28,6 +29,7 @@ const Catalogue = () => {
   });
   const { updateContext, marginWhatsApp } = useAppContext();
   const [searchParams] = useSearchParams();
+  const { scrollTo } = useScrolled();
 
   useEffect(() => {
     updateContext(old => ({ ...old, showNavbar: true }));
@@ -43,6 +45,7 @@ const Catalogue = () => {
         .then(data => {
           setproducts(data);
           setLoading(false);
+          scrollTo(800);
         });
     else
       await productService.getAllProducts().then(data => {

@@ -5,7 +5,7 @@ const AccordeonList = ({ title, children }: AccordeonListProps) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <li className='flex justify-start flex-col'>
+    <li className='flex justify-start flex-col cursor-pointer'>
       <div className='flex gap-3' onClick={() => setOpen(!open)}>
         <div className='h-[25px] w-[25px] rounded-full bg-pixieLightBlue flex justify-center items-center'>
           {open

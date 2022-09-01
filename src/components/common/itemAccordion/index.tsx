@@ -16,7 +16,7 @@ const ItemAccordion = ({ name, infoList, infoTable, nameTable, infoConservation,
         <span className='text-fourth font-extrabold text-base'>
           {name}
         </span>
-        {isOpen ? <Icon name='expand_more' size='3xl' className='text-fourth'/> : <Icon name='expand_less' size='3xl' className='text-fourth'/>}
+        {isOpen ? <Icon name='expand_less' size='3xl' className='text-fourth'/> : <Icon name='expand_more' size='3xl' className='text-fourth'/>}
       </div>
       <div className={`overflow-hidden h-auto transition-all transform${isOpen ? 'max-h-screen duration-500 block' : 'max-h-0 duration-300 hidden'}`}>
         <div className='pl-5'>

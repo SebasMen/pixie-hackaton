@@ -32,7 +32,7 @@ export const CalculatorSection = () => {
       <div className='flex flex-col h-full md:flex-row-reverse max-w-[1440px]'>
         <div className='flex flex-col items-center justify-center md:w-[31%] z-10 lg:mr-24'>
           <div className='lg:mb-[3.2rem]'>
-            <span className={`${initAnimate ? 'animation-text' : 'hidden'} text-3xl text-grayText font-extrabold`}>
+            <span className={`${initAnimate ? 'animation-text' : 'hidden'} text-2xl md:text-3xl text-grayText font-extrabold`}>
               ¿Cuál es el Pixie ideal para mi perrito o michi?
             </span>
           </div>

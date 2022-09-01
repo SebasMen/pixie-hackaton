@@ -126,9 +126,9 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
               />
             </div>
             <div className='w-full md:hidden'>
-              <Button className='bg-primary flex gap-4 w-full' rounded={true}>
+              <Button className='bg-primary flex gap-4 w-full' rounded={true} onClick={handleAddProductsToShopping}>
                 <img src={basket} className={'h-5 w-5'} />
-                <span className='text-base text-amber-100'>Agregar a la bolsa</span>
+                <span className='md:hidden text-base text-amber-100'>Agregar</span>
               </Button>
             </div>
           </div>

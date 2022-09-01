@@ -19,7 +19,7 @@ export const ProductsSection = ({ data, filter }: ProductsSectionProps) => {
                 ${i % 2 === 0 ? 'bg-thirdOpacity' : 'bg-third'}
               `}
             >
-              <div className='max-w-[1440px] xl2:px-1 2xl1:px-36'>
+              <div className='max-w-[1440px] xl2:px-1 2xl1:px-36' id='catalogue'>
                 <h2 className='text-center text-[40px] mb-6 text-gray-700 stroke-zinc-50 text_withoutbg opacity-50 md:text-7xl lg:text-7xl lg:mb-[70px]'>{category.name}</h2>
                 <div
                   className={`

@@ -13,8 +13,8 @@ import { CalculatorForm as CalculatorFormType } from '../../interfaces/calculato
 
 const ages: SelectItem[] = [
   { value: 'cachorros', label: 'Cachorro (2 a 12 meses)' },
-  { value: 'adultos', label: 'Adulto (1 a 6 años)' },
-  { value: 'senior', label: 'Senior (7 años en adelante)' },
+  { value: 'adultos', label: 'Adulto (1 a 8 años)' },
+  { value: 'senior', label: 'Senior (8 años en adelante)' },
 ];
 
 const types: SelectItem[] = [

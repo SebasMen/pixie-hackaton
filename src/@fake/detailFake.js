@@ -9,7 +9,7 @@ import {
   inVegetableOil,
   inEggs,
   inVitamines,
-  mineral,
+  inMineral,
 } from '../assets/vectors';
 
 export const ingredients = [
@@ -58,8 +58,8 @@ export const ingredients = [
     img: inVitamines
   },
   {
-    name: 'Minerales',
-    img: mineral
+    name: 'inMinerales',
+    img: inMineral
   },
 ];
 

@@ -18,7 +18,7 @@ const BannerDetail = ({ product } : BannerDetailProps) => {
           :
           arrayUrlImages.map(image =>
             <div key={image} className='flex w-full h-full items-center justify-center bg-gray-100'>
-              <img src={transformUrlGDrive(image)} className='w-full h-full object-cover'/>
+              <img src={transformUrlGDrive(image)} className='w-[319px] h-[319px] object-contain'/>
             </div>
           )
         }

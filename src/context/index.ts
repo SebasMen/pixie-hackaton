@@ -41,6 +41,9 @@ export interface AppContextType {
 
   // Provitional data to recomendations section
   productsToShowRecomendation : Product[];
+
+  // Show minimal Navbar
+  showMinimalNavbar : boolean;
 }
 
 export const appProvider: AppContextType = provider;

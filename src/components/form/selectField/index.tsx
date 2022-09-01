@@ -13,7 +13,9 @@ export const SelectField = ({
   borderColor,
   messageError,
   paddingY,
+  dropdownIndicatorColor,
   isMulti = false,
+  colorText,
 }: SelectFieldProps) => (
   <div className={'w-full flex flex-col items-start ' + className}>
     {label && <h2 className='pl-6 mb-3 text-lg font-medium'>{label}</h2>}
@@ -37,7 +39,7 @@ export const SelectField = ({
       styles={{
         dropdownIndicator: base => ({
           ...base,
-          color: '#DF2F44',
+          color: dropdownIndicatorColor ? dropdownIndicatorColor : '#DF2F44',
         }),
         control: base => ({
           ...base,
@@ -47,13 +49,18 @@ export const SelectField = ({
           paddingLeft: '10px',
           paddingRight: '10px',
           paddingBottom: paddingY ? paddingY : '',
-          paddingTop: paddingY ? paddingY : ''
+          paddingTop: paddingY ? paddingY : '',
         }),
         menu: base => ({
           ...base,
           borderRadius: '15px',
           overflow: 'hidden',
+          color: colorText ? colorText : 'black'
         }),
+        singleValue: base => ({
+          ...base,
+          color: colorText ? colorText : 'black'
+        })
       }}
     />
     {messageError && <p className='text-primary pl-2 text-xs lg:text-base'>{messageError}</p>}
@@ -74,6 +81,8 @@ interface SelectFieldProps {
   options: SelectItem[];
   onChange: (selected: MultiValue<SelectItem> | SingleValue<SelectItem>, name: string) => void;
   messageError?: string;
+  dropdownIndicatorColor?: string;
+  colorText?: string ;
 }
 
 export interface SelectItem {

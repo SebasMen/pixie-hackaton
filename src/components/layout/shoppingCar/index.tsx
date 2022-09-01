@@ -21,7 +21,7 @@ const ShoppingCar = ({ onClose, show }: shoppingCarProps) => {
     <div
       className={`
         bg-white w-full h-screen fixed right-0 
-        z-30 box-border top-0 shadow-2xl p-2 
+        z-50 box-border top-0 shadow-2xl p-2 
         md:w-96 md:p-5
         animate__faster300 animate__animated ${collapsedClass}
       `}
