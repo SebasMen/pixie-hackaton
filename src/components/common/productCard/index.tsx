@@ -51,13 +51,16 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
   const addCounter = (value: number) => {
     const newCount = counter + value;
 
-    if (!(newCount > 0)) return;
+    if (newCount < 1 || newCount > product.quantity) return;
 
     setCounter(counter => counter + value);
   };
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCounter(counter => parseInt(e.target.value, 10));
+    let newCount = parseInt(e.target.value, 10);
+    if (newCount > product.quantity)
+      newCount = product.quantity;
+    setCounter(counter => newCount);
   };
 
   // Component

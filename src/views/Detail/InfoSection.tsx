@@ -48,7 +48,7 @@ const InfoSection = ({ product, attributes, showControls = true }: InfoSectionPr
       </div>
 
       {/* Product Counter */}
-      <ProductCounter price={product.price} onPriceChange={handlePriceChange} />
+      <ProductCounter price={product.price} onPriceChange={handlePriceChange} productQuantity={product.quantity}/>
 
       {/* attributesProduct */}
       <div className='my-4 mx-2 pl-6 flex gap-4 opacity-60 lg:mx-0 lg:pl-0'>

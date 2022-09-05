@@ -8,7 +8,6 @@ import RadioField from '../../components/form/radioField';
 import { SelectItem } from '../../components/form/selectField';
 import TextField from '../../components/form/textField';
 import ResumenShipping from './ResumenShipping';
-import Spinner from '../../components/common/spinner';
 import FormBilling from '../../components/common/formBilling';
 
 import { paymentForm, PaymentFormValidate, shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
@@ -16,6 +15,7 @@ import paymentService from '../../services/paymentService';
 import { postSendPayment, postSendTokenCard } from '../../interfaces/payment';
 import { calculateTotalPayment, organiceInformationPayment } from '../../helpers/paymentHelper';
 import PopupDecision from '../../components/layout/popupDecision';
+import { useLoading } from '../../hooks/useLoading';
 
 const numberOfInstallmentsOptions: SelectItem[] = [
   { value: '1', label: '1 Cuota' },
@@ -27,14 +27,14 @@ const numberOfInstallmentsOptions: SelectItem[] = [
 const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPaymentAnswer, countriesOptions }:PaymentSectionProps) => {
   // Hooks
   const [sameBillingAdressSt, setSameBillingAdressSt] = useState<boolean>(true);
-  const [loadingST, setLoadingST] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [postSendTokenCard, setPostSendTokenCard] = useState<postSendTokenCard>({
     status: '',
     token_card: ''
   });
   const { products, toast } = useAppContext();
-  const { form, onSubmit, handleRadioChange, handleSelectChange, handleFormChange, setForm} = useForm<paymentForm>({
+  const { loadingFalse, loadingTrue } = useLoading();
+  const { form, onSubmit, handleRadioChange, handleSelectChange, handleFormChange, setForm } = useForm<paymentForm>({
     billingAddress: userData?.address ? userData.address : '',
     card_name: '',
     card_number: '',
@@ -197,15 +197,16 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   };
 
   const handleSubmit = async (form: paymentForm) => {
-    setLoadingST(true);
+    loadingTrue();
     const response = await paymentService.sendCardInformation(form);
     if (response.err) {
       toast.fire({
         icon: 'warning',
         title: response.err,
       });
-      setLoadingST(false);
+      loadingFalse();
     } else if (response.data.status === 'OK') {
+      loadingFalse();
       setPostSendTokenCard(response.data);
       setShowPopup(true);
     } else {
@@ -213,13 +214,14 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
         icon: 'warning',
         title: 'Hubo un error en la api.',
       });
-      setLoadingST(false);
+      loadingFalse();
     }
   };
 
   const sendDataPayment = async () => {
     // Close popup
     setShowPopup(false);
+    loadingTrue();
     // Organize data
     const paymentData = organiceInformationPayment(idCustomer, postSendTokenCard.token_card, userData, products, shippingData, form, sameBillingAdressSt);
     // Send data to API
@@ -235,7 +237,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
         title: 'Hubo un error en la api.',
       });
     changeStep(5);
-    setLoadingST(false);
+    loadingFalse();
   };
 
   // Save response to show un the answerSection
@@ -253,7 +255,6 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   };
 
   const handleClosePopup = () => {
-    setLoadingST(false);
     setShowPopup(false);
   };
 
@@ -358,19 +359,14 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
             messageError={validatorBody}
           />}
         <div className='pt-3'>
-          { loadingST
-            ?
-            <Spinner/>
-            :
-            <div className='lg:flex lg:flex-row-reverse lg:items-center'>
-              <Button className='w-full font-paragraph font-bold bg-primary text-[#fad7b1] mt-7 lg:w-[14.4rem] lg:text-lg' type='submit'>
-                Pagar
-              </Button>
-              <div className='text-center font-sanzBold text-sm text-primary cursor-pointer mt-5 lg:mt-6 lg:mr-20 lg:text-base lg:font-subTitles' onClick={() => changeStep(3)}>
-                {'<'} Volver a envíos
-              </div>
+          <div className='lg:flex lg:flex-row-reverse lg:items-center'>
+            <Button className='w-full font-paragraph font-bold bg-primary text-[#fad7b1] mt-7 lg:w-[14.4rem] lg:text-lg' type='submit'>
+              Pagar
+            </Button>
+            <div className='text-center font-sanzBold text-sm text-primary cursor-pointer mt-5 lg:mt-6 lg:mr-20 lg:text-base lg:font-subTitles' onClick={() => changeStep(3)}>
+              {'<'} Volver a envíos
             </div>
-          }
+          </div>
         </div>
       </form>
       {showPopup && <PopupDecision handleAccept={sendDataPayment} handleDeny={handleClosePopup} text='¿Realmente desea realizar el pago?'/>}

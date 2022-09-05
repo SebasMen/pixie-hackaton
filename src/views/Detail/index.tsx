@@ -5,7 +5,6 @@ import { useAppContext } from '../../hooks';
 import Page from '../../components/layout/page';
 import Button from '../../components/common/button';
 import Footer from '../../components/layout/footer';
-import IconButton from '../../components/common/iconButton';
 
 import BannerDetail from './bannerDetail';
 import NutritionSection from './NutritionSection';
@@ -17,12 +16,13 @@ import ExtraInfoContainer from './ExtraInfoContainer';
 import { capitalize } from '../../helpers/capitalize';
 import { organizeAttributes, organizeIngredients } from '../../helpers/detailHelper';
 
-import { dog, backArrow } from '../../assets/vectors';
+import { backArrow } from '../../assets/vectors';
 import '../../styles/banner.css';
+import ButtonWhatsap from '../../components/common/buttonWhatsapp';
 
 const Detail = () => {
   // Hooks
-  const { productView, updateContext, marginWhatsApp } = useAppContext();
+  const { productView, updateContext } = useAppContext();
   const [showFooter, setShowFooter] = useState(true);
   const navigate = useNavigate();
 
@@ -67,14 +67,7 @@ const Detail = () => {
         <ExtraInfoContainer product={productView} />
 
         {/* FAB */}
-        <IconButton
-          className={`${marginWhatsApp ? 'animation-buttonWhatsapp md:right-[25rem]' : 'md:right-6 animate__animated animate__bounceInRight'} fixed bottom-5 hidden z-50 p-1 pt-1.5 pl-1.5 text-white md:block md:bottom-[53%]`}
-          color='#DF2F44'
-          name='DogButton'
-          img={dog}
-          sizeContainer={'w-[75px] h-[75px]'}
-          onClick={() => console.log('Hi')}
-        />
+        <ButtonWhatsap />
       </div>
       {/* Other Info */}
       <InfoAccordion product={productView} />

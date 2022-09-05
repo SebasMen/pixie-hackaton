@@ -51,10 +51,10 @@ export const organiceInformationPayment = (idCustomer: string, tokenId: string, 
 const organiceProducts = (products: CartItem[]) : Array<productShort> => {
   const productsArray = products.map(item => {
     const productItem: productShort = {
-      id: item.product.id,
+      id: `${item.product.id}`,
       title: item.product.name,
       price: parseInt(String(item.product.price), 10),
-      sku: item.product.id,
+      sku: `${item.product.id}`,
       quantity: item.quantity,
       image: item.product.url_image,
       presentation: item.product.presentation

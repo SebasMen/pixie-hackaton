@@ -7,7 +7,6 @@ import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import { capitalize } from '../../../helpers/capitalize';
 import { CartItem } from '../../../interfaces/basket';
 import { notImage, trashIcon } from '../../../assets/vectors';
-import IconButton from '../iconButton';
 import { useState } from 'react';
 
 const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingCarProps) => {
@@ -23,13 +22,11 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
   };
 
   const handleChange = (value: number) => {
+    const newValue = value + counter;
+    if (newValue > item.product.quantity)
+      return;
     setCounter(counter => value + counter);
     addRemoveProduct(item.product, value);
-  };
-
-  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCounter(counter => parseInt(e.target.value, 10));
-    addRemoveProduct(item.product, parseInt(e.target.value, 10));
   };
 
   return (
@@ -62,7 +59,7 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
           <span className='text-sm font-bold lg:text-[22px] lg:leading-7'>${item.quantity * item.product.price}</span>
           {showOptions && (
             <div className='w-[65px] h-[23px] lg:w-[79px] lg:h-[29px]'>
-              <AddRemoveItem handleChance={handleChange} counter={counter} onhandleChangeInput={onChangeValue}/>
+              <AddRemoveItem handleChance={handleChange} counter={counter} />
             </div>
           )}
         </div>

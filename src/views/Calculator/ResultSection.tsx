@@ -9,12 +9,14 @@ import Button from '../../components/common/button';
 import { ProductListResponse } from '../../interfaces/product';
 import { PetFeedData } from '../../helpers/calculator';
 import calculatorService from '../../services/calculatorService';
+import { useLoading } from '../../hooks/useLoading';
 
 const ResultSection = ({ data, reset }: ResultSectionProps) => {
   // Hooks
   const [selected, setSelected] = useState(0);
   const { current: feedData } = useRef(data);
   const { toast } = useAppContext();
+  const { loadingDeterminate } = useLoading();
 
   const getCalculateProduct = useCallback(
     () => calculatorService.getCalculateProduct(feedData),
@@ -31,6 +33,11 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
 
   // Fetch
   const { loading, response } = useFetch<ProductListResponse>(getCalculateProduct);
+
+  // Show loading
+  useEffect(() => {
+    loadingDeterminate(loading);
+  }, [loading]);
 
   // Component
   return (

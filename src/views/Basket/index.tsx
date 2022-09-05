@@ -21,13 +21,13 @@ const Basket = () => {
   // Hooks
   const [showMessage, setShowMessage] = useState(false);
   const [messageDelete, setMessageDelete] = useState('');
-  const { products, updateContext } = useAppContext();
+  const { products, updateContext, toast } = useAppContext();
   const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    updateContext(old => ({ ...old, productsToShowRecomendation: response?.products ? response.products.slice(0, 4) : [] }));
+    updateContext(old => ({ ...old, productsToShowRecomendation: response?.products ? response.products.slice(0, 4) : [], marginWhatsApp: false }));
   }, [response]);
 
   // Handlers
@@ -36,6 +36,16 @@ const Basket = () => {
     setMessageDelete(`(${item.quantity}) ${capitalize(item.product.name)}`);
 
     setTimeout(() => setShowMessage(false), 2000);
+  };
+
+  const validateBasket = () => {
+    if (products.length > 0)
+      navigate('/checkout');
+    else
+      return toast.fire({
+        icon: 'error',
+        title: 'No hay ningun producto en tu canasta.',
+      });
   };
 
   // Component
@@ -70,7 +80,7 @@ const Basket = () => {
                 <Button className='text-sm ring-1 ring-primary text-primary w-[54%] lg:text-base lg:font-subTitles' padding='py-2' onClick={() => navigate('/catalogue')}>
                   Seguir comprando
                 </Button>
-                <Button className='bg-primary text-sm text-[#FAD7B1] w-[46%] tracking-normal lg:text-lg lg:font-sanzBold' padding='py-2' onClick={() => navigate('/checkout')}>
+                <Button className='bg-primary text-sm text-[#FAD7B1] w-[46%] tracking-normal lg:text-lg lg:font-sanzBold' padding='py-2' onClick={() => validateBasket()}>
                   Siguiente
                 </Button>
               </div>

@@ -5,7 +5,6 @@ import validator from 'validator';
 import useValidator from '../../hooks/useValidator';
 
 import Button from '../../components/common/button';
-import Spinner from '../../components/common/spinner';
 import CheckField from '../../components/form/checkField';
 import TextField from '../../components/form/textField';
 import SelectField, { SelectItem } from '../../components/form/selectField';
@@ -13,11 +12,12 @@ import SelectField, { SelectItem } from '../../components/form/selectField';
 import { SubmissionFormInterface, SubmissionFormValidate } from '../../interfaces/checkout';
 import { mexicanStates } from '../../@fake/statesFake';
 import checkOutService from '../../services/checkOutService';
+import { useLoading } from '../../hooks/useLoading';
 
 const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }:SubmissionFormProps) => {
   // Hooks
   const navigate = useNavigate();
-  const [loadingSt, setLoadingSt] = useState(false);
+  const { loadingTrue, loadingFalse } = useLoading();
   const [acceptConditions, setAcceptConditions] = useState(false);
   const [showMessageConditions, setShowMessageConditions] = useState(false);
   const { toast, dataFormCheckOut, updateContext } = useAppContext();
@@ -121,7 +121,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
       return;
     }
 
-    setLoadingSt(true);
+    loadingTrue();
     // Send information to api
     const { data, error } = await checkOutService.sendUserInformation(form);
     if (error)
@@ -136,7 +136,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
       changeStep(3);
     }
 
-    setLoadingSt(false);
+    loadingFalse();
   };
 
   // Update send infomation to email in the form
@@ -317,19 +317,14 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
         />
         {showMessageConditions && <div className='text-primary text-xs lg:text-base'>Debe aceptar terminos y condiciones para continuar</div>}
 
-        {loadingSt
-          ?
-          <Spinner/>
-          :
-          <div className='lg:flex lg:flex-row-reverse lg:items-center lg:mt-4'>
-            <Button className='w-full font-paragraph font-bold bg-primary text-[#fad7b1] mt-4 lg:w-72 lg:text-lg' type='submit'>
-              Seguir con envios
-            </Button>
-            <div className='font-sanzBold text-sm text-center mt-[1.40rem] text-primary cursor-pointer lg:mt-6 lg:text-base lg:mr-14' onClick={() => navigate('/basket')}>
-              <span>{'<'} Volver a la canasta</span>
-            </div>
+        <div className='lg:flex lg:flex-row-reverse lg:items-center lg:mt-4'>
+          <Button className='w-full font-paragraph font-bold bg-primary text-[#fad7b1] mt-4 lg:w-72 lg:text-lg' type='submit'>
+            Seguir con envios
+          </Button>
+          <div className='font-sanzBold text-sm text-center mt-[1.40rem] text-primary cursor-pointer lg:mt-6 lg:text-base lg:mr-14' onClick={() => navigate('/basket')}>
+            <span>{'<'} Volver a la canasta</span>
           </div>
-        }
+        </div>
       </div>
     </form>
   );

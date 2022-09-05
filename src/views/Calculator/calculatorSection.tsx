@@ -33,7 +33,7 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
   const { form, onSubmit, handleFormChange, handleRadioChange, handleSelectChange, setForm } = useForm<CalculatorFormType>(
     {
       name: '',
-      type: {label: 'Selecciona', value: '' },
+      type: { label: 'Selecciona', value: '' },
       typeOptions: types,
       age: ages[0],
       ageOptions: ages,

@@ -11,51 +11,47 @@ import { Product } from '../../interfaces/product';
 import { dogDesktop, vegetables } from '../../assets/images';
 import {
   homeIconCard,
-  homeIconCardOrange,
   poopIconCard,
-  poopIconCardOrange,
   foodIconCard,
-  foodIconCardOrange,
   dogIconCard,
-  dogIconCardOrange,
   catIconCard,
-  catIconCardOrange,
 } from '../../assets/vectors';
+import { homeCardCats, homeCardFood, homeCardHold, homeCardHouse, homeCardPoop } from '../../assets/gifts';
 
 const cardsData = [
   {
     title: 'DIRECTO A TU CASA:',
     description: 'Nosotros te llevamos la comida fresca y cuando la necesites hasta la puerta de tu casa.',
     img: homeIconCard,
-    imgSelected: homeIconCardOrange,
+    imgSelected: homeCardHouse,
   },
   {
     title: 'MENOS Y MEJORES HECES: ',
     description: `Por su alta digestibilidad los perros y gatos absorben
                   de mejor forma los nutrientes por lo que recogerás menos popós.`,
     img: poopIconCard,
-    imgSelected: poopIconCardOrange,
+    imgSelected: homeCardPoop,
   },
   {
     title: 'COMIDA REAL HORNEADA',
     description: `Cumpliendo nuestro propósito de generar bienestar aseguramos
                   que solo usamos los mejores ingredientes de grado humano dentro del rollo.`,
     img: foodIconCard,
-    imgSelected: foodIconCardOrange,
+    imgSelected: homeCardFood,
   },
   {
     title: 'DESARROLLADA POR NUTRIÓLOGOS VETERINARIOS:',
     description: `Sin conservadores y con los nutrientes necesarios para
                   una dieta diaria balanceada y saludable.`,
     img: dogIconCard,
-    imgSelected: dogIconCardOrange,
+    imgSelected: homeCardHold,
   },
   {
     title: 'VARIEDAD DE PRODUCTOS: ',
     description:
       'Cada dieta y cada ingrediente, está pensada para cada tamaño, edad, condición física y condición médica.',
     img: catIconCard,
-    imgSelected: catIconCardOrange,
+    imgSelected: homeCardCats,
   },
 ];
 

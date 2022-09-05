@@ -44,6 +44,9 @@ export interface AppContextType {
 
   // Show minimal Navbar
   showMinimalNavbar : boolean;
+
+  // Show loading popup
+  showLoading: boolean;
 }
 
 export const appProvider: AppContextType = provider;

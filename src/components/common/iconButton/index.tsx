@@ -1,6 +1,6 @@
 import Icon, { IconProps } from '../icon/';
 
-export const IconButton = ({ onClick, name, type, size, className, img, imgClassName, color, shadow = true, sizeContainer }: IconButtonProps) => {
+export const IconButton = ({ onClick, name, type, size, className, img, imgClassName, color, shadow = true, sizeContainer, onMouseOver, onMouseLeave }: IconButtonProps) => {
   const handleClick = (e: React.MouseEvent, click: React.MouseEventHandler) => {
     e.stopPropagation();
     click(e);
@@ -16,6 +16,8 @@ export const IconButton = ({ onClick, name, type, size, className, img, imgClass
         ${shadow && 'shadow-xl'} overflow-hidden
         ${className} 
     `}
+      onMouseOver={onMouseOver}
+      onMouseLeave={onMouseLeave}
     >
       {img ? <img src={img} alt={name} className={imgClassName || 'w-full h-full'} /> : <Icon name={name} type={type} size={size} />}
     </div>
@@ -73,6 +75,8 @@ interface IconButtonProps extends IconProps {
   color?: string;
   shadow?: boolean;
   sizeContainer?: string;
+  onMouseOver?: () => void;
+  onMouseLeave? : () => void;
 }
 
 export default IconButton;

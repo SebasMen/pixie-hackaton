@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import IconButton from '../../components/common/iconButton';
 
-export const ProductCounter = ({ price = 0, onPriceChange }: ProductCounterProps) => {
+export const ProductCounter = ({ price = 0, onPriceChange, productQuantity }: ProductCounterProps) => {
   // Hooks
   const [count, setCount] = useState(1);
 
@@ -10,14 +10,16 @@ export const ProductCounter = ({ price = 0, onPriceChange }: ProductCounterProps
   const handleCount = (value: number) => {
     const newCount = count + value;
 
-    if (!(newCount > 0)) return;
+    if (newCount < 1 || newCount > productQuantity) return;
 
     setCount(newCount);
     onPriceChange(newCount, (newCount * price));
   };
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newCount = parseInt(e.target.value, 10);
+    let newCount = parseInt(e.target.value, 10);
+    if (newCount > productQuantity)
+      newCount = productQuantity;
     setCount(count => newCount);
     onPriceChange(newCount, (newCount * price));
   };
@@ -57,6 +59,7 @@ export const ProductCounter = ({ price = 0, onPriceChange }: ProductCounterProps
 interface ProductCounterProps {
   price?: number;
   onPriceChange: (quantity: number, price: number) => void;
+  productQuantity: number;
 }
 
 export default ProductCounter;
