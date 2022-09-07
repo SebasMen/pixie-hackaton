@@ -76,6 +76,10 @@ export const appProvider: AppContextType = {
   showPopup: false,
   showMinimalNavbar: false,
   showLoading: false,
+  showPopupViewerImage: {
+    show: false,
+    url: ''
+  },
   // Provitional data to show recomendation
   productsToShowRecomendation: []
 };

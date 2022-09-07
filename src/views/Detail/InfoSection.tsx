@@ -68,7 +68,7 @@ const InfoSection = ({ product, attributes, showControls = true }: InfoSectionPr
 
           {/* Calculator */}
           <div className='hidden justify-between mt-5 md:flex md:px-1'>
-            <span className='font-subTitles text-sm'>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+            <span className='font-subTitles text-sm'>Haz click aquí para conocer la ración indicada</span>
             <Button rounded className='ring-1 ring-primary text-primary h-10 font-paragraph text-sm' onClick={() => navigate('/calculator')}>Calculadora</Button>
           </div>
         </div>

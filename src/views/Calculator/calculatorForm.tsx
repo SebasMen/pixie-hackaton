@@ -11,6 +11,8 @@ import RadioField from '../../components/form/radioField';
 import CheckField from '../../components/form/checkField';
 
 import { CalculatorForm as CalculatorFormType, CalculatorFormValidate } from '../../interfaces/calculator';
+import ViewerImagePopup from '../../components/common/viewerImagePopup';
+import { idealWeightCat, idealWeightDog } from '../../assets/images';
 
 export const CalculatorForm = ({
   onChange,
@@ -41,7 +43,7 @@ export const CalculatorForm = ({
   const [page, setPage] = useState(0);
   const [allergiesST, setAllergiesST] = useState(false);
   const [textTitleForm, setTextTitleForm] = useState('Descubre cuál es el plan que más le conviene');
-  const { toast } = useAppContext();
+  const { toast, updateContext } = useAppContext();
   const { handlePutMessageError, validatorBody, resetValidator } = useValidator<CalculatorFormValidate>({
     name: {
       message: ''
@@ -235,6 +237,7 @@ export const CalculatorForm = ({
               <Button
                 className='ring-pixieLightBlue ring-1 w-full md:w-max'
                 padding={'py-[0.4rem] px-2 md:py-[0.3rem] xl1:px-8 xl2:px-[2.4rem] lg2:px-6'}
+                onClick={() => updateContext(old => ({ ...old, showPopupViewerImage: { show: true, url: idealWeightCat } }))}
               >
                 <span className='font-subTitles text-sm md:text-base font-bold truncate'>Tabla peso ideal gato</span>
               </Button>
@@ -242,6 +245,7 @@ export const CalculatorForm = ({
               <Button
                 className='ring-pixieLightBlue ring-1 w-full sm:w-max'
                 padding={'py-[0.4rem] px-2 md:py-[0.3rem] xl1:px-8 xl2:px-[2.4rem] lg2:px-6'}
+                onClick={() => updateContext(old => ({ ...old, showPopupViewerImage: { show: true, url: idealWeightDog } }))}
               >
                 <span className='font-subTitles text-sm md:text-base font-bold truncate'>Tabla peso ideal perro</span>
               </Button>

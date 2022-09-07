@@ -11,6 +11,8 @@ import backgroundCalculator from './backgroundCalculator.png';
 import catalogCat from './catalogCat.png';
 import fullDogCalculator from './fullDogCalculator.png';
 import catalogCatMobile from './catalogCatMobile.png';
+import idealWeightDog from './idealWeightDog.jpg';
+import idealWeightCat from './idealWeightCat.jpg';
 
 export {
   backgroundWood,
@@ -25,5 +27,7 @@ export {
   backgroundCalculator,
   catalogCat,
   fullDogCalculator,
-  catalogCatMobile
+  catalogCatMobile,
+  idealWeightDog,
+  idealWeightCat
 };

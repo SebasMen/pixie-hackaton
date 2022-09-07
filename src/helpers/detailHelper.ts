@@ -1,4 +1,4 @@
-import { separateByCommas } from './productHelper';
+import { separateByCommas, separateByCommasAndParenthesis } from './productHelper';
 import {
   inLeg,
   inChickenMeat,
@@ -50,10 +50,9 @@ import { attributesType, ingredientesProps } from '../interfaces/product';
 
 // Order nutrient adjunting with his image
 export const organizeIngredients = (ingredients: string): Array<ingredientesProps> => {
-  const arrayIngredients = separateByCommas(ingredients);
-  const objectIngredients: Array<ingredientesProps> = [];
-  arrayIngredients.forEach(item => objectIngredients.push(switchOrganiceIngredients(item)));
-  return objectIngredients;
+  const arrayIngredients = separateByCommasAndParenthesis(ingredients);
+  const ingredientGroup = organizateIngredientsGroup(arrayIngredients);
+  return ingredientGroup;
 };
 
 export const organizeAttributes = (attributes: string): Array<attributesType> => {
@@ -72,11 +71,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
     name: ingredient,
     img: ''
   };
-
-  if (ingredient.toLocaleLowerCase().includes('vitaminas')) {
-    objectIngredient.img = inVitamines;
-    objectIngredient.name = 'Vitaminas';
-  }
 
   if (ingredient.toLocaleLowerCase().includes('quinua')) {
     objectIngredient.img = inQuinua;
@@ -125,9 +119,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
     case 'carne de pollo':
       objectIngredient.img = inChickenMeat;
       break;
-    case 'carne de res':
-      objectIngredient.img = inFillet;
-      break;
     case 'carne de pavo':
       objectIngredient.img = inTurkeyMeat;
       break;
@@ -173,9 +164,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
     case 'gelatina':
       objectIngredient.img = inJelly;
       break;
-    case 'corazón de res':
-      objectIngredient.img = inFillet;
-      break;
     case 'harina de trigo integral':
       objectIngredient.img = inWheatFlour;
       break;
@@ -194,9 +182,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
     case 'mango':
       objectIngredient.img = inMango;
       break;
-    case 'pulmón de res':
-      objectIngredient.img = inFillet;
-      break;
     case 'huevo de gallina':
       objectIngredient.img = inEggs;
       break;
@@ -205,10 +190,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
       break;
     case 'banano':
       objectIngredient.img = inBanana;
-      break;
-    case ('hierro' || 'yodo' || 'cobre' || 'selenio'):
-      objectIngredient.name = 'Minerales';
-      objectIngredient.img = inMineral;
       break;
     case 'habichuela':
       objectIngredient.img = bean;
@@ -286,4 +267,51 @@ export const calculatePageNutrients = (ingredients: ingredientesProps[], divideN
   });
 
   return ingredientsTotal;
+};
+
+const organizateIngredientsGroup = (ingredients: string[]): Array<ingredientesProps> => {
+  const objectIngredients:ingredientesProps[] = [];
+
+  const minerales = ['hierro', 'yodo', 'cobre', 'selenio', 'zinc'];
+  const carnes = ['carne de res', 'corazón de res', 'pulmón de res'];
+  const vitaminas = ['A', 'D', 'E', 'B1', 'B2', 'B3', 'B5', 'B6', 'B8', 'B9', 'B12', 'Colina'];
+
+  ingredients.forEach(item => {
+    const objectIngredient:ingredientesProps = {
+      name: '',
+      img: '',
+      tooltip: ''
+    };
+
+    if (minerales.includes(item.toLocaleLowerCase().trim())) {
+      const index = objectIngredients.findIndex(item => item.name === 'Minerales');
+      if (index === -1) {
+        objectIngredient.img = inMineral;
+        objectIngredient.name = 'Minerales';
+        objectIngredient.tooltip += `${item.trim()}, `;
+        objectIngredients.push(objectIngredient);
+      } else
+        objectIngredients[index].tooltip += `${item.trim()}, `;
+    } else if (carnes.includes(item.toLocaleLowerCase().trim())) {
+      const index = objectIngredients.findIndex(item => item.name === 'Carnes');
+      if (index === -1) {
+        objectIngredient.img = inFillet;
+        objectIngredient.name = 'Carnes';
+        objectIngredient.tooltip += `${item.trim()}, `;
+        objectIngredients.push(objectIngredient);
+      } else
+        objectIngredients[index].tooltip += `${item.trim()}, `;
+    } else if (vitaminas.find(vitaminItem => vitaminItem === item.trim())) {
+      const index = objectIngredients.findIndex(item => item.name === 'Vitaminas');
+      if (index === -1) {
+        objectIngredient.img = inVitamines;
+        objectIngredient.name = 'Vitaminas';
+        objectIngredient.tooltip += `${item.trim()}, `;
+        objectIngredients.push(objectIngredient);
+      } else
+        objectIngredients[index].tooltip += `${item.trim()}, `;
+    } else
+      objectIngredients.push(switchOrganiceIngredients(item));
+  });
+  return objectIngredients;
 };

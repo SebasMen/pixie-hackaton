@@ -13,13 +13,13 @@ import useShoppingCar from '../../hooks/useShoppingCar';
 
 const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendationProps) => {
   // Hooks
-  const [selected, setSelected] = useState<ResultProduct[]>([]);
   const [productList, setProductList] = useState<ResultProduct[]>(
     products.map(product => ({
       quantity: Math.round((grams / parseInt(product.presentation, 10)) * 30),
       product,
     }))
   );
+  const [selected, setSelected] = useState<ResultProduct[]>([productList[0]]);
 
   const { addRemoveProduct } = useShoppingCar();
 
@@ -78,7 +78,7 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
   // Save product to car
   const handleAddProductsToShopping = () => {
     selected.forEach(item =>
-      addRemoveProduct(item.product, item.quantity)
+      addRemoveProduct(item.product, parseInt(`${item.quantity}`, 10))
     );
   };
 
@@ -86,7 +86,7 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
   return (
     <div className='flex flex-col gap-[38px] w-full mb-10 px-5 md:pl-0'>
       <ColoredScrollbars style={{ height: 390 }}>
-        {productList.map(listed => (
+        {productList.map((listed, index) => (
           <RecomendationItem
             key={listed.product.id}
             data={listed}

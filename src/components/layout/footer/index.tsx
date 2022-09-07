@@ -34,7 +34,7 @@ export const Footer = ({ className }: FooterProps) => {
           <span>Términos y condiciones</span>
         </div>
         <div className='my-3.5'>
-          <span>Pólitica de datos</span>
+          <span>Política de datos</span>
         </div>
       </div>
     </footer>

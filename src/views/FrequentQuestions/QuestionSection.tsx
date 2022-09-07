@@ -5,10 +5,10 @@ const QuestionSection = () => {
   const navigate = useNavigate();
 
   return (
-    <div className='flex flex-col text-left w-full px-36 mb-36 mt-[6.35rem]'>
-      <h3 className='text-pixieLightBlue text-left text-[30px]'>Preguntas frecuentes</h3>
-      <ul className='mt-10 flex flex-col gap-[2.7rem]'>
-        <AccordeonList title='¿Pixie, el alimento natural, reemplaza totalmente una alimentación con concentrado comercial?'>
+    <div className='flex flex-col text-left w-full px-6 mt-3 md:px-36 mb-36 md:mt-[6.35rem]'>
+      <h3 className='text-pixieLightBlue text-2xl text-left md:text-[30px]'>Preguntas frecuentes</h3>
+      <ul className='mt-10 flex flex-col gap-8 md:gap-[2.7rem]'>
+        <AccordeonList title='¿Pixie alimentacion natural reemplaza totalmente una alimentación con concentrado comercial?'>
           <p>
               La respuesta es sí. Pixie ha sido desarrollado bajo estándares nutricionales
               mundialmente reconocidos, como lo es el National Research Counsil. Además, nuestro
@@ -58,7 +58,7 @@ const QuestionSection = () => {
             </ul>
           </div>
         </AccordeonList>
-        <AccordeonList title='¿Por qué PIXIE, el alimento natural, es mejor?'>
+        <AccordeonList title='¿Por qué PIXIE alimentacion natural es mejor?'>
           <p>
             Es un alimento elaborado con ingredientes frescos y naturales, no usamos ningún tipo
             de conservador, preservante, colorante ni saborizante; su palatabilidad es muy alta ya
@@ -84,24 +84,27 @@ const QuestionSection = () => {
         </AccordeonList>
         <AccordeonList title='¿Qué ventajas tiene comer PIXIE alimentación natural?'>
           <p>
-            <strong>Beneficios generales:</strong> Mascotas saludables y longevas con un <strong>pelaje brillante</strong> una <strong>mejor digestión</strong>
+            <strong>Beneficios generales:</strong> Mascotas saludables y longevas con un <strong>pelaje brillante</strong> una <strong>mejor digestión </strong>
             y metabolismo del alimento, un <strong>mejor transito gastrointestinal</strong> y <span>mayor desarrollo muscular</span> con menor
             grasa corporal y una mejor actitud al comer. Nuestras dietas <strong>fortalecen el sistema inmune</strong>, detoxificando
             su sistema biológico y reduciendo la cantidad de deposiciones, generando así animales <strong>más activos y enérgicos</strong>.
           </p>
         </AccordeonList>
         <AccordeonList title='¿Pixie es BARF?'>
-          <p>
-            B.A.R.F es un acrónimo en inglés: Biologically Appropriate Raw Food, lo que traduce
-            Alimentos Crudos Biológicamente Apropiados. Como Pixie es un alimento natural
-            horneado: ¡NO ES BARF!
-
-            En Pixie solo usamos cortes magros para nuestras dietas, mientras que BARF usa
-            residuos de la industria cárnica y muelen huesos en la preparación de sus dietas.
-            BARF elabora sus productos basado en la idea de que los perros son carnívoros
-            estrictos, por eso se exceden con la proteína no digestible, lo que a largo plazo causa
-            problemas hepáticos y/o renales.
-          </p>
+          <div className='flex flex-col gap-5'>
+            <p>
+              B.A.R.F es un acrónimo en inglés: Biologically Appropriate Raw Food, lo que traduce
+              Alimentos Crudos Biológicamente Apropiados. Como Pixie es un alimento natural
+              horneado: ¡NO ES BARF!
+            </p>
+            <p>
+              En Pixie solo usamos cortes magros para nuestras dietas, mientras que BARF usa
+              residuos de la industria cárnica y muelen huesos en la preparación de sus dietas.
+              BARF elabora sus productos basado en la idea de que los perros son carnívoros
+              estrictos, por eso se exceden con la proteína no digestible, lo que a largo plazo causa
+              problemas hepáticos y/o renales.
+            </p>
+          </div>
         </AccordeonList>
         <AccordeonList title='¿Es necesario realizar una transición para iniciar con Pixie?'>
           <div className='flex flex-col gap-5'>

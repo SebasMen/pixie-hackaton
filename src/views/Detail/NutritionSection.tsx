@@ -48,9 +48,9 @@ const NutritionSection = ({ ingredients }: NutritionSectionProps) => {
           <IconButton name='navigate_before' className='w-[3%]' sizeContainer='w-8 h-8' size='3xl' onClick={() => handleChangePagination(-1)} shadow={false}/>
         }
         <div className='grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 text-center w-[94%]'>
-          {showNutritionPagination?.map(({ img, name }) => (
+          {showNutritionPagination?.map(({ img, name, tooltip }) => (
             img &&
-            <NutritionItem key={name} name={name} img={img} />
+            <NutritionItem key={name} name={name} img={img} tooltip={tooltip} />
           ))}
 
         </div>

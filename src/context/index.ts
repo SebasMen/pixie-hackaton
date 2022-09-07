@@ -47,6 +47,12 @@ export interface AppContextType {
 
   // Show loading popup
   showLoading: boolean;
+
+  // Show popup viewer Image
+  showPopupViewerImage: {
+    url: string,
+    show: boolean,
+  }
 }
 
 export const appProvider: AppContextType = provider;

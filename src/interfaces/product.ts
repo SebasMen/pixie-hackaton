@@ -47,7 +47,8 @@ export interface productCatalogue {
 
 export interface ingredientesProps {
   name: string,
-  img: string
+  img: string,
+  tooltip?: string
 }
 
 export interface attributesType {

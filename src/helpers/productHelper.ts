@@ -30,7 +30,11 @@ export const calculateTotal = (arrayProducts: CartItem[]) => {
 };
 
 export const separateByCommas = (text : string) => {
-  const array = text.split(',');
+  const array = text.split(',' || '(');
   return array;
 };
 
+export const separateByCommasAndParenthesis = (text : string) => {
+  const array = text.split(/[(),.]+/);
+  return array;
+};

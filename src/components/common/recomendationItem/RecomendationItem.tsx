@@ -9,7 +9,7 @@ import { capitalize } from '../../../helpers/capitalize';
 
 const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 500 }: RecomendationItemProps) => {
   // Hooks
-  const { current: defaultCant } = useRef(Math.round((grams / parseInt(data.product.presentation, 10)) * 28));
+  const { current: defaultCant } = useRef(Math.round((grams / parseInt(data.product.presentation, 10)) * 30));
 
   const {
     form: { cant },
@@ -37,7 +37,7 @@ const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 
       {/* Check */}
       <div className='flex items-center md:py-10 lg:w-[43%] lg2:w-[50%] xl2:w-[42%]'>
         <div className='flex items-center gap-3 md:gap-11'>
-          <CheckField onClick={() => toggle(data.product, cant)} sizeContainer='w-5 h-5 lg:w-[30px] lg:h-[30px]' />
+          <CheckField onClick={() => toggle(data.product, cant)} sizeContainer='w-5 h-5 lg:w-[30px] lg:h-[30px]' checked={checked}/>
           {/* name */}
           <div className='font-extrabold text-pixieLightBlue lg:text-xl'>{capitalize(data.product.name)}</div>
         </div>

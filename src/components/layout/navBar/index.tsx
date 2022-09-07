@@ -88,9 +88,12 @@ export const NavBar = () => {
           <div className={`${showMinimalNavbar ? 'md:pt-2' : 'md:pt-4'} flex flex-grow-0 items-top w-full md:flex-grow text-${color}  `}>
             {/* Social */}
             <div className={`${showMinimalNavbar ? 'md:items-center' : 'md:pt-[0.40rem]'} hidden md:flex md:flex-row md:space-x-10 md:w-2/3 md:ml-4 `}>
-              <Icon.awesome className='text-gray-600 hover:text-red-500 hover:bg-white w-10 h-10 flex justify-center items-center' icon='fa-facebook-f' size='3xl' />
-              <Icon.awesome className='text-gray-600 hover:text-red-500  hover:bg-white w-10 h-10 flex justify-center items-center' icon='fa-instagram' size='3xl' />
-              <Icon.awesome className='text-gray-600 hover:text-red-500  hover:bg-white w-10 h-10 flex justify-center items-center' icon='fa-twitter' size='3xl' />
+              <a href='https://www.facebook.com/Pixiemx-104482775594223/' target='_blank' rel='noopener noreferrer' className='cursor-pointer'>
+                <Icon.awesome className='text-gray-600 hover:text-red-500 hover:bg-white w-10 h-10 flex justify-center items-center' icon='fa-facebook-f' size='3xl' />
+              </a>
+              <a href='https://www.instagram.com/pixie.mex/?igshid=YmMyMTA2M2Y%3D' target='_blank' rel='noopener noreferrer' className='cursor-pointer'>
+                <Icon.awesome className='text-gray-600 hover:text-red-500  hover:bg-white w-10 h-10 flex justify-center items-center' icon='fa-instagram' size='3xl' />
+              </a>
             </div>
 
             {/* Items */}

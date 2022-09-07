@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppContext } from '../../../hooks';
 import useScrolled from '../../../hooks/useScrolled';
+import ViewerImagePopup from '../../common/viewerImagePopup';
 
 import NavBar from '../../layout/navBar';
 import Loading from '../loading';
@@ -11,7 +12,7 @@ export const Page = ({ className, children, color }: PageProps) => {
   // Hooks
   const { showPopup } = useAppContext();
   const { pathname } = useLocation();
-  const { updateContext, showNavbar, showLoading } = useAppContext();
+  const { updateContext, showNavbar, showLoading, showPopupViewerImage } = useAppContext();
   const minimalNavbar = useCallback(
     () => {
       if (screen.width < 800)
@@ -49,6 +50,7 @@ export const Page = ({ className, children, color }: PageProps) => {
       >
         <NavBar />
         {showPopup && <PopupDetailProduct />}
+        {showPopupViewerImage.show && <ViewerImagePopup />}
         {showLoading && <Loading />}
         <>{children}</>
       </div>

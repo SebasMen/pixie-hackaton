@@ -281,6 +281,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             placeholder='Estado*'
             name='state'
             options={form.states}
+            value={form.state}
             onChange={handleSelectChange}
             borderRadius={true}
             borderColor='#000'
@@ -293,6 +294,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           placeholder='País*'
           name='country'
           options={form.countries}
+          value={form.country}
           onChange={handleSelectChange}
           borderRadius={true}
           borderColor='#000'
@@ -308,7 +310,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           labelClassName='text-xs lg:text-sm'
         />
         <CheckField
-          onClick={() => setAcceptConditions(!acceptConditions)}
+          onClick={() => setAcceptConditions(old => !old)}
           label='Acepto los terminos y condiciones y la política de privacidad*'
           border='border border-primary'
           sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
