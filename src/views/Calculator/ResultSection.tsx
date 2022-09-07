@@ -39,6 +39,18 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
     loadingDeterminate(loading);
   }, [loading]);
 
+  let calculateGrams = 500;
+  switch (data?.type) {
+    case 'cat':
+      calculateGrams = 200;
+      break;
+    case 'dog':
+      calculateGrams = 500;
+      break;
+    default:
+      break;
+  }
+
   // Component
   return (
     // Check loading & products array
@@ -90,7 +102,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
           </Carrousel>
           <div className='text-center mt-10 mb-5 font-sanzBold md:text-lg md:leading-normal'>
             <span>
-              Dieta recomendada para 4 semanas = {Math.round((feedData.grams * 30) / 500)} Pixies,
+              Dieta recomendada para 4 semanas = {Math.round((feedData.grams * 30) / calculateGrams)} Pixies,
               <span className='text-pixieLightBlue'> ¡combínalas como tu quieras!</span>
             </span>
           </div>

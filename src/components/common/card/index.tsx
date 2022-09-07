@@ -1,3 +1,4 @@
+import Lottie from 'lottie-react';
 
 export const Card = ({ title, description, selected, far, className, img, imgselected }: CardProps) => (
   <div
@@ -9,8 +10,12 @@ export const Card = ({ title, description, selected, far, className, img, imgsel
     `}
   >
     <div className='flex flex-grow flex-shrink-0 items-center justify-center'>
-      {/* {selected ?():()} */}
-      <img src={selected ? imgselected : img} className={`${selected ? 'w-[138px] h-[138px] xl:w-48 xl:h-48' : far ? 'w-[138px] h-[138px] xl:w-36 xl:h-36' : 'w-[138px] h-[138px] xl:w-36 xl:h-36'}`} />
+      { selected
+        ?
+        <Lottie animationData={imgselected} loop={true} className='w-[138px] h-[138px] xl:w-48 xl:h-48'/>
+        :
+        <img src={selected ? imgselected : img} className={`${selected ? 'w-[138px] h-[138px] xl:w-48 xl:h-48' : far ? 'w-[138px] h-[138px] xl:w-36 xl:h-36' : 'w-[138px] h-[138px] xl:w-36 xl:h-36'}`} />
+      }
     </div>
     <div className='flex-grow flex-shrink-0 overflow-y-auto'>
       <h2
@@ -31,7 +36,7 @@ interface CardProps {
   far?: boolean | (() => boolean);
   className?: string;
   img: string;
-  imgselected: string;
+  imgselected: any;
 }
 
 export default Card;

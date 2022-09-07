@@ -52,15 +52,15 @@ export const NavBar = () => {
 
   // Component
   return (
-    <div className='w-full relative max-w-[1440px]'>
+    <div className={`${showMinimalNavbar ? '' : 'max-w-[1440px]'} w-full relative`}>
       {/* Mobile Menu */}
       <Menu collapsed={collapsed} toggle={toggleCollapsed} />
 
       {/* Cart */}
       <ShoppingCar onClose={toogleShoppingCar} show={showShoppingCar} />
 
-      <div className={`${showMinimalNavbar ? 'bg-white py-1 px-2 lg:px-12 md:py-3' : 'bg-transparent py-4 px-2 lg:px-12 md:py-5'} fixed top-0 flex z-40 justify-between w-full items-center md:items-start  
-      overflow-hidden md:justify-start md:gap-10 max-w-[1440px]`}>
+      <div className={`${showMinimalNavbar ? 'bg-white py-1 px-2 lg:px-12 md:py-3 animate__fadeInDown w-full' : 'bg-transparent py-4 px-2 lg:px-12 md:py-5 animate__fadeIn max-w-[1440px]'} fixed top-0 flex z-40 justify-between w-full items-center md:items-start animate__animated animate__faster
+      overflow-hidden md:justify-start md:gap-10`}>
         {/* Menu Toggle */}
         <div className={`flex-shrink-0 md:hidden text-${color}`}>
           <IconButton name='menu' size='3xl' shadow={false} onClick={toggleCollapsed} className='-scale-x-125 -scale-y-125' />

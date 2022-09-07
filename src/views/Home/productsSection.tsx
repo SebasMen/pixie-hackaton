@@ -16,7 +16,7 @@ import {
   dogIconCard,
   catIconCard,
 } from '../../assets/vectors';
-import { homeCardCats, homeCardFood, homeCardHold, homeCardHouse, homeCardPoop } from '../../assets/gifts';
+import { homeCardCats, homeCardFood, homeCardHold, homeCardHouse, homeCardPoop } from '../../assets/json';
 
 const cardsData = [
   {

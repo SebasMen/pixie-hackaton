@@ -14,7 +14,8 @@ import { basket, iconButtonCat, iconButtonDog, notImage } from '../../../assets/
 import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import Tooltiped from '../tooltiped';
 import { useEffect, useState } from 'react';
-import { clickBasketCard } from '../../../assets/gifts';
+import Lottie from 'lottie-react';
+import { anHoverBasket } from '../../../assets/json';
 
 export const ProductCard = ({ product, showControls = true, className, isCarrousel, selected, showHeader = true, showDetailInPopup = false }: ProductCardProps) => {
   // Hooks
@@ -131,15 +132,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
         >
           { clickBasket
             ?
-            <IconButton.mini
-              imgClassName='w-[7.3rem] h-[7.3rem] md:w-[9.2rem] md:h-[9.2rem]'
-              sizeContainer='w-36 h-36 md:w-36 md:h-36'
-              img={clickBasketCard}
-              name='clickBasketCard'
-              type='outlined'
-              size='xs'
-              onClick={() => handleChange()}
-            />
+            <Lottie animationData={anHoverBasket} loop={true} className='w-36 h-36 md:w-36 md:h-36'/>
             :
             <IconButton.mini
               imgClassName='w-6 h-6 md:w-7 md:h-7'
