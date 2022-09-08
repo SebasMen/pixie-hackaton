@@ -84,8 +84,8 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
         `}
         onClick={handleSubmit}
       >
-        <div className={`${!showHeader && 'hidden'} flex justify-between w-full mb-2`}>
-          <div className='flex items-start justify-center gap-1'>
+        <div className={`${!showHeader && 'hidden'} flex justify-between w-full mb-2 relative z-30`}>
+          <div className='flex items-start justify-center gap-1 absolute left-1'>
             {ages.map((age, index) => (
               <Tag key={`${product.id}-age-${age}`} name={age} className='w-full' sizeTags={ages.length}/>
             ))}
@@ -93,15 +93,16 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
           <IconButton.mini
             img={product.kind_pet === 'CAT' ? iconButtonCat : iconButtonDog}
             name={product.name + '-tag-' + product.kind_pet}
-            className='text-pixieLightBlue border-[1px] border-pixieLightBlue p-1 shadow-none mr-1'
+            className='text-pixieLightBlue border-[1px] border-pixieLightBlue p-1 shadow-none mr-1 absolute right-1'
             onClick={() => console.log(product.kind_pet)}
           />
         </div>
-        <div className={`${!showHeader && 'mt-12'} flex-grow overflow-hidden rounded-md`}>
+        <div className='flex-grow overflow-hidden rounded-md'>
           {product.url_image === '' ? (
             <img src={notImage} className='w-24 h-24 md:w-36 md:h-36' />
           ) : (
-            <img src={transformUrlGDrive(product.url_image)} className='w-24 h-24 md:w-36 md:h-36 object-contain hover:absolute hover:shadow-md hover:right-16 hover:scale-[1.75] hover:rounded-2xl' />
+            <img src={transformUrlGDrive(product.url_image)} className='w-full h-36 md:w-[15.7rem] md:h-[15.7rem] top-[0.75rem] object-contain right-0 transform transition-all duration-200 hover:scale-[2.2]' />
+            // <img src={transformUrlGDrive(product.url_image)} className='w-24 h-24 md:w-36 md:h-36 object-contain hover:absolute hover:shadow-md hover:right-16 hover:scale-[1.75] hover:rounded-2xl' />
           )}
         </div>
         <div className={'text-center text-xs md:text-lg w-full'}>

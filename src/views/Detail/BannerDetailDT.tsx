@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { useAppContext } from '../../hooks';
 
 import MiniImageDT from './MiniImageDT';
 
 import { transformUrlGDrive } from '../../helpers/imgHelper';
 import { transUrlImages } from '../../helpers/productHelper';
 import { notImage } from '../../assets/vectors/index';
+import { Product } from '../../interfaces/product';
+import { useAppContext } from '../../hooks';
 
-const BannerDetailDT = () => {
+const BannerDetailDT = ({ product }: BannerDetailDTProps) => {
   // Hooks
   const [image, setImage] = useState(0);
-  const { productView: product } = useAppContext();
-
-  const arrayUrlImages = transUrlImages(product);
+  const { productView } = useAppContext();
+  const arrayUrlImages = transUrlImages(product ? product : productView);
 
   return (
     <div className='hidden lg:flex w-full overflow-hidden lg:h-full md:w-[63%] '>
@@ -39,5 +39,9 @@ const BannerDetailDT = () => {
     </div>
   );
 };
+
+interface BannerDetailDTProps {
+  product?: Product;
+}
 
 export default BannerDetailDT;

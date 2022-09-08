@@ -102,9 +102,12 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
           </Carrousel>
           <div className='text-center mt-10 mb-5 font-sanzBold md:text-lg md:leading-normal'>
             <span>
-              Dieta recomendada para 4 semanas = {Math.round((feedData.grams * 30) / calculateGrams)} Pixies,
-              <span className='text-pixieLightBlue'> ¡combínalas como tu quieras!</span>
+              Dieta recomendada para 4 semanas = {Math.round((feedData.grams * 30) / calculateGrams)} Pixies.
+              {feedData.type === 'dog' &&
+               <span className='text-pixieLightBlue'> ¡combínalas como tu quieras!</span>
+              }
             </span>
+            <p>Selecciona para poder agregar al carrito.</p>
           </div>
           <ResultRecommendation
             products={response.products}

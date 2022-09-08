@@ -29,6 +29,12 @@ export interface SubmissionFormValidate {
   last_name: validatorBody;
   state: validatorBody;
   country: validatorBody;
+  houseNumber: validatorBody;
+  apartment: validatorBody;
+  zip_code: validatorBody;
+  reference: validatorBody;
+  colony: validatorBody;
+  delegation: validatorBody;
 }
 
 export interface paymentForm {

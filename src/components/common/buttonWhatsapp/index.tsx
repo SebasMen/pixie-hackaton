@@ -13,7 +13,7 @@ const ButtonWhatsap = () => {
     <>
       {hover
         ?
-        <a href='https://wa.me/573112356014' target='_blank' rel='noopener noreferrer'>
+        <a href='https://wa.me/5215513070792' target='_blank' rel='noopener noreferrer'>
           <Lottie animationData={hoverButtonWhatsapp} loop={true}
             className={`${marginWhatsApp ? ' md:right-[25rem]' : 'md:right-[1.10rem] '} fixed bottom-5 z-50 p-1 pt-1.5 pl-1.5 text-white md:bottom-[51%]`}
             onMouseLeave={() => setHover(!hover)}

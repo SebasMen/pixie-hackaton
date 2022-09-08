@@ -257,7 +257,7 @@ export const getPetFeedData = ({ name, weight, age, range, type, activity, aller
   if (isNaN(grams) || !grams) return;
 
   return {
-    msg: `¡${name.toUpperCase()} debe consumir un total de ${grams} gramos al dia dividido en ${feedTimes} comidas!`,
+    msg: `¡${name.toUpperCase()} debe consumir un total de ${grams} gramos al día divididos en ${feedTimes} porciones!`,
     grams,
     type,
     range,

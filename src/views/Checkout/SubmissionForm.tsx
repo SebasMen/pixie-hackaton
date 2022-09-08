@@ -37,7 +37,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
       reference: dataFormCheckOut.reference,
       houseNumber: dataFormCheckOut.houseNumber,
       apartment: dataFormCheckOut.apartment,
-      delegation: dataFormCheckOut.apartment,
+      delegation: dataFormCheckOut.delegation,
       address: dataFormCheckOut.address,
       colony: dataFormCheckOut.colony,
       delivery_note: dataFormCheckOut.delivery_note
@@ -64,6 +64,24 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
     state: {
       message: ''
     },
+    houseNumber: {
+      message: ''
+    },
+    apartment: {
+      message: ''
+    },
+    zip_code: {
+      message: ''
+    },
+    reference: {
+      message: ''
+    },
+    colony: {
+      message: ''
+    },
+    delegation: {
+      message: ''
+    }
   });
 
   // Set countries in select
@@ -81,7 +99,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
     }
 
     if (!validator.isNumeric(form.phone)) {
-      handlePutMessageError('phone', 'Solo se pueden escribir numeros');
+      handlePutMessageError('phone', 'Solo se pueden escribir números');
       error = true;
     }
 
@@ -97,6 +115,36 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
 
     if (!validator.isAlpha(form.last_name, 'es-ES', { ignore: ' ' })) {
       handlePutMessageError('last_name', 'Solo se debe escribir letras');
+      error = true;
+    }
+
+    if (!validator.isLength(form.houseNumber, { min: 4 })) {
+      handlePutMessageError('houseNumber', 'El número de la casa debe ser mayor a 3 caracteres');
+      error = true;
+    }
+
+    if (!validator.isLength(form.apartment, { min: 2 }) && form.apartment.length > 0) {
+      handlePutMessageError('apartment', 'El número de apartamento debe ser mayor a 1 carácter');
+      error = true;
+    }
+
+    if (!validator.isLength(form.reference, { min: 4 }) && form.reference.length > 0) {
+      handlePutMessageError('reference', 'El número de apartamento debe ser mayor a 4 caracteres');
+      error = true;
+    }
+
+    if (!validator.isLength(form.zip_code, { min: 3 })) {
+      handlePutMessageError('zip_code', 'El codigo postal debe ser mayor a 2 caracteres');
+      error = true;
+    }
+
+    if (!validator.isLength(form.colony, { min: 4 })) {
+      handlePutMessageError('colony', 'La colonia debe contener mas de 4 caracteres');
+      error = true;
+    }
+
+    if (!validator.isLength(form.delegation, { min: 4 })) {
+      handlePutMessageError('delegation', 'La colonia debe contener mas de 4 caracteres');
       error = true;
     }
 
@@ -217,6 +265,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             placeholder='Número de Condominio, Casa o Edificio*'
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
+            messageError={validatorBody.houseNumber.message}
             required
           />
           <TextField
@@ -226,6 +275,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             placeholder='Número Interior ( Ej: Piso, Oficina, Dpto)'
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
+            messageError={validatorBody.apartment.message}
           />
         </div>
         <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
@@ -236,14 +286,16 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             placeholder='Entre calles (Referencias)'
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
+            messageError={validatorBody.reference.message}
           />
           <TextField
             name='zip_code'
             value={form.zip_code}
             handler={handleFormChange}
-            placeholder='Código postal'
+            placeholder='Código postal*'
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
+            messageError={validatorBody.zip_code.message}
             required
           />
         </div>
@@ -255,6 +307,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             placeholder='Colonia*'
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
+            messageError={validatorBody.colony.message}
             required
           />
           <TextField
@@ -264,6 +317,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             placeholder='Delegación o Municipio*'
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
+            messageError={validatorBody.delegation.message}
             required
           />
         </div>
@@ -281,7 +335,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             placeholder='Estado*'
             name='state'
             options={form.states}
-            value={form.state}
+            value={form.state.value ? form.state : undefined}
             onChange={handleSelectChange}
             borderRadius={true}
             borderColor='#000'
@@ -294,7 +348,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           placeholder='País*'
           name='country'
           options={form.countries}
-          value={form.country}
+          value={form.country.value ? form.country : undefined}
           onChange={handleSelectChange}
           borderRadius={true}
           borderColor='#000'
