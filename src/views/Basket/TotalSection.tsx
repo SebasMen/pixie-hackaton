@@ -5,7 +5,7 @@ import { calculateTotal } from '../../helpers/productHelper';
 
 import { shippingTypeForm } from '../../interfaces/checkout';
 
-const TotalSection = ({ showTaxes, shippingInfo = { type: 'estandar', price: 12000 } }:TotalSectionProps) => {
+const TotalSection = ({ showTaxes, shippingInfo = { type: 'estandar', price: 90 } }:TotalSectionProps) => {
   // Hooks
   const { products } = useAppContext();
 
@@ -16,10 +16,12 @@ const TotalSection = ({ showTaxes, shippingInfo = { type: 'estandar', price: 120
           <span>Subtotal</span>
           <span>${calculateTotal(products)}</span>
         </div>
-        <div className='flex justify-between'>
-          <span>Envio</span>
-          <span>$12.000</span>
-        </div>
+        {calculateTotal(products) < 750 &&
+          <div className='flex justify-between'>
+            <span>Envio</span>
+            <span>${shippingInfo.price}</span>
+          </div>
+        }
       </div>
       <div className='bg-[#dbdbdb] rounded-xl px-4 mt-[6px] flex justify-between items-center py-2 font-bold text-lg lg:mt-6 lg:py-2 lg:pl-3 lg:pr-4'>
         <div>

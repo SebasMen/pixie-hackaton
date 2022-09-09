@@ -24,7 +24,7 @@ const CheckOut = () => {
   const [countries, setcountries] = useState<SelectItem[]>();
   const [userInfo, setuserInfo] = useState<SubmissionFormInterface>();
   const [idCustomer, setIdCustomer] = useState('');
-  const [shippingInfo, setShippingInfo] = useState<shippingTypeForm>({ type: 'estandar', price: 12000 });
+  const [shippingInfo, setShippingInfo] = useState<shippingTypeForm>({ type: 'estandar', price: 90 });
   const [paymentAnswer, setPaymentAnswer] = useState<postSendPayment>({
     status: 'wait',
     data: {

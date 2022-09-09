@@ -10,7 +10,7 @@ import { Product } from '../../../interfaces/product';
 import { transformAge } from '../../../helpers/productHelper';
 import { capitalize } from '../../../helpers/capitalize';
 
-import { basket, iconButtonCat, iconButtonDog, notImage } from '../../../assets/vectors/index';
+import { basket, tagCatGray, tagDogGray, notImage } from '../../../assets/vectors/index';
 import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import Tooltiped from '../tooltiped';
 import { useEffect, useState } from 'react';
@@ -69,7 +69,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
     <div
       className={`
           relative flex flex-col flex-shrink-0 justify-between items-center
-          h-[15.5rem] w-40 md:w-[16.815rem] md:h-[365px]
+          h-[15.5rem] w-40 md:w-[16.815rem] md:h-[380px]
           ${className}
         `}
     >
@@ -85,15 +85,17 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
         onClick={handleSubmit}
       >
         <div className={`${!showHeader && 'hidden'} flex justify-between w-full mb-2 relative z-30`}>
-          <div className='flex items-start justify-center gap-1 absolute left-1'>
+          <div className='flex items-start justify-center gap-1 absolute left-1 pr-9'>
             {ages.map((age, index) => (
               <Tag key={`${product.id}-age-${age}`} name={age} className='w-full' sizeTags={ages.length}/>
             ))}
           </div>
           <IconButton.mini
-            img={product.kind_pet === 'CAT' ? iconButtonCat : iconButtonDog}
+            img={product.kind_pet === 'CAT' ? tagCatGray : tagDogGray}
             name={product.name + '-tag-' + product.kind_pet}
-            className='text-pixieLightBlue border-[1px] border-pixieLightBlue p-1 shadow-none mr-1 absolute right-1'
+            className={`text-pixieLightBlue p-1 shadow-none md:mr-1 absolute right-0 md:right-1
+            ${product.kind_pet === 'CAT' ? 'bg-[#FFB88A]' : 'bg-[#F7EBA8]'}`}
+            imgClassName='brightness-[0.30] opacity-80'
             onClick={() => console.log(product.kind_pet)}
           />
         </div>
@@ -114,9 +116,9 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
             :
             <h4 className={`${product.name.length > 22 && 'leading-none'} text-pixieLightBlue mb-1`}>{capitalize(product.name)}</h4>
           }
-          <div className='flex items-center justify-around'>
-            <p className='font-sanzBold text-base md:text-xl'>
-              $ {product.price}{' '}
+          <div className='flex items-center justify-between px-4'>
+            <p className='font-sanzBold text-base md:text-xl flex flex-col'>
+              <span>${product.price}{' '}</span>
               <span className='text-xs font-semibold hidden lg:inline-flex '>{product.presentation.toLocaleLowerCase()}</span>
             </p>
             {showControls && (

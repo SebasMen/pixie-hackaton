@@ -10,9 +10,9 @@ import { shippingTypeForm, SubmissionFormInterface } from '../../interfaces/chec
 const ShippingSection = ({ changeStep, userData, setData }: SubmissionFormProps) => {
   // Hooks
   const [typeShippingSt, setTypeShippingSt] = useState<'estandar' | 'rapido'>('estandar');
-  const { onSubmit, handleRadioChange } = useForm<shippingTypeForm>({
+  const { onSubmit, handleRadioChange, form } = useForm<shippingTypeForm>({
     type: 'estandar',
-    price: 12000
+    price: 90
   },
   form => handleSubmit(form));
 
@@ -36,8 +36,8 @@ const ShippingSection = ({ changeStep, userData, setData }: SubmissionFormProps)
           <span className='mb-[10px] px-2 lg:mb-2 lg:px-0'>Informacion de envíos</span>
           <ul className='font-subTitles lg:list-disc lg:ml-5'>
             <li>Envío estándar con entrega hasta 3-7 días hábiles.</li>
-            <li>Envío gratis en compras mayores a $1599.00</li>
-            <li>Hacemos envíos únicamente dentro de la república mexicana.</li>
+            <li>Envío gratis en compras mayores a $740</li>
+            <li>Hacemos envíos únicamente dentro de la República Mexicana.</li>
           </ul>
         </div>
         <div className='bg-white lg:px-3 rounded-2xl'>
@@ -54,7 +54,7 @@ const ShippingSection = ({ changeStep, userData, setData }: SubmissionFormProps)
               />
             </div>
             <div className='text-right text-sm font-bold font-sanzBold'>
-              <span>$ 12.000</span>
+              <span>${form.price}</span>
             </div>
           </div>
         </div>

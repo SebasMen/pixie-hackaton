@@ -13,13 +13,13 @@ export const Tag = ({ name, className, sizeTags }: TagProps) => {
             className={`
               rounded-full pl-px pr-2 h-[1.18rem]
               flex items-center
-              border border-pixieLightBlue text-pixieLightBlue 
+              border border-pixieLightBlue text-white bg-fourth
               font-subTitles font-semibold 
               md:py-px md:gap-1 md:pr-3 md:pl-[6px] md:h-[1.95rem]
               ${className}
             `}
           >
-            <img src={iconTagBlue} className='text-md scale-[55%] sm:block md:scale-100' />
+            <img src={iconTagBlue} className='text-md scale-[55%] sm:block md:scale-100 brightness-[10]' />
             <span className='text-[11px] md:text-sm capitalize ml-1'>{capitalize(nameTag)}</span>
           </div>
         </Tooltiped>
@@ -28,13 +28,13 @@ export const Tag = ({ name, className, sizeTags }: TagProps) => {
           className={`
           rounded-full pl-px pr-2 h-[1.18rem]
           flex items-center
-          border border-pixieLightBlue text-pixieLightBlue 
+          border border-pixieLightBlue text-white bg-fourth
           font-subTitles font-semibold 
           md:py-px md:gap-1 md:pr-3 md:pl-[6px] md:h-[1.95rem]
           ${className}
         `}
         >
-          <img src={iconTagBlue} className='text-md scale-[55%] sm:block md:scale-100' />
+          <img src={iconTagBlue} className='text-md scale-[55%] sm:block md:scale-100 brightness-[10]' />
           <span className='text-[11px] md:text-sm capitalize ml-1'>{capitalize(nameTag)}</span>
         </div>
       }

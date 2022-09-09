@@ -93,5 +93,8 @@ const organiceBillingDetails = (userData: SubmissionFormInterface | undefined, f
 // Calculate the total with the shipping price
 export const calculateTotalPayment = (productsCar: CartItem[], shippingData: shippingTypeForm): number => {
   const totalProduct = calculateTotal(productsCar);
+  // If the product cost > 750 the shipping is free
+  if (totalProduct > 750)
+    return totalProduct;
   return totalProduct + shippingData.price;
 };

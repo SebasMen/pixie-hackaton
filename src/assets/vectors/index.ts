@@ -92,6 +92,8 @@ import atHighProtein from './atHighProtein.svg';
 import atKidneyCare from './atKidneyCare.svg';
 import atHighEnergy from './atHighEnergy.svg';
 import atRefreshing from './atRefreshing.svg';
+import tagCatGray from './tagCatGray.svg';
+import tagDogGray from './tagDogGray.svg';
 
 export {
   basket,
@@ -187,5 +189,7 @@ export {
   basketBlue,
   expandMoreBlue,
   pixieProduct,
-  calculatorIcon
+  calculatorIcon,
+  tagDogGray,
+  tagCatGray
 };

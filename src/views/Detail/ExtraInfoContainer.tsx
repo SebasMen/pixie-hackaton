@@ -55,7 +55,7 @@ const ExtraInfoContainer = ({ product }: ExtraInfoContainerProps) => {
           </div>
         </div>
         <div className='rounded-lg text-sm	w-1/2 px-16 bg-fifth'>
-          <div className='py-7'>
+          <div className='pt-7 pb-1'>
             <span className='text-lg font-bold text-fourth'>Tabla consumo en gramos diarios:</span>
           </div>
           <div className='pb-8'>
