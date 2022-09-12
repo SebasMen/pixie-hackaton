@@ -133,8 +133,8 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
       error = true;
     }
 
-    if (!validator.isLength(form.zip_code, { min: 3 })) {
-      handlePutMessageError('zip_code', 'El codigo postal debe ser mayor a 2 caracteres');
+    if (!validator.isLength(form.zip_code, { min: 6 })) {
+      handlePutMessageError('zip_code', 'El codigo postal debe ser mayor a 5 caracteres');
       error = true;
     }
 

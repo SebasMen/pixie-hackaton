@@ -36,7 +36,7 @@ const ShippingSection = ({ changeStep, userData, setData }: SubmissionFormProps)
           <span className='mb-[10px] px-2 lg:mb-2 lg:px-0'>Informacion de envíos</span>
           <ul className='font-subTitles lg:list-disc lg:ml-5'>
             <li>Envío estándar con entrega hasta 3-7 días hábiles.</li>
-            <li>Envío gratis en compras mayores a $740</li>
+            <li>Envío gratis en compras mayores a $750</li>
             <li>Hacemos envíos únicamente dentro de la República Mexicana.</li>
           </ul>
         </div>

@@ -3,45 +3,72 @@ import FacebookGray from '../../../assets/vectors/FacebookGray.svg';
 import twittergray from '../../../assets/vectors/Twittergray.svg';
 import instagramgray from '../../../assets/vectors/Instagramgray.svg';
 import { useNavigate } from 'react-router-dom';
+import Icon from '../../common/icon';
+import { americanExLogo, kushkiLogo, masterCardLogo, visaLogo, whoBuildThis } from '../../../assets/images';
 
 export const Footer = ({ className }: FooterProps) => {
   const navigate = useNavigate();
 
   return (
-    <footer
-      className={`flex flex-col filter w-full items-center justify-center pb-28 z-10 md:pt-20 md:text-lg ${className} `}
-      style={{ backgroundColor: '#7AC5BE' }}
-    >
-      <div className='hidden md:absolute md:bottom-[15.5rem] md:block'>
-        <img src={logoFooter}/>
+    <footer className='flex flex-col w-full z-10 bg-fourth items-center'>
+      <div className='flex flex-col lg:flex-row pb-[2rem] pt-9 lg:pt-[2.1rem] lg:text-lg bg-fourth px-[1.6rem] lg2:px-[2.5rem] xl1:px-[6rem] xl2:px-[7.81rem] max-w-[1440px]'>
+        <div className='flex flex-col items-center mb-5 gap-5 lg:mb-0 lg:w-2/12 lg::items-start lg:gap-[1.9rem]'>
+          <img src={logoFooter} className='w-[79px] lg:w-[113px]'/>
+          <div className='flex gap-6 lg:gap-8'>
+            <img src={FacebookGray} className='w-2 lg:w-3'/>
+            <img src={instagramgray} className='w-4 lg:w-5'/>
+            <img src={twittergray} className='w-5 lg:w-6'/>
+          </div>
+        </div>
+        <div className='flex flex-col items-center lg:w-4/12 lg:pl-[1.7rem] lg:items-start'>
+          <h5 className='text-left text-lg mb-3'>Información de Contacto</h5>
+          <div className='flex font-sanzSemiBold mb-4 gap-10 lg:gap-6'>
+            <div className='flex text-[13px] items-center gap-2 lg:text-sm'>
+              <Icon name='phone_iphone' className='text-2xl lg:text-xl'/>
+              <span>(+52) 1 55 1307 0792</span>
+            </div>
+            <div className='flex text-[13px] items-center gap-2 lg:text-sm'>
+              <Icon name='email'/>
+              <span>soporte@pixie.pet</span>
+            </div>
+          </div>
+          <div className='flex font-sanzSemiBold items-start mt-2 gap-2 lg:pr-10 lg:items-start text-[13px] mb-[2.3rem] lg:mb-0 lg:text-sm '>
+            <Icon name='location_on' className='text-xs lg:text-lg'/>
+            <p className='leading-snug'>
+              Calle Medellín, número 148, Colonia Roma Norte, Alcaldía Cuauhtémoc, Código Postal 06700, Ciudad de México.
+            </p>
+          </div>
+        </div>
+        <div className='flex flex-col lg:w-3/12 lg:pl-12 items-center lg:items-start'>
+          <h5 className='text-left text-lg mb-2 lg:text-base lg:mb-4'>Links de interés</h5>
+          <ul className='font-sanzSemiBold flex flex-col gap-3 text-sm lg:text-base text-center lg:text-left'>
+            <li className='cursor-pointer' onClick={() => navigate('/questions')}>Preguntas frecuentes</li>
+            <li>Términos y condiciones</li>
+            <li>Política de datos</li>
+          </ul>
+        </div>
+        <div className='lg:w-3/12 items-center lg:items-start'>
+          <div className='bg-white rounded-[20px] flex flex-col pl-[1.13rem] pr-[0.57rem] pt-[0.8rem] pb-[1.38rem] mt-8 mx-[1.6rem] lg:ml-6 lg:mt-2'>
+            <h5 className='text-left text-base mb-[0.15rem]'>Pago 100% seguro</h5>
+            <p className='font-sanzSemiBold text-[#9D9D9D] text-xs mb-3'>
+              Este certificado garantiza la seguridad de todas tus conexiones mediante cifrado
+            </p>
+            <div className='flex justify-center items-center gap-5 md:gap-1 xl1:gap-3 xl2:gap-[1.4rem]'>
+              <img src={kushkiLogo} className='w-11 h-7'/>
+              <img src={visaLogo} className='w-12 h-4'/>
+              <img src={masterCardLogo} className='w-11 h-8'/>
+              <img src={americanExLogo} className='w-7'/>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className='mt-9 md:hidden'>
-        <img src={logoFooter} className='w-20 h-20' />
-      </div>
-      <div className='hidden space-x-8 mt-3 md:flex md:flex-row'>
-        <img src={FacebookGray} />
-        <img src={instagramgray} />
-        <img src={twittergray} />
-      </div>
-      <div className='text-center text-[#4A4A4A] mt-2 text-lg font-extrabold md:flex md:flex-row md:justify-around md:space-x-24 md:mt-7 md:text-base'>
-        <div className='my-3.5'>
-          <span>Contacto</span>
-        </div>
-        <div className='my-3.5'>
-          <span className='cursor-pointer' onClick={() => navigate('/questions')}>Preguntas frecuentes</span>
-        </div>
-        <div className='my-3.5'>
-          <span>Términos y condiciones</span>
-        </div>
-        <div className='my-3.5'>
-          <span>Política de datos</span>
-        </div>
+      <div className='bg-grayText flex justify-center items-center text-white text-sm font-montserrat py-[0.4rem] gap-9 w-full'>
+        <span className='leading-[96%] tracking-[0.16em] '>copyright 2022</span>
+        <img src={whoBuildThis}/>
       </div>
     </footer>
   );
 };
-
-
 
 interface FooterProps {
   className?: string;

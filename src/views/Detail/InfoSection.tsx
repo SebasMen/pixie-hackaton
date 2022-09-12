@@ -27,7 +27,8 @@ const InfoSection = ({ product, attributes, showControls = true }: InfoSectionPr
   const ages = transformAge(product);
 
   const handleAddProduct = () => {
-    addRemoveProduct(product, quantity);
+    if (product.status !== '2')
+      addRemoveProduct(product, quantity);
   };
 
   return (
@@ -59,11 +60,17 @@ const InfoSection = ({ product, attributes, showControls = true }: InfoSectionPr
       {showControls &&
         <div>
           {/* Cart Button */}
-          <Button className='fixed bottom-0 bg-primary gap-4 rounded-t-2xl py-4 rounded-b-none w-full z-20 md:rounded-b-2xl md:relative md:py-3 hover:bg-grayText focus:outline-none focus:ring focus:ring-fourth '
-            onClick={handleAddProduct}
+          <Button className={`fixed bottom-0 bg-primary gap-4 rounded-t-2xl py-4 rounded-b-none w-full z-20 md:rounded-b-2xl
+          ${product.status === '2' && 'cursor-not-allowed'} md:relative md:py-3 hover:bg-grayText focus:outline-none focus:ring focus:ring-fourth`}
+          onClick={handleAddProduct}
           >
             <img src={basket} />
-            <span className='text-base text-[#fad7b1]'>Agregar a la bolsa</span>
+            {product.status === '2'
+              ?
+              <span className='text-base text-[#fad7b1]'>Proximamente</span>
+              :
+              <span className='text-base text-[#fad7b1]'>Agregar a la bolsa</span>
+            }
           </Button>
 
           {/* Calculator */}

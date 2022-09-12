@@ -26,7 +26,7 @@ const TotalSection = ({ showTaxes, shippingInfo = { type: 'estandar', price: 90 
       <div className='bg-[#dbdbdb] rounded-xl px-4 mt-[6px] flex justify-between items-center py-2 font-bold text-lg lg:mt-6 lg:py-2 lg:pl-3 lg:pr-4'>
         <div>
             Total
-          {showTaxes && <div className='text-xs font-subTitles'>Incluye $23,000 de impuestos</div>}
+          {showTaxes && <div className='text-xs font-subTitles'>Incluye 0 de impuestos</div>}
         </div>
         <span>${calculateTotalPayment(products, shippingInfo)}</span>
       </div>

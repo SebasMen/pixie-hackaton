@@ -10,13 +10,41 @@ import { ProductListResponse } from '../../interfaces/product';
 import { PetFeedData } from '../../helpers/calculator';
 import calculatorService from '../../services/calculatorService';
 import { useLoading } from '../../hooks/useLoading';
+import useScrolled from '../../hooks/useScrolled';
 
 const ResultSection = ({ data, reset }: ResultSectionProps) => {
   // Hooks
   const [selected, setSelected] = useState(0);
   const { current: feedData } = useRef(data);
+  const [showAlert, setshowAlert] = useState(false);
   const { toast } = useAppContext();
   const { loadingDeterminate } = useLoading();
+
+  const calculateHeight = useCallback(
+    () => {
+      if (screen.width < 800)
+        return 1100;
+
+      return 900;
+    },
+    [screen],
+  );
+
+  useEffect(() => {
+    if (showAlert)
+      toast.fire({
+        icon: 'info',
+        timer: 10000,
+        title: 'Selecciona la cantidad deseada y agrega a la canasta.',
+      });
+  }, [showAlert]);
+
+  const {
+    scrolledData: { isDown },
+  } = useScrolled({
+    gap: calculateHeight(),
+    callback: () => isDown && setshowAlert(true)
+  });
 
   const getCalculateProduct = useCallback(
     () => calculatorService.getCalculateProduct(feedData),

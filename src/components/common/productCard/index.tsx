@@ -26,6 +26,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
   const [isMobile, setIsMobile] = useState(false);
   const [counter, setCounter] = useState(1);
   const [clickBasket, setClickBasket] = useState(false);
+  const [showHoverComingSoon, setShowHoverComingSoon] = useState(false);
 
   useEffect(() => {
     if (screen.width < 800)
@@ -83,6 +84,8 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
           hover:ring-1 ${className}
         `}
         onClick={handleSubmit}
+        onMouseOver={() => setShowHoverComingSoon(true)}
+        onMouseLeave={() => setShowHoverComingSoon(false)}
       >
         <div className={`${!showHeader && 'hidden'} flex justify-between w-full mb-2 relative z-30`}>
           <div className='flex items-start justify-center gap-1 absolute left-1 pr-9'>
@@ -104,7 +107,6 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
             <img src={notImage} className='w-24 h-24 md:w-36 md:h-36' />
           ) : (
             <img src={transformUrlGDrive(product.url_image)} className='w-full h-36 md:w-[15.7rem] md:h-[15.7rem] top-[0.75rem] object-contain right-0 transform transition-all duration-200 hover:scale-[2.2]' />
-            // <img src={transformUrlGDrive(product.url_image)} className='w-24 h-24 md:w-36 md:h-36 object-contain hover:absolute hover:shadow-md hover:right-16 hover:scale-[1.75] hover:rounded-2xl' />
           )}
         </div>
         <div className={'text-center text-xs md:text-lg w-full'}>
@@ -116,6 +118,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
             :
             <h4 className={`${product.name.length > 22 && 'leading-none'} text-pixieLightBlue mb-1`}>{capitalize(product.name)}</h4>
           }
+          {product.status !== '2' &&
           <div className='flex items-center justify-between px-4'>
             <p className='font-sanzBold text-base md:text-xl flex flex-col'>
               <span>${product.price}{' '}</span>
@@ -127,12 +130,12 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
               </div>
             )}
           </div>
+          }
         </div>
       </div>
 
-      {showControls && (
-        <div className={`${clickBasket ? 'bottom-[-4.5rem] md:bottom-[-4.3rem]' : 'bg-primary md:-bottom-4 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'} absolute -bottom-[1rem] text-white z-40 rounded-full`}
-        >
+      {(showControls && product.status !== '2') && (
+        <div className={`${clickBasket ? 'bottom-[-4.5rem] md:bottom-[-4.3rem]' : 'bg-primary md:-bottom-4 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'} absolute -bottom-[1rem] text-white z-40 rounded-full`}>
           { clickBasket
             ?
             <Lottie animationData={anHoverBasket} loop={true} className='w-36 h-36 md:w-36 md:h-36'/>
@@ -149,6 +152,12 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
           }
         </div>
       )}
+      { product.status === '2' &&
+        <div className={`absolute -bottom-[1rem] text-primary z-40 rounded-full bg-[#FFF6EC] shadow-md
+        text-[10px] md:text-xs px-3 py-2 md:px-5 md:md:py-4 ${showHoverComingSoon ? 'ring-1 ring-pixieLightBlue' : 'ring-0'}`}>
+          <span>Proximamente</span>
+        </div>
+      }
     </div>
   );
 };

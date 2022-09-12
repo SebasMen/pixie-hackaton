@@ -18,7 +18,7 @@ const AccordeonList = ({ title, children }: AccordeonListProps) => {
         <h5 className='text-left font-sanzBold text-xl' onClick={() => setOpen(!open)}>{title}</h5>
       </div>
       {open &&
-      <div className='bg-white font-subTitles text-black my-3 py-3 px-2 rounded-[10px] md:px-9 md:mt-10 md:py-7'>
+      <div className='md:bg-white font-subTitles text-black my-3 py-3 px-2 rounded-[10px] md:px-9 md:mt-10 md:py-7'>
         {children}
       </div>
       }

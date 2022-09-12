@@ -13,6 +13,11 @@ import fullDogCalculator from './fullDogCalculator.png';
 import catalogCatMobile from './catalogCatMobile.png';
 import idealWeightDog from './idealWeightDog.jpg';
 import idealWeightCat from './idealWeightCat.jpg';
+import kushkiLogo from './kushkiLogo.png';
+import visaLogo from './visaLogo.png';
+import masterCardLogo from './masterCardLogo.png';
+import americanExLogo from './americanExLogo.png';
+import whoBuildThis from './whoBuildThis.png';
 
 export {
   backgroundWood,
@@ -29,5 +34,10 @@ export {
   fullDogCalculator,
   catalogCatMobile,
   idealWeightDog,
-  idealWeightCat
+  idealWeightCat,
+  kushkiLogo,
+  visaLogo,
+  masterCardLogo,
+  americanExLogo,
+  whoBuildThis
 };
