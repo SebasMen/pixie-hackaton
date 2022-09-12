@@ -1,6 +1,5 @@
 import logoFooter from '../../../assets/vectors/logoFooter.svg';
 import FacebookGray from '../../../assets/vectors/FacebookGray.svg';
-import twittergray from '../../../assets/vectors/Twittergray.svg';
 import instagramgray from '../../../assets/vectors/Instagramgray.svg';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../common/icon';
@@ -15,9 +14,12 @@ export const Footer = ({ className }: FooterProps) => {
         <div className='flex flex-col items-center mb-5 gap-5 lg:mb-0 lg:w-2/12 lg::items-start lg:gap-[1.9rem]'>
           <img src={logoFooter} className='w-[79px] lg:w-[113px]'/>
           <div className='flex gap-6 lg:gap-8'>
-            <img src={FacebookGray} className='w-2 lg:w-3'/>
-            <img src={instagramgray} className='w-4 lg:w-5'/>
-            <img src={twittergray} className='w-5 lg:w-6'/>
+            <a href='https://www.facebook.com/Pixiemx-104482775594223/' target='_blank' rel='noopener noreferrer' className='cursor-pointer'>
+              <img src={FacebookGray} className='w-2 lg:w-3'/>
+            </a>
+            <a href='https://www.instagram.com/pixie.mex/?igshid=YmMyMTA2M2Y%3D' target='_blank' rel='noopener noreferrer' className='cursor-pointer'>
+              <img src={instagramgray} className='w-4 lg:w-5'/>
+            </a>
           </div>
         </div>
         <div className='flex flex-col items-center lg:w-4/12 lg:pl-[1.7rem] lg:items-start'>

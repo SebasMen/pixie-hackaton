@@ -1,3 +1,4 @@
+/* eslint-disable operator-assignment */
 import { CartItem } from '../interfaces/basket';
 import { Product } from '../interfaces/product';
 
@@ -37,7 +38,16 @@ export const calculateIva = (arrayProducts: CartItem[]) => {
     total += (item.quantity * ivaOneProduct);
   });
 
-  return total;
+  return roundToXDigits(total, 2);
+};
+
+export const roundToXDigits = (value: number, digits: number) => {
+  // eslint-disable-next-line prefer-exponentiation-operator
+  value = value * Math.pow(10, digits);
+  value = Math.round(value);
+  // eslint-disable-next-line prefer-exponentiation-operator
+  value = value / Math.pow(10, digits);
+  return value;
 };
 
 export const separateByCommas = (text : string) => {

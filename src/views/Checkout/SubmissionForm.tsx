@@ -13,6 +13,7 @@ import { SubmissionFormInterface, SubmissionFormValidate } from '../../interface
 import { mexicanStates } from '../../@fake/statesFake';
 import checkOutService from '../../services/checkOutService';
 import { useLoading } from '../../hooks/useLoading';
+import { isFormComplete } from '../../helpers/paymentHelper';
 
 const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }:SubmissionFormProps) => {
   // Hooks
@@ -20,6 +21,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
   const { loadingTrue, loadingFalse } = useLoading();
   const [acceptConditions, setAcceptConditions] = useState(false);
   const [showMessageConditions, setShowMessageConditions] = useState(false);
+  const [formFull, setFormFull] = useState(false);
   const { toast, dataFormCheckOut, updateContext } = useAppContext();
   const { form, onSubmit, handleFormChange, handleSelectChange, setForm } = useForm<SubmissionFormInterface>(
     {
@@ -89,6 +91,10 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
     setForm(old => ({ ...old, countries: countriesOptions ? countriesOptions : [] }));
   }, [countriesOptions]);
 
+  useEffect(() => {
+    setFormFull(isFormComplete(form, acceptConditions));
+  }, [form, acceptConditions]);
+
   const validateForm = () => {
     // Clear all errors
     resetValidator();
@@ -118,8 +124,8 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
       error = true;
     }
 
-    if (!validator.isLength(form.houseNumber, { min: 2 })) {
-      handlePutMessageError('houseNumber', 'El número de la casa debe ser mayor a 1 caracteres');
+    if (!validator.isLength(form.houseNumber, { min: 1 })) {
+      handlePutMessageError('houseNumber', 'El número de la casa debe ser mayor o igual a 1 caracter');
       error = true;
     }
 
@@ -168,6 +174,9 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
       setShowMessageConditions(true);
       return;
     }
+
+    if (!formFull)
+      return;
 
     loadingTrue();
     // Send information to api
@@ -262,7 +271,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             name='houseNumber'
             value={form.houseNumber}
             handler={handleFormChange}
-            placeholder='Número de Condominio, Casa o Edificio*'
+            placeholder='Número exterior, Casa o Edificio*'
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
             messageError={validatorBody.houseNumber.message}
@@ -372,9 +381,10 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           labelClassName='text-xs lg:text-sm'
         />
         {showMessageConditions && <div className='text-primary text-xs lg:text-base'>Debe aceptar terminos y condiciones para continuar</div>}
-
         <div className='lg:flex lg:flex-row-reverse lg:items-center lg:mt-4'>
-          <Button className='w-full font-paragraph font-bold bg-primary text-[#fad7b1] mt-4 lg:w-72 lg:text-lg' type='submit'>
+          <Button className={`w-full font-paragraph font-bold  mt-4 
+          lg:w-72 lg:text-lg ${formFull ? 'bg-primary text-[#fad7b1]' : ' bg-[#dbb2b7] text-white cursor-not-allowed'}`} type='submit'
+          >
             Seguir con envios
           </Button>
           <div className='font-sanzBold text-sm text-center mt-[1.40rem] text-primary cursor-pointer lg:mt-6 lg:text-base lg:mr-14' onClick={() => navigate('/basket')}>

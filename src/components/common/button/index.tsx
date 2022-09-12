@@ -11,7 +11,8 @@ export const Button = ({
   tooltipPosition,
   color,
   rounded,
-  padding
+  padding,
+  disable = false
 }: ButtonProps) => (
   <Tooltiped label={tooltip} visible={tooltip ? undefined : false} position={tooltipPosition}>
     <button
@@ -24,6 +25,7 @@ export const Button = ({
         focus:outline-none
        ${className} ${rounded ? 'rounded-full' : 'rounded-xl'}
       `}
+      disabled={disable}
     >
       {children}
     </button>
@@ -40,6 +42,7 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   padding? : string;
+  disable?: boolean;
 }
 
 export default Button;

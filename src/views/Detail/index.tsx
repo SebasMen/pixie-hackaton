@@ -25,7 +25,6 @@ import { useLoading } from '../../hooks/useLoading';
 
 const Detail = () => {
   // Hooks
-  const { updateContext } = useAppContext();
   const params = useParams();
   const { loadingDeterminate } = useLoading();
   const { id } = params;
@@ -38,11 +37,8 @@ const Detail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (screen.width < 800) {
-      updateContext(old => ({ ...old, showNavbar: false }));
+    if (screen.width < 800)
       setShowFooter(false);
-    } else
-      updateContext(old => ({ ...old, showNavbar: true }));
   }, [screen.width]);
 
   // Show loading
@@ -85,7 +81,9 @@ const Detail = () => {
           <ExtraInfoContainer product={response} />
 
           {/* FAB */}
-          <ButtonWhatsap />
+          {showFooter &&
+            <ButtonWhatsap />
+          }
         </div>
         {/* Other Info */}
         <InfoAccordion product={response} />
