@@ -2,7 +2,7 @@ import { CartItem } from '../interfaces/basket';
 import { paymentForm, shippingTypeForm, SubmissionFormInterface } from '../interfaces/checkout';
 import { billingDetailsInterface, generatePayment } from '../interfaces/payment';
 import { productShort } from '../interfaces/product';
-import { calculateTotal } from './productHelper';
+import { calculateIva, calculateTotal } from './productHelper';
 
 // Organize the data to send them to the api
 // eslint-disable-next-line max-params
@@ -18,7 +18,7 @@ export const organiceInformationPayment = (idCustomer: string, tokenId: string, 
         ice: 0,
         iva: 0,
         subtotalIva: 0,
-        subtotalIva0: calculateTotalPayment(products, shippingData),
+        subtotalIva0: calculateTotalPayment(products, shippingData, true),
       },
       contactDetails: {
         email: userData?.email ? userData?.email : '',
@@ -91,10 +91,18 @@ const organiceBillingDetails = (userData: SubmissionFormInterface | undefined, f
 };
 
 // Calculate the total with the shipping price
-export const calculateTotalPayment = (productsCar: CartItem[], shippingData: shippingTypeForm): number => {
+export const calculateTotalPayment = (productsCar: CartItem[], shippingData: shippingTypeForm, showIva: boolean): number => {
   const totalProduct = calculateTotal(productsCar);
+  const iva = calculateIva(productsCar);
   // If the product cost > 750 the shipping is free
   if (totalProduct > 750)
-    return totalProduct;
+    if (showIva)
+      return totalProduct + iva;
+    else
+      return totalProduct;
+
+  if (showIva)
+    return totalProduct + shippingData.price + iva;
+
   return totalProduct + shippingData.price;
 };

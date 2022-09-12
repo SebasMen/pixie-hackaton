@@ -42,7 +42,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     numberOfInstallments: { label: '', value: '' },
     numberOfInstallmentsSelect: numberOfInstallmentsOptions,
     card_cvv: '',
-    amount: calculateTotalPayment(products, shippingData),
+    amount: calculateTotalPayment(products, shippingData, true),
     // Billing Form
     name: '',
     last_name: '',

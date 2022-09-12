@@ -29,6 +29,17 @@ export const calculateTotal = (arrayProducts: CartItem[]) => {
   return total;
 };
 
+export const calculateIva = (arrayProducts: CartItem[]) => {
+  let total = 0;
+
+  arrayProducts.forEach(item => {
+    const ivaOneProduct = item.product.price * 0.16;
+    total += (item.quantity * ivaOneProduct);
+  });
+
+  return total;
+};
+
 export const separateByCommas = (text : string) => {
   const array = text.split(',' || '(');
   return array;

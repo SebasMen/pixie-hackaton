@@ -118,8 +118,8 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
       error = true;
     }
 
-    if (!validator.isLength(form.houseNumber, { min: 4 })) {
-      handlePutMessageError('houseNumber', 'El número de la casa debe ser mayor a 3 caracteres');
+    if (!validator.isLength(form.houseNumber, { min: 2 })) {
+      handlePutMessageError('houseNumber', 'El número de la casa debe ser mayor a 1 caracteres');
       error = true;
     }
 
@@ -133,8 +133,8 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
       error = true;
     }
 
-    if (!validator.isLength(form.zip_code, { min: 6 })) {
-      handlePutMessageError('zip_code', 'El codigo postal debe ser mayor a 5 caracteres');
+    if (!validator.isLength(form.zip_code, { min: 5 })) {
+      handlePutMessageError('zip_code', 'El codigo postal debe ser mayor a 4 caracteres');
       error = true;
     }
 
