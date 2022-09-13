@@ -97,7 +97,7 @@ export const NavBar = () => {
             </div>
 
             {/* Items */}
-            <div className={'w-1/3 flex-grow justify-end gap-2 md:pt-0 md:flex md:flex-row md:w-auto lg:gap-6'}>
+            <div className={'w-1/3 flex-grow justify-end gap-2 md:pt-1 md:flex md:flex-row md:w-auto lg:gap-6'}>
               {/* Navs */}
               { !openSearch &&
                 <div className={`${showMinimalNavbar && 'md:items-center'} hidden md:flex md:flex-row justify-between md:gap-7 md:mr-6`}>

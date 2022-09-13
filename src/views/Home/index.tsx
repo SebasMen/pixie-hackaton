@@ -32,15 +32,8 @@ const Home = () => {
   }, [loading]);
 
   return (
-    <Page color='#efd1b0'>
+    <Page color='#F7EBA8'>
       <>
-        {/* Background */}
-        <img
-          src={backgroundWood}
-          alt='wood-bg'
-          className='object-cover h-screen absolute top-0 -z-10 md:w-screen'
-          style={{ backgroundColor: '#FAD7B1' }}
-        />
 
         {/* Banner */}
         <Banner dataBanner={dataBanner} showBotton={true} />

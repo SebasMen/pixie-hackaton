@@ -44,7 +44,7 @@ export const Page = ({ className, children, color }: PageProps) => {
         flex flex-col items-center justify-center 
         flex-grow relative w-full
         animate__animated animate__fadeIn animate__fast
-        ${showNavbar && 'pt-[5.5rem] md:pt-[10rem]'}
+        ${showNavbar && 'pt-[5.5rem] md:pt-[7.5rem]'}
         ${className}  
       `}
       >

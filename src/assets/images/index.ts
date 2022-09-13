@@ -1,6 +1,5 @@
 import backgroundWood from './backgroundWood.png';
 import dogDesktop from './dogDesktop.png';
-import dogs from './dogs.png';
 import food from './food.png';
 import logo_red from './logo_red.png';
 import logo from './logo.png';
@@ -18,11 +17,17 @@ import visaLogo from './visaLogo.png';
 import masterCardLogo from './masterCardLogo.png';
 import americanExLogo from './americanExLogo.png';
 import whoBuildThis from './whoBuildThis.png';
+import dogBannerHome from './dogBannerHome.png';
+import bannerHomeFlag from './bannerHomeFlag.png';
+import banneHomerCopy from './banneHomerCopy.png';
+import bannerHomeFooter from './bannerHomeFooter.png';
+import catBannerHomeFooter from './catBannerHomeFooter.png';
+import bannerHomeCopyMobile from './bannerHomeCopyMobile.png';
+import bannerHomeFlagMobile from './bannerHomeFlagMobile.png';
 
 export {
   backgroundWood,
   dogDesktop,
-  dogs,
   food,
   logo_red,
   logo,
@@ -39,5 +44,12 @@ export {
   visaLogo,
   masterCardLogo,
   americanExLogo,
-  whoBuildThis
+  whoBuildThis,
+  dogBannerHome,
+  bannerHomeFlag,
+  banneHomerCopy,
+  bannerHomeFooter,
+  catBannerHomeFooter,
+  bannerHomeCopyMobile,
+  bannerHomeFlagMobile
 };

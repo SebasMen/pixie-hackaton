@@ -1,53 +1,54 @@
 import { useNavigate } from 'react-router-dom';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 
 import Button from '../../components/common/button';
 
 import { fillets } from '../../assets/vectors';
-import { dogs } from '../../assets/images/';
+import useScrolled from '../../hooks/useScrolled';
+import { bannerHomeFooter, catBannerHomeFooter } from '../../assets/images';
 
 export const CalculatorSection = () => {
   // Hooks
-  const sectionRef = useRef<HTMLInputElement | null>(null);
   const [initAnimate, setInitAnimate] = useState(false);
 
-  useEffect(() => {
-    window.addEventListener('scroll', sectionPage, true);
+  const minimalNavbar = useCallback(
+    () => {
+      if (screen.width < 800)
+        return 20;
 
-    return () => {
-      window.removeEventListener('scroll', sectionPage);
-    };
-  }, []);
+      return 1500;
+    },
+    [screen],
+  );
 
-  const sectionPage = (ev: Event) => {
-    const div :any = sectionRef.current;
-    if (div?.getBoundingClientRect().y && div?.getBoundingClientRect().y <= 700)
-      setInitAnimate(true);
-  };
+  const {
+    scrolledData: { isDown },
+  } = useScrolled({
+    gap: minimalNavbar(),
+    callback: () => setInitAnimate(isDown)
+  });
 
   const navigate = useNavigate();
   return (
-    <div ref={sectionRef} className='relative flex flex-col pt-11 w-full items-center justify-center text-center rounded-t-3xl overflow-hidden transform -mt-4 z-10 md:flex-row-reverse bg-secondaryOpacity'>
-      <img src={fillets} className={`${initAnimate ? 'animation-background' : 'hidden'} object-cover h-full w-full float-none absolute`} />
-      <div className='flex flex-col h-full md:flex-row-reverse max-w-[1440px]'>
-        <div className='flex flex-col items-center justify-center md:w-[31%] z-10 lg:mr-24'>
-          <div className='lg:mb-[3.2rem]'>
-            <span className={`${initAnimate ? 'animation-text' : 'hidden'} text-2xl md:text-3xl text-grayText font-extrabold`}>
-              ¿Cuál es el Pixie ideal para mi perrito o michi?
-            </span>
-          </div>
-          <div className='lg:-mt-12'>
-            <Button
-              className={` ${initAnimate ? 'animation-text' : 'hidden'} flex items-center justify-center mb-12 px-11 py-2.5 rounded-xl cursor-pointer focus:outline-none mt-5 font-subTitles bg-white text-red-600 font-bold`}
-              onClick={() => navigate('/calculator')}
-            >
-              Calcúlalo acá
-            </Button>
-          </div>
-        </div>
-        <div className='z-10 md:w-[69%] xl:h-full md:flex md:items-center md:justify-center md:pl-10 md:mt-6 max-w-[1440px]'>
-          <img src={dogs} className={`${initAnimate ? 'animation-section-calculate' : 'hidden'} md:w-full md:object-contain`} />
-        </div>
+    <div className='relative bg-[#E8C433] bg-opacity-80 flex rounded-t-3xl flex-col w-full max-w-[1440px] pb-[80px] lg:bg-opacity-0 lg:rounded-t-none lg:min-h-[250px] lg:max-h-[250px] lg2:min-h-[317px] lg2:max-h-[317px] xl2:min-h-[355px] xl2:max-h-[355px]'>
+      <img src={bannerHomeFooter} className='hidden lg:block absolute -bottom-2'/>
+      <img src={catBannerHomeFooter} className='absolute bottom-0 right-0 lg:w-[23.3rem] lg:bottom-0 lg2:-bottom-3 lg2:w-[29rem] lg2:-right-1 xl2:-bottom-6 xl2:right-0'/>
+      <div className={`z-10 flex flex-col justify-center items-center mb-44 mt-7 gap-3 sm:mb-56 md:mb-64 lg:gap-8 lg:mb-0 lg:mt-0 lg:pt-[5rem] lg:ml-10 lg2:pt-[5.8rem] xl2:ml-16 xl2:pt-[6.5rem]
+       ${initAnimate ? 'animate__zoomIn' : 'animate__zoomOut'} animate__animated
+      `}>
+        <p className='flex flex-col text-center leading-[1.25] text-[25px] lg2:text-[30px] xl2:text-[35px]'>
+          <span>¿Cuál es el Pixie ideal</span>
+          <span>
+            para mi perrito o<span className='hidden lg:block'>michi?</span>
+          </span>
+          <span className='lg:hidden'>michi?</span>
+        </p>
+        <Button className='font-sanzBold bg-white text-primary lg:text-xs lg2:text-sm xl2:text-base'
+          padding='py-3 px-11'
+          onClick={() => navigate('/calculator')}
+        >
+          Calcúlalo aquí
+        </Button>
       </div>
     </div>
   );

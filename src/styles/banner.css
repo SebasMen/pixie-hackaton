@@ -9,19 +9,13 @@
 .animation-title {
   animation-name: animationTitle;
   animation-delay: 0s;
-  animation-duration: 4s;
+  animation-duration: 0.7s;
 }
 
 .animation-image {
   animation-name: animationImage;
   animation-delay: 0s;
   animation-duration: 1.5s;
-}
-
-.animation-text{
-  animation-name: animationTitle;
-  animation-delay: 0s;
-  animation-duration: 4s;
 }
 
 @keyframes animationTitle {

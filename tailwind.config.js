@@ -3,6 +3,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
+        sm: '425px',
         md: '720px',
         lg2: '1100px',
         xl1: '1280px ',
@@ -37,6 +38,7 @@ module.exports = {
         pixieGreenOpacity: 'rgba(122, 197, 190, 0.3)',
         pixieGreenSemiOpacity: 'rgba(122, 197, 190, 0.5)',
         pixieLightBlue: '#33B5A9',
+        pixieYellow: '#F7EBA8',
         grayText: '#4A4A4A',
         primary: '#DF2F44',
         primaryOpacity: '#f9d5da',
