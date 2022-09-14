@@ -16,7 +16,7 @@ export const organiceInformationPayment = (idCustomer: string, tokenId: string, 
       amount: {
         currency: 'MXN',
         ice: 0,
-        iva: 0,
+        iva: 16,
         subtotalIva: 0,
         subtotalIva0: calculateTotalPayment(products, shippingData, true),
       },

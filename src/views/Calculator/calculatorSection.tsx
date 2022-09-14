@@ -7,7 +7,7 @@ import ResultSection from './ResultSection';
 
 import { SelectItem } from '../../components/form/selectField';
 
-import { dogCalculator, fullDogCalculator, backgroundCalculator } from '../../assets/images';
+import { dogCalculator, fullDogCalculator, backgroundCalculator, calculatorCat, calculatorDog } from '../../assets/images';
 import { getPetFeedData, PetFeedData, PetInfo } from '../../helpers/calculator';
 import { CalculatorForm as CalculatorFormType } from '../../interfaces/calculator';
 
@@ -97,9 +97,14 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
         <div className='w-full flex flex-col items-center justify-center gap-2 rounded-t-3xl bg-sixth -mt-5 z-10'>
           <div className='w-full flex gap-2 max-w-[1440px]'>
             {/* Background */}
-            <div className='hidden tall:hidden md:w-1/2 md:overflow-hidden md:block'>
+            <div className='hidden tall:hidden md:w-1/2 md:overflow-hidden md:flex xl2:justify-center'>
               <img src={backgroundCalculator} className='md:absolute md:-z-10 md:ml-24 md:mt-7' />
-              <img src={dogCalculator} className='mt-28 mb-48 w-full z-10' />
+              {form.type.value === 'dog' &&
+                <img src={calculatorDog} className='mt-16 mb-60 z-10 xl2:ml-20' />
+              }
+              {(form.type.value === 'cat' || form.type.value === '') &&
+                <img src={calculatorCat} className='mt-16 mb-32 lg:w-[570px] lg:h-[632px] z-10 lg2:ml-20' />
+              }
             </div>
             {/* Form */}
             <CalculatorForm
@@ -112,7 +117,12 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
             />
           </div>
           {/* Mobile Dog */}
-          <img src={fullDogCalculator} className='block w-full z-10 pb-10 pr-5 sm:hidden' />
+          {(form.type.value === 'cat' || form.type.value === '') &&
+            <img src={calculatorCat} className='block w-full z-10 pr-5 sm:hidden' />
+          }
+          {form.type.value === 'dog' &&
+           <img src={calculatorDog} className='block w-full z-10 pr-5 sm:hidden' />
+          }
         </div>
       )}
     </>

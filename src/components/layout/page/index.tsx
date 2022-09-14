@@ -8,7 +8,7 @@ import NavBar from '../../layout/navBar';
 import Loading from '../loading';
 import PopupDetailProduct from '../popupDetailProduct';
 
-export const Page = ({ className, children, color }: PageProps) => {
+export const Page = ({ className, children, color, addPadding = true }: PageProps) => {
   // Hooks
   const { showPopup } = useAppContext();
   const { pathname } = useLocation();
@@ -44,7 +44,7 @@ export const Page = ({ className, children, color }: PageProps) => {
         flex flex-col items-center justify-center 
         flex-grow relative w-full
         animate__animated animate__fadeIn animate__fast
-        ${showNavbar && 'pt-[5.5rem] md:pt-[7.5rem]'}
+        ${showNavbar && `pt-[5.5rem] ${addPadding ? 'md:pt-[7.5rem]' : 'md:pt-0'}`}
         ${className}  
       `}
       >
@@ -62,6 +62,7 @@ interface PageProps {
   className?: string;
   children: React.ReactNode;
   color?: string;
+  addPadding?: boolean;
 }
 
 export default Page;

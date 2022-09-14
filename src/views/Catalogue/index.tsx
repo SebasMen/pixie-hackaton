@@ -62,7 +62,7 @@ const Catalogue = () => {
   };
 
   return (
-    <Page color='#7AC5BE'>
+    <Page className='bg-pixieLightBlue md:bg-[#7bc6bf]' addPadding={false}>
       {loading
         ?
         <div className='w-full h-screen flex items-center justify-center'>

@@ -1,39 +1,36 @@
-import Button from '../../components/common/button';
+import { bannerCalculator, bannerCalculatorMobile, bannerCalculatorResult, bannerCalculatorResultMobile } from '../../assets/images';
 
-const BannerSection = ({ view }: BannerSectionProps) => (
-  <div className='bg-transparent banner-calculator w-full flex justify-center items-center lg:items-start max-w-[1440px] max-h-[755px]'>
-    <div
-      className={`
-        flex flex-col justify-end pb-[3.75rem] text-center w-full h-full 
-        md:pb-5 md:text-left md:ml-10 md:justify-center 
-        lg:pb-0 lg:ml-36 
-        xl:ml-32
-        xl2:w-2/3 
-        2xl:w-1/2
-      `}
-    >
-      {view === 0 && (
-        <div className='flex flex-col w-full px-10 text-xl font-extrabold md:truncate md:pl-0 md:text-3xl lg:text-[35px] lg:mb-[5.8rem]'>
-          <span className='leading-6 md:leading-10'>Cambiar la forma en que</span>
-          <span className='leading-6 md:leading-10'>alimentas a tu mascota</span>
-          <span className='leading-6 md:leading-10'>comienza aquí</span>
-        </div>
-      )}
-      {view === 1 && (
-        <div className='px-10 flex flex-col w-full'>
-          <span className='text-[45px] font-extrabold mb-4 md:truncate '>Calcula tu ración</span>
-          <span className='text-xl font-bold font-subTitles mb-8'>Cada metabolismo es diferente por eso queremos conocerte para recomendarte el Pixie ideal.</span>
-        </div>
-      )
-      }
-      {view === 2 && (
-        <div className='px-10 h-full w-full flex flex-col justify-end md:justify-center'>
-          <span className='text-4xl font-extrabold mb-4 md:mb-2 lg:mb-4 lg:text-[45px]'>¡Tu amigo de cuatro patas es único!</span>
-          <span className='w-full text-xl font-bold font-subTitles lg:mb-8 lg:pr-24'>Por eso en Pixie tenemos más de 12 opciones para satisfacer las distintas necesidades nutricionales de cada uno.</span>
-        </div>
-      )}
-    </div>
-    <div className='hidden md:block md:w-1/2'></div>
+const BannerSection = ({ view = 3 }: BannerSectionProps) => (
+  <div className='bg-transparent banner-calculator relative w-full flex flex-col items-center max-w-[1440px] max-h-[390px] lg:min-h-[320px] lg:max-h-[320px] lg2:min-h-[368px] lg2:max-h-[368px] xl2:min-h-[417px] xl2:max-h-[417px]'>
+    {view !== 2 && (
+      <div>
+        <img src={bannerCalculatorMobile} className='absolute -bottom-1 z-20 lg:hidden'/>
+        <img src={bannerCalculator} className='hidden absolute -bottom-4 z-20 lg:block lg:right-[4.8%] lg:scale-75 lg:-bottom-14 lg2:right-[10.2%] lg2:scale-90 lg2:-bottom-8 xl2:right-[13.5%]'/>
+        <p className='flex flex-col text-xl text-center mt-6 leading-tight lg:text-[27px] lg:text-left lg:absolute lg:left-[17.8%] lg:top-[22%] lg2:left-[17.5%] lg2:top-[23%] xl2:left-[17.5%] xl2:top-[26%] xl2:text-[35px]'>
+          <span>Cambia la forma en que</span>
+          <span>alimentas a tu mascota,</span>
+          <span className='text-primary'>comienza aquí</span>
+        </p>
+      </div>
+    )}
+    {view === 2 && (
+      <div>
+        <img src={bannerCalculatorResultMobile} className='absolute w-full bottom-4 md:-bottom-24 md:scale-[0.80] lg:hidden'/>
+        <img src={bannerCalculatorResult} className='hidden absolute bottom-5 lg:block lg:right-[0.5%] lg:scale-[0.75] lg:-bottom-7 lg2:right-[4.2%] lg2:scale-90 lg2:bottom-0 xl2:right-[7.6%] xl2:scale-100'/>
+        <p className='flex flex-col text-[25px] text-center px-9 mt-[0.85rem] leading-tight lg:items-start lg:absolute lg:text-[34px] lg:left-[8.2%] lg:top-[20%] lg2:text-[40px] lg2:left-[9.5%] lg2:top-[18%] xl2:text-[45px] xl2:left-[9.5%] xl2:top-[21.5%]'>
+          <span>¡Tu amigo de cuatro <span className='lg:hidden'>patas es único!</span> </span>
+          <span className='hidden lg:block'>patas es único!</span>
+        </p>
+        <p className='text-sm flex flex-col text-center font-sanzBold px-9 mt-3 lg:items-start lg:absolute lg:left-[8.2%] lg:top-[55%] lg:text-base lg2:left-[9.3%] lg2:top-[52%] lg2:text-lg xl2:text-xl xl2:left-[9.5%] xl2:top-[57%]'>
+          <span>
+            Por eso en Pixie tenemos más de 12 opciones para satisfacer <span className='lg:hidden'>las distintas necesidades nutricionales de cada uno.</span>
+          </span>
+          <span className='hidden lg:block'>
+            las distintas necesidades nutricionales de cada uno.
+          </span>
+        </p>
+      </div>
+    )}
   </div>
 );
 

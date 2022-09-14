@@ -24,6 +24,14 @@ import bannerHomeFooter from './bannerHomeFooter.png';
 import catBannerHomeFooter from './catBannerHomeFooter.png';
 import bannerHomeCopyMobile from './bannerHomeCopyMobile.png';
 import bannerHomeFlagMobile from './bannerHomeFlagMobile.png';
+import bannerCatalogue from './bannerCatalogue.png';
+import bannerCatalogueMobile from './bannerCatalogueMobile.png';
+import bannerCalculatorMobile from './bannerCalculatorMobile.png';
+import bannerCalculator from './bannerCalculator.png';
+import bannerCalculatorResult from './bannerCalculatorResult.png';
+import bannerCalculatorResultMobile from './bannerCalculatorResultMobile.png';
+import calculatorCat from './calculatorCat.png';
+import calculatorDog from './calculatorDog.png';
 
 export {
   backgroundWood,
@@ -51,5 +59,13 @@ export {
   bannerHomeFooter,
   catBannerHomeFooter,
   bannerHomeCopyMobile,
-  bannerHomeFlagMobile
+  bannerHomeFlagMobile,
+  bannerCatalogue,
+  bannerCatalogueMobile,
+  bannerCalculatorMobile,
+  bannerCalculator,
+  bannerCalculatorResult,
+  bannerCalculatorResultMobile,
+  calculatorCat,
+  calculatorDog
 };

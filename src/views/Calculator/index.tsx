@@ -12,7 +12,7 @@ const Calculator = () => {
   const [view, setView] = useState(0);
 
   return (
-    <Page color='#F9D864' className='bg-secondary'>
+    <Page className='bg-secondary bg-opacity-80'>
       {/* Banner */}
       <BannerSection view={view}/>
 

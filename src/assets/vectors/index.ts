@@ -26,7 +26,6 @@ import cardHomeFood from './cardHomeFood.svg';
 import cardHomeLoveDog from './cardHomeLoveDog.svg';
 import cardHomePets2 from './cardHomePets2.svg';
 import cataloguePoints from './cataloguePoints.svg';
-import cataloguePointsM from './cataloguePointsM.svg';
 import backArrow from './backArrow.svg';
 import notImage from './notImage.svg';
 import tagIcon from './tagIcon.svg';
@@ -94,6 +93,7 @@ import atHighEnergy from './atHighEnergy.svg';
 import atRefreshing from './atRefreshing.svg';
 import tagCatGray from './tagCatGray.svg';
 import tagDogGray from './tagDogGray.svg';
+import pointCatalogue from './pointCatalogue.svg';
 
 export {
   basket,
@@ -122,7 +122,6 @@ export {
   cardHomeLoveDog,
   cardHomePets2,
   cataloguePoints,
-  cataloguePointsM,
   backArrow,
   notImage,
   tagIcon,
@@ -191,5 +190,6 @@ export {
   pixieProduct,
   calculatorIcon,
   tagDogGray,
-  tagCatGray
+  tagCatGray,
+  pointCatalogue
 };
