@@ -1,13 +1,21 @@
 import { useAppContext } from '../../hooks';
 
+import { useEffect } from 'react';
 import { calculateTotalPayment } from '../../helpers/paymentHelper';
 import { calculateIva, calculateTotal } from '../../helpers/productHelper';
 
-import { shippingTypeForm } from '../../interfaces/checkout';
+import { shippingTypeForm, typeShipping } from '../../interfaces/checkout';
 
-const TotalSection = ({ showTaxes = false, shippingInfo = { type: 'estandar', price: 90 } }:TotalSectionProps) => {
+const TotalSection = ({ showTaxes = false, shippingInfo = { type: 'estandar', price: 90 }, setUpdateShippingPrince }:TotalSectionProps) => {
   // Hooks
   const { products } = useAppContext();
+
+  // Update shipping value
+  useEffect(() => {
+    const total = calculateTotal(products);
+    if (total > 750 && setUpdateShippingPrince)
+      setUpdateShippingPrince('gratis', 0);
+  }, [products]);
 
   return (
     <div className='mt-2 lg:mt-4'>
@@ -38,6 +46,7 @@ const TotalSection = ({ showTaxes = false, shippingInfo = { type: 'estandar', pr
 interface TotalSectionProps {
   showTaxes?: boolean;
   shippingInfo?: shippingTypeForm;
+  setUpdateShippingPrince?: (name:typeShipping, value: number) => void
 }
 
 export default TotalSection;

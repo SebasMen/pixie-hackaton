@@ -138,7 +138,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
             <p className='font-subTitles text-base'>Selecciona y luego agrega al carrito.</p>
           </div>
           <ResultRecommendation
-            products={response.products}
+            products={response.products.sort((a, b) => parseInt(a.status, 10) - parseInt(b.status, 10))}
             quantity={Math.round((feedData.grams * 30) / 500)}
             grams={feedData.grams}
           />

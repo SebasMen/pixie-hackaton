@@ -5,14 +5,14 @@ import Button from '../../components/common/button';
 import ResumenShipping from './ResumenShipping';
 import RadioField from '../../components/form/radioField';
 
-import { shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
+import { shippingTypeForm, SubmissionFormInterface, typeShipping } from '../../interfaces/checkout';
 
-const ShippingSection = ({ changeStep, userData, setData }: SubmissionFormProps) => {
+const ShippingSection = ({ changeStep, userData, setData, shippingInfo }: SubmissionFormProps) => {
   // Hooks
-  const [typeShippingSt, setTypeShippingSt] = useState<'estandar' | 'rapido'>('estandar');
+  const [typeShippingSt, setTypeShippingSt] = useState<typeShipping>(shippingInfo.type);
   const { onSubmit, handleRadioChange, form } = useForm<shippingTypeForm>({
-    type: 'estandar',
-    price: 90
+    type: shippingInfo.type,
+    price: shippingInfo.price
   },
   form => handleSubmit(form));
 
@@ -40,24 +40,48 @@ const ShippingSection = ({ changeStep, userData, setData }: SubmissionFormProps)
             <li>Hacemos envíos únicamente dentro de la República Mexicana.</li>
           </ul>
         </div>
-        <div className='bg-white lg:px-3 rounded-2xl'>
-          <div className='grid pl-7 pr-6 grid-flow-col items-center py-5 lg:pl-2 lg:pr-1'>
-            <div className='text-left text-sm font-subTitles'>
-              <RadioField
-                label='Envio estándar'
-                value='estandar'
-                currentState={typeShippingSt}
-                changeState={setTypeShippingSt}
-                name='typeShipping'
-                labelClassName='font-sanzSemiBold'
-                handleRadioChange={handleRadioChange}
-              />
+        <div className='flex flex-col gap-3'>
+          {form.price === 0 ?
+            <div className='bg-white lg:px-3 rounded-2xl'>
+              <div className='grid pl-7 pr-6 grid-flow-col items-center py-5 lg:pl-2 lg:pr-1'>
+                <div className='text-left text-sm font-subTitles'>
+                  <RadioField
+                    label='Gratis'
+                    value='gratis'
+                    currentState={typeShippingSt}
+                    changeState={setTypeShippingSt}
+                    name='typeShipping'
+                    labelClassName='font-sanzSemiBold'
+                    handleRadioChange={handleRadioChange}
+                  />
+                </div>
+                <div className='text-right text-sm font-bold font-sanzBold'>
+                  <span>${form.price}</span>
+                </div>
+              </div>
             </div>
-            <div className='text-right text-sm font-bold font-sanzBold'>
-              <span>${form.price}</span>
+            :
+            <div className={`bg-white lg:px-3 rounded-2xl ${form.price === 0 && 'cursor-not-allowed bg-gray-200'}`}>
+              <div className='grid pl-7 pr-6 grid-flow-col items-center py-5 lg:pl-2 lg:pr-1'>
+                <div className='text-left text-sm font-subTitles'>
+                  <RadioField
+                    label='Envio estándar'
+                    value='estandar'
+                    currentState={typeShippingSt}
+                    changeState={setTypeShippingSt}
+                    name='typeShipping'
+                    labelClassName='font-sanzSemiBold'
+                    handleRadioChange={handleRadioChange}
+                  />
+                </div>
+                <div className='text-right text-sm font-bold font-sanzBold'>
+                  <span>${form.price}</span>
+                </div>
+              </div>
             </div>
-          </div>
+          }
         </div>
+
         <div className='px-5 lg:px-0 lg:flex lg:flex-row-reverse lg:items-center'>
           <Button className='w-full font-paragraph font-bold bg-primary text-[#fad7b1] mt-[1.15rem] lg:mt-7 lg:w-72 lg:text-lg' type='submit'>
             Seguir con envios
@@ -74,7 +98,8 @@ const ShippingSection = ({ changeStep, userData, setData }: SubmissionFormProps)
 interface SubmissionFormProps {
   changeStep: React.Dispatch<React.SetStateAction<number>>;
   userData: SubmissionFormInterface | undefined;
-  setData: React.Dispatch<React.SetStateAction<shippingTypeForm>>
+  setData: React.Dispatch<React.SetStateAction<shippingTypeForm>>;
+  shippingInfo: shippingTypeForm;
 }
 
 export default ShippingSection;

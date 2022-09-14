@@ -7,7 +7,7 @@ import TextField from '../../form/textField';
 import { Product, ResultProduct } from '../../../interfaces/product';
 import { capitalize } from '../../../helpers/capitalize';
 
-const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 500 }: RecomendationItemProps) => {
+const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 500, className }: RecomendationItemProps) => {
   // Hooks
   const { current: defaultCant } = useRef(Math.round((grams / parseInt(data.product.presentation, 10)) * 30));
 
@@ -32,6 +32,7 @@ const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 
           md:items-center md:gap-0 md:py-0 md:flex-row lg:px-[4rem]
           mb-[10px]
           ${checked ? 'bg-opacity-[0.3]' : 'bg-opacity-[0.1]'} 
+          ${className && className}
         `}
     >
       {/* Check */}
@@ -75,6 +76,7 @@ interface RecomendationItemProps {
   checked?: boolean;
   grams?: number;
   updateCant: (id: string, value: number) => void;
+  className?: string,
 }
 
 export default RecomendationItem;

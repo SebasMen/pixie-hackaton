@@ -77,9 +77,11 @@ export interface PaymentFormValidate {
 }
 
 export interface shippingTypeForm {
-  type: 'rapido' | 'estandar',
+  type: typeShipping,
   price: number
 }
+
+export type typeShipping = 'rapido' | 'estandar' | 'gratis'
 
 export interface selectCountry {
   code_iso: string,
@@ -98,4 +100,14 @@ export interface postSendFormCheckout {
   data: {
     id: string,
   }
+}
+
+export interface addressObject {
+  address: string | undefined,
+  houseNumber: string | undefined,
+  apartament: string | undefined,
+  reference: string | undefined,
+  zipCode: string | undefined,
+  colony: string | undefined,
+  delegation: string | undefined,
 }

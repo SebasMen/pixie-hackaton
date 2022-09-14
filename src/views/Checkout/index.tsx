@@ -12,7 +12,7 @@ import AnswerSection from './AnswerSection';
 import Footer from '../../components/layout/footer';
 import { SelectItem } from '../../components/form/selectField';
 
-import { selectCountryService, shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
+import { selectCountryService, shippingTypeForm, SubmissionFormInterface, typeShipping } from '../../interfaces/checkout';
 import { postSendPayment } from '../../interfaces/payment';
 import checkOutService from '../../services/checkOutService';
 
@@ -59,6 +59,11 @@ const CheckOut = () => {
     setcountries(countries);
   }, [loading, response]);
 
+  // Methods
+  const updateShippingInfo = (name: typeShipping, value:number) => {
+    setShippingInfo({ type: name, price: value });
+  };
+
   return (
     <Page className='bg-sixth'>
       <div className='w-full mb-16 max-w-[1440px] pt-1 lg:px-32 lg:pt-5 lg:pb-20'>
@@ -92,7 +97,7 @@ const CheckOut = () => {
                 {/* resumen section desktop */}
                 <div className='hidden lg:block'>
                   <ResumenSection shippingInfo={shippingInfo} />
-                  <TotalSection showTaxes={true} />
+                  <TotalSection showTaxes={true} setUpdateShippingPrince={updateShippingInfo} shippingInfo={shippingInfo}/>
                 </div>
               </div>
             </div>
@@ -112,6 +117,7 @@ const CheckOut = () => {
                     changeStep={setStep}
                     userData={userInfo}
                     setData={setShippingInfo}
+                    shippingInfo={shippingInfo}
                   />
               }
               { step === 4

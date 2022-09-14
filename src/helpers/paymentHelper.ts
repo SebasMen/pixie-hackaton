@@ -1,5 +1,5 @@
 import { CartItem } from '../interfaces/basket';
-import { paymentForm, shippingTypeForm, SubmissionFormInterface } from '../interfaces/checkout';
+import { addressObject, paymentForm, shippingTypeForm, SubmissionFormInterface } from '../interfaces/checkout';
 import { billingDetailsInterface, generatePayment } from '../interfaces/payment';
 import { productShort } from '../interfaces/product';
 import { calculateIva, calculateTotal, roundToXDigits } from './productHelper';
@@ -13,10 +13,16 @@ export const organiceInformationPayment = (idCustomer: string, tokenId: string, 
     customer_id: idCustomer,
     delivery_price: shippingData.price,
     details_payments: {
+      metadata: {
+        subtotalNoIva: calculateTotalPayment(products, shippingData, false),
+        iva: 16,
+        deliveryPrice: shippingData.price,
+        onlyIva: calculateIva(products)
+      },
       amount: {
         currency: 'MXN',
         ice: 0,
-        iva: 16,
+        iva: 0,
         subtotalIva: 0,
         subtotalIva0: calculateTotalPayment(products, shippingData, true),
       },
@@ -35,7 +41,7 @@ export const organiceInformationPayment = (idCustomer: string, tokenId: string, 
         shippingDetails: {
           name: `${(userData?.name ? userData.name : '')} ${(userData?.last_name ? userData.last_name : '')}`,
           phone: userData?.phone ? userData?.phone : '',
-          address1: userData?.address ? `${userData.address} - ${userData.houseNumber} - ${userData.apartment} - ${userData.reference} - ${userData.zip_code} - ${userData.colony}` : '',
+          address1: organiceAddress(userData),
           city: userData?.city ? userData?.city : '',
           region: userData?.state.value ? userData?.state.value : '',
           country: userData?.country ? userData?.country.label : '',
@@ -70,7 +76,7 @@ const organiceBillingDetails = (userData: SubmissionFormInterface | undefined, f
   let dataIsFromForm: billingDetailsInterface = {
     name: `${(userData?.name ? userData.name : '')} ${(userData?.last_name ? userData.last_name : '')}`,
     phone: userData?.phone ? userData?.phone : '',
-    address1: userData?.address ? `${userData.address} - ${userData.houseNumber} - ${userData.apartment} - ${userData.reference} - ${userData.zip_code} - ${userData.colony}` : '',
+    address1: organiceAddress(userData),
     city: userData?.city ? userData?.city : '',
     region: userData?.state.value ? userData?.state.value : '',
     country: userData?.country ? userData?.country.label : '',
@@ -88,6 +94,20 @@ const organiceBillingDetails = (userData: SubmissionFormInterface | undefined, f
     };
 
   return dataIsFromForm;
+};
+
+const organiceAddress = (userData:SubmissionFormInterface | undefined): string => {
+  const address: addressObject = {
+    address: userData?.address,
+    houseNumber: userData?.houseNumber,
+    apartament: userData?.apartment,
+    reference: userData?.reference,
+    zipCode: userData?.zip_code,
+    colony: userData?.colony,
+    delegation: userData?.delegation,
+  };
+
+  return JSON.stringify(address);
 };
 
 // Calculate the total with the shipping price and iva

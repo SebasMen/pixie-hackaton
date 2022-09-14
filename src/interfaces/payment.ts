@@ -13,6 +13,12 @@ export interface generatePayment {
     delivery_price: number,
     details_payments: {
     token: string,
+    metadata: {
+      subtotalNoIva: number,
+      iva: number,
+      deliveryPrice: number,
+      onlyIva: number
+    },
     amount: {
         subtotalIva: number,
         subtotalIva0: number,

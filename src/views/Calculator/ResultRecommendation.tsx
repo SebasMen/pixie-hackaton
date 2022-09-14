@@ -85,18 +85,31 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
   // Component
   return (
     <div className='flex flex-col gap-[38px] w-full mb-10 px-5 md:pl-0'>
-      <ColoredScrollbars style={{ height: 390 }}>
-        {productList.map((listed, index) => (
-          <RecomendationItem
-            key={listed.product.id}
-            data={listed}
-            toggle={toggleSelect}
-            checked={selected.some(res => res.product.id === listed.product.id)}
-            grams={grams}
-            updateCant={updateQuantity}
-          />
-        ))}
-      </ColoredScrollbars>
+      <div className='relative'>
+        <ColoredScrollbars style={{ height: 390 }}>
+          {productList.map((listed, index) => (
+            listed.product.status === '1'
+              ?
+              <RecomendationItem
+                key={listed.product.id}
+                data={listed}
+                toggle={toggleSelect}
+                checked={selected.some(res => res.product.id === listed.product.id)}
+                grams={grams}
+                updateCant={updateQuantity}
+              />
+              :
+              <RecomendationItem
+                key={listed.product.id}
+                data={listed}
+                toggle={toggleSelect}
+                checked={selected.some(res => res.product.id === listed.product.id)}
+                grams={grams}
+                updateCant={updateQuantity}
+              />
+          ))}
+        </ColoredScrollbars>
+      </div>
       <div className='flex justify-center lg:mr-5'>
         <div className='flex flex-col flex-shrink-0 justify-center pt-3 pb-4 gap-2 w-full h-auto px-5 rounded-2xl shadow-xl ring-1 ring-[#33B5A9] lg:flex-row lg:h-28 lg:pl-4 lg:pr-6 lg:gap-1 md:py-10'>
           <div className='flex lg:items-center w-full text-left justify-start lg:justify-center lg:w-[20%] h-full  border-b-pixieLightBlue border-r-pixieLightBlue lg:border-r lg:border-b-0'>
