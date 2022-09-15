@@ -63,7 +63,8 @@ const organiceProducts = (products: CartItem[]) : Array<productShort> => {
       sku: `${item.product.id}`,
       quantity: item.quantity,
       image: item.product.url_image,
-      presentation: item.product.presentation
+      presentation: item.product.presentation,
+      age: item.product.age
     };
     return productItem;
   });

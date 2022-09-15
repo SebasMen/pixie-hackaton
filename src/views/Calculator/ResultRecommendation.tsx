@@ -10,6 +10,7 @@ import { capitalize } from '../../helpers/capitalize';
 
 import { basket } from '../../assets/vectors';
 import useShoppingCar from '../../hooks/useShoppingCar';
+import { isValidProduct } from '../../helpers/calculator';
 
 const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendationProps) => {
   // Hooks
@@ -20,6 +21,7 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
     }))
   );
   const [selected, setSelected] = useState<ResultProduct[]>([productList[0]]);
+  const [hasValidProduct, setHasValidProduct] = useState(isValidProduct(products));
 
   const { addRemoveProduct } = useShoppingCar();
 
@@ -77,9 +79,10 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
 
   // Save product to car
   const handleAddProductsToShopping = () => {
-    selected.forEach(item =>
-      addRemoveProduct(item.product, parseInt(`${item.quantity}`, 10))
-    );
+    if (hasValidProduct)
+      selected.forEach(item =>
+        addRemoveProduct(item.product, parseInt(`${item.quantity}`, 10))
+      );
   };
 
   // Component
@@ -88,25 +91,15 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
       <div className='relative'>
         <ColoredScrollbars style={{ height: 390 }}>
           {productList.map((listed, index) => (
-            listed.product.status === '1'
-              ?
-              <RecomendationItem
-                key={listed.product.id}
-                data={listed}
-                toggle={toggleSelect}
-                checked={selected.some(res => res.product.id === listed.product.id)}
-                grams={grams}
-                updateCant={updateQuantity}
-              />
-              :
-              <RecomendationItem
-                key={listed.product.id}
-                data={listed}
-                toggle={toggleSelect}
-                checked={selected.some(res => res.product.id === listed.product.id)}
-                grams={grams}
-                updateCant={updateQuantity}
-              />
+            <RecomendationItem
+              key={listed.product.id}
+              data={listed}
+              toggle={toggleSelect}
+              checked={selected.some(res => res.product.id === listed.product.id)}
+              grams={grams}
+              updateCant={updateQuantity}
+              isValid={listed.product.status === '1'}
+            />
           ))}
         </ColoredScrollbars>
       </div>
@@ -131,7 +124,7 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
             <div className='hidden md:block'>
               <IconButton
                 name='result'
-                className='bg-primary scale-75 shadow-[0px_2px_10px_0_rgba(65,65,65,0.4)]'
+                className={`${!hasValidProduct && 'opacity-50'} bg-primary scale-75 shadow-[0px_2px_10px_0_rgba(65,65,65,0.4)]`}
                 img={basket}
                 imgClassName='w-9 h-9'
                 onClick={handleAddProductsToShopping}
@@ -139,7 +132,7 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
               />
             </div>
             <div className='w-full md:hidden'>
-              <Button className='bg-primary flex gap-4 w-full' rounded={true} onClick={handleAddProductsToShopping}>
+              <Button className={`${!hasValidProduct && 'opacity-50'} bg-primary flex gap-4 w-full`} rounded={true} onClick={handleAddProductsToShopping}>
                 <img src={basket} className={'h-5 w-5'} />
                 <span className='md:hidden text-base text-amber-100'>Agregar</span>
               </Button>

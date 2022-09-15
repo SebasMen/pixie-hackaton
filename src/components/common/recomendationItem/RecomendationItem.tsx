@@ -6,8 +6,9 @@ import TextField from '../../form/textField';
 
 import { Product, ResultProduct } from '../../../interfaces/product';
 import { capitalize } from '../../../helpers/capitalize';
+import { soonIcon } from '../../../assets/vectors';
 
-const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 500, className }: RecomendationItemProps) => {
+const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 500, className, isValid }: RecomendationItemProps) => {
   // Hooks
   const { current: defaultCant } = useRef(Math.round((grams / parseInt(data.product.presentation, 10)) * 30));
 
@@ -26,15 +27,19 @@ const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 
   return (
     <div
       className={`
-          flex flex-col justify-between rounded-2xl items-start 
-          gap-5 bg-fourth px-5 transform transition-all
+          flex flex-col justify-between rounded-2xl items-start relative
+          gap-5 bg-fourth transform transition-all
           duration-150 animate__animated animate__fadeIn py-5
-          md:items-center md:gap-0 md:py-0 md:flex-row lg:px-[4rem]
+          md:items-center md:gap-0 md:py-0 md:flex-row
           mb-[10px]
           ${checked ? 'bg-opacity-[0.3]' : 'bg-opacity-[0.1]'} 
+          ${isValid && 'px-5 lg:px-[4rem]'}
           ${className && className}
         `}
     >
+      <div className={`${isValid && 'hidden'} absolute bg-white w-full h-full z-10 bg-opacity-70 flex justify-center items-center`}>
+        <img src={soonIcon} className='opacity-80'/>
+      </div>
       {/* Check */}
       <div className='flex items-center md:py-10 lg:w-[43%] lg2:w-[50%] xl2:w-[42%]'>
         <div className='flex items-center gap-3 md:gap-11'>
@@ -77,6 +82,7 @@ interface RecomendationItemProps {
   grams?: number;
   updateCant: (id: string, value: number) => void;
   className?: string,
+  isValid : boolean
 }
 
 export default RecomendationItem;

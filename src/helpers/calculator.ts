@@ -1,4 +1,5 @@
 import { allergies } from '../interfaces/calculator';
+import { Product } from '../interfaces/product';
 
 export const calculator = {
   // Dogs
@@ -282,3 +283,13 @@ export interface PetFeedData {
   range: 'cachorros' | 'adultos' | 'senior';
   allergies : allergies
 }
+
+export const isValidProduct = (product: Product[]) => {
+  let isValid = false;
+  product.forEach(item => {
+    if (item.status === '1')
+      isValid = true;
+  });
+
+  return isValid;
+};

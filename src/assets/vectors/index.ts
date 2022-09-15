@@ -94,6 +94,7 @@ import atRefreshing from './atRefreshing.svg';
 import tagCatGray from './tagCatGray.svg';
 import tagDogGray from './tagDogGray.svg';
 import pointCatalogue from './pointCatalogue.svg';
+import soonIcon from './soonIcon.svg';
 
 export {
   basket,
@@ -191,5 +192,6 @@ export {
   calculatorIcon,
   tagDogGray,
   tagCatGray,
-  pointCatalogue
+  pointCatalogue,
+  soonIcon
 };

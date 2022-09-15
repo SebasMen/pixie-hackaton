@@ -37,7 +37,8 @@ export interface productShort {
   sku: string,
   quantity: number
   image: string,
-  presentation: string
+  presentation: string,
+  age: string
 }
 
 export interface productCatalogue {
