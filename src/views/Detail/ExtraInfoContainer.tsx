@@ -3,6 +3,9 @@ import { extraInfo } from '../../@fake/detailFake';
 import { Product } from '../../interfaces/product';
 import { separateByCommas } from '../../helpers/productHelper';
 import { useEffect, useState } from 'react';
+import { tableCachorro, tableCachorroWhite } from '../../assets/images';
+import { useAppContext } from '../../hooks';
+import useScrolled from '../../hooks/useScrolled';
 
 const ExtraInfoContainer = ({ product }: ExtraInfoContainerProps) => {
   const [nameTable, setNameTable] = useState('');
@@ -10,6 +13,8 @@ const ExtraInfoContainer = ({ product }: ExtraInfoContainerProps) => {
     kl: '',
     grams: ''
   }]);
+  const { updateContext } = useAppContext();
+  const { scrollTo } = useScrolled();
 
   useEffect(() => {
     if (product.kind_pet === 'DOG')
@@ -43,6 +48,11 @@ const ExtraInfoContainer = ({ product }: ExtraInfoContainerProps) => {
       }
   }, []);
 
+  const handleShowTable = () => {
+    updateContext(old => ({ ...old, showPopupViewerImage: { show: true, url: tableCachorroWhite } }));
+    scrollTo(0);
+  };
+
   return (
     <div className='hidden md:flex md:flex-col mt-1 w-full'>
       <div className='flex gap-4 mb-8'>
@@ -59,7 +69,15 @@ const ExtraInfoContainer = ({ product }: ExtraInfoContainerProps) => {
             <span className='text-lg font-bold text-fourth'>Tabla consumo en gramos diarios:</span>
           </div>
           <div className='pb-8'>
-            <ExtraInfo type='table' infoTable={tableInfo} nameTable={nameTable}/>
+            {product.age.toLocaleLowerCase() === 'cachorros'
+              ?
+              <div className='mt-7 flex flex-col items-center gap-4 cursor-pointer' onClick={handleShowTable} >
+                <img src={tableCachorro} />
+                <span className='text-sm font-sanzBold'>Click para ampliar</span>
+              </div>
+              :
+              <ExtraInfo type='table' infoTable={tableInfo} nameTable={nameTable}/>
+            }
           </div>
         </div>
       </div>

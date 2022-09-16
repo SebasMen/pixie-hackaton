@@ -46,7 +46,12 @@ const InfoAccordion = ({ product }:InfoAccordionProps) => {
   return (
     <ul className='w-full md:px-24 md:hidden bg-fifth'>
       <ItemAccordion name='Beneficios y Características' infoList={separateByCommas(product.benefits)} type='list'/>
-      <ItemAccordion name='Instrucciones de Alimentación' infoTable={tableInfo} nameTable={nameTable} type='table'/>
+      {product.age.toLocaleLowerCase() === 'cachorros'
+        ?
+        <ItemAccordion name='Instrucciones de Alimentación' type='tableCachorro'/>
+        :
+        <ItemAccordion name='Instrucciones de Alimentación' infoTable={tableInfo} nameTable={nameTable} type='table'/>
+      }
       <ItemAccordion name='Composición Garantizada-MS%' infoList={separateByCommas(product.nutrition_information)} type='list'/>
       <ItemAccordion name='Conservación del producto' infoConservation={product.recommendation_for_use} type='conservation'/>
     </ul>

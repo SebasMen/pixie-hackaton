@@ -135,10 +135,10 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
       </div>
 
       {(showControls && product.status !== '2') && (
-        <div className={`${clickBasket ? 'bottom-[-4.5rem] md:bottom-[-4.3rem]' : 'bg-primary md:-bottom-4 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'} absolute -bottom-[1rem] text-white z-40 rounded-full`}>
+        <div className={`${clickBasket ? 'bottom-[-3.9rem] md:bottom-[-4.3rem]' : 'bg-primary md:-bottom-4 shadow-[0_2px_10px_0_rgba(65,65,65,0.4)]'} absolute -bottom-[1rem] text-white z-40 rounded-full`}>
           { clickBasket
             ?
-            <Lottie animationData={anHoverBasket} loop={true} className='w-36 h-36 md:w-36 md:h-36'/>
+            <Lottie animationData={anHoverBasket} loop={true} className='w-32 h-32 md:w-36 md:h-36'/>
             :
             <IconButton.mini
               imgClassName='w-6 h-6 md:w-7 md:h-7'

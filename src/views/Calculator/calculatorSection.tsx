@@ -100,10 +100,10 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
             <div className='hidden tall:hidden md:w-1/2 md:overflow-hidden md:flex xl2:justify-center'>
               <img src={backgroundCalculator} className='md:absolute md:-z-10 md:ml-24 md:mt-7' />
               {form.type.value === 'dog' &&
-                <img src={calculatorDog} className='mt-16 mb-60 z-10 xl2:ml-20' />
+                <img src={calculatorDog} className='animate__bounceIn animate__animated mt-16 mb-60 z-10 xl2:ml-20' />
               }
               {(form.type.value === 'cat' || form.type.value === '') &&
-                <img src={calculatorCat} className='mt-16 mb-32 lg:w-[570px] lg:h-[632px] z-10 lg2:ml-20' />
+                <img src={calculatorCat} className='animate__bounceIn animate__animated mt-16 mb-32 lg:w-[570px] lg:h-[632px] z-10 lg2:ml-20' />
               }
             </div>
             {/* Form */}

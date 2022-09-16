@@ -3,7 +3,8 @@ import FacebookGray from '../../../assets/vectors/FacebookGray.svg';
 import instagramgray from '../../../assets/vectors/Instagramgray.svg';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../common/icon';
-import { americanExLogo, kushkiLogo, masterCardLogo, visaLogo, whoBuildThis } from '../../../assets/images';
+import { americanExLogo, kushkiLogo, masterCardLogo, visaLogo } from '../../../assets/images';
+import WhoBuildThis from '../../common/whoBuiltThis';
 
 export const Footer = ({ className }: FooterProps) => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ export const Footer = ({ className }: FooterProps) => {
           <ul className='font-sanzSemiBold flex flex-col gap-3 text-sm lg:text-base text-center lg:text-left'>
             <li className='cursor-pointer' onClick={() => navigate('/questions')}>Preguntas frecuentes</li>
             <li>Términos y condiciones</li>
-            <li>Política de datos</li>
+            <li className='cursor-pointer' onClick={() => navigate('/dataprivacy')}>Política de datos</li>
           </ul>
         </div>
         <div className='lg:w-4/12 items-center lg:items-start xl2:pl-10'>
@@ -66,7 +67,7 @@ export const Footer = ({ className }: FooterProps) => {
       </div>
       <div className='bg-grayText flex justify-center items-center text-white text-sm font-montserrat py-[0.4rem] gap-9 w-full'>
         <span className='leading-[96%] tracking-[0.16em] '>copyright 2022</span>
-        <img src={whoBuildThis}/>
+        <WhoBuildThis/>
       </div>
     </footer>
   );

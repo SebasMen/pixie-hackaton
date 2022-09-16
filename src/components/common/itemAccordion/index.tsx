@@ -1,10 +1,20 @@
 import { useState } from 'react';
+import { tableCachorro, tableCachorroWhite } from '../../../assets/images';
+import { useAppContext } from '../../../hooks';
+import useScrolled from '../../../hooks/useScrolled';
 import ExtraInfo from '../../../views/Detail/ExtraInfo';
 import Icon from '../icon';
 
 const ItemAccordion = ({ name, infoList, infoTable, nameTable, infoConservation, type }: ItemAccordionProps) => {
   // Hooks
   const [isOpen, setIsOpen] = useState(false);
+  const { updateContext } = useAppContext();
+  const { scrollTo } = useScrolled();
+
+  const handleShowTable = () => {
+    updateContext(old => ({ ...old, showPopupViewerImage: { show: true, url: tableCachorroWhite } }));
+    scrollTo(0);
+  };
 
   // Component
   return (
@@ -24,6 +34,12 @@ const ItemAccordion = ({ name, infoList, infoTable, nameTable, infoConservation,
         </div>
         {type === 'table' && <ExtraInfo type={type} infoTable={infoTable} nameTable={nameTable}/>}
         {type === 'conservation' && <ExtraInfo type={type} infoConservation={infoConservation}/>}
+        {type === 'tableCachorro' &&
+          <div className='mt-7 flex flex-col items-center gap-4 cursor-pointer' onClick={handleShowTable} >
+            <img src={tableCachorro} />
+            <span className='text-sm font-sanzBold'>Click para ampliar</span>
+          </div>
+        }
       </div>
     </li>
   );
@@ -31,7 +47,7 @@ const ItemAccordion = ({ name, infoList, infoTable, nameTable, infoConservation,
 
 interface ItemAccordionProps {
   name: string,
-  type: 'list' | 'table' | 'conservation',
+  type: 'list' | 'table' | 'conservation' | 'tableCachorro',
   infoList?: Array<string>,
   infoTable?:Array<interfaceTable>,
   nameTable? : string,

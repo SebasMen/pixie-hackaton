@@ -95,6 +95,8 @@ import tagCatGray from './tagCatGray.svg';
 import tagDogGray from './tagDogGray.svg';
 import pointCatalogue from './pointCatalogue.svg';
 import soonIcon from './soonIcon.svg';
+import logoAntpack from './logoAntpack.svg';
+import maskBlack from './maskBlack.svg';
 
 export {
   basket,
@@ -193,5 +195,7 @@ export {
   tagDogGray,
   tagCatGray,
   pointCatalogue,
-  soonIcon
+  soonIcon,
+  logoAntpack,
+  maskBlack
 };

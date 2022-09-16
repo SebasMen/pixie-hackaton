@@ -13,6 +13,7 @@ import Calculator from '../views/Calculator';
 import Basket from '../views/Basket';
 import CheckOut from '../views/Checkout';
 import FrequentQuestions from '../views/FrequentQuestions';
+import DataPrivacy from '../views/dataPrivacy';
 
 const AppRouter = () => {
   // Hooks
@@ -93,6 +94,12 @@ const AppRouter = () => {
             path='/questions'
             element={
               <FrequentQuestions/>
+            }
+          />
+          <Route
+            path='/dataprivacy'
+            element={
+              <DataPrivacy/>
             }
           />
 

@@ -32,6 +32,8 @@ import bannerCalculatorResult from './bannerCalculatorResult.png';
 import bannerCalculatorResultMobile from './bannerCalculatorResultMobile.png';
 import calculatorCat from './calculatorCat.png';
 import calculatorDog from './calculatorDog.png';
+import tableCachorro from './tableCachorro.png';
+import tableCachorroWhite from './tableCachorroWhite.png';
 
 export {
   backgroundWood,
@@ -67,5 +69,7 @@ export {
   bannerCalculatorResult,
   bannerCalculatorResultMobile,
   calculatorCat,
-  calculatorDog
+  calculatorDog,
+  tableCachorro,
+  tableCachorroWhite
 };
