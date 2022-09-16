@@ -45,7 +45,7 @@ const RecomendationItem = ({ data, toggle, updateCant, checked = false, grams = 
         <div className='flex items-center gap-3 md:gap-11'>
           <CheckField onClick={() => toggle(data.product, cant)} sizeContainer='w-5 h-5 lg:w-[30px] lg:h-[30px]' checked={checked}/>
           {/* name */}
-          <div className='font-extrabold text-pixieLightBlue lg:text-xl'>{capitalize(data.product.name)}</div>
+          <div className='font-extrabold text-pixieLightBlue lg:text-xl'>{capitalize(`${data.product.name} ${data.product.age}`)}</div>
         </div>
       </div>
 

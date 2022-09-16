@@ -87,7 +87,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
         onMouseOver={() => setShowHoverComingSoon(true)}
         onMouseLeave={() => setShowHoverComingSoon(false)}
       >
-        <div className={`${!showHeader && 'hidden'} flex justify-between w-full mb-2 relative z-30`}>
+        <div className={`${!showHeader && ''} flex justify-between w-full mb-2 relative z-30`}>
           <div className='flex items-start justify-center gap-1 absolute left-1 pr-9'>
             {ages.map((age, index) => (
               <Tag key={`${product.id}-age-${age}`} name={age} className='w-full' sizeTags={ages.length}/>

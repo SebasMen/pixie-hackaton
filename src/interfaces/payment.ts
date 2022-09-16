@@ -76,7 +76,8 @@ export interface postSendPayment {
       details: {
           approvedTransactionAmount: number,
           transactionId: string
-        }
+        },
+        ticketNumber: string
     }
   }
 }

@@ -44,7 +44,7 @@ const ResumenProductSection = ({ shippingInfo }:ResumenProductSectionProps) => {
           </div>
         </div>
         <div className='text-lg w-2/6 text-right font-bold font-paragraph text-pixieLightBlue'>
-          ${calculateTotal(products)}
+          ${calculateTotal(products, false)}
         </div>
       </div>
       <div>

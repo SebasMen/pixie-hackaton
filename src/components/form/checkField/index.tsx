@@ -22,15 +22,22 @@ export const CheckField = ({
     return () => {};
   }, [checked, _checked]);
 
+  // Methods
+
+  const handleChange = () => {
+    onClick();
+    if (!(disabled || checked))
+      setChecked(old => !old);
+  };
+
   // Component
   return (
-    <div className={`flex items-center gap-2 ${className}`} onClick={onClick}>
+    <div className={`flex items-center gap-2 ${className}`} onClick={handleChange}>
       <div
         className={`bg-white flex items-center justify-center rounded-md cursor-pointer
         ${border}
         ${sizeContainer ? sizeContainer : 'w-10 h-10'}
         `}
-        onClick={disabled || checked ? undefined : () => setChecked(old => !old)}
       >
         <Icon
           name='done'

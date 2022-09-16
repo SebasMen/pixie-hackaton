@@ -98,7 +98,7 @@ const AnswerSection = ({ paymentAnswer: { data, status } }:AnswerSectionProps) =
         </div>
         <div className='flex justify-between items-center lg:flex-col gap-2 lg:justify-center'>
           <span className='font-sanzBold w-1/3 lg:w-full'>NÚMERO DE TRANSACCIÓN</span>
-          <p className='w-2/3 text-right lg:w-full lg:text-left'>{data.order_detail.details.transactionId}</p>
+          <p className='w-2/3 text-right lg:w-full lg:text-left'>{data.order_detail.ticketNumber}</p>
         </div>
       </div>
     </div>

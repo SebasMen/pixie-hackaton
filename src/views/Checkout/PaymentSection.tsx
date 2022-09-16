@@ -16,6 +16,7 @@ import { postSendPayment, postSendTokenCard } from '../../interfaces/payment';
 import { calculateTotalPayment, organiceInformationPayment } from '../../helpers/paymentHelper';
 import PopupDecision from '../../components/layout/popupDecision';
 import { useLoading } from '../../hooks/useLoading';
+import { mexicanStates } from '../../@fake/statesFake';
 
 const numberOfInstallmentsOptions: SelectItem[] = [
   { value: '1', label: '1 Cuota' },
@@ -47,7 +48,14 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     name: '',
     last_name: '',
     address: '',
-    addressOptional: '',
+    apartment: '',
+    colony: '',
+    delegation: '',
+    houseNumber: '',
+    reference: '',
+    state: { value: '', label: '' },
+    states: mexicanStates,
+    zip_code: '',
     city: '',
     countries: countriesOptions ? countriesOptions : [],
     country: { label: '', value: '' },
@@ -95,6 +103,27 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     country: {
       message: ''
     },
+    state: {
+      message: ''
+    },
+    houseNumber: {
+      message: ''
+    },
+    apartment: {
+      message: ''
+    },
+    zip_code: {
+      message: ''
+    },
+    reference: {
+      message: ''
+    },
+    colony: {
+      message: ''
+    },
+    delegation: {
+      message: ''
+    }
   });
 
   // Validate format expirationDate
@@ -190,6 +219,48 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
           handlePutMessageError('country', 'Se debe seleccionar un país');
           error = true;
         }
+
+      if (form.houseNumber)
+        if (!validator.isLength(form.houseNumber, { min: 1 })) {
+          handlePutMessageError('houseNumber', 'El número de la casa debe ser mayor o igual a 1 caracter');
+          error = true;
+        }
+
+      if (form.apartment)
+        if (!validator.isLength(form.apartment, { min: 2 }) && form.apartment.length > 0) {
+          handlePutMessageError('apartment', 'El número de apartamento debe ser mayor a 1 carácter');
+          error = true;
+        }
+
+      if (form.reference)
+        if (!validator.isLength(form.reference, { min: 4 }) && form.reference.length > 0) {
+          handlePutMessageError('reference', 'El número de apartamento debe ser mayor a 4 caracteres');
+          error = true;
+        }
+
+      if (form.zip_code)
+        if (!validator.isLength(form.zip_code, { min: 5 })) {
+          handlePutMessageError('zip_code', 'El codigo postal debe ser mayor a 4 caracteres');
+          error = true;
+        }
+
+      if (form.colony)
+        if (!validator.isLength(form.colony, { min: 4 })) {
+          handlePutMessageError('colony', 'La colonia debe contener mas de 4 caracteres');
+          error = true;
+        }
+
+      if (form.delegation)
+        if (!validator.isLength(form.delegation, { min: 4 })) {
+          handlePutMessageError('delegation', 'La colonia debe contener mas de 4 caracteres');
+          error = true;
+        }
+
+      if (form.state)
+        if (validator.equals(form.state.value, '')) {
+          handlePutMessageError('state', 'Se debe seleccionar un estado');
+          error = true;
+        }
     }
 
     if (!error)
@@ -228,9 +299,9 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     const { data } = await paymentService.sendPayment(paymentData);
     // Set data to show in the answerSection
     if (data.error)
-      setAnswerData(form.amount, (data.error ? data.error.details.transactionId : ''), data.status);
+      setAnswerData(form.amount, (data.error ? data.error.details.transactionId : ''), data.status, data.data.order_detail.ticketNumber);
     else if (data.status === 'OK')
-      setAnswerData(data.data.order_detail.details.approvedTransactionAmount, data.data.order_detail.details.transactionId, data.status);
+      setAnswerData(data.data.order_detail.details.approvedTransactionAmount, data.data.order_detail.details.transactionId, data.status, data.data.order_detail.ticketNumber);
     else
       toast.fire({
         icon: 'warning',
@@ -241,7 +312,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   };
 
   // Save response to show un the answerSection
-  const setAnswerData = (amount: number, transaccionId: string, state: string) => {
+  const setAnswerData = (amount: number, transaccionId: string, state: string, ticketNumber: string) => {
     setPaymentAnswer(old => ({ ...old,
       status: state,
       data: {
@@ -249,7 +320,8 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
           details: {
             approvedTransactionAmount: amount,
             transactionId: transaccionId
-          }
+          },
+          ticketNumber,
         }
       } }));
   };

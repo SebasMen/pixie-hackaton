@@ -54,7 +54,7 @@ const ShoppingCar = ({ onClose, show }: shoppingCarProps) => {
         <p>
             Total
         </p>
-        <span>${calculateTotal(products)}</span>
+        <span>${calculateTotal(products, false)}</span>
       </div>
       <div className='flex flex-col gap-2 font-sanzBold'>
         <Button className='bg-primary text-[#fad7b1]' onClick={() => navigate('/basket')}>

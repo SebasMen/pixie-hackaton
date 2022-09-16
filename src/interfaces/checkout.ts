@@ -53,8 +53,16 @@ export interface paymentForm {
   name?: string;
   last_name?: string;
   address?: string;
-  addressOptional?: string;
+
+  houseNumber?: string;
+  apartment?: string;
+  reference?: string;
+  zip_code?: string;
+  colony?: string;
+  delegation?: string;
   city?: string;
+  states?: SelectItem[];
+  state?: SelectItem;
   countries?: SelectItem[];
   country?: SelectItem;
 }
@@ -74,6 +82,13 @@ export interface PaymentFormValidate {
   name: validatorBody;
   last_name: validatorBody;
   country: validatorBody;
+  state: validatorBody;
+  houseNumber: validatorBody;
+  apartment: validatorBody;
+  zip_code: validatorBody;
+  reference: validatorBody;
+  colony: validatorBody;
+  delegation: validatorBody;
 }
 
 export interface shippingTypeForm {

@@ -12,7 +12,7 @@ import { useState } from 'react';
 const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingCarProps) => {
   // Hooks
   const { deleteProduct, addRemoveProduct } = useShoppingCar();
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState(item.quantity);
 
   // Handle
   const handleDeleteProduct = () => {

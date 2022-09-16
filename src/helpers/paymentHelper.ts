@@ -14,7 +14,7 @@ export const organiceInformationPayment = (idCustomer: string, tokenId: string, 
     delivery_price: shippingData.price,
     details_payments: {
       metadata: {
-        subtotalNoIva: calculateTotalPayment(products, shippingData, false),
+        subtotalNoIva: calculateTotalPayment(products, { type: 'gratis', price: 0 }, false),
         iva: 16,
         deliveryPrice: shippingData.price,
         onlyIva: calculateIva(products)
@@ -87,16 +87,16 @@ const organiceBillingDetails = (userData: SubmissionFormInterface | undefined, f
     dataIsFromForm = {
       name: `${(form?.name ? form.name : '')} ${(form?.last_name ? form.last_name : '')}`,
       phone: form?.phone ? form?.phone : '',
-      address1: form?.address ? form?.address : '',
-      address2: form?.addressOptional ? form?.addressOptional : '',
+      address1: organiceAddressChangeBilling(form),
       city: form?.city ? form?.city : '',
-      region: userData?.state.value ? userData?.state.value : '',
+      region: form?.state ? form?.state.value : '',
       country: form?.country ? form?.country.label : '',
     };
 
   return dataIsFromForm;
 };
 
+// Organice address to send JSONObject with all information
 const organiceAddress = (userData:SubmissionFormInterface | undefined): string => {
   const address: addressObject = {
     address: userData?.address,
@@ -111,19 +111,28 @@ const organiceAddress = (userData:SubmissionFormInterface | undefined): string =
   return JSON.stringify(address);
 };
 
+// Organice address to send JSONObject with all information when the billingAddress is changed
+const organiceAddressChangeBilling = (form:paymentForm): string => {
+  const address: addressObject = {
+    address: form.address,
+    houseNumber: form.houseNumber,
+    apartament: form.apartment,
+    reference: form.reference,
+    zipCode: form.zip_code,
+    colony: form.colony,
+    delegation: form.delegation,
+  };
+
+  return JSON.stringify(address);
+};
+
 // Calculate the total with the shipping price and iva
-export const calculateTotalPayment = (productsCar: CartItem[], shippingData: shippingTypeForm, showIva: boolean): number => {
-  const totalProduct = calculateTotal(productsCar);
-  const iva = calculateIva(productsCar);
+export const calculateTotalPayment = (productsCar: CartItem[], shippingData: shippingTypeForm, withIva: boolean): number => {
+  const totalProduct = calculateTotal(productsCar, !withIva);
+
   // If the product cost > 750 the shipping is free
   if (totalProduct > 750)
-    if (showIva)
-      return totalProduct + iva;
-    else
-      return roundToXDigits(totalProduct, 2);
-
-  if (showIva)
-    return roundToXDigits((totalProduct + shippingData.price + iva), 2);
+    return roundToXDigits(totalProduct, 2);
 
   return roundToXDigits((totalProduct + shippingData.price), 2);
 };

@@ -22,23 +22,22 @@ export const calculateGrs = (item: CartItem) => {
   return `${gr * item.quantity} ${split[1]}`;
 };
 
-export const calculateTotal = (arrayProducts: CartItem[]) => {
+export const calculateTotal = (arrayProducts: CartItem[], withoutIva: boolean) => {
   let total = 0;
   arrayProducts.forEach(item => {
     total += (item.quantity * item.product.price);
   });
+
+  if (withoutIva)
+    return roundToXDigits(total - calculateIva(arrayProducts), 2);
+
   return total;
 };
 
-export const calculateIva = (arrayProducts: CartItem[]) => {
-  let total = 0;
+export const calculateIva = (arrayProducts: CartItem[]): number => {
+  const total = calculateTotal(arrayProducts, false);
 
-  arrayProducts.forEach(item => {
-    const ivaOneProduct = item.product.price * 0.16;
-    total += (item.quantity * ivaOneProduct);
-  });
-
-  return roundToXDigits(total, 2);
+  return roundToXDigits(total * 0.16, 2);
 };
 
 export const roundToXDigits = (value: number, digits: number) => {

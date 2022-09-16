@@ -33,17 +33,74 @@ const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError 
       name='address'
       value={form.address ? form.address : ''}
       handler={handleFormChange}
-      placeholder='Dirección*'
+      placeholder='Nombre de la calle*'
       fieldClassName='py-[0.95rem]'
       required
     />
-    <TextField
-      name='addressOptional'
-      value={form.addressOptional ? form.addressOptional : ''}
-      handler={handleFormChange}
-      placeholder='Dirección 2'
-      fieldClassName='py-[0.95rem]'
-    />
+    <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
+      <TextField
+        name='houseNumber'
+        value={form.houseNumber ? form.houseNumber : ''}
+        handler={handleFormChange}
+        placeholder='Número exterior, Casa o Edificio*'
+        className='lg:w-1/2'
+        fieldClassName='py-[0.95rem]'
+        messageError={messageError.houseNumber.message}
+        required
+      />
+      <TextField
+        name='apartment'
+        value={form.apartment ? form.apartment : ''}
+        handler={handleFormChange}
+        placeholder='Número Interior ( Ej: Piso, Oficina, Dpto)'
+        className='lg:w-1/2'
+        fieldClassName='py-[0.95rem]'
+        messageError={messageError.apartment.message}
+      />
+    </div>
+    <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
+      <TextField
+        name='reference'
+        value={form.reference ? form.reference : ''}
+        handler={handleFormChange}
+        placeholder='Entre calles (Referencias)'
+        className='lg:w-1/2'
+        fieldClassName='py-[0.95rem]'
+        messageError={messageError.reference.message}
+      />
+      <TextField
+        name='zip_code'
+        value={form.zip_code ? form.zip_code : ''}
+        handler={handleFormChange}
+        placeholder='Código postal*'
+        className='lg:w-1/2'
+        fieldClassName='py-[0.95rem]'
+        messageError={messageError.zip_code.message}
+        required
+      />
+    </div>
+    <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
+      <TextField
+        name='colony'
+        value={form.colony ? form.colony : ''}
+        handler={handleFormChange}
+        placeholder='Colonia*'
+        className='lg:w-1/2'
+        fieldClassName='py-[0.95rem]'
+        messageError={messageError.colony.message}
+        required
+      />
+      <TextField
+        name='delegation'
+        value={form.delegation ? form.delegation : ''}
+        handler={handleFormChange}
+        placeholder='Delegación o Municipio*'
+        className='lg:w-1/2'
+        fieldClassName='py-[0.95rem]'
+        messageError={messageError.delegation.message}
+        required
+      />
+    </div>
     <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
       <TextField
         name='city'
@@ -55,15 +112,16 @@ const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError 
         required
       />
       <SelectField
-        placeholder='País*'
-        name='country'
-        options={form.countries ? form.countries : []}
+        placeholder='Estado*'
+        name='state'
+        options={form.states ? form.states : [{ label: '', value: '' }]}
+        value={form.state?.value ? form.state : undefined}
         onChange={handleSelectChange}
         borderRadius={true}
         borderColor='#000'
         className='lg:w-1/2'
         paddingY='0.43rem'
-        messageError={messageError.country.message}
+        messageError={messageError.state.message}
       />
     </div>
     <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
@@ -88,6 +146,16 @@ const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError 
         required
       />
     </div>
+    <SelectField
+      placeholder='País*'
+      name='country'
+      options={form.countries ? form.countries : []}
+      onChange={handleSelectChange}
+      borderRadius={true}
+      borderColor='#000'
+      paddingY='0.43rem'
+      messageError={messageError.country.message}
+    />
   </div>
 );
 

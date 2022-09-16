@@ -33,6 +33,7 @@ const CheckOut = () => {
           approvedTransactionAmount: 0,
           transactionId: ''
         },
+        ticketNumber: '',
       }
     }
   });
@@ -81,7 +82,7 @@ const CheckOut = () => {
 
         {/* payments steps */}
         <div className='px-5 mt-4 font-subTitles text-fourth lg:px-4 lg:mt-5'>
-          <StepsSection step={step}/>
+          <StepsSection step={step} setStep={setStep}/>
         </div>
         {step === 5 ?
           <AnswerSection

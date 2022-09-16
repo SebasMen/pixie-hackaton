@@ -10,8 +10,8 @@ export const Footer = ({ className }: FooterProps) => {
 
   return (
     <footer className='flex flex-col w-full z-10 bg-fourth items-center'>
-      <div className='flex flex-col lg:flex-row pb-[2rem] pt-9 lg:pt-[2.1rem] lg:text-lg bg-fourth px-[1.6rem] lg2:px-[2.5rem] xl1:px-[6rem] xl2:px-[7.81rem] max-w-[1440px]'>
-        <div className='flex flex-col items-center mb-5 gap-5 lg:mb-0 lg:w-2/12 lg::items-start lg:gap-[1.9rem]'>
+      <div className='flex flex-col lg:flex-row pb-[2rem] pt-9 lg:pt-[2.1rem] lg:text-lg bg-fourth px-[1.6rem] lg2:px-[2.5rem] xl1:px-[3rem] xl2:px-[5.5rem] max-w-[1440px]'>
+        <div className='flex flex-col items-center mb-5 gap-5 lg:mb-0 lg:w-2/12 lg:gap-[1.9rem] xl2:mr-10'>
           <img src={logoFooter} className='w-[79px] lg:w-[113px]'/>
           <div className='flex gap-6 lg:gap-8'>
             <a href='https://www.facebook.com/Pixiemx-104482775594223/' target='_blank' rel='noopener noreferrer' className='cursor-pointer'>
@@ -22,7 +22,7 @@ export const Footer = ({ className }: FooterProps) => {
             </a>
           </div>
         </div>
-        <div className='flex flex-col items-center lg:w-4/12 lg:pl-[1.7rem] lg:items-start'>
+        <div className='flex flex-col items-center lg:w-4/12 lg:pl-[2.5rem] lg:items-start'>
           <h5 className='text-left text-lg mb-3'>Información de Contacto</h5>
           <div className='flex font-sanzSemiBold mb-4 gap-10 lg:gap-6'>
             <div className='flex text-[13px] items-center gap-2 lg:text-sm'>
@@ -34,14 +34,14 @@ export const Footer = ({ className }: FooterProps) => {
               <span>soporte@pixie.pet</span>
             </div>
           </div>
-          <div className='flex font-sanzSemiBold items-start mt-2 gap-2 lg:pr-10 lg:items-start text-[13px] mb-[2.3rem] lg:mb-0 lg:text-sm '>
+          <div className='flex font-sanzSemiBold items-start mt-2 gap-2 lg:pr-2 lg:items-start text-[13px] mb-[2.3rem] lg:mb-0 lg:text-sm xl2:mt-0'>
             <Icon name='location_on' className='text-xs lg:text-lg'/>
             <p className='leading-snug'>
               Calle Medellín, número 148, Colonia Roma Norte, Alcaldía Cuauhtémoc, Código Postal 06700, Ciudad de México.
             </p>
           </div>
         </div>
-        <div className='flex flex-col lg:w-3/12 lg:pl-12 items-center lg:items-start'>
+        <div className='flex flex-col lg:w-3/12 lg:pl-12 items-center lg:items-start xl2:pl-[4.8rem]'>
           <h5 className='text-left text-lg mb-2 lg:text-base lg:mb-4'>Links de interés</h5>
           <ul className='font-sanzSemiBold flex flex-col gap-3 text-sm lg:text-base text-center lg:text-left'>
             <li className='cursor-pointer' onClick={() => navigate('/questions')}>Preguntas frecuentes</li>
@@ -49,7 +49,7 @@ export const Footer = ({ className }: FooterProps) => {
             <li>Política de datos</li>
           </ul>
         </div>
-        <div className='lg:w-3/12 items-center lg:items-start'>
+        <div className='lg:w-4/12 items-center lg:items-start xl2:pl-10'>
           <div className='bg-white rounded-[20px] flex flex-col pl-[1.13rem] pr-[0.57rem] pt-[0.8rem] pb-[1.38rem] mt-8 mx-[1.6rem] lg:ml-6 lg:mt-2'>
             <h5 className='text-left text-base mb-[0.15rem]'>Pago 100% seguro</h5>
             <p className='font-sanzSemiBold text-[#9D9D9D] text-xs mb-3'>
