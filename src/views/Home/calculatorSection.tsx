@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 
 import Button from '../../components/common/button';
 
-import { fillets } from '../../assets/vectors';
 import useScrolled from '../../hooks/useScrolled';
 import { bannerHomeFooter, catBannerHomeFooter } from '../../assets/images';
 

@@ -59,7 +59,7 @@ const DataPrivacyInfoSection = () => (
              deberá contener:
           </p>
           <p>
-            <ul>
+            <ul className='list-disc ml-5'>
               <li>
                 Nombre completo del titular.
               </li>

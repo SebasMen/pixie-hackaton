@@ -14,6 +14,7 @@ import Basket from '../views/Basket';
 import CheckOut from '../views/Checkout';
 import FrequentQuestions from '../views/FrequentQuestions';
 import DataPrivacy from '../views/dataPrivacy';
+import TermsAndConditions from '../views/termsAndConditions';
 
 const AppRouter = () => {
   // Hooks
@@ -100,6 +101,12 @@ const AppRouter = () => {
             path='/dataprivacy'
             element={
               <DataPrivacy/>
+            }
+          />
+          <Route
+            path='/terms'
+            element={
+              <TermsAndConditions />
             }
           />
 

@@ -12,7 +12,6 @@ import { ProductListResponse } from '../../interfaces/product';
 import productService from '../../services/productService';
 
 import '../../styles/home.css';
-import { backgroundWood } from '../../assets/images';
 import ButtonWhatsap from '../../components/common/buttonWhatsapp';
 import { useLoading } from '../../hooks/useLoading';
 

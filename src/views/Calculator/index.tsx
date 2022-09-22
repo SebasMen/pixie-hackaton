@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Footer from '../../components/layout/footer';
 import Page from '../../components/layout/page';

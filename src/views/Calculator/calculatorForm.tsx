@@ -11,7 +11,6 @@ import RadioField from '../../components/form/radioField';
 import CheckField from '../../components/form/checkField';
 
 import { CalculatorForm as CalculatorFormType, CalculatorFormValidate } from '../../interfaces/calculator';
-import ViewerImagePopup from '../../components/common/viewerImagePopup';
 import { idealWeightCat, idealWeightDog } from '../../assets/images';
 
 export const CalculatorForm = ({
@@ -411,7 +410,6 @@ interface CalculatorFormProps {
   onRadioChange: (selected: string | boolean, name: string) => void,
   setForm: React.Dispatch<React.SetStateAction<CalculatorFormType>>,
   form: CalculatorFormType;
-  /// setView: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default CalculatorForm;

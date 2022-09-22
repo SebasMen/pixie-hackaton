@@ -22,7 +22,7 @@ export const mexicanStates: SelectItem[] = [
   // { value: 'NLE', label: 'Nuevo León' },
   // { value: 'OAX', label: 'Oaxaca' },
   // { value: 'PUE', label: 'Puebla' },
-  // { value: 'QRO', label: 'Querétaro' },
+  { value: 'QRO', label: 'Querétaro' },
   // { value: 'ROO', label: 'Quintana Roo' },
   // { value: 'SLP', label: 'San Luis Potosí' },
   // { value: 'SIN', label: 'Sinaloa' },

@@ -7,7 +7,7 @@ import ResultSection from './ResultSection';
 
 import { SelectItem } from '../../components/form/selectField';
 
-import { dogCalculator, fullDogCalculator, backgroundCalculator, calculatorCat, calculatorDog } from '../../assets/images';
+import { backgroundCalculator, calculatorCat, calculatorDog } from '../../assets/images';
 import { getPetFeedData, PetFeedData, PetInfo } from '../../helpers/calculator';
 import { CalculatorForm as CalculatorFormType } from '../../interfaces/calculator';
 

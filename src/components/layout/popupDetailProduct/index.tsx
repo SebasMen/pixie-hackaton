@@ -1,15 +1,7 @@
 import { useAppContext } from '../../../hooks';
-import { useNavigate } from 'react-router-dom';
 
-import Icon from '../../common/icon';
-import ProductCard from '../../common/productCard';
-import Button from '../../common/button';
 import IconButton from '../../common/iconButton';
 
-import { products } from '../../../@fake/productsFake';
-import Detail from '../../../views/Detail';
-import { backArrow } from '../../../assets/vectors';
-import { capitalize } from '../../../helpers/capitalize';
 import BannerDetail from '../../../views/Detail/bannerDetail';
 import BannerDetailDT from '../../../views/Detail/BannerDetailDT';
 import { organizeAttributes, organizeIngredients } from '../../../helpers/detailHelper';
@@ -21,7 +13,6 @@ import InfoAccordion from '../../../views/Detail/InfoAccordion';
 const PopupDetailProduct = () => {
   // Hooks
   const { updateContext, productView } = useAppContext();
-  const navigate = useNavigate();
 
   // Methods
   const handleClosePopup = () => {

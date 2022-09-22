@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppContext, useFetch } from '../../hooks';
+import { useFetch } from '../../hooks';
 
 import Page from '../../components/layout/page';
 import Button from '../../components/common/button';

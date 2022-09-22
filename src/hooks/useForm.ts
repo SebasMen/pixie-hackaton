@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { MultiValue, SingleValue } from 'react-select';
 import { SelectItem } from '../components/form/selectField';
