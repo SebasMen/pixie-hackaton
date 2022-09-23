@@ -96,7 +96,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
           <IconButton.mini
             img={product.kind_pet === 'CAT' ? tagCatGray : tagDogGray}
             name={product.name + '-tag-' + product.kind_pet}
-            className={`text-pixieLightBlue p-1 shadow-none md:mr-1 absolute right-0 md:right-1
+            className={`text-pixieLightBlue p-1 shadow-none md:mr-1 absolute right-0 md:right-1 w-full h-full
             ${product.kind_pet === 'CAT' ? 'bg-[#FFB88A]' : 'bg-[#F7EBA8]'}`}
             imgClassName='brightness-[0.30] opacity-80'
             onClick={() => console.log(product.kind_pet)}

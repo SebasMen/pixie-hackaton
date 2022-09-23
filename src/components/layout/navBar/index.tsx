@@ -68,7 +68,7 @@ export const NavBar = () => {
 
         {/* Logo */}
         <div className={`${showMinimalNavbar ? 'w-14 md:w-[55px]' : 'w-14 md:w-[6.75rem] md:pt-2'} flex-shrink-0 flex justify-center items-center md:justify-start `}>
-          <img src={pixie} className='w-full cursor-pointer' onClick={toHome} />
+          <img src={pixie} className='w-full h-full cursor-pointer' onClick={toHome} />
         </div>
 
         {/* Content */}

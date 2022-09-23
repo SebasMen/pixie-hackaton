@@ -9,8 +9,8 @@ export const BannerContent = ({ title, text, img, showBotton }: BannerContentPro
     }
 
     <div className='absolute w-full flex flex-col top-[4%] gap-4 lg:gap-[1.30rem] justify-center items-center lg:left-[6rem] lg:w-[41%] lg:top-[17%] lg2:top-[20%] lg2:left-[6.5rem] lg2:w-[42%] xl2:w-1/2 xl2:left-[3.7rem] xl2:top-[22%]'>
-      <img src={banneHomerCopy} className='hidden md:block animation-title'/>
-      <img src={bannerHomeFlag} className='hidden md:block animate__animated animate__backInLeft animate__delay-2s'/>
+      <img src={banneHomerCopy} className='hidden md:block animation-title w-full h-full'/>
+      <img src={bannerHomeFlag} className='hidden md:block animate__animated animate__backInLeft animate__delay-2s '/>
       <img src={bannerHomeCopyMobile} className='block animation-title md:hidden'/>
       <img src={bannerHomeFlagMobile} className='md:hidden animate__animated animate__backInLeft animate__delay-2s'/>
     </div>

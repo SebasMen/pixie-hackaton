@@ -1,5 +1,5 @@
-import { bannerCatalogue, bannerCatalogueMobile } from '../../assets/images';
 import { pointCatalogue } from '../../assets/vectors';
+import { bannerCatalogue, bannerCatalogueMobile } from '../../assets/webP';
 
 export const BannerSection = () => (
   <div className='banner relative w-full flex transform transition-all overflow-hidden pb-10 md:pb-0 md:pt-2 max-w-[1440px] max-h-[623px] lg:max-h-[488px] lg:min-h-[488px] xl1:max-h-[570px] xl1:min-h-[570px] xl2:min-h-[640px] lg2:max-h[640px]'>

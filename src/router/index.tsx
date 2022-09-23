@@ -1,20 +1,21 @@
-import { useEffect, useRef } from 'react';
+import { lazy, Suspense, useEffect, useRef } from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import FadeScreen from '../components/layout/fadeScreen';
-import Home from '../views/Home';
-import Catalogue from '../views/Catalogue';
-import NotFound from '../views/notFound';
+
+const NotFound = lazy(() => import('../views/notFound'));
+const Catalogue = lazy(() => import('../views/Catalogue'));
+const Home = lazy(() => import('../views/Home'));
+const Detail = lazy(() => import('../views/Detail'));
+const Calculator = lazy(() => import('../views/Calculator'));
+const Basket = lazy(() => import('../views/Basket'));
+const CheckOut = lazy(() => import('../views/Checkout'));
+const FrequentQuestions = lazy(() => import('../views/FrequentQuestions'));
+const DataPrivacy = lazy(() => import('../views/dataPrivacy'));
+const TermsAndConditions = lazy(() => import('../views/termsAndConditions'));
 
 import { useAppContext, useAuth } from '../hooks';
-import Detail from '../views/Detail';
-import Calculator from '../views/Calculator';
-import Basket from '../views/Basket';
-import CheckOut from '../views/Checkout';
-import FrequentQuestions from '../views/FrequentQuestions';
-import DataPrivacy from '../views/dataPrivacy';
-import TermsAndConditions from '../views/termsAndConditions';
 
 const AppRouter = () => {
   // Hooks
@@ -55,62 +56,84 @@ const AppRouter = () => {
           <Route
             path='/'
             element={
-              <Home />
+              <Suspense fallback={<FadeScreen />}>
+                <Home />
+              </Suspense>
             }
           />
 
           <Route
             path='/catalogue'
             element={
-              <Catalogue />
+              <Suspense fallback={<FadeScreen />}>
+                <Catalogue />
+              </Suspense>
             }
           />
 
           <Route
             path='product/detail/:id'
             element={
-              <Detail />
+              <Suspense fallback={<FadeScreen />}>
+                <Detail />
+              </Suspense>
             }
           />
 
           <Route
             path='/calculator'
             element={
-              <Calculator />
+              <Suspense fallback={<FadeScreen />}>
+                <Calculator />
+              </Suspense>
             }
           />
           <Route
             path='/basket'
             element={
-              <Basket/>
+              <Suspense fallback={<FadeScreen />}>
+                <Basket/>
+              </Suspense>
             }
           />
           <Route
             path='/checkout'
             element={
-              <CheckOut/>
+              <Suspense fallback={<FadeScreen />}>
+                <CheckOut/>
+              </Suspense>
             }
           />
           <Route
             path='/questions'
             element={
-              <FrequentQuestions/>
+              <Suspense fallback={<FadeScreen />}>
+                <FrequentQuestions/>
+              </Suspense>
             }
           />
           <Route
             path='/dataprivacy'
             element={
-              <DataPrivacy/>
+              <Suspense fallback={<FadeScreen />}>
+                <DataPrivacy/>
+              </Suspense>
             }
           />
           <Route
             path='/terms'
             element={
-              <TermsAndConditions />
+              <Suspense fallback={<FadeScreen />}>
+                <TermsAndConditions />
+              </Suspense>
             }
           />
 
-          <Route path='*' element={<NotFound />} />
+          <Route path='*' element={
+            <Suspense fallback={<FadeScreen />}>
+              <NotFound />
+            </Suspense>
+          } />
         </Routes>
       </BrowserRouter>
     </>
