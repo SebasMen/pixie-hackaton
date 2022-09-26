@@ -297,9 +297,17 @@ const organizateIngredientsGroup = (ingredients: string[]): Array<ingredientesPr
       if (index === -1) {
         objectIngredient.img = inFillet;
         objectIngredient.name = 'Carnes';
-        objectIngredient.tooltip += `${item.trim()}, `;
+        // Provitional while the ingredient data is update in the DB
+        if (item.toLocaleLowerCase().trim() === 'carne de res')
+          objectIngredient.tooltip += 'Res, ';
+        else
+          objectIngredient.tooltip += `${item.trim()}, `;
         objectIngredients.push(objectIngredient);
       } else
+      // Provitional while the ingredient data is update in the DB
+      if (item.toLocaleLowerCase().trim() === 'carne de res')
+        objectIngredients[index].tooltip += 'Res, ';
+      else
         objectIngredients[index].tooltip += `${item.trim()}, `;
     } else if (vitaminas.find(vitaminItem => vitaminItem === item.trim())) {
       const index = objectIngredients.findIndex(item => item.name === 'Vitaminas');
