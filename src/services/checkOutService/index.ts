@@ -7,7 +7,7 @@ export class CheckOutService {
   getOneCountry = async (): Promise<selectCountryService> => {
     const defError = 'Error al traer el pais.';
     try {
-      const response = await api({ url: 'countries?iso=mx', baseURL: 'https://apidev.tools.antpack.co/pixie-customers/api/'});
+      const response = await api({ url: 'countries?iso=mx', baseURL: 'https://apidev.tools.antpack.co/pixie-customers/api/' });
 
       // Handle empty response
       if (!response) throw new Error(defError);
@@ -25,13 +25,20 @@ export class CheckOutService {
   sendUserInformation = async (data: SubmissionFormInterface): Promise<postSendFormCheckout> => {
     const defError = 'Error al enviar los datos del checkout.';
     try {
-      const response = await api.post('pixie-customers/api/customers', {
+      const response = await api({ baseURL: 'https://apidev.tools.antpack.co/pixie-customers/api/customers', method: 'post', data: {
         ...data,
         apartment: data.apartment === '' ? data.houseNumber : data.apartment,
         address: data.address.concat(` ${data.houseNumber}`),
         countries_id: data.country.value,
         province: data.state.label
-      });
+      } });
+      /// const response = await api.post('pixie-customers/api/customers', {
+      //   ...data,
+      //   apartment: data.apartment === '' ? data.houseNumber : data.apartment,
+      //   address: data.address.concat(` ${data.houseNumber}`),
+      //   countries_id: data.country.value,
+      //   province: data.state.label
+      // });
 
       // Handle empty response
       if (!response) throw new Error(defError);

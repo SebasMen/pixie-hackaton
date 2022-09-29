@@ -13,10 +13,18 @@ export const App = () => {
     if (!provider) return;
 
     localStorage.setItem('auth', JSON.stringify(provider.isAuthenticated));
-    localStorage.setItem('shoppingCart', JSON.stringify(provider.products));
 
     return () => { };
   }, [provider]);
+
+  useEffect(() => {
+    if (!provider) return;
+    if (provider.products.length < 1) return;
+
+    localStorage.setItem('shoppingCart', JSON.stringify(provider.products));
+
+    return () => { };
+  }, [provider.products]);
 
   return (
     <AppContext.Provider value={{ ...provider, updateContext: setProvider }}>

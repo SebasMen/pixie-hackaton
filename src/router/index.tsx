@@ -14,6 +14,7 @@ const CheckOut = lazy(() => import('../views/Checkout'));
 const FrequentQuestions = lazy(() => import('../views/FrequentQuestions'));
 const DataPrivacy = lazy(() => import('../views/dataPrivacy'));
 const TermsAndConditions = lazy(() => import('../views/termsAndConditions'));
+const ResultPayment = lazy(() => import('../views/resultPayment'));
 
 import { useAppContext, useAuth } from '../hooks';
 
@@ -101,6 +102,14 @@ const AppRouter = () => {
             element={
               <Suspense fallback={<FadeScreen />}>
                 <CheckOut/>
+              </Suspense>
+            }
+          />
+          <Route
+            path='/checkout/result'
+            element={
+              <Suspense fallback={<FadeScreen />}>
+                <ResultPayment/>
               </Suspense>
             }
           />

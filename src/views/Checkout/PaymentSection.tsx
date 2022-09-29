@@ -13,7 +13,7 @@ import FormBilling from '../../components/common/formBilling';
 import { paymentForm, PaymentFormValidate, shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
 import paymentService from '../../services/paymentService';
 import { postSendPayment, postSendTokenCard } from '../../interfaces/payment';
-import { calculateTotalPayment, organiceInformationPayment } from '../../helpers/paymentHelper';
+import { calculateTotalPayment, organiceInformationPaymentMP } from '../../helpers/paymentHelper';
 import PopupDecision from '../../components/layout/popupDecision';
 import { useLoading } from '../../hooks/useLoading';
 import { mexicanStates } from '../../@fake/statesFake';
@@ -35,6 +35,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   });
   const { products, toast } = useAppContext();
   const { loadingFalse, loadingTrue } = useLoading();
+
   const { form, onSubmit, handleRadioChange, handleSelectChange, handleFormChange, setForm } = useForm<paymentForm>({
     billingAddress: userData?.address ? userData.address : '',
     card_name: '',
@@ -147,40 +148,40 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     // Regular expression to Date mm/yy
     const date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1[1-9]|2[0-9]|3[0-9]|4[0-9])$/;
 
-    if (!validator.isAlpha(form.card_name, 'es-ES', { ignore: ' ' })) {
-      handlePutMessageError('card_name', 'Solo se debe escribir letras');
-      error = true;
-    }
+    /// if (!validator.isAlpha(form.card_name, 'es-ES', { ignore: ' ' })) {
+    //   handlePutMessageError('card_name', 'Solo se debe escribir letras');
+    //   error = true;
+    // }
 
-    if (!validator.isLength(form.card_number, { min: 16, max: 16 })) {
-      handlePutMessageError('card_number', 'El número de targeta debe tener 16 digitos');
-      error = true;
-    }
+    // if (!validator.isLength(form.card_number, { min: 16, max: 16 })) {
+    //   handlePutMessageError('card_number', 'El número de targeta debe tener 16 digitos');
+    //   error = true;
+    // }
 
-    if (!validator.isNumeric(form.card_number)) {
-      handlePutMessageError('card_number', 'El campo solo debe tener números');
-      error = true;
-    }
+    // if (!validator.isNumeric(form.card_number)) {
+    //   handlePutMessageError('card_number', 'El campo solo debe tener números');
+    //   error = true;
+    // }
 
-    if (!validator.isLength(form.card_cvv, { min: 3, max: 4 })) {
-      handlePutMessageError('card_cvv', 'El cvv debe tener mas de 3 digitos');
-      error = true;
-    }
+    // if (!validator.isLength(form.card_cvv, { min: 3, max: 4 })) {
+    //   handlePutMessageError('card_cvv', 'El cvv debe tener mas de 3 digitos');
+    //   error = true;
+    // }
 
-    if (!validator.isNumeric(form.card_cvv)) {
-      handlePutMessageError('card_cvv', 'El cvv solo recibe digitos');
-      error = true;
-    }
+    // if (!validator.isNumeric(form.card_cvv)) {
+    //   handlePutMessageError('card_cvv', 'El cvv solo recibe digitos');
+    //   error = true;
+    // }
 
-    if (!validator.isLength(form.expirationDate, { min: 5, max: 5 })) {
-      handlePutMessageError('expirationDate', 'El campo solo debe tener 5 caracteres');
-      error = true;
-    }
+    // if (!validator.isLength(form.expirationDate, { min: 5, max: 5 })) {
+    //   handlePutMessageError('expirationDate', 'El campo solo debe tener 5 caracteres');
+    //   error = true;
+    // }
 
-    if (!date_regex.test(form.expirationDate)) {
-      handlePutMessageError('expirationDate', 'El formato del cambo debe ser MM/YY');
-      error = true;
-    }
+    // if (!date_regex.test(form.expirationDate)) {
+    //   handlePutMessageError('expirationDate', 'El formato del cambo debe ser MM/YY');
+    //   error = true;
+    // }
 
     // Validate optional information
     if (!sameBillingAdressSt) {
@@ -269,47 +270,61 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
 
   const handleSubmit = async (form: paymentForm) => {
     loadingTrue();
-    const response = await paymentService.sendCardInformation(form);
-    if (response.err) {
-      toast.fire({
-        icon: 'warning',
-        title: response.err,
+    // Organize data
+    const paymentData = organiceInformationPaymentMP(idCustomer, userData, products, shippingData, form, sameBillingAdressSt);
+    localStorage.setItem('order-data', JSON.stringify(paymentData));
+    await paymentService.getPaymentId(paymentData)
+      .then(res => {
+        window.location.replace(`${res.init_point}`);
+      })
+      .catch(error => {
+        toast.fire({
+          icon: 'warning',
+          title: error,
+        });
       });
-      loadingFalse();
-    } else if (response.data.status === 'OK') {
-      loadingFalse();
-      setPostSendTokenCard(response.data);
-      setShowPopup(true);
-    } else {
-      toast.fire({
-        icon: 'warning',
-        title: 'Hubo un error en la api.',
-      });
-      loadingFalse();
-    }
+
+    /// const response = await paymentService.sendCardInformation(form);
+    // if (response.err) {
+    //   toast.fire({
+    //     icon: 'warning',
+    //     title: response.err,
+    //   });
+    //   loadingFalse();
+    // } else if (response.data.status === 'OK') {
+    //   loadingFalse();
+    //   setPostSendTokenCard(response.data);
+    //   setShowPopup(true);
+    // } else {
+    //   toast.fire({
+    //     icon: 'warning',
+    //     title: 'Hubo un error en la api.',
+    //   });
+    loadingFalse();
+    // }
   };
 
-  const sendDataPayment = async () => {
-    // Close popup
-    setShowPopup(false);
-    loadingTrue();
-    // Organize data
-    const paymentData = organiceInformationPayment(idCustomer, postSendTokenCard.token_card, userData, products, shippingData, form, sameBillingAdressSt);
-    // Send data to API
-    const { data } = await paymentService.sendPayment(paymentData);
-    // Set data to show in the answerSection
-    if (data.error)
-      setAnswerData(form.amount, (data.error ? data.error.details.transactionId : ''), data.status, data.data.order_detail.ticketNumber);
-    else if (data.status === 'OK')
-      setAnswerData(data.data.order_detail.details.approvedTransactionAmount, data.data.order_detail.details.transactionId, data.status, data.data.order_detail.ticketNumber);
-    else
-      toast.fire({
-        icon: 'warning',
-        title: 'Hubo un error en la api.',
-      });
-    changeStep(5);
-    loadingFalse();
-  };
+  /// const sendDataPayment = async () => {
+  //   // Close popup
+  //   setShowPopup(false);
+  //   loadingTrue();
+  //   // Organize data
+  //   const paymentData = organiceInformationPayment(idCustomer, postSendTokenCard.token_card, userData, products, shippingData, form, sameBillingAdressSt);
+  //   // Send data to API
+  //   const { data } = await paymentService.sendPayment(paymentData);
+  //   // Set data to show in the answerSection
+  //   if (data.error)
+  //     setAnswerData(form.amount, (data.error ? data.error.details.transactionId : ''), data.status, data.data.order_detail.ticketNumber);
+  //   else if (data.status === 'OK')
+  //     setAnswerData(data.data.order_detail.details.approvedTransactionAmount, data.data.order_detail.details.transactionId, data.status, data.data.order_detail.ticketNumber);
+  //   else
+  //     toast.fire({
+  //       icon: 'warning',
+  //       title: 'Hubo un error en la api.',
+  //     });
+  //   changeStep(5);
+  //   loadingFalse();
+  // };
 
   // Save response to show un the answerSection
   const setAnswerData = (amount: number, transaccionId: string, state: string, ticketNumber: string) => {
@@ -332,12 +347,14 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
 
   return (
     <div className='font-subTitles text-sm'>
+      <div id='container-paymentMP'></div>
+
       <ResumenShipping
         location = {`${userData?.phone}, ${userData?.address}, ${userData?.houseNumber}, ${userData?.apartment}, ${userData?.reference}, ${userData?.city}`}
         email={userData?.email}
       />
       <form onSubmit={onSubmit} className='px-5 pt-6 lg:px-0 lg:pt-11'>
-        <div className='flex flex-col'>
+        {/* <div className='flex flex-col'>
           <span className='font-titles text-base lg:text-xl'>Pago</span>
           <p className='text-xs'>Todas las transacciones son seguras y están encriptadas</p>
           <div className='pt-4 mb-5 flex flex-col gap-2 lg:mb-10 lg:pt-7'>
@@ -384,7 +401,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
                 required
               />
             </div>
-            {/* <SelectField
+            <SelectField
               placeholder='Número de cuotas*'
               name='numberOfInstallments'
               options={form.numberOfInstallmentsSelect}
@@ -393,9 +410,9 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
               borderColor='#000'
               className='lg:w-1/2'
               paddingY='0.43rem'
-            /> */}
+            />
           </div>
-        </div>
+        </div> */}
         <span className='font-titles text-base lg:text-xl'>Dirección de facturación</span>
         <div className='bg-white rounded-2xl mt-4 lg:mt-2 px-6'>
           <div className='border-b border-[#B8B8B8] py-4 lg:py-5'>
@@ -441,7 +458,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
           </div>
         </div>
       </form>
-      {showPopup && <PopupDecision handleAccept={sendDataPayment} handleDeny={handleClosePopup} text='¿Realmente desea realizar el pago?'/>}
+      {/* {showPopup && <PopupDecision handleAccept={sendDataPayment} handleDeny={handleClosePopup} text='¿Realmente desea realizar el pago?'/>} */}
     </div>
   );
 };

@@ -1,74 +1,184 @@
 import { CartItem } from '../interfaces/basket';
 import { addressObject, paymentForm, shippingTypeForm, SubmissionFormInterface } from '../interfaces/checkout';
-import { billingDetailsInterface, generatePayment } from '../interfaces/payment';
-import { productShort } from '../interfaces/product';
+import { billingDetailsInterface, billingDetailsInterfaceMV, generatePaymentMP, itemsMP } from '../interfaces/payment';
 import { calculateIva, calculateTotal, roundToXDigits } from './productHelper';
 
 // Organize the data to send them to the api
 // eslint-disable-next-line max-params
-export const organiceInformationPayment = (idCustomer: string, tokenId: string, userData: SubmissionFormInterface | undefined, products: CartItem[], shippingData: shippingTypeForm, form: paymentForm, sameBillingAddress: boolean): generatePayment => {
-  const dataBilling = organiceBillingDetails(userData, form, sameBillingAddress);
+// export const organiceInformationPayment = (idCustomer: string, tokenId: string, userData: SubmissionFormInterface | undefined, products: CartItem[], shippingData: shippingTypeForm, form: paymentForm, sameBillingAddress: boolean): generatePayment => {
+//   const dataBilling = organiceBillingDetails(userData, form, sameBillingAddress);
 
-  const paymentData: generatePayment = {
-    customer_id: idCustomer,
-    delivery_price: shippingData.price,
-    details_payments: {
-      metadata: {
-        subtotalNoIva: calculateTotalPayment(products, { type: 'gratis', price: 0 }, false),
-        iva: 16,
-        deliveryPrice: shippingData.price,
-        onlyIva: calculateIva(products)
+//   const paymentData: generatePayment = {
+//     customer_id: idCustomer,
+//     delivery_price: shippingData.price,
+//     details_payments: {
+//       metadata: {
+//         subtotalNoIva: calculateTotalPayment(products, { type: 'gratis', price: 0 }, false),
+//         iva: 16,
+//         deliveryPrice: shippingData.price,
+//         onlyIva: calculateIva(products)
+//       },
+//       amount: {
+//         currency: 'MXN',
+//         ice: 0,
+//         iva: 0,
+//         subtotalIva: 0,
+//         subtotalIva0: calculateTotalPayment(products, shippingData, true),
+//       },
+//       contactDetails: {
+//         email: userData?.email ? userData?.email : '',
+//         firstName: userData?.name ? userData?.name : '',
+//         lastName: userData?.last_name ? userData?.last_name : '',
+//         phoneNumber: userData?.phone ? userData?.phone : '',
+//       },
+//       productDetails: {
+//         product: organiceProducts(products),
+//       },
+//       fullResponse: true,
+//       orderDetails: {
+//         siteDomain: 'example.com',
+//         shippingDetails: {
+//           name: `${(userData?.name ? userData.name : '')} ${(userData?.last_name ? userData.last_name : '')}`,
+//           phone: userData?.phone ? userData?.phone : '',
+//           address1: organiceAddress(userData),
+//           city: userData?.city ? userData?.city : '',
+//           region: userData?.state.value ? userData?.state.value : '',
+//           country: userData?.country ? userData?.country.label : '',
+//         },
+//         billingDetails: dataBilling
+//       },
+//       token: tokenId
+//     }
+//   };
+//   return paymentData;
+// };
+
+// eslint-disable-next-line max-params
+export const organiceInformationPaymentMP = (idCustomer: string, userData: SubmissionFormInterface | undefined, products: CartItem[], shippingData: shippingTypeForm, form: paymentForm, sameBillingAddress: boolean): generatePaymentMP => {
+  const paymentData: generatePaymentMP = {
+    items: organiceProductsMP(products),
+    payer: organiceBillingDetailsMP(userData, form, sameBillingAddress),
+    auto_return: 'approved',
+    shipments: {
+      cost: shippingData.price,
+      mode: shippingData.type,
+      receiver_address: {
+        apartment: `${userData?.apartment}`,
+        city_name: `${userData?.city}`,
+        country_name: `${userData?.country.value}`,
+        floor: `${userData?.houseNumber}`,
+        state_name: `${userData?.state.value}`,
+        street_name: `${userData?.address}`,
+        street_number: `${userData?.reference}`,
+        zip_code: `${userData?.zip_code}`
+      }
+    },
+    metadata: {
+      shippingDetails: {
+        name: `${(userData?.name ? userData.name : '')} ${(userData?.last_name ? userData.last_name : '')}`,
+        phone: userData?.phone ? userData?.phone : '',
+        address1: organiceAddress(userData),
+        city: userData?.city ? userData?.city : '',
+        region: userData?.state.value ? userData?.state.value : '',
+        country: userData?.country ? userData?.country.label : '',
       },
-      amount: {
-        currency: 'MXN',
-        ice: 0,
-        iva: 0,
-        subtotalIva: 0,
-        subtotalIva0: calculateTotalPayment(products, shippingData, true),
-      },
+      customer_id: idCustomer,
+      billingDetails: organiceBillingDetails(userData, form, sameBillingAddress),
       contactDetails: {
         email: userData?.email ? userData?.email : '',
         firstName: userData?.name ? userData?.name : '',
         lastName: userData?.last_name ? userData?.last_name : '',
         phoneNumber: userData?.phone ? userData?.phone : '',
       },
-      productDetails: {
-        product: organiceProducts(products),
+      details_payments: {
+        subTotalNoIva: calculateTotalPayment(products, { type: 'gratis', price: 0 }, false),
+        deliveryPrice: shippingData.price,
+        onlyIva: calculateIva(products),
+        totalPayment: calculateTotalPayment(products, shippingData, true)
       },
-      fullResponse: true,
-      orderDetails: {
-        siteDomain: 'example.com',
-        shippingDetails: {
-          name: `${(userData?.name ? userData.name : '')} ${(userData?.last_name ? userData.last_name : '')}`,
-          phone: userData?.phone ? userData?.phone : '',
-          address1: organiceAddress(userData),
-          city: userData?.city ? userData?.city : '',
-          region: userData?.state.value ? userData?.state.value : '',
-          country: userData?.country ? userData?.country.label : '',
-        },
-        billingDetails: dataBilling
-      },
-      token: tokenId
-    }
+    },
+    total_amount: calculateTotalPayment(products, shippingData, true),
+    back_urls: {
+      failure: 'http://localhost:3001/checkout/result',
+      pending: 'http://localhost:3001/checkout/result',
+      success: 'http://localhost:3001/checkout/result'
+    },
   };
+
   return paymentData;
 };
 
-const organiceProducts = (products: CartItem[]) : Array<productShort> => {
+const organiceProductsMP = (products: CartItem[]) : Array<itemsMP> => {
   const productsArray = products.map(item => {
-    const productItem: productShort = {
-      id: `${item.product.id}`,
+    const productItem: itemsMP = {
+      id: item.product.id,
+      description: {
+        description: item.product.description,
+        presentation: item.product.presentation,
+        age: item.product.age
+      },
+      picture_url: item.product.url_image,
+      unit_price: item.product.price,
+
       title: item.product.name,
-      price: parseInt(String(item.product.price), 10),
-      sku: `${item.product.id}`,
       quantity: item.quantity,
-      image: item.product.url_image,
-      presentation: item.product.presentation,
-      age: item.product.age
     };
     return productItem;
   });
   return productsArray;
+};
+
+/// const organiceProducts = (products: CartItem[]) : Array<productShort> => {
+//   const productsArray = products.map(item => {
+//     const productItem: productShort = {
+//       id: `${item.product.id}`,
+//       title: item.product.name,
+//       price: parseInt(String(item.product.price), 10),
+//       sku: `${item.product.id}`,
+//       quantity: item.quantity,
+//       image: item.product.url_image,
+//       presentation: item.product.presentation,
+//       age: item.product.age
+//     };
+//     return productItem;
+//   });
+//   return productsArray;
+// };
+
+const organiceBillingDetailsMP = (userData: SubmissionFormInterface | undefined, form:paymentForm, sameBillingAddress: boolean) => {
+  // Data base
+  let dataIsFromForm: billingDetailsInterfaceMV = {
+    name: `${(userData?.name ? userData.name : '')}`,
+    surname: `${(userData?.last_name ? userData.last_name : '')}`,
+    phone: {
+      area_code: 'MX',
+      number: `${userData?.phone ? userData?.phone : ''}`
+    },
+    address: {
+      street_name: organiceAddress(userData),
+      zip_code: `${userData?.zip_code ? userData?.zip_code : ''}`,
+      street_number: 0,
+    },
+    email: `${userData?.email ? userData.email : ''}`
+  };
+  // Data change if the user change the billingData
+  if (!sameBillingAddress)
+    dataIsFromForm = {
+      name: `${(form?.name ? form.name : '')}`,
+      surname: `${(form?.last_name ? form.last_name : '')}`,
+      phone: {
+        area_code: 'MX',
+        number: `${form?.phone ? form?.phone : ''}`
+      },
+      address: {
+        street_name: organiceAddressChangeBilling(form),
+        zip_code: `${form?.zip_code ? form?.zip_code : ''}`,
+        street_number: 0,
+      },
+      email: `${form?.email ? form.email : ''}`
+    };
+
+  return dataIsFromForm;
 };
 
 // If the person send other billing details is change here

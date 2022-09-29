@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { CartItem } from '../interfaces/basket';
 
 import { AppContextType } from './index';
 
@@ -18,6 +19,10 @@ const Toast = Swal.mixin({
 });
 const api = process.env.REACT_APP_API_URL;
 
+/// Get data saved
+const dataFormCheckOutLS = JSON.parse(localStorage.getItem('dataFormCheckOut') as unknown as string);
+const shoppingCar: CartItem[] = JSON.parse(localStorage.getItem('shoppingCart') as unknown as string);
+
 export const appProvider: AppContextType = {
   // Generic
   swal: MySwal,
@@ -29,7 +34,7 @@ export const appProvider: AppContextType = {
   isAuthenticated: true,
 
   // Products
-  products: [],
+  products: shoppingCar === null ? [] : shoppingCar,
   // ProductView
   productView: {
     age: '',
@@ -50,7 +55,7 @@ export const appProvider: AppContextType = {
     recommendation_for_use: '',
     atributos: ''
   },
-  dataFormCheckOut: {
+  dataFormCheckOut: dataFormCheckOutLS === null ? {
     address: '',
     apartment: '',
     city: '',
@@ -69,7 +74,7 @@ export const appProvider: AppContextType = {
     state: { label: '', value: '' },
     states: [],
     zip_code: ''
-  },
+  } : dataFormCheckOutLS,
 
   showNavbar: true,
   marginWhatsApp: false,

@@ -8,57 +8,107 @@ export interface postSendTokenCard {
 
 export type postSendTokenCardService = Service<postSendTokenCard>
 
-export interface generatePayment {
-    customer_id: string,
-    delivery_price: number,
+export interface postSend {
+  id: string,
+  init_point: string
+}
+
+export interface generatePaymentMP {
+  items: itemsMP[],
+  payer: billingDetailsInterfaceMV,
+  auto_return: 'approved' | '',
+  shipments : {
+    cost: number,
+    mode: string,
+    receiver_address: {
+      zip_code: string,
+      street_name: string,
+      street_number: string,
+      floor: string,
+      apartment: string,
+      city_name: string,
+      state_name: string,
+      country_name: string
+    }
+  },
+  metadata: {
+    shippingDetails: houseData,
     details_payments: {
-    token: string,
-    metadata: {
-      subtotalNoIva: number,
-      iva: number,
+      subTotalNoIva: number,
       deliveryPrice: number,
-      onlyIva: number
-    },
-    amount: {
-        subtotalIva: number,
-        subtotalIva0: number,
-        ice: number,
-        iva: number,
-        currency: string
+      onlyIva: number,
+      totalPayment: number
     },
     contactDetails: {
-        email: string,
-        firstName: string,
-        lastName: string,
-        phoneNumber: string
+      email: string,
+      firstName: string,
+      lastName: string,
+      phoneNumber: string,
     },
-    orderDetails: {
-        siteDomain: string,
-        shippingDetails: {
-          name: string,
-          phone: string,
-          address1: string,
-          city: string,
-          region: string,
-          country: string
-        },
-        billingDetails: billingDetailsInterface
-    },
-    productDetails: {
-        product: Array<productShort>
-    },
-    fullResponse: boolean
-    }
+    billingDetails: houseData,
+    customer_id: string
+  }
+  total_amount: number,
+  back_urls: {
+    failure: string,
+    pending: string,
+    success: string
+  }
+}
+
+interface houseData {
+  name: string,
+  phone: string,
+  address1: string,
+  city: string,
+  region: string,
+  country: string
+}
+
+export interface itemsMP {
+  id: string,
+  title: string,
+  description: {
+    description: string,
+    presentation: string,
+    age: string
+  },
+  picture_url: string,
+  quantity: number,
+  unit_price: number,
+}
+
+export interface billingDetailsInterfaceMV {
+  name: string,
+  surname: string,
+  email: string,
+  phone: {
+    number: string,
+    area_code: string
+  },
+  address: {
+    zip_code: string,
+    street_name: string,
+    street_number: number
+  }
 }
 
 export interface billingDetailsInterface {
   name: string,
   phone: string,
   address1: string,
-  address2?: string,
   city: string,
   region: string,
   country: string
+}
+
+export interface urlParamsMP {
+  collection_id: string,
+  collection_status: string,
+  payment_id: string,
+  status: string,
+  preference_id: string,
+  payment_type: string,
 }
 
 export interface postSendPayment {

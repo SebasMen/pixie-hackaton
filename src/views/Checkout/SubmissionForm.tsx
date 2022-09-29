@@ -188,6 +188,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
       });
     else {
       updateContext(old => ({ ...old, dataFormCheckOut: form }));
+      localStorage.setItem('dataFormCheckOut', JSON.stringify(form));
       setData(form);
       setIdCustomer(data.id);
       changeStep(3);
