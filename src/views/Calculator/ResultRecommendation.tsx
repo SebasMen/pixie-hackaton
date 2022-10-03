@@ -21,7 +21,7 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
     }))
   );
   const [selected, setSelected] = useState<ResultProduct[]>([productList[0]]);
-  const [hasValidProduct, setHasValidProduct] = useState(isValidProduct(products));
+  const [hasValidProduct] = useState(isValidProduct(products));
 
   const { addRemoveProduct } = useShoppingCar();
 

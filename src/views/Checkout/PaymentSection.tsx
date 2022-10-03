@@ -6,15 +6,13 @@ import useValidator from '../../hooks/useValidator';
 import Button from '../../components/common/button';
 import RadioField from '../../components/form/radioField';
 import { SelectItem } from '../../components/form/selectField';
-import TextField from '../../components/form/textField';
 import ResumenShipping from './ResumenShipping';
 import FormBilling from '../../components/common/formBilling';
 
 import { paymentForm, PaymentFormValidate, shippingTypeForm, SubmissionFormInterface } from '../../interfaces/checkout';
 import paymentService from '../../services/paymentService';
-import { postSendPayment, postSendTokenCard } from '../../interfaces/payment';
+import { postSendPayment } from '../../interfaces/payment';
 import { calculateTotalPayment, organiceInformationPaymentMP } from '../../helpers/paymentHelper';
-import PopupDecision from '../../components/layout/popupDecision';
 import { useLoading } from '../../hooks/useLoading';
 import { mexicanStates } from '../../@fake/statesFake';
 
@@ -28,11 +26,11 @@ const numberOfInstallmentsOptions: SelectItem[] = [
 const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPaymentAnswer, countriesOptions }:PaymentSectionProps) => {
   // Hooks
   const [sameBillingAdressSt, setSameBillingAdressSt] = useState<boolean>(true);
-  const [showPopup, setShowPopup] = useState(false);
-  const [postSendTokenCard, setPostSendTokenCard] = useState<postSendTokenCard>({
-    status: '',
-    token_card: ''
-  });
+  /// const [showPopup, setShowPopup] = useState(false);
+  // const [postSendTokenCard, setPostSendTokenCard] = useState<postSendTokenCard>({
+  //   status: '',
+  //   token_card: ''
+  // });
   const { products, toast } = useAppContext();
   const { loadingFalse, loadingTrue } = useLoading();
 
@@ -146,7 +144,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     resetValidator();
     let error = false;
     // Regular expression to Date mm/yy
-    const date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1[1-9]|2[0-9]|3[0-9]|4[0-9])$/;
+    /// const date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1[1-9]|2[0-9]|3[0-9]|4[0-9])$/;
 
     /// if (!validator.isAlpha(form.card_name, 'es-ES', { ignore: ' ' })) {
     //   handlePutMessageError('card_name', 'Solo se debe escribir letras');
@@ -326,24 +324,24 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   //   loadingFalse();
   // };
 
-  // Save response to show un the answerSection
-  const setAnswerData = (amount: number, transaccionId: string, state: string, ticketNumber: string) => {
-    setPaymentAnswer(old => ({ ...old,
-      status: state,
-      data: {
-        order_detail: {
-          details: {
-            approvedTransactionAmount: amount,
-            transactionId: transaccionId
-          },
-          ticketNumber,
-        }
-      } }));
-  };
+  // // Save response to show un the answerSection
+  // const setAnswerData = (amount: number, transaccionId: string, state: string, ticketNumber: string) => {
+  //   setPaymentAnswer(old => ({ ...old,
+  //     status: state,
+  //     data: {
+  //       order_detail: {
+  //         details: {
+  //           approvedTransactionAmount: amount,
+  //           transactionId: transaccionId
+  //         },
+  //         ticketNumber,
+  //       }
+  //     } }));
+  // };
 
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
+  // const handleClosePopup = () => {
+  //   setShowPopup(false);
+  // };
 
   return (
     <div className='font-subTitles text-sm'>

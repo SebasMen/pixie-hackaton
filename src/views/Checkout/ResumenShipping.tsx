@@ -24,7 +24,7 @@ const ResumenShipping = ({ location, email }: ResumenShippingProps) => (
         </div>
       </div>
     </div>
-</div>
+  </div>
 );
 
 interface ResumenShippingProps {

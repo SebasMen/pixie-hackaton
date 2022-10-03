@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import useShoppingCar from '../../hooks/useShoppingCar';
 
@@ -14,15 +14,15 @@ import paymentService from '../../services/paymentService';
 const ResultPayment = () => {
   // Hooks
   const [searchParams] = useSearchParams();
-  // Order urlParams
-  const urlParams: urlParamsMP = {
-    collection_id: `${searchParams.get('collection_id')}`,
-    collection_status: `${searchParams.get('collection_status')}`,
-    payment_id: `${searchParams.get('payment_id')}`,
-    preference_id: `${searchParams.get('preference_id')}`,
-    status: `${searchParams.get('status')}`,
-    payment_type: `${searchParams.get('payment_type')}`
-  };
+  const [urlParams, setUrlParams] = useState<urlParamsMP>({
+    collection_id: '',
+    collection_status: '',
+    payment_id: '',
+    preference_id: '',
+    status: '',
+    payment_type: '',
+    total_payment: 0
+  });
   const navigate = useNavigate();
   const { deleteAllProducts } = useShoppingCar();
   const { updateContext, toast } = useAppContext();
@@ -41,17 +41,30 @@ const ResultPayment = () => {
   });
 
   useEffect(() => {
-    // Clear Basket
-    if (searchParams.get('status') === 'approved')
-      statusApproved();
+    if (searchParams.get('collection_id') === null && localStorage.getItem('finalDataPayment') !== null) {
+      const urlData: urlParamsMP = JSON.parse(`${localStorage.getItem('finalDataPayment')}`);
+      updateStatePayment(urlData);
+      setUrlParams(urlData);
+    }
 
-    updateStatePayment();
+    if (localStorage.getItem('finalDataPayment') === null && searchParams.get('collection_id') !== null) {
+      localStorage.setItem('finalDataPayment', JSON.stringify({
+        collection_id: `${searchParams.get('collection_id')}`,
+        collection_status: `${searchParams.get('collection_status')}`,
+        payment_id: `${searchParams.get('payment_id')}`,
+        preference_id: `${searchParams.get('preference_id')}`,
+        status: `${searchParams.get('status')}`,
+        payment_type: `${searchParams.get('payment_type')}`,
+        total_payment: dataLocalStorage.metadata.details_payments.totalPayment
+      }));
+      navigate('/checkout/result');
+    }
 
     return () => {};
-  }, [searchParams.get('status')]);
+  }, [searchParams]);
 
   // Methods
-  const statusApproved = async () => {
+  const statusApproved = () => {
     deleteAllProducts();
     localStorage.removeItem('dataFormCheckOut');
     // Reset data saved in context
@@ -77,9 +90,13 @@ const ResultPayment = () => {
     } }));
   };
 
-  const updateStatePayment = async () => {
-    await paymentService.updatePayment(urlParams)
+  const updateStatePayment = async (urlData: urlParamsMP) => {
+    await paymentService.updatePayment(urlData)
       .then(res => {
+        localStorage.removeItem('finalDataPayment');
+        localStorage.removeItem('order-data');
+        if (urlData.status === 'approved')
+          statusApproved();
       })
       .catch(error => {
         toast.fire({
@@ -125,7 +142,7 @@ const ResultPayment = () => {
         <div className='flex flex-col gap-4 leading-[13px] pb-[90px] font-subTitles text-xs lg:grid lg:grid-cols-3 lg:text-sm lg:gap-6 lg:leading-[22px]'>
           <div className='flex justify-between lg:flex-col gap-2'>
             <span className='font-sanzBold'>VALOR</span>
-            <p>${dataLocalStorage?.total_amount}</p>
+            <p>${urlParams.total_payment}</p>
           </div>
           <div className='flex justify-between lg:flex-col gap-2'>
             <span className='font-sanzBold pr-32 lg:pr-0'>FECHA Y HORA DE PAGO</span>
@@ -133,7 +150,7 @@ const ResultPayment = () => {
           </div>
           <div className='flex justify-between items-center lg:flex-col gap-2 lg:justify-center'>
             <span className='font-sanzBold w-1/3 lg:w-full'>NÚMERO DE TRANSACCIÓN</span>
-            <p className='w-2/3 text-right lg:w-full lg:text-left'>{searchParams.get('payment_id')}</p>
+            <p className='w-2/3 text-right lg:w-full lg:text-left'>{urlParams.payment_id}</p>
           </div>
         </div>
       </div>

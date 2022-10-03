@@ -109,6 +109,7 @@ export interface urlParamsMP {
   status: string,
   preference_id: string,
   payment_type: string,
+  total_payment: number
 }
 
 export interface postSendPayment {

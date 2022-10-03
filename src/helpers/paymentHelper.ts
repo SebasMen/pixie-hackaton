@@ -5,55 +5,6 @@ import { calculateIva, calculateTotal, roundToXDigits } from './productHelper';
 
 // Organize the data to send them to the api
 // eslint-disable-next-line max-params
-// export const organiceInformationPayment = (idCustomer: string, tokenId: string, userData: SubmissionFormInterface | undefined, products: CartItem[], shippingData: shippingTypeForm, form: paymentForm, sameBillingAddress: boolean): generatePayment => {
-//   const dataBilling = organiceBillingDetails(userData, form, sameBillingAddress);
-
-//   const paymentData: generatePayment = {
-//     customer_id: idCustomer,
-//     delivery_price: shippingData.price,
-//     details_payments: {
-//       metadata: {
-//         subtotalNoIva: calculateTotalPayment(products, { type: 'gratis', price: 0 }, false),
-//         iva: 16,
-//         deliveryPrice: shippingData.price,
-//         onlyIva: calculateIva(products)
-//       },
-//       amount: {
-//         currency: 'MXN',
-//         ice: 0,
-//         iva: 0,
-//         subtotalIva: 0,
-//         subtotalIva0: calculateTotalPayment(products, shippingData, true),
-//       },
-//       contactDetails: {
-//         email: userData?.email ? userData?.email : '',
-//         firstName: userData?.name ? userData?.name : '',
-//         lastName: userData?.last_name ? userData?.last_name : '',
-//         phoneNumber: userData?.phone ? userData?.phone : '',
-//       },
-//       productDetails: {
-//         product: organiceProducts(products),
-//       },
-//       fullResponse: true,
-//       orderDetails: {
-//         siteDomain: 'example.com',
-//         shippingDetails: {
-//           name: `${(userData?.name ? userData.name : '')} ${(userData?.last_name ? userData.last_name : '')}`,
-//           phone: userData?.phone ? userData?.phone : '',
-//           address1: organiceAddress(userData),
-//           city: userData?.city ? userData?.city : '',
-//           region: userData?.state.value ? userData?.state.value : '',
-//           country: userData?.country ? userData?.country.label : '',
-//         },
-//         billingDetails: dataBilling
-//       },
-//       token: tokenId
-//     }
-//   };
-//   return paymentData;
-// };
-
-// eslint-disable-next-line max-params
 export const organiceInformationPaymentMP = (idCustomer: string, userData: SubmissionFormInterface | undefined, products: CartItem[], shippingData: shippingTypeForm, form: paymentForm, sameBillingAddress: boolean): generatePaymentMP => {
   const paymentData: generatePaymentMP = {
     items: organiceProductsMP(products),
@@ -127,23 +78,6 @@ const organiceProductsMP = (products: CartItem[]) : Array<itemsMP> => {
   });
   return productsArray;
 };
-
-/// const organiceProducts = (products: CartItem[]) : Array<productShort> => {
-//   const productsArray = products.map(item => {
-//     const productItem: productShort = {
-//       id: `${item.product.id}`,
-//       title: item.product.name,
-//       price: parseInt(String(item.product.price), 10),
-//       sku: `${item.product.id}`,
-//       quantity: item.quantity,
-//       image: item.product.url_image,
-//       presentation: item.product.presentation,
-//       age: item.product.age
-//     };
-//     return productItem;
-//   });
-//   return productsArray;
-// };
 
 const organiceBillingDetailsMP = (userData: SubmissionFormInterface | undefined, form:paymentForm, sameBillingAddress: boolean) => {
   // Data base
