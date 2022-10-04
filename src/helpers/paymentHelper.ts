@@ -50,9 +50,9 @@ export const organiceInformationPaymentMP = (idCustomer: string, userData: Submi
     },
     total_amount: calculateTotalPayment(products, shippingData, true),
     back_urls: {
-      failure: 'http://localhost:3001/checkout/result',
-      pending: 'http://localhost:3001/checkout/result',
-      success: 'http://localhost:3001/checkout/result'
+      failure: 'https://pixie.antpk.co/checkout/result',
+      pending: 'https://pixie.antpk.co/checkout/result',
+      success: 'https://pixie.antpk.co/checkout/result'
     },
   };
 
