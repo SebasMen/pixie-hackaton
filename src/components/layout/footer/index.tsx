@@ -3,7 +3,7 @@ import FacebookGray from '../../../assets/vectors/FacebookGray.svg';
 import instagramgray from '../../../assets/vectors/Instagramgray.svg';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../common/icon';
-import { americanExLogo, kushkiLogo, masterCardLogo, visaLogo } from '../../../assets/images';
+import { americanExLogo, mplogo, masterCardLogo, visaLogo } from '../../../assets/images';
 import WhoBuildThis from '../../common/whoBuiltThis';
 
 export const Footer = ({ className }: FooterProps) => {
@@ -57,7 +57,7 @@ export const Footer = ({ className }: FooterProps) => {
               Este certificado garantiza la seguridad de todas tus conexiones mediante cifrado
             </p>
             <div className='flex justify-center items-center gap-5 md:gap-1 xl1:gap-3 xl2:gap-[1.4rem]'>
-              <img src={kushkiLogo} className='w-11 h-7'/>
+              <img src={mplogo} className='w-11 h-7'/>
               <img src={visaLogo} className='w-12 h-4'/>
               <img src={masterCardLogo} className='w-11 h-8'/>
               <img src={americanExLogo} className='w-7'/>

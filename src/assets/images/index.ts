@@ -6,7 +6,7 @@ import vegetablesCatalogue from './vegetablesCatalogue.png';
 import backgroundCalculator from './backgroundCalculator.png';
 import idealWeightDog from './idealWeightDog.jpg';
 import idealWeightCat from './idealWeightCat.jpg';
-import kushkiLogo from './kushkiLogo.png';
+import mplogo from './mp.png';
 import visaLogo from './visaLogo.png';
 import masterCardLogo from './masterCardLogo.png';
 import americanExLogo from './americanExLogo.png';
@@ -36,7 +36,7 @@ export {
   backgroundCalculator,
   idealWeightDog,
   idealWeightCat,
-  kushkiLogo,
+  mplogo,
   visaLogo,
   masterCardLogo,
   americanExLogo,

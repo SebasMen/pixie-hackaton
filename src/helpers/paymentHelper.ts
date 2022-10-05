@@ -7,11 +7,11 @@ import { calculateIva, calculateTotal, roundToXDigits } from './productHelper';
 // eslint-disable-next-line max-params
 export const organiceInformationPaymentMP = (idCustomer: string, userData: SubmissionFormInterface | undefined, products: CartItem[], shippingData: shippingTypeForm, form: paymentForm, sameBillingAddress: boolean): generatePaymentMP => {
   const paymentData: generatePaymentMP = {
-    items: organiceProductsMP(products),
+    items: organiceProductsMP(products, shippingData),
     payer: organiceBillingDetailsMP(userData, form, sameBillingAddress),
     auto_return: 'approved',
     shipments: {
-      cost: shippingData.price,
+      cost: 0,
       mode: shippingData.type,
       receiver_address: {
         apartment: `${userData?.apartment}`,
@@ -59,7 +59,7 @@ export const organiceInformationPaymentMP = (idCustomer: string, userData: Submi
   return paymentData;
 };
 
-const organiceProductsMP = (products: CartItem[]) : Array<itemsMP> => {
+const organiceProductsMP = (products: CartItem[], shippingData: shippingTypeForm) : Array<itemsMP> => {
   const productsArray = products.map(item => {
     const productItem: itemsMP = {
       id: item.product.id,
@@ -76,6 +76,23 @@ const organiceProductsMP = (products: CartItem[]) : Array<itemsMP> => {
     };
     return productItem;
   });
+  // Add shipping cost
+  if (shippingData.price !== 0) {
+    const productItem: itemsMP = {
+      id: '0',
+      description: {
+        description: 'Envio',
+        presentation: 'envio',
+        age: 'envio'
+      },
+      picture_url: '',
+      unit_price: 90,
+      title: 'Envio',
+      quantity: 1,
+    };
+    productsArray.push(productItem);
+  }
+
   return productsArray;
 };
 
