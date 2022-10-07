@@ -1,20 +1,27 @@
 import { useForm } from '../../hooks';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Button from '../../components/common/button';
 import ResumenShipping from './ResumenShipping';
 import RadioField from '../../components/form/radioField';
 
 import { shippingTypeForm, SubmissionFormInterface, typeShipping } from '../../interfaces/checkout';
+import useScrolled from '../../hooks/useScrolled';
 
 const ShippingSection = ({ changeStep, userData, setData, shippingInfo }: SubmissionFormProps) => {
   // Hooks
   const [typeShippingSt, setTypeShippingSt] = useState<typeShipping>(shippingInfo.type);
-  const { onSubmit, handleRadioChange, form } = useForm<shippingTypeForm>({
-    type: shippingInfo.type,
-    price: shippingInfo.price
-  },
-  form => handleSubmit(form));
+  const { onSubmit, handleRadioChange, form } = useForm<shippingTypeForm>(
+    {
+      type: shippingInfo.type,
+      price: shippingInfo.price,
+    },
+    form => handleSubmit(form)
+  );
+
+  // Scroll to top
+  const { scrollTo } = useScrolled();
+  useEffect(() => scrollTo(0), []);
 
   // Methods
   const handleSubmit = (form: shippingTypeForm) => {
@@ -25,7 +32,7 @@ const ShippingSection = ({ changeStep, userData, setData, shippingInfo }: Submis
   return (
     <div>
       <ResumenShipping
-        location = {`${userData?.phone}, ${userData?.address}, ${userData?.houseNumber}, ${userData?.apartment}, ${userData?.reference}, ${userData?.city}`}
+        location={`${userData?.phone}, ${userData?.address}, ${userData?.houseNumber}, ${userData?.apartment}, ${userData?.reference}, ${userData?.city}`}
         email={userData?.email}
       />
       <form className='pt-[1.35rem] lg:pt-11' onSubmit={onSubmit}>
@@ -41,7 +48,7 @@ const ShippingSection = ({ changeStep, userData, setData, shippingInfo }: Submis
           </ul>
         </div>
         <div className='flex flex-col gap-3'>
-          {form.price === 0 ?
+          {form.price === 0 ? (
             <div className='bg-white lg:px-3 rounded-2xl'>
               <div className='grid pl-7 pr-6 grid-flow-col items-center py-5 lg:pl-2 lg:pr-1'>
                 <div className='text-left text-sm font-subTitles'>
@@ -60,7 +67,7 @@ const ShippingSection = ({ changeStep, userData, setData, shippingInfo }: Submis
                 </div>
               </div>
             </div>
-            :
+          ) : (
             <div className={`bg-white lg:px-3 rounded-2xl ${form.price === 0 && 'cursor-not-allowed bg-gray-200'}`}>
               <div className='grid pl-7 pr-6 grid-flow-col items-center py-5 lg:pl-2 lg:pr-1'>
                 <div className='text-left text-sm font-subTitles'>
@@ -79,14 +86,20 @@ const ShippingSection = ({ changeStep, userData, setData, shippingInfo }: Submis
                 </div>
               </div>
             </div>
-          }
+          )}
         </div>
 
         <div className='px-5 lg:px-0 lg:flex lg:flex-row-reverse lg:items-center'>
-          <Button className='w-full font-paragraph font-bold bg-primary text-[#fad7b1] mt-[1.15rem] lg:mt-7 lg:w-72 lg:text-lg' type='submit'>
+          <Button
+            className='w-full font-paragraph font-bold bg-primary text-[#fad7b1] mt-[1.15rem] lg:mt-7 lg:w-72 lg:text-lg'
+            type='submit'
+          >
             Seguir con envios
           </Button>
-          <div className='text-center font-sanzBold text-sm text-primary cursor-pointer mt-5 lg:mt-6 lg:mr-16 lg:text-base lg:font-subTitles' onClick={() => changeStep(2)}>
+          <div
+            className='text-center font-sanzBold text-sm text-primary cursor-pointer mt-5 lg:mt-6 lg:mr-16 lg:text-base lg:font-subTitles'
+            onClick={() => changeStep(2)}
+          >
             <span>{'<'} Volver a información</span>
           </div>
         </div>

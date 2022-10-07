@@ -1,4 +1,4 @@
-import Select, { MultiValue, SingleValue } from 'react-select';
+import Select, { MultiValue, SingleValue, components as Comps } from 'react-select';
 
 export const SelectField = ({
   name,
@@ -21,7 +21,10 @@ export const SelectField = ({
     {label && <h2 className='pl-6 mb-3 text-lg font-medium'>{label}</h2>}
     <Select
       placeholder={placeholder}
-      components={{ IndicatorSeparator: () => null }}
+      components={{
+        IndicatorSeparator: () => null,
+        Input: ({ ...rest }) => <Comps.Input {...rest} autoComplete='nope' />,
+      }}
       theme={old => ({
         ...old,
         colors: {
@@ -55,12 +58,12 @@ export const SelectField = ({
           ...base,
           borderRadius: '15px',
           overflow: 'hidden',
-          color: colorText ? colorText : 'black'
+          color: colorText ? colorText : 'black',
         }),
         singleValue: base => ({
           ...base,
-          color: colorText ? colorText : 'black'
-        })
+          color: colorText ? colorText : 'black',
+        }),
       }}
     />
     {messageError && <p className='text-primary pl-2 text-xs lg:text-base'>{messageError}</p>}
@@ -76,13 +79,13 @@ interface SelectFieldProps {
   value?: SelectItem | SelectItem[];
   border?: boolean;
   borderRadius?: boolean;
-  borderColor? : string;
-  paddingY? : string;
+  borderColor?: string;
+  paddingY?: string;
   options: SelectItem[];
   onChange: (selected: MultiValue<SelectItem> | SingleValue<SelectItem>, name: string) => void;
   messageError?: string;
   dropdownIndicatorColor?: string;
-  colorText?: string ;
+  colorText?: string;
 }
 
 export interface SelectItem {

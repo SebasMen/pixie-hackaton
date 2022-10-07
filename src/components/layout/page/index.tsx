@@ -13,25 +13,27 @@ export const Page = ({ className, children, color, addPadding = true }: PageProp
   const { showPopup } = useAppContext();
   const { pathname } = useLocation();
   const { updateContext, showNavbar, showLoading, showPopupViewerImage } = useAppContext();
-  const minimalNavbar = useCallback(
-    () => {
-      if (screen.width < 800)
-        return 20;
+  const minimalNavbar = useCallback(() => {
+    if (screen.width < 800) return 20;
 
-      return 112;
-    },
-    [screen],
-  );
+    return 112;
+  }, [screen]);
 
-  const { scrollTo,
+  const {
+    scrollTo,
     scrolledData: { isDown },
   } = useScrolled({
     gap: minimalNavbar(),
-    callback: () => isDown ? updateContext(old => ({ ...old, showMinimalNavbar: true })) : updateContext(old => ({ ...old, showMinimalNavbar: false }))
+    callback: () =>
+      isDown
+        ? updateContext(old => ({ ...old, showMinimalNavbar: true }))
+        : updateContext(old => ({ ...old, showMinimalNavbar: false })),
   });
 
   useEffect(() => {
     scrollTo(0);
+
+    console.log('scrolled');
 
     return () => {};
   }, [pathname]);
