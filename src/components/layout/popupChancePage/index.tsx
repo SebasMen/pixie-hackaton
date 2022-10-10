@@ -33,7 +33,7 @@ const PopupChancePage = () => {
             </div>
             <div className='flex gap-4 items-center md:flex-col md:justify-center md:items-center'>
               <a href='https://pixie.net.co/'>
-                <img src={colombiaFlag} alt='colombiaFlag' className='w-12 h-12md:w-24 md:h-24'/>
+                <img src={colombiaFlag} alt='colombiaFlag' className='w-12 h-12 md:w-24 md:h-24'/>
               </a>
               <p>Colombia</p>
             </div>
