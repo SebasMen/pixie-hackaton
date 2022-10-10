@@ -43,7 +43,7 @@ export const Carrousel = ({
     <div className='w-full relative rounded-lg'>
       {/* Slider */}
       <Swiper
-        className={'w-full rounded-lg relative ' + className}
+        className={'w-full rounded-lg relative' + className}
         centeredSlides={centeredSlides}
         draggable
         onSwiper={setSwiper}
@@ -54,7 +54,7 @@ export const Carrousel = ({
         breakpoints={breakpoints}
         pagination={{
           clickable: true,
-          modifierClass: `swiper-pagination-${bulletsDirection} `,
+          modifierClass: `swiper-pagination-${bulletsDirection}`,
           bulletClass: `${bulletClassName} bg-gray-500 transition-all transform swiper-pagination-bullet`,
         }}
       >

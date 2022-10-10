@@ -124,6 +124,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
                   showControls={false}
                   showHeader={false}
                   showDetailInPopup={true}
+                  className='mb-12'
                 />
               ))
             }

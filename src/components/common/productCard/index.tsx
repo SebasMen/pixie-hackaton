@@ -70,7 +70,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
     <div
       className={`
           relative flex flex-col flex-shrink-0 justify-between items-center
-          h-[15.5rem] w-40 md:w-[16.815rem] md:h-[380px]
+          h-[15.5rem] smaller:w-48 w-40 md:w-[16.815rem] md:h-[380px]
           ${className}
         `}
     >

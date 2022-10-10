@@ -20,7 +20,7 @@ export const Tag = ({ name, className, sizeTags }: TagProps) => {
             `}
           >
             <img src={iconTagBlue} className='text-md scale-[55%] sm:block md:scale-100 brightness-[10]' />
-            <span className='text-[11px] md:text-sm capitalize ml-1'>{capitalize(nameTag)}</span>
+            <span className='text-[11px] md:text-sm capitalize md:ml-1'>{capitalize(nameTag)}</span>
           </div>
         </Tooltiped>
         :

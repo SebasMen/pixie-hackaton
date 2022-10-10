@@ -3,6 +3,9 @@ module.exports = {
   theme: {
     extend: {
       screens: {
+        smaller: {
+          raw: '(max-width: 320px)',
+        },
         sm: '425px',
         md: '720px',
         lg2: '1100px',

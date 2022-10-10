@@ -62,7 +62,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
   const redirectCatalogue = () => navigate('/catalogue');
 
   return (
-    <div className='flex flex-col items-center bg-gray-100 w-full rounded-t-3xl transform -mt-4 pb-[4.5rem] relative overflow-hidden'>
+    <div className='pt-8 flex flex-col items-center bg-gray-100 w-full rounded-t-3xl transform md:-mt-4 md:pt-0 pb-[4.5rem] relative overflow-hidden'>
       {/* Backgrounds */}
       <img className='absolute w-full h-full object-cover object-right -z-20' src={vegetables} />
       <div className='hidden absolute bottom-0 -z-10 left-[0] right-[0] m-auto w-full max-w-[1440px] lg:block xl2:w-[1440px]'>
@@ -137,7 +137,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
               far={isFar}
               img={card.img}
               imgselected={card.imgSelected}
-              className={`${isLeft && 'lg2:translate-x-16 xl2:translate-x-12'} ${isRight && 'lg2:-translate-x-16 xl2:-translate-x-12'} cursor-pointer`}
+              className={`${isLeft && 'lg2:translate-x-16 xl2:translate-x-12'} ${isRight && 'lg2:-translate-x-16 xl2:-translate-x-12'} cursor-pointer mb-12`}
             />
           );
         })}
