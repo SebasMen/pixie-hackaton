@@ -97,6 +97,9 @@ import pointCatalogue from './pointCatalogue.svg';
 import soonIcon from './soonIcon.svg';
 import logoAntpack from './logoAntpack.svg';
 import maskBlack from './maskBlack.svg';
+import mexicoFlag from './mexicoFlag.svg';
+import colombiaFlag from './colombiaFlag.svg';
+import usaFlag from './usaFlag.svg';
 
 export {
   basket,
@@ -197,5 +200,8 @@ export {
   pointCatalogue,
   soonIcon,
   logoAntpack,
-  maskBlack
+  maskBlack,
+  mexicoFlag,
+  colombiaFlag,
+  usaFlag
 };

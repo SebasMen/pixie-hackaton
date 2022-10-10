@@ -85,6 +85,7 @@ export const appProvider: AppContextType = {
     show: false,
     url: ''
   },
+  showPopupGotoSite: true,
   // Provitional data to show recomendation
   productsToShowRecomendation: []
 };

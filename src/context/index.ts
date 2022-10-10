@@ -53,6 +53,8 @@ export interface AppContextType {
     url: string,
     show: boolean,
   }
+
+  showPopupGotoSite: boolean;
 }
 
 export const appProvider: AppContextType = provider;
