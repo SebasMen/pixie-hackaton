@@ -17,6 +17,7 @@ const TermsAndConditions = lazy(() => import('../views/termsAndConditions'));
 const ResultPayment = lazy(() => import('../views/resultPayment'));
 
 import { useAppContext, useAuth } from '../hooks';
+import { getDataLocation } from '../interfaces/location';
 
 const AppRouter = () => {
   // Hooks
@@ -50,11 +51,27 @@ const AppRouter = () => {
 
   // Get ip to know location
   useEffect(() => {
-    generalService.getIp().then(ip =>
-      generalService.getLocationData(ip.ip).then(data => {
-        updateContext(old => ({ ...old, location: data }));
-      }).catch(error => console.log('error obteniendo locatizacion', error))
-    ).catch(error => console.log('error obteniendo la ip', error));
+    const data: getDataLocation = {
+      geoplugin_city: 'ciudad de mexico',
+      geoplugin_region: 'Queretaro',
+      geoplugin_countryCode: 'MX',
+      geoplugin_countryName: 'MEXICO',
+      geoplugin_continentName: 'South America',
+      geoplugin_latitude: '6.2059',
+      geoplugin_longitude: '-75.5901',
+      geoplugin_currencyCode: 'COP',
+      geoplugin_currencySymbol: '$',
+      geoplugin_currencyConverter: 4607.26,
+      geoplugin_regionCode: '',
+      geoplugin_regionName: '',
+      geoplugin_timezone: ''
+    };
+
+    /// generalService.getIp().then(ip =>
+    //   generalService.getLocationData(ip.ip).then(data => {
+    updateContext(old => ({ ...old, location: data }));
+    //   }).catch(error => console.log('error obteniendo locatizacion', error))
+    // ).catch(error => console.log('error obteniendo la ip', error));
 
     return () => { };
   }, []);
