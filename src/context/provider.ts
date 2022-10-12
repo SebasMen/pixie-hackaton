@@ -58,7 +58,8 @@ export const appProvider: AppContextType = {
   dataFormCheckOut: dataFormCheckOutLS === null ? {
     address: '',
     apartment: '',
-    city: '',
+    city: { label: '', value: '' },
+    cities: [],
     colony: '',
     countries: [],
     country: { label: '', value: '' },
@@ -73,7 +74,8 @@ export const appProvider: AppContextType = {
     reference: '',
     state: { label: '', value: '' },
     states: [],
-    zip_code: ''
+    zip_code: { label: '', value: '' },
+    zipcodes: []
   } : dataFormCheckOutLS,
 
   showNavbar: true,
@@ -87,5 +89,20 @@ export const appProvider: AppContextType = {
   },
   showPopupGotoSite: true,
   // Provitional data to show recomendation
-  productsToShowRecomendation: []
+  productsToShowRecomendation: [],
+  location: {
+    geoplugin_city: '',
+    geoplugin_continentName: '',
+    geoplugin_countryCode: '',
+    geoplugin_countryName: '',
+    geoplugin_currencyCode: '',
+    geoplugin_currencyConverter: 0,
+    geoplugin_currencySymbol: '',
+    geoplugin_latitude: '',
+    geoplugin_longitude: '',
+    geoplugin_region: '',
+    geoplugin_regionCode: '',
+    geoplugin_regionName: '',
+    geoplugin_timezone: '',
+  }
 };

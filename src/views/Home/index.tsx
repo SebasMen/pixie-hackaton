@@ -14,12 +14,11 @@ import productService from '../../services/productService';
 import '../../styles/home.css';
 import ButtonWhatsap from '../../components/common/buttonWhatsapp';
 import { useLoading } from '../../hooks/useLoading';
-import PopupChancePage from '../../components/layout/popupChancePage';
 
 const Home = () => {
   const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
 
-  const { updateContext, showPopupGotoSite } = useAppContext();
+  const { updateContext } = useAppContext();
   const { loadingDeterminate } = useLoading();
 
   useEffect(() => {
@@ -48,7 +47,7 @@ const Home = () => {
         <CalculatorSection />
         {/* Footer */}
         <Footer />
-        {showPopupGotoSite && <PopupChancePage />}
+        {/* {showPopupGotoSite && <PopupChancePage />} */}
       </>
     </Page>
   );

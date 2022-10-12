@@ -71,17 +71,18 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
       className={`
           relative flex flex-col flex-shrink-0 justify-between items-center
           h-[15.5rem] smaller:w-48 w-40 md:w-[16.815rem] md:h-[380px]
-          ${className}
+          ${className} 
         `}
     >
       <div
         className={`
           relative flex flex-col flex-shrink-0 justify-between items-center 
-          cursor-pointer p-3 pb-8 rounded-2xl bg-white 
+          cursor-pointer p-3 pb-8 rounded-2xl bg-white
           ring-0 ring-pixieLightBlue transform transition-all 
           ${isCarrousel && (selected ? 'scale-150 lg:scale-100' : 'scale-125 lg:scale-90')}
-          w-full h-full lg:pb-11
-          hover:ring-1 ${className}
+          w-full h-full lg:pb-11 hover:ring-1 
+          ${product.status === '2' && 'opacity-60'}
+          ${className}
         `}
         onClick={handleSubmit}
         onMouseOver={() => setShowHoverComingSoon(true)}

@@ -69,18 +69,6 @@ const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError 
         messageError={messageError.reference.message}
       />
       <TextField
-        name='zip_code'
-        value={form.zip_code ? form.zip_code : ''}
-        handler={handleFormChange}
-        placeholder='Código postal*'
-        className='lg:w-1/2'
-        fieldClassName='py-[0.95rem]'
-        messageError={messageError.zip_code.message}
-        required
-      />
-    </div>
-    <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
-      <TextField
         name='colony'
         value={form.colony ? form.colony : ''}
         handler={handleFormChange}
@@ -90,27 +78,18 @@ const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError 
         messageError={messageError.colony.message}
         required
       />
-      <TextField
-        name='delegation'
-        value={form.delegation ? form.delegation : ''}
-        handler={handleFormChange}
-        placeholder='Delegación o Municipio*'
-        className='lg:w-1/2'
-        fieldClassName='py-[0.95rem]'
-        messageError={messageError.delegation.message}
-        required
-      />
     </div>
+    <SelectField
+      placeholder='País*'
+      name='country'
+      options={form.countries ? form.countries : []}
+      onChange={handleSelectChange}
+      borderRadius={true}
+      borderColor='#000'
+      paddingY='0.43rem'
+      messageError={messageError.country.message}
+    />
     <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
-      <TextField
-        name='city'
-        value={form.city ? form.city : ''}
-        handler={handleFormChange}
-        placeholder='Ciudad*'
-        className='lg:w-1/2'
-        fieldClassName='py-[0.95rem]'
-        required
-      />
       <SelectField
         placeholder='Estado*'
         name='state'
@@ -122,6 +101,42 @@ const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError 
         className='lg:w-1/2'
         paddingY='0.43rem'
         messageError={messageError.state.message}
+      />
+      <SelectField
+        name='city'
+        value={form.city ? form.city : undefined}
+        options={form.cities ? form.cities : [{ label: '', value: '' }]}
+        onChange={handleSelectChange}
+        placeholder='Ciudad*'
+        borderRadius={true}
+        borderColor='#000'
+        className='lg:w-1/2'
+        paddingY='0.43rem'
+        messageError={''}
+      />
+    </div>
+    <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
+      <SelectField
+        placeholder='Código postal*'
+        name='zip_code'
+        options={form.zipCodes ? form.zipCodes : [{ label: '', value: '' }]}
+        value={form.zip_code?.value ? form.zip_code : undefined}
+        onChange={handleSelectChange}
+        borderRadius={true}
+        borderColor='#000'
+        className='lg:w-1/2'
+        paddingY='0.43rem'
+        messageError={messageError.zip_code.message}
+      />
+      <TextField
+        name='delegation'
+        value={form.delegation ? form.delegation : ''}
+        handler={handleFormChange}
+        placeholder='Delegación o Municipio*'
+        className='lg:w-1/2'
+        fieldClassName='py-[0.95rem]'
+        messageError={messageError.delegation.message}
+        required
       />
     </div>
     <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
@@ -146,16 +161,6 @@ const FormBilling = ({ form, handleFormChange, handleSelectChange, messageError 
         required
       />
     </div>
-    <SelectField
-      placeholder='País*'
-      name='country'
-      options={form.countries ? form.countries : []}
-      onChange={handleSelectChange}
-      borderRadius={true}
-      borderColor='#000'
-      paddingY='0.43rem'
-      messageError={messageError.country.message}
-    />
   </div>
 );
 

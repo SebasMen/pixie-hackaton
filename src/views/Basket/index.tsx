@@ -6,7 +6,6 @@ import ItemShoppingCar from '../../components/common/itemShoppingCar';
 import Button from '../../components/common/button';
 import Footer from '../../components/layout/footer';
 import Page from '../../components/layout/page';
-import PromotionalSection from './PromotionalSection';
 import TotalSection from './TotalSection';
 
 import { CartItem } from '../../interfaces/basket';
@@ -65,9 +64,6 @@ const Basket = () => {
               {/* Product list */}
               {products.map(item => <ItemShoppingCar key={`item-${item.product.id}`} item={item} showMessageDelete={showMessageDelete} showOptions />)}
             </div>
-
-            {/* Sections */}
-            <PromotionalSection />
           </div>
 
           <div className='lg:w-1/2'>

@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useRef } from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
+import generalService from '../services/generalService';
 import FadeScreen from '../components/layout/fadeScreen';
 
 const NotFound = lazy(() => import('../views/notFound'));
@@ -47,6 +47,17 @@ const AppRouter = () => {
 
     return () => { };
   }, [isMounted.current]);
+
+  // Get ip to know location
+  useEffect(() => {
+    generalService.getIp().then(ip =>
+      generalService.getLocationData(ip.ip).then(data => {
+        updateContext(old => ({ ...old, location: data }));
+      }).catch(error => console.log('error obteniendo locatizacion', error))
+    ).catch(error => console.log('error obteniendo la ip', error));
+
+    return () => { };
+  }, []);
 
   // Routes
   return (

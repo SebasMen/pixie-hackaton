@@ -15,6 +15,7 @@ import { postSendPayment } from '../../interfaces/payment';
 import { calculateTotalPayment, organiceInformationPaymentMP } from '../../helpers/paymentHelper';
 import { useLoading } from '../../hooks/useLoading';
 import { mexicanStates } from '../../@fake/statesFake';
+import { getCities, getPostalCode } from '../../helpers/formCheckoutHelper';
 
 const numberOfInstallmentsOptions: SelectItem[] = [
   { value: '1', label: '1 Cuota' },
@@ -54,8 +55,10 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     reference: '',
     state: { value: '', label: '' },
     states: mexicanStates,
-    zip_code: '',
-    city: '',
+    zip_code: { label: '', value: '' },
+    cities: [],
+    zipCodes: [],
+    city: { label: '', value: '' },
     countries: countriesOptions ? countriesOptions : [],
     country: { label: '', value: '' },
     email: '',
@@ -136,6 +139,22 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
       setForm(old => ({ ...old, expirationDate }));
     }
   }, [form.expirationDate]);
+
+  /// useEffect(() => {
+  //   if (form.zip_code?.value) {
+  //     // Validate zip code
+  //     if (!postalCode.includes(parseInt(form.zip_code.value, 10)))
+  //       handlePutMessageError('zip_code', 'El codigo postal no se encuentra en nuestra lista');
+  //     return () => {};
+  //   }
+  // }, [form.zip_code]);
+
+  useEffect(() => {
+    if (form.state?.value)
+      setForm(old => ({ ...old, cities: getCities(form.state ? form.state?.value : '') }));
+    if (form.city?.value)
+      setForm(old => ({ ...old, zipCodes: getPostalCode(form.city?.value ? form.city?.value : '') }));
+  }, [form.state, form.city]);
 
   // Methods
   // eslint-disable-next-line complexity
@@ -234,12 +253,6 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
       if (form.reference)
         if (!validator.isLength(form.reference, { min: 4 }) && form.reference.length > 0) {
           handlePutMessageError('reference', 'El número de apartamento debe ser mayor a 4 caracteres');
-          error = true;
-        }
-
-      if (form.zip_code)
-        if (!validator.isLength(form.zip_code, { min: 5 })) {
-          handlePutMessageError('zip_code', 'El codigo postal debe ser mayor a 4 caracteres');
           error = true;
         }
 
@@ -348,7 +361,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
       <div id='container-paymentMP'></div>
 
       <ResumenShipping
-        location = {`${userData?.phone}, ${userData?.address}, ${userData?.houseNumber}, ${userData?.apartment}, ${userData?.reference}, ${userData?.city}`}
+        location = {`${userData?.phone}, ${userData?.address}, ${userData?.houseNumber}, ${userData?.apartment}, ${userData?.reference}, ${userData?.city.label}`}
         email={userData?.email}
       />
       <form onSubmit={onSubmit} className='px-5 pt-6 lg:px-0 lg:pt-11'>

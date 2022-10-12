@@ -46,7 +46,8 @@ export interface generatePaymentMP {
       phoneNumber: string,
     },
     billingDetails: houseData,
-    customer_id: string
+    customer_id: string,
+    delivery_note: string,
   }
   total_amount: number,
   back_urls: {
@@ -62,7 +63,10 @@ interface houseData {
   address1: string,
   city: string,
   region: string,
-  country: string
+  country: string,
+  cityValue: string,
+  regionvalue: string,
+  countryValue: string
 }
 
 export interface itemsMP {
@@ -99,7 +103,10 @@ export interface billingDetailsInterface {
   address1: string,
   city: string,
   region: string,
-  country: string
+  country: string,
+  cityValue: string,
+  regionvalue: string,
+  countryValue: string
 }
 
 export interface urlParamsMP {

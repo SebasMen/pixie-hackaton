@@ -36,7 +36,7 @@ const PromotionalSection = () => {
           value={form.note}
           labelClassName='text-sm mb-2'
           placeholder='Agrega una nota a tu pedido'
-          border='outline-none ring-0 transform transition-all border-0 ring-primary rounded-[20px]'
+          border='outline-none ring-0 transform transition-all border-0 ring-pixieLightBlue rounded-[20px]'
         />
       </div>
     </form>

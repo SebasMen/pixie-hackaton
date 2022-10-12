@@ -7,6 +7,7 @@ import RadioField from '../../components/form/radioField';
 
 import { shippingTypeForm, SubmissionFormInterface, typeShipping } from '../../interfaces/checkout';
 import useScrolled from '../../hooks/useScrolled';
+import PromotionalSection from '../Basket/PromotionalSection';
 
 const ShippingSection = ({ changeStep, userData, setData, shippingInfo }: SubmissionFormProps) => {
   // Hooks
@@ -32,9 +33,11 @@ const ShippingSection = ({ changeStep, userData, setData, shippingInfo }: Submis
   return (
     <div>
       <ResumenShipping
-        location={`${userData?.phone}, ${userData?.address}, ${userData?.houseNumber}, ${userData?.apartment}, ${userData?.reference}, ${userData?.city}`}
+        location={`${userData?.phone}, ${userData?.address}, ${userData?.houseNumber}, ${userData?.apartment}, ${userData?.reference}, ${userData?.city.label}`}
         email={userData?.email}
       />
+      {/* Sections */}
+      <PromotionalSection />
       <form className='pt-[1.35rem] lg:pt-11' onSubmit={onSubmit}>
         <div className='pl-5 mb-3 lg:pl-0'>
           <span className='font-bold lg:text-xl'>Envios</span>
@@ -44,7 +47,6 @@ const ShippingSection = ({ changeStep, userData, setData, shippingInfo }: Submis
           <ul className='font-subTitles lg:list-disc lg:ml-5'>
             <li>Envío estándar con entrega hasta 3-7 días hábiles.</li>
             <li>Envío gratis en compras mayores a $750</li>
-            <li>Hacemos envíos únicamente dentro de la República Mexicana.</li>
           </ul>
         </div>
         <div className='flex flex-col gap-3'>

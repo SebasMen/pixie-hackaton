@@ -71,7 +71,8 @@ const ResultPayment = () => {
     updateContext(old => ({ ...old, dataFormCheckOut: {
       address: '',
       apartment: '',
-      city: '',
+      city: { label: '', value: '' },
+      cities: [],
       colony: '',
       countries: [],
       country: { label: '', value: '' },
@@ -86,7 +87,8 @@ const ResultPayment = () => {
       reference: '',
       state: { label: '', value: '' },
       states: [],
-      zip_code: ''
+      zip_code: { label: '', value: '' },
+      zipcodes: []
     } }));
   };
 
