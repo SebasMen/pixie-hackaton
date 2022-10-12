@@ -11,6 +11,11 @@ const PopupChancePage = () => {
     updateContext(old => ({ ...old, showPopupGotoSite: false }));
   };
 
+  const handleChooseMexico = () => {
+    localStorage.setItem('mexicoSeleced', 'true');
+    handleClosePopup();
+  };
+
   return (
     <div className='absolute z-1000 flex items-start justify-center -top-[10px] -left-1 -right-1 -bottom-[10px] bg-[#000000b6] lg:-left-[10px] lg:-right-[10px]'>
       <div className='bg-sixth w-full flex flex-col justify-center items-center rounded-b-3xl pb-9 lg:w-auto lg:rounded-3xl lg:mt-80'>
@@ -27,7 +32,7 @@ const PopupChancePage = () => {
         <div className='flex flex-col lg:px-36 py-4 text-center text-sm'>
           <span className='text-xl md:text-[25px]'>Escoge un país</span>
           <div className='flex flex-col pt-9 md:flex-row gap-10 md:gap-16 md:pt-4'>
-            <div className='flex gap-4 items-center md:flex-col md:justify-center md:items-center cursor-pointer' onClick={handleClosePopup}>
+            <div className='flex gap-4 items-center md:flex-col md:justify-center md:items-center cursor-pointer' onClick={handleChooseMexico}>
               <img src={mexicoFlag} alt='mexicoFlag' className='w-12 h-12 md:w-24 md:h-24' />
               <p>México</p>
             </div>

@@ -238,6 +238,10 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
     loadingFalse();
   };
 
+  const showTermsAndConditions = (type: 1 | 2) => {
+    updateContext(old => ({ ...old, showPopupTermsAndConditions: { status: !old.showPopupTermsAndConditions.status, type } }));
+  };
+
   // Update send infomation to email in the form
   const sendNewsInMyMail = () => {
     let state = '1';
@@ -421,7 +425,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
         />
         <CheckField
           onClick={() => setAcceptConditions(old => !old)}
-          label='Acepto los terminos y condiciones y la política de privacidad*'
+          labelhtml={<p>Acepto los <span onClick={() => showTermsAndConditions(1)} >terminos y condiciones</span> y la <span onClick={() => showTermsAndConditions(1)} >política de privacidad*</span> </p>}
           border='border border-primary'
           sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
           className='mt-1 ml-1 lg:ml-5'

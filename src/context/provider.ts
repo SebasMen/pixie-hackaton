@@ -104,5 +104,9 @@ export const appProvider: AppContextType = {
     geoplugin_regionCode: '',
     geoplugin_regionName: '',
     geoplugin_timezone: '',
+  },
+  showPopupTermsAndConditions: {
+    status: false,
+    type: 1
   }
 };

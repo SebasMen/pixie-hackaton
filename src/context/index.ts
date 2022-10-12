@@ -56,6 +56,10 @@ export interface AppContextType {
   }
 
   showPopupGotoSite: boolean;
+  showPopupTermsAndConditions: {
+    status: boolean,
+    type: 1 | 2
+  };
 
   location: getDataLocation;
 }

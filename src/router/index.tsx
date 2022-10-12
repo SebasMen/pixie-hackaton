@@ -1,7 +1,6 @@
 import { lazy, Suspense, useEffect, useRef } from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import generalService from '../services/generalService';
 import FadeScreen from '../components/layout/fadeScreen';
 
 const NotFound = lazy(() => import('../views/notFound'));
