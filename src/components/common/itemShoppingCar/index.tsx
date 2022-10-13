@@ -7,12 +7,17 @@ import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import { capitalize } from '../../../helpers/capitalize';
 import { CartItem } from '../../../interfaces/basket';
 import { notImage, trashIcon } from '../../../assets/vectors';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingCarProps) => {
   // Hooks
   const { deleteProduct, addRemoveProduct } = useShoppingCar();
   const [counter, setCounter] = useState(item.quantity);
+
+  useEffect(() => {
+    setCounter(item.quantity);
+    return () => {};
+  }, [item.quantity]);
 
   // Handle
   const handleDeleteProduct = () => {

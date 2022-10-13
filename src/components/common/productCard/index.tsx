@@ -44,6 +44,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
 
   const handleChange = () => {
     addRemoveProduct(product, counter);
+    setCounter(1);
     setClickBasket(true);
     setTimeout(() => {
       setClickBasket(false);
@@ -71,6 +72,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
       className={`
           relative flex flex-col flex-shrink-0 justify-between items-center
           h-[15.5rem] smaller:w-48 w-40 md:w-[16.815rem] md:h-[380px]
+          2xl1:w-[19.815rem] 2xl1:h-[414px]
           ${className} 
         `}
     >

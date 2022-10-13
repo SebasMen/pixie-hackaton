@@ -55,7 +55,7 @@ const ResultPayment = () => {
         preference_id: `${searchParams.get('preference_id')}`,
         status: `${searchParams.get('status')}`,
         payment_type: `${searchParams.get('payment_type')}`,
-        total_payment: dataLocalStorage.metadata.details_payments.totalPayment
+        total_payment: `${dataLocalStorage?.metadata.details_payments.totalPayment}`
       }));
       navigate('/checkout/result');
     }
