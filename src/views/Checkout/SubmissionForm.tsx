@@ -425,7 +425,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
         />
         <CheckField
           onClick={() => setAcceptConditions(old => !old)}
-          labelhtml={<p>Acepto los <span onClick={() => showTermsAndConditions(1)} >terminos y condiciones</span> y la <span onClick={() => showTermsAndConditions(1)} >política de privacidad*</span> </p>}
+          labelhtml={<p>Acepto los <span onClick={() => showTermsAndConditions(1)} className='underline cursor-pointer'>terminos y condiciones</span> y la <span onClick={() => showTermsAndConditions(2) } className='underline cursor-pointer'>política de privacidad*</span> </p>}
           border='border border-primary'
           sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
           className='mt-1 ml-1 lg:ml-5'
