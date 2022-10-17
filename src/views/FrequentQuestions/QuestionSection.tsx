@@ -69,8 +69,8 @@ const QuestionSection = () => {
         <AccordeonList title='¿Cuánto dura el alimento PIXIE?'>
           <div className='flex flex-col gap-5'>
             <p className='flex flex-col gap-3'>
-              <span><strong>Congelado:</strong> 6 meses 7 días en empaque cerrado a una temperatura</span>
-              <span><strong>Refrigerado:</strong> máxima de 4 grados centígrados.</span>
+              <span><strong>Congelado:</strong>6 meses.</span>
+              <span><strong>Refrigerado:</strong>7 días en empaque cerrado a una temperatura máxima de 4 grados centígrados.</span>
             </p>
             <p>
               Una vez abierto debe guardarse en recipiente hermético y consumir en el menor tiempo

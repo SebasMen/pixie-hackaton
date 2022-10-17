@@ -11,6 +11,7 @@ export const CheckField = ({
   disabled = false,
   border,
   sizeContainer,
+  labelhtml,
   labelClassName
 }: CheckFieldProps) => {
   // Hooks
@@ -48,7 +49,7 @@ export const CheckField = ({
           `}
         />
       </div>
-      <span className={`${labelClassName}`}>{label}</span>
+      <span className={`${labelClassName}`}>{label}{labelhtml}</span>
     </div>
   );
 };
@@ -63,6 +64,7 @@ interface CheckFieldProps {
   labelClassName?: string;
   sizeContainer?: string;
   onClick: VoidFunction;
+  labelhtml?: JSX.Element
 }
 
 export default CheckField;

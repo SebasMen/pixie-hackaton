@@ -71,7 +71,7 @@ const Detail = () => {
 
           {/* Calculator */}
           <div className='flex mx-7 mt-5 md:hidden gap-5 text-sm font-subTitles'>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+            <span>Haz click aquí para conocer la ración indicada.</span>
             <Button className='ring-1 ring-primary text-primary rounded-full font-bold' onClick={() => navigate('/calculator')}>Calculadora</Button>
           </div>
 

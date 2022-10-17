@@ -29,11 +29,15 @@ export const organiceInformationPaymentMP = (idCustomer: string, userData: Submi
         name: `${(userData?.name ? userData.name : '')} ${(userData?.last_name ? userData.last_name : '')}`,
         phone: userData?.phone ? userData?.phone : '',
         address1: organiceAddress(userData),
-        city: userData?.city ? userData?.city : '',
-        region: userData?.state.value ? userData?.state.value : '',
+        city: userData?.city ? userData?.city.label : '',
+        region: userData?.state.value ? userData?.state.label : '',
         country: userData?.country ? userData?.country.label : '',
+        cityValue: userData?.city.value ? userData?.city.value : '',
+        regionvalue: userData?.state.value ? userData?.state.value : '',
+        countryValue: userData?.country.value ? userData?.country.value : ''
       },
       customer_id: idCustomer,
+      delivery_note: userData?.delivery_note ? userData.delivery_note : '',
       billingDetails: organiceBillingDetails(userData, form, sameBillingAddress),
       contactDetails: {
         email: userData?.email ? userData?.email : '',
@@ -139,9 +143,12 @@ const organiceBillingDetails = (userData: SubmissionFormInterface | undefined, f
     name: `${(userData?.name ? userData.name : '')} ${(userData?.last_name ? userData.last_name : '')}`,
     phone: userData?.phone ? userData?.phone : '',
     address1: organiceAddress(userData),
-    city: userData?.city ? userData?.city : '',
-    region: userData?.state.value ? userData?.state.value : '',
+    city: userData?.city ? userData?.city.label : '',
+    region: userData?.state.value ? userData?.state.label : '',
     country: userData?.country ? userData?.country.label : '',
+    cityValue: userData?.city.value ? userData?.city.value : '',
+    regionvalue: userData?.state.value ? userData?.state.value : '',
+    countryValue: userData?.country.value ? userData?.country.value : ''
   };
   // Data change if the user change the billingData
   if (!sameBillingAddress)
@@ -149,9 +156,12 @@ const organiceBillingDetails = (userData: SubmissionFormInterface | undefined, f
       name: `${(form?.name ? form.name : '')} ${(form?.last_name ? form.last_name : '')}`,
       phone: form?.phone ? form?.phone : '',
       address1: organiceAddressChangeBilling(form),
-      city: form?.city ? form?.city : '',
-      region: form?.state ? form?.state.value : '',
+      city: form?.city?.label ? form?.city.label : '',
+      region: form?.state ? form?.state.label : '',
       country: form?.country ? form?.country.label : '',
+      cityValue: form.city?.value ? form.city.value : '',
+      countryValue: form.country?.value ? form.country.value : '',
+      regionvalue: form.state?.value ? form.state.value : ''
     };
 
   return dataIsFromForm;
@@ -164,7 +174,7 @@ const organiceAddress = (userData:SubmissionFormInterface | undefined): string =
     houseNumber: userData?.houseNumber,
     apartament: userData?.apartment,
     reference: userData?.reference,
-    zipCode: userData?.zip_code,
+    zipCode: userData?.zip_code.value,
     colony: userData?.colony,
     delegation: userData?.delegation,
   };
@@ -179,7 +189,7 @@ const organiceAddressChangeBilling = (form:paymentForm): string => {
     houseNumber: form.houseNumber,
     apartament: form.apartment,
     reference: form.reference,
-    zipCode: form.zip_code,
+    zipCode: form.zip_code?.value,
     colony: form.colony,
     delegation: form.delegation,
   };
@@ -202,9 +212,7 @@ export const isFormComplete = (data: SubmissionFormInterface, acceptConditions: 
   let isFull = true;
   if (data.address === '')
     isFull = false;
-  if (data.apartment === '')
-    isFull = false;
-  if (data.city === '')
+  if (data.city.value === '')
     isFull = false;
   if (data.colony === '')
     isFull = false;
@@ -224,7 +232,7 @@ export const isFormComplete = (data: SubmissionFormInterface, acceptConditions: 
     isFull = false;
   if (data.state.value === '')
     isFull = false;
-  if (data.zip_code === '')
+  if (data.zip_code.value === '')
     isFull = false;
   if (!acceptConditions)
     isFull = false;

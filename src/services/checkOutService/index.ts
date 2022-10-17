@@ -30,7 +30,9 @@ export class CheckOutService {
         apartment: data.apartment === '' ? data.houseNumber : data.apartment,
         address: data.address.concat(` ${data.houseNumber}`),
         countries_id: data.country.value,
-        province: data.state.label
+        province: data.state.label,
+        city: data.city.value,
+        zip_code: data.zip_code.value
       });
 
       // Handle empty response

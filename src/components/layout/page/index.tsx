@@ -7,12 +7,13 @@ import ViewerImagePopup from '../../common/viewerImagePopup';
 import NavBar from '../../layout/navBar';
 import Loading from '../loading';
 import PopupDetailProduct from '../popupDetailProduct';
+import PopupTermAndConditions from '../popupTermsAndConditions';
 
 export const Page = ({ className, children, color, addPadding = true }: PageProps) => {
   // Hooks
   const { showPopup } = useAppContext();
   const { pathname } = useLocation();
-  const { updateContext, showNavbar, showLoading, showPopupViewerImage } = useAppContext();
+  const { updateContext, showNavbar, showLoading, showPopupViewerImage, showPopupTermsAndConditions } = useAppContext();
   const minimalNavbar = useCallback(() => {
     if (screen.width < 800) return 20;
 
@@ -33,8 +34,6 @@ export const Page = ({ className, children, color, addPadding = true }: PageProp
   useEffect(() => {
     scrollTo(0);
 
-    console.log('scrolled');
-
     return () => {};
   }, [pathname]);
 
@@ -54,6 +53,7 @@ export const Page = ({ className, children, color, addPadding = true }: PageProp
         {showPopup && <PopupDetailProduct />}
         {showPopupViewerImage.show && <ViewerImagePopup />}
         {showLoading && <Loading />}
+        {showPopupTermsAndConditions.status && <PopupTermAndConditions />}
         <>{children}</>
       </div>
     </>

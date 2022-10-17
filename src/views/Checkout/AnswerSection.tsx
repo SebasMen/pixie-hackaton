@@ -35,7 +35,8 @@ const AnswerSection = ({ paymentAnswer: { data, status } }:AnswerSectionProps) =
       updateContext(old => ({ ...old, dataFormCheckOut: {
         address: '',
         apartment: '',
-        city: '',
+        city: { label: '', value: '' },
+        cities: [],
         colony: '',
         countries: [],
         country: { label: '', value: '' },
@@ -50,7 +51,8 @@ const AnswerSection = ({ paymentAnswer: { data, status } }:AnswerSectionProps) =
         reference: '',
         state: { label: '', value: '' },
         states: [],
-        zip_code: ''
+        zip_code: { label: '', value: '' },
+        zipcodes: []
       } }));
     }
   }, [status]);

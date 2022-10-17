@@ -65,7 +65,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
     <div className='pt-8 flex flex-col items-center bg-gray-100 w-full rounded-t-3xl transform md:-mt-4 md:pt-0 pb-[4.5rem] relative overflow-hidden'>
       {/* Backgrounds */}
       <img className='absolute w-full h-full object-cover object-right -z-20' src={vegetables} />
-      <div className='hidden absolute bottom-0 -z-10 left-[0] right-[0] m-auto w-full max-w-[1440px] lg:block xl2:w-[1440px]'>
+      <div className='hidden absolute bottom-0 -z-10 left-[0] right-[0] m-auto w-full lg:block'>
         <img className='absolute bottom-0 right-0 object-none' src={dogDesktop} />
       </div>
       <div className='hidden lg:block mt-28 text-pixieLightBlue text-3xl mx-72 text-center pb-16'>
@@ -74,7 +74,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       {/* Carrousel */}
       <Carrousel
         onSlideChange={setSelected}
-        className='pt-16 md:pt-10 pb-10 h-max lg:px-28 max-w-[1440px]'
+        className='pt-16 md:pt-10 pb-10 h-max lg:px-28'
         breakpoints={{
           300: {
             slidesPerView: 1.7,
@@ -147,7 +147,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
       <div className='hidden lg:block my-12 text-pixieLightBlue text-3xl mx-72 text-center'>
         <span> Nuestros Productos</span>
       </div>
-      <div className='flex flex-wrap justify-center items-start gap-4 gap-y-[4.3rem] mt-20 md:mt-0 p-4 lg:px-36 lg:pb-12 xl:justify-between 2xl:pb-32 2xl:px-32 max-w-[1440px]'>
+      <div className='flex flex-wrap justify-center items-start gap-4 gap-y-[4.3rem] mt-20 md:mt-0 p-4 lg:px-36 lg:pb-12 xl:justify-between 2xl:pb-32 2xl:px-32 max-w-[1880px]'>
         {products?.slice(0, 7).map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

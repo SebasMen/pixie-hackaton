@@ -55,7 +55,7 @@ const ResultPayment = () => {
         preference_id: `${searchParams.get('preference_id')}`,
         status: `${searchParams.get('status')}`,
         payment_type: `${searchParams.get('payment_type')}`,
-        total_payment: dataLocalStorage.metadata.details_payments.totalPayment
+        total_payment: `${dataLocalStorage?.metadata.details_payments.totalPayment}`
       }));
       navigate('/checkout/result');
     }
@@ -71,7 +71,8 @@ const ResultPayment = () => {
     updateContext(old => ({ ...old, dataFormCheckOut: {
       address: '',
       apartment: '',
-      city: '',
+      city: { label: '', value: '' },
+      cities: [],
       colony: '',
       countries: [],
       country: { label: '', value: '' },
@@ -86,7 +87,8 @@ const ResultPayment = () => {
       reference: '',
       state: { label: '', value: '' },
       states: [],
-      zip_code: ''
+      zip_code: { label: '', value: '' },
+      zipcodes: []
     } }));
   };
 

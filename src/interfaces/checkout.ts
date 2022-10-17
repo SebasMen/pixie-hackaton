@@ -10,10 +10,12 @@ export interface SubmissionFormInterface {
   houseNumber: string;
   apartment : string;
   reference: string;
-  zip_code: string;
+  zip_code: SelectItem;
+  zipcodes: SelectItem[];
   colony: string;
   delegation: string;
-  city: string;
+  city: SelectItem;
+  cities: SelectItem[];
   states: SelectItem[];
   state: SelectItem;
   countries: SelectItem[];
@@ -29,6 +31,7 @@ export interface SubmissionFormValidate {
   last_name: validatorBody;
   state: validatorBody;
   country: validatorBody;
+  city: validatorBody;
   houseNumber: validatorBody;
   apartment: validatorBody;
   zip_code: validatorBody;
@@ -57,10 +60,12 @@ export interface paymentForm {
   houseNumber?: string;
   apartment?: string;
   reference?: string;
-  zip_code?: string;
+  zip_code?: SelectItem;
+  zipCodes: SelectItem[],
   colony?: string;
   delegation?: string;
-  city?: string;
+  city?: SelectItem;
+  cities: SelectItem[],
   states?: SelectItem[];
   state?: SelectItem;
   countries?: SelectItem[];

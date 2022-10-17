@@ -23,8 +23,14 @@ const Home = () => {
   const { loadingDeterminate } = useLoading();
 
   useEffect(() => {
-    updateContext(old => ({ ...old, showNavbar: true, showPopupGotoSite: true }));
+    updateContext(old => ({ ...old, showNavbar: true }));
   }, [screen.width]);
+
+  useEffect(() => {
+    if (localStorage.getItem('mexicoSeleced'))
+      updateContext(old => ({ ...old, showPopupGotoSite: false }));
+    return () => {};
+  }, []);
 
   // Show loading
   useEffect(() => {

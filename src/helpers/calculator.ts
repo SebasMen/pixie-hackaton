@@ -58,6 +58,7 @@ export const calculator = {
           4: 3,
           5: 3,
           6: 3,
+          7: 2.8
         },
         medium: {
           1: 3.4, // Año : Multiplicacion
@@ -66,6 +67,7 @@ export const calculator = {
           4: 3.3,
           5: 3.3,
           6: 3.3,
+          7: 2.8
         },
         high: {
           1: 3.7, // Año : Multiplicacion
@@ -74,6 +76,7 @@ export const calculator = {
           4: 3.6,
           5: 3.6,
           6: 3.6,
+          7: 3
         },
       },
     },
@@ -81,8 +84,7 @@ export const calculator = {
       feedTimes: 2,
       activities: {
         low: {
-          7: 2.8, // Año : Multiplicacion
-          8: 2.8,
+          8: 2.8, // Año : Multiplicacion
           9: 2.8,
           10: 2.8,
           11: 2.8,
@@ -94,8 +96,7 @@ export const calculator = {
           17: 2.7,
         },
         medium: {
-          7: 2.8, // Año : Multiplicacion
-          8: 2.8,
+          8: 2.8, // Año : Multiplicacion
           9: 2.8,
           10: 2.8,
           11: 2.8,
@@ -107,8 +108,7 @@ export const calculator = {
           17: 2.7,
         },
         high: {
-          7: 3, // Año : Multiplicacion
-          8: 3,
+          8: 3, // Año : Multiplicacion
           9: 3,
           10: 3,
           11: 3,

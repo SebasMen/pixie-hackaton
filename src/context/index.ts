@@ -7,6 +7,7 @@ import { appProvider as provider } from './provider';
 import { Product } from '../interfaces/product';
 import { CartItem } from '../interfaces/basket';
 import { SubmissionFormInterface } from '../interfaces/checkout';
+import { getDataLocation } from '../interfaces/location';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const AppContext = createContext<AppContextType>(null!);
@@ -55,6 +56,12 @@ export interface AppContextType {
   }
 
   showPopupGotoSite: boolean;
+  showPopupTermsAndConditions: {
+    status: boolean,
+    type: 1 | 2
+  };
+
+  location: getDataLocation;
 }
 
 export const appProvider: AppContextType = provider;
