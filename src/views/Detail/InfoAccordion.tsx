@@ -3,33 +3,42 @@ import { extraInfo } from '../../@fake/detailFake';
 import { Product } from '../../interfaces/product';
 import { separateByCommas } from '../../helpers/productHelper';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-const InfoAccordion = ({ product }:InfoAccordionProps) => {
+const InfoAccordion = ({ product }: InfoAccordionProps) => {
+  // Hooks
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const [nameTable, setNameTable] = useState('');
-  const [tableInfo, setTableInfo] = useState([{
-    kl: '',
-    grams: ''
-  }]);
+  const [tableInfo, setTableInfo] = useState([
+    {
+      kl: '',
+      grams: '',
+    },
+  ]);
 
   useEffect(() => {
     if (product.kind_pet === 'DOG')
-      // eslint-disable-next-line default-case
       switch (product.age) {
         case 'Cachorros':
           setTableInfo(extraInfo.infoConsumer.DOG.Cachorros);
-          setNameTable(`${product.age} de 2 a 12 meses`);
+          setNameTable(`${t('productsInfoPuppiesRange')}`);
           break;
         case 'Adultos':
           setTableInfo(extraInfo.infoConsumer.DOG.Adultos);
-          setNameTable(`${product.age} de 1 a 6 años`);
+          setNameTable(`${t('productsInfoAdultsRange')}`);
           break;
         case 'Senior':
           setTableInfo(extraInfo.infoConsumer.DOG.Senior);
-          setNameTable(`${product.age} de 7 años en adelante`);
+          setNameTable(`${t('productsInfoSeniorRange')}`);
+          break;
+
+        default:
           break;
       }
     else
-      // eslint-disable-next-line default-case
       switch (product.age) {
         case 'Cachorros':
           setTableInfo(extraInfo.infoConsumer.CAT.Cachorros);
@@ -40,26 +49,36 @@ const InfoAccordion = ({ product }:InfoAccordionProps) => {
         case 'Senior':
           setTableInfo(extraInfo.infoConsumer.CAT.Senior);
           break;
+
+        default:
+          break;
       }
-  }, []);
+  }, [language]);
 
   return (
     <ul className='w-full md:px-24 md:hidden bg-fifth'>
-      <ItemAccordion name='Beneficios y Características' infoList={separateByCommas(product.benefits)} type='list'/>
-      {product.age.toLocaleLowerCase() === 'cachorros'
-        ?
-        <ItemAccordion name='Instrucciones de Alimentación' type='tableCachorro'/>
-        :
-        <ItemAccordion name='Instrucciones de Alimentación' infoTable={tableInfo} nameTable={nameTable} type='table'/>
-      }
-      <ItemAccordion name='Composición Garantizada-MS%' infoList={separateByCommas(product.nutrition_information)} type='list'/>
-      <ItemAccordion name='Conservación del producto' infoConservation={product.recommendation_for_use} type='conservation'/>
+      <ItemAccordion name='Beneficios y Características' infoList={separateByCommas(product.benefits)} type='list' />
+      {product.age.toLocaleLowerCase() === 'cachorros' ? (
+        <ItemAccordion name={t('productsInfoIngr')} type='tableCachorro' />
+      ) : (
+        <ItemAccordion name={t('productsInfoIngr')} infoTable={tableInfo} nameTable={nameTable} type='table' />
+      )}
+      <ItemAccordion
+        name={t('productsInfoComp')}
+        infoList={separateByCommas(product.nutrition_information)}
+        type='list'
+      />
+      <ItemAccordion
+        name={t('productsInfoCons')}
+        infoConservation={product.recommendation_for_use}
+        type='conservation'
+      />
     </ul>
   );
 };
 
-interface InfoAccordionProps{
-  product: Product
+interface InfoAccordionProps {
+  product: Product;
 }
 
 export default InfoAccordion;

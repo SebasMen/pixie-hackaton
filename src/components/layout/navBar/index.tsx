@@ -163,8 +163,8 @@ export const NavBar = () => {
                     showMinimalNavbar && 'md:items-center'
                   } hidden md:flex md:flex-row justify-between md:gap-7 md:mr-6`}
                 >
-                  <NavItem name={t('catalogue')} path='/catalogue' color={color} />
-                  <NavItem name='Calculadora' path='/calculator' color={color} />
+                  <NavItem name={t('navCatalogue')} path='/catalogue' color={color} />
+                  <NavItem name={t('navCalculator')} path='/calculator' color={color} />
                 </div>
               )}
               {/* Buttons */}

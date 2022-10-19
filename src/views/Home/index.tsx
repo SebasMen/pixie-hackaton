@@ -7,7 +7,7 @@ import Banner from '../../components/layout/banner';
 import Footer from '../../components/layout/footer';
 import CalculatorSection from './calculatorSection';
 
-import { dataBanner } from '../../@fake/bannerFake';
+import { dataBanner, dataBannerEn } from '../../@fake/bannerFake';
 import { ProductListResponse } from '../../interfaces/product';
 import productService from '../../services/productService';
 
@@ -15,8 +15,12 @@ import '../../styles/home.css';
 import ButtonWhatsap from '../../components/common/buttonWhatsapp';
 import { useLoading } from '../../hooks/useLoading';
 import PopupChancePage from '../../components/layout/popupChancePage';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
+  const {
+    i18n: { language },
+  } = useTranslation();
   const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
 
   const { updateContext, showPopupGotoSite } = useAppContext();
@@ -27,8 +31,7 @@ const Home = () => {
   }, [screen.width]);
 
   useEffect(() => {
-    if (localStorage.getItem('mexicoSeleced'))
-      updateContext(old => ({ ...old, showPopupGotoSite: false }));
+    if (localStorage.getItem('mexicoSeleced')) updateContext(old => ({ ...old, showPopupGotoSite: false }));
     return () => {};
   }, []);
 
@@ -40,9 +43,8 @@ const Home = () => {
   return (
     <Page color='#F7EBA8'>
       <>
-
         {/* Banner */}
-        <Banner dataBanner={dataBanner} showBotton={true} />
+        <Banner dataBanner={language === 'es' ? dataBanner : dataBannerEn} showBotton={true} />
 
         {/* Carrousel & Products */}
         <ProductsSection products={response?.products} />

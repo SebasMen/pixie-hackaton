@@ -18,11 +18,12 @@ export const Menu = ({ collapsed, toggle }: MenuProps) => {
   };
 
   // Constants
-  const collapsedClass = (collapsed === null) ? 'hidden' : collapsed ? 'animate__slideInLeft' : 'animate__slideOutLeft';
+  const collapsedClass = collapsed === null ? 'hidden' : collapsed ? 'animate__slideInLeft' : 'animate__slideOutLeft';
 
   // Component
   return (
-    <div className={`
+    <div
+      className={`
             flex flex-col gap-5
             h-screen w-4/5 fixed z-1000
             shadow-2xl bg-[#D9EEEF]
@@ -44,18 +45,18 @@ export const Menu = ({ collapsed, toggle }: MenuProps) => {
 
       {/* search */}
       <div className='flex w-full font-subTitles justify-center px-6'>
-        <Search colorIcon='text-fourth' borderColor='ring-pixieLightBlue' sizePlaceholder='text-xs'/>
+        <Search colorIcon='text-fourth' borderColor='ring-pixieLightBlue' sizePlaceholder='text-xs' />
       </div>
 
       {/* Items */}
       <div className='flex flex-col flex-grow flex-shrink-0 gap-8 mt-8 text-fourth text-xl px-6'>
-        <NavMobileItem name='tienda'/>
-        <NavMobileItem name='calculadora'/>
-        <NavMobileItem name='canasta'/>
+        <NavMobileItem name='tienda' />
+        <NavMobileItem name='calculadora' />
+        <NavMobileItem name='canasta' />
         {/* languages */}
         <div className='font-sanzBold text-sm mt-5 text-grayText flex'>
           <span>Español</span>
-          <img src={expand_more} className='brightness-0'/>
+          <img src={expand_more} className='brightness-0' />
         </div>
       </div>
 

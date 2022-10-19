@@ -2,15 +2,17 @@ import { useState } from 'react';
 import TextField from '../../form/textField';
 import IconButton from '../iconButton';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Search = ({ colorIcon, borderColor, sizePlaceholder }: SearchProps) => {
+  // Hooks
+  const { t } = useTranslation();
   const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
 
   // Methods
   const handleKeyDown = (event: any) => {
-    if (event.key === 'Enter')
-      navigate(`/catalogue?query=${searchText}`);
+    if (event.key === 'Enter') navigate(`/catalogue?query=${searchText}`);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,19 +27,28 @@ const Search = ({ colorIcon, borderColor, sizePlaceholder }: SearchProps) => {
         value={searchText}
         className='w-full'
         border={`${borderColor ? borderColor : 'ring-grayText'} rounded-full`}
-        placeholder='Busca tu pixie favorito'
+        placeholder={t('navSearchPlaceholder')}
         fieldClassName={`${sizePlaceholder ? sizePlaceholder : 'text-sm'} font-sanzSemiBold py-2 pl-12`}
-        handleKeyDown={(e:any) => handleKeyDown(e)}
+        handleKeyDown={(e: any) => handleKeyDown(e)}
       />
-      <IconButton name='search' size='2xl' sizeContainer='w-6' className={`${colorIcon ? colorIcon : 'text-grayText'} bottom-[0.01rem] left-3 absolute block cursor-pointer md:bottom-3 md:left-3`} onClick={() => {}} shadow={false} />
+      <IconButton
+        name='search'
+        size='2xl'
+        sizeContainer='w-6'
+        className={`${
+          colorIcon ? colorIcon : 'text-grayText'
+        } bottom-[0.01rem] left-3 absolute block cursor-pointer md:bottom-3 md:left-3`}
+        onClick={() => {}}
+        shadow={false}
+      />
     </div>
   );
 };
 
 interface SearchProps {
- colorIcon?: string;
- borderColor?: string;
- sizePlaceholder?: string;
+  colorIcon?: string;
+  borderColor?: string;
+  sizePlaceholder?: string;
 }
 
 export default Search;

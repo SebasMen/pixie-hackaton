@@ -11,9 +11,11 @@ import { capitalize } from '../../helpers/capitalize';
 import { basket } from '../../assets/vectors';
 import useShoppingCar from '../../hooks/useShoppingCar';
 import { isValidProduct } from '../../helpers/calculator';
+import { useTranslation } from 'react-i18next';
 
 const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendationProps) => {
   // Hooks
+  const { t } = useTranslation();
   const [productList, setProductList] = useState<ResultProduct[]>(
     products.map(product => ({
       quantity: Math.round((grams / parseInt(product.presentation, 10)) * 30),
@@ -79,10 +81,7 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
 
   // Save product to car
   const handleAddProductsToShopping = () => {
-    if (hasValidProduct)
-      selected.forEach(item =>
-        addRemoveProduct(item.product, parseInt(`${item.quantity}`, 10))
-      );
+    if (hasValidProduct) selected.forEach(item => addRemoveProduct(item.product, parseInt(`${item.quantity}`, 10)));
   };
 
   // Component
@@ -106,14 +105,14 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
       <div className='flex justify-center lg:mr-5'>
         <div className='flex flex-col flex-shrink-0 justify-center pt-3 pb-4 gap-2 w-full h-auto px-5 rounded-2xl shadow-xl ring-1 ring-[#33B5A9] lg:flex-row lg:h-28 lg:pl-4 lg:pr-6 lg:gap-1 md:py-10'>
           <div className='flex lg:items-center w-full text-left justify-start lg:justify-center lg:w-[20%] h-full  border-b-pixieLightBlue border-r-pixieLightBlue lg:border-r lg:border-b-0'>
-            <h2 className='text-pixieLightBlue font-extrabold md:text-xl'>Resumen</h2>
+            <h2 className='text-pixieLightBlue font-extrabold md:text-xl'>{t('calcSummary')}</h2>
           </div>
           <div className='flex-grow text-sm flex-shrink-0 text-left border-r-pixieLightBlue lg:border-r pr-30 lg:w-[53%] lg:pl-3'>
             <p className='font-sanzBold'>{names}</p>
             <p className='text-pixieLightBlue font-subTitles font-semibold text-[11px] lg:text-sm'>
               {maxQuantity < quantity
-                ? `(Te hacen falta ${quantity - maxQuantity} porciones para completar las 4 semanas)`
-                : `(Bien has seleccionado ${maxQuantity} porciones)`}
+                ? `(${t('calcResultErrorFrag1')} ${quantity - maxQuantity} ${t('calcResultErrorFrag2')})`
+                : `(${t('calcResultMsgFrag1')} ${maxQuantity} ${t('calcResultMsgFrag2')})`}
             </p>
           </div>
           <div className='w-full lg:w-[22%] flex flex-col flex-shrink-0 justify-between items-center text-pixieLightBlue md:flex-row md:w-max gap-1 md:gap-6'>
@@ -124,7 +123,9 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
             <div className='hidden md:block'>
               <IconButton
                 name='result'
-                className={`${!hasValidProduct && 'opacity-50'} bg-primary scale-75 shadow-[0px_2px_10px_0_rgba(65,65,65,0.4)]`}
+                className={`${
+                  !hasValidProduct && 'opacity-50'
+                } bg-primary scale-75 shadow-[0px_2px_10px_0_rgba(65,65,65,0.4)]`}
                 img={basket}
                 imgClassName='w-9 h-9'
                 onClick={handleAddProductsToShopping}
@@ -132,9 +133,13 @@ const ResultRecommendation = ({ products, grams, quantity }: ResultRecommendatio
               />
             </div>
             <div className='w-full md:hidden'>
-              <Button className={`${!hasValidProduct && 'opacity-50'} bg-primary flex gap-4 w-full`} rounded={true} onClick={handleAddProductsToShopping}>
+              <Button
+                className={`${!hasValidProduct && 'opacity-50'} bg-primary flex gap-4 w-full`}
+                rounded={true}
+                onClick={handleAddProductsToShopping}
+              >
                 <img src={basket} className={'h-5 w-5'} />
-                <span className='md:hidden text-base text-amber-100'>Agregar</span>
+                <span className='md:hidden text-base text-amber-100'>{t('calcSummaryButton')}</span>
               </Button>
             </div>
           </div>

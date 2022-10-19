@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import { allergies } from '../interfaces/calculator';
 import { Product } from '../interfaces/product';
 
@@ -58,7 +59,7 @@ export const calculator = {
           4: 3,
           5: 3,
           6: 3,
-          7: 2.8
+          7: 2.8,
         },
         medium: {
           1: 3.4, // Año : Multiplicacion
@@ -67,7 +68,7 @@ export const calculator = {
           4: 3.3,
           5: 3.3,
           6: 3.3,
-          7: 2.8
+          7: 2.8,
         },
         high: {
           1: 3.7, // Año : Multiplicacion
@@ -76,7 +77,7 @@ export const calculator = {
           4: 3.6,
           5: 3.6,
           6: 3.6,
-          7: 3
+          7: 3,
         },
       },
     },
@@ -225,7 +226,7 @@ export const calculator = {
           14: 2.7,
           15: 2.7,
           16: 2.7,
-          17: 2.7
+          17: 2.7,
         },
         high: {
           7: 3, // Año : Multiplicacion
@@ -238,14 +239,22 @@ export const calculator = {
           14: 2.9,
           15: 2.9,
           16: 2.9,
-          17: 2.9
+          17: 2.9,
         },
       },
     },
   },
 };
 
-export const getPetFeedData = ({ name, weight, age, range, type, activity, allergies }: PetInfo): PetFeedData | undefined => {
+export const getPetFeedData = ({
+  name,
+  weight,
+  age,
+  range,
+  type,
+  activity,
+  allergies,
+}: PetInfo): PetFeedData | undefined => {
   const data = calculator[type][range];
 
   if (!data || !age) return;
@@ -258,11 +267,13 @@ export const getPetFeedData = ({ name, weight, age, range, type, activity, aller
   if (isNaN(grams) || !grams) return;
 
   return {
-    msg: `¡${name.toUpperCase()} debe consumir un total de ${grams} gramos al día divididos en ${feedTimes} porciones!`,
+    msg: `¡${name.toUpperCase()} ${t('calcResultTitleFrag1')} ${grams} ${t('calcResultTitleFrag2')} ${feedTimes} ${t(
+      'calcResultTitleFrag3'
+    )}`,
     grams,
     type,
     range,
-    allergies
+    allergies,
   };
 };
 
@@ -273,7 +284,7 @@ export interface PetInfo {
   range: 'cachorros' | 'adultos' | 'senior';
   type: 'dog' | 'cat';
   activity: 'low' | 'medium' | 'high';
-  allergies : allergies
+  allergies: allergies;
 }
 
 export interface PetFeedData {
@@ -281,14 +292,13 @@ export interface PetFeedData {
   grams: number;
   type: 'dog' | 'cat';
   range: 'cachorros' | 'adultos' | 'senior';
-  allergies : allergies
+  allergies: allergies;
 }
 
 export const isValidProduct = (product: Product[]) => {
   let isValid = false;
   product.forEach(item => {
-    if (item.status === '1')
-      isValid = true;
+    if (item.status === '1') isValid = true;
   });
 
   return isValid;

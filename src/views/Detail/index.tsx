@@ -22,23 +22,21 @@ import ButtonWhatsap from '../../components/common/buttonWhatsapp';
 import productService from '../../services/productService';
 import { Product } from '../../interfaces/product';
 import { useLoading } from '../../hooks/useLoading';
+import { useTranslation } from 'react-i18next';
 
 const Detail = () => {
   // Hooks
+  const { t } = useTranslation();
   const params = useParams();
   const { loadingDeterminate } = useLoading();
   const { id } = params;
-  const getOneProduct = useCallback(
-    () => productService.getOneProduct(id ? parseInt(id, 10) : 1),
-    [id],
-  );
+  const getOneProduct = useCallback(() => productService.getOneProduct(id ? parseInt(id, 10) : 1), [id]);
   const { loading, response } = useFetch<Product>(getOneProduct);
   const [showFooter, setShowFooter] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (screen.width < 800)
-      setShowFooter(false);
+    if (screen.width < 800) setShowFooter(false);
   }, [screen.width]);
 
   // Show loading
@@ -49,51 +47,53 @@ const Detail = () => {
   // Component
   return (
     <Page className={`${!showFooter && 'mb-14'}`}>
-      {response &&
-      <div>
-        <div className='lg:px-[123px] max-w-[1440px]'>
-          <div className='md:hidden px-7 mt-7 mb'>
-            <img src={backArrow} onClick={() => navigate(-1)} />
-          </div>
-          <div className='flex flex-col w-full flex-shrink-0 overflow-hidden'>
-            <p className='hidden md:mt-3 md:mb-1 md:block text-fourth font-sanzBold text-sm lg:mb-9'>
-              <span onClick={() => navigate('/catalogue')} className='cursor-pointer'>Catálogo &gt; </span>
-              {capitalize(response.name)}
-            </p>
-            <div className='w-full flex-grow flex flex-col flex-shrink-0 md:flex-row md:pb-10 md:gap-1'>
-              {/* Banner Detail to mobile */}
-              <BannerDetail product={response} />
-              {/* Banner Detail to desktop */}
-              <BannerDetailDT product={response}/>
-              <InfoSection product={response} attributes={organizeAttributes(response.atributos)} />
+      {response && (
+        <div>
+          <div className='lg:px-[123px] max-w-[1440px]'>
+            <div className='md:hidden px-7 mt-7 mb'>
+              <img src={backArrow} onClick={() => navigate(-1)} />
             </div>
+            <div className='flex flex-col w-full flex-shrink-0 overflow-hidden'>
+              <p className='hidden md:mt-3 md:mb-1 md:block text-fourth font-sanzBold text-sm lg:mb-9'>
+                <span onClick={() => navigate('/catalogue')} className='cursor-pointer'>
+                  Catálogo &gt;{' '}
+                </span>
+                {capitalize(response.name)}
+              </p>
+              <div className='w-full flex-grow flex flex-col flex-shrink-0 md:flex-row md:pb-10 md:gap-1'>
+                {/* Banner Detail to mobile */}
+                <BannerDetail product={response} />
+                {/* Banner Detail to desktop */}
+                <BannerDetailDT product={response} />
+                <InfoSection product={response} attributes={organizeAttributes(response.atributos)} />
+              </div>
+            </div>
+            {/* Calculator */}
+            <div className='flex mx-7 mt-5 md:hidden gap-5 text-sm font-subTitles'>
+              <span>{t('productsCalcText')}</span>
+              <Button
+                className='ring-1 ring-primary text-primary rounded-full font-bold'
+                onClick={() => navigate('/calculator')}
+              >
+                {t('productsCalcButton')}
+              </Button>
+            </div>
+
+            {/* Nutrition */}
+            <NutritionSection ingredients={organizeIngredients(response.ingredients)} />
+
+            <ExtraInfoContainer product={response} />
+
+            {/* FAB */}
+            {showFooter && <ButtonWhatsap />}
           </div>
-
-          {/* Calculator */}
-          <div className='flex mx-7 mt-5 md:hidden gap-5 text-sm font-subTitles'>
-            <span>Haz click aquí para conocer la ración indicada.</span>
-            <Button className='ring-1 ring-primary text-primary rounded-full font-bold' onClick={() => navigate('/calculator')}>Calculadora</Button>
-          </div>
-
-          {/* Nutrition */}
-          <NutritionSection ingredients={organizeIngredients(response.ingredients)} />
-
-          <ExtraInfoContainer product={response} />
-
-          {/* FAB */}
-          {showFooter &&
-            <ButtonWhatsap />
-          }
+          {/* Other Info */}
+          <InfoAccordion product={response} />
+          {/* Footer */}
+          {showFooter && <Footer className='md:mt-16' />}
         </div>
-        {/* Other Info */}
-        <InfoAccordion product={response} />
-        {/* Footer */}
-        {showFooter &&
-          <Footer className='md:mt-16' />
-        }
-      </div>
-      }
-    </Page >
+      )}
+    </Page>
   );
 };
 
