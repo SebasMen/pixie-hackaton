@@ -15,6 +15,7 @@ import '../../styles/home.css';
 import ButtonWhatsap from '../../components/common/buttonWhatsapp';
 import { useLoading } from '../../hooks/useLoading';
 import PopupChancePage from '../../components/layout/popupChancePage';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
   const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
@@ -40,7 +41,10 @@ const Home = () => {
   return (
     <Page color='#F7EBA8'>
       <>
-
+        <Helmet>
+          <title>pixie - Alimento para perros y gatos - comida húmeda</title>
+          <meta name='description' content='Pixie es alimento húmedo para mascotas 100% natural, con gran variedad de opciones, una dieta completa para tus mascotas.' />
+        </Helmet>
         {/* Banner */}
         <Banner dataBanner={dataBanner} showBotton={true} />
 
