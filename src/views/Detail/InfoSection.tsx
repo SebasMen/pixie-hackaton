@@ -12,6 +12,8 @@ import { capitalize } from '../../helpers/capitalize';
 import { basket } from '../../assets/vectors';
 import AttributesItem from '../../components/common/attributesItem';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+
 
 const InfoSection = ({ product, attributes, showControls = true }: InfoSectionProps) => {
   // Hooks
@@ -33,6 +35,10 @@ const InfoSection = ({ product, attributes, showControls = true }: InfoSectionPr
 
   return (
     <div className='flex flex-col w-full mt-4 md:mt-0 md:h-full md:w-[37%] md:pr-9'>
+      <Helmet>
+        <title>pixie - {capitalize(product.name)}</title>
+        <meta name='description' content={product.description.slice(0, 150)} />
+      </Helmet>
       <div className='flex-shrink-0 px-7 mb-2 md:px-0 md:mb-4'>
         <div className='hidden gap-3 mb-3 md:flex'>
           {ages.map(age => <Tag key={`${product.id}-age-${age}`} name={age} className='mb-1 mt-2 md:mt-0' sizeTags={ages.length}/>)}
