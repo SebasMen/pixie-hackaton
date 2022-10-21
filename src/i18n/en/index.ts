@@ -2,6 +2,7 @@ import { products, shoppingCar } from './products';
 import { calculator } from './calculator';
 import { catalogue } from './catalogue';
 import { questions } from './questions';
+import { privacy } from './privacy';
 import { navBar } from './navbar';
 import { footer } from './footer';
 import { terms } from './terms';
@@ -18,6 +19,7 @@ export const en = {
     ...calculator,
     ...questions,
     ...terms,
+    ...privacy,
   },
 };
 
