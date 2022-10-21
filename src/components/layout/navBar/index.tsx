@@ -55,6 +55,10 @@ export const NavBar = () => {
 
   if (!showNavbar) return <></>;
 
+  const navBarStyle = showMinimalNavbar
+    ? 'animate__fadeInDown w-full bg-white py-1 px-2 lg:px-12 md:py-3 md:items-center'
+    : 'animate__fadeIn bg-transparent py-4 px-2 lg:px-12 md:py-5 md:items-start max-w-[1440px]';
+
   // Component
   return (
     <div className={`${showMinimalNavbar ? '' : 'max-w-[1440px]'} w-full relative`}>
@@ -65,12 +69,13 @@ export const NavBar = () => {
       <ShoppingCar onClose={toogleShoppingCar} show={showShoppingCar} />
 
       <div
-        className={`${
-          showMinimalNavbar
-            ? 'bg-white py-1 px-2 lg:px-12 md:py-3 animate__fadeInDown w-full'
-            : 'bg-transparent py-4 px-2 lg:px-12 md:py-5 animate__fadeIn max-w-[1440px]'
-        } fixed top-0 flex z-40 justify-between w-full items-center md:items-start animate__animated animate__faster
-      overflow-hidden md:justify-start md:gap-10`}
+        className={`
+          fixed top-0 z-40 flex w-full
+          justify-between items-center 
+          animate__animated animate__faster
+          overflow-hidden ${navBarStyle}
+          md:justify-start md:gap-10
+        `}
       >
         {/* Menu Toggle */}
         <div className={`flex-shrink-0 md:hidden text-${color}`}>
@@ -119,7 +124,7 @@ export const NavBar = () => {
           {/* Bottom */}
           <div
             className={`${
-              showMinimalNavbar ? 'md:pt-2' : 'md:pt-4'
+              showMinimalNavbar ? 'md:pt-px' : 'md:pt-4'
             } flex flex-grow-0 items-top w-full md:flex-grow text-${color}  `}
           >
             {/* Social */}
@@ -137,7 +142,7 @@ export const NavBar = () => {
                 <Icon.awesome
                   className='text-gray-600 hover:text-red-500 hover:bg-white w-10 h-10 flex justify-center items-center'
                   icon='fa-facebook-f'
-                  size='3xl'
+                  size={showMinimalNavbar ? '2xl' : '3xl'}
                 />
               </a>
               <a
@@ -149,13 +154,18 @@ export const NavBar = () => {
                 <Icon.awesome
                   className='text-gray-600 hover:text-red-500  hover:bg-white w-10 h-10 flex justify-center items-center'
                   icon='fa-instagram'
-                  size='3xl'
+                  size={showMinimalNavbar ? '2xl' : '3xl'}
                 />
               </a>
             </div>
 
             {/* Items */}
-            <div className={'w-1/3 flex-grow justify-end gap-2 md:pt-1 md:flex md:flex-row md:w-auto lg:gap-6'}>
+            <div
+              className={`
+                w-1/3 flex-grow justify-end gap-2 md:flex md:flex-row md:w-auto lg:gap-6 
+                ${!showMinimalNavbar && 'md:pt-1'}
+              `}
+            >
               {/* Navs */}
               {!openSearch && (
                 <div

@@ -6,9 +6,11 @@ import { Instagramgray, FacebookGray, Twittergray, expand_more } from '../../../
 import { logo } from '../../../assets/images';
 import NavMobileItem from './navMobileItem';
 import Search from '../../common/search';
+import { useTranslation } from 'react-i18next';
 
 export const Menu = ({ collapsed, toggle }: MenuProps) => {
   // Hooks
+  const { i18n } = useTranslation();
   const navigate = useNavigate();
 
   // Methods
@@ -16,6 +18,8 @@ export const Menu = ({ collapsed, toggle }: MenuProps) => {
     toggle();
     setTimeout(() => navigate(path), 200);
   };
+
+  const switchLang = (lang: 'es' | 'en' = 'es') => i18n.changeLanguage(lang);
 
   // Constants
   const collapsedClass = collapsed === null ? 'hidden' : collapsed ? 'animate__slideInLeft' : 'animate__slideOutLeft';
@@ -53,18 +57,32 @@ export const Menu = ({ collapsed, toggle }: MenuProps) => {
         <NavMobileItem name='tienda' />
         <NavMobileItem name='calculadora' />
         <NavMobileItem name='canasta' />
-        {/* languages */}
-        <div className='font-sanzBold text-sm mt-5 text-grayText flex'>
-          <span>Español</span>
-          <img src={expand_more} className='brightness-0' />
-        </div>
       </div>
 
-      {/* Social */}
-      <div className='flex justify-center items-center w-full flex-shrink-0 gap-5 mb-10'>
-        <img src={FacebookGray} className='w-4 h-[19px]' />
-        <img src={Instagramgray} className='w-7 h-[19px]' />
-        <img src={Twittergray} className='w-7 h-[19px]' />
+      <div className='w-full flex p-5 items-center justify-between'>
+        {/* languages */}
+        <div className='font-sanzBold text-sm text-grayText flex items-center flex-grow flex-shrink-0'>
+          <span
+            className={`font-subTitles cursor-pointer ${i18n.language === 'en' && 'font-black'}`}
+            onClick={() => switchLang('en')}
+          >
+            EN
+          </span>
+          <span className='font-extrabold font-subTitles'> &nbsp;|&nbsp;</span>
+          <span
+            className={`font-subTitles cursor-pointer ${i18n.language === 'es' && 'font-black'}`}
+            onClick={() => switchLang()}
+          >
+            ES
+          </span>
+        </div>
+
+        {/* Social */}
+        <div className='flex justify-center items-center flex-shrink-0 gap-5'>
+          <img src={FacebookGray} className='w-4 h-[19px]' />
+          <img src={Instagramgray} className='w-7 h-[19px]' />
+          <img src={Twittergray} className='w-7 h-[19px]' />
+        </div>
       </div>
     </div>
   );
