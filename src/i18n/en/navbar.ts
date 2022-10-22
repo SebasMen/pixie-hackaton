@@ -1,5 +1,5 @@
 export const navBar = {
-  navCatalogue: 'Catalogue',
+  navCatalogue: 'Store',
   navCalculator: 'Calculator',
   navBasket: 'Your basket',
   navSearchPlaceholder: 'Search your fav pixie',

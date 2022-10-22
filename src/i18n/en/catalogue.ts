@@ -1,16 +1,16 @@
 export const catalogue = {
   // Calc - Banner
-  catBannerItem1: 'TODO',
-  catBannerItem2: 'TODO',
-  catBannerItem2_2: 'TODO',
-  catBannerItem3: 'TODO',
+  catBannerItem1: 'Better condition of the coat and skin.',
+  catBannerItem2: 'Helps digestion and improves',
+  catBannerItem2_2: 'gastrointestinal transit',
+  catBannerItem3: 'Strengthens the immune system',
 
   // Calc - filters
-  catFiltersTitle: 'TODO',
+  catFiltersTitle: 'Filter according to your case:',
   catFilterDog: 'Dogs',
   catFilterCat: 'Cats',
   catFilterPuppies: 'Puppies',
-  catFilterAdults: 'Adultos',
+  catFilterAdults: 'Adults',
   catFilterSenior: 'Senior',
   catCategoryAliments: 'Food',
   catCategorySnacks: 'Snacks',

@@ -63,6 +63,7 @@ export const CalculatorForm = ({
     },
   });
 
+  // Handlers
   const handleChangeView = (page: number) => {
     const validator = validateForm(page);
     if (!validator) {
@@ -145,6 +146,12 @@ export const CalculatorForm = ({
         `${t('calcFormTitleFrag1')} ${type.value === 'dog' ? t('calcFormDog') : t('calcFormCat')} ${t(
           'calcFormTitleFrag2'
         )}`
+      );
+    else
+      setTextTitleForm(
+        language === 'en'
+          ? 'Discover the plan that is most suited for your pet'
+          : 'Descubre cuál es el plan que más le conviene'
       );
   }, [type, language]);
 

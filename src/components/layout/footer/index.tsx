@@ -46,7 +46,7 @@ export const Footer = ({ className }: FooterProps) => {
             </div>
             <div className='flex text-[13px] items-center gap-2 lg:text-sm'>
               <Icon name='email' />
-              <span>soporte@pixie.pet</span>
+              <span>{t('footerEmail')}</span>
             </div>
           </div>
           <div className='flex font-sanzSemiBold items-start mt-2 gap-2 lg:pr-2 lg:items-start text-[13px] mb-[2.3rem] lg:mb-0 lg:text-sm xl2:mt-0'>

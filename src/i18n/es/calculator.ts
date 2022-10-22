@@ -32,7 +32,7 @@ export const calculator = {
   calcFormErrorAge: 'Se debe seleccionar una edad',
   calcFormErrorExactAge: 'Se debe seleccionar una edad correcta',
   calcFormErrorWeight: 'Se debe seleccionar un peso mayor a 0',
-  calcFormErrorEs: 'Se debe seleccionar una actividad fisica',
+  calcFormErrorEx: 'Se debe seleccionar una actividad fisica',
 
   calcFormDog: 'perrito',
   calcFormCat: 'michi',

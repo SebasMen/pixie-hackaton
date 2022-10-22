@@ -1,5 +1,6 @@
 export const footer = {
   footerContactTitle: 'Información de Contacto',
+  footerEmail: 'soporte@pixie.pet',
   address:
     'Calle Medellín, número 148, Colonia Roma Norte, Alcaldía Cuauhtémoc, Código Postal 06700, Ciudad de México.',
   footerLinksTitle: 'Links de interés',

@@ -1,74 +1,74 @@
 export const questions = {
-  q1Text: '¿Pixie alimentacion natural reemplaza totalmente una alimentación con concentrado comercial?',
-  q1Answer: `La respuesta es sí. Pixie ha sido desarrollado bajo estándares nutricionales mundialmente reconocidos, como
-  lo es el National Research Counsil. Además, nuestro equipo de médicos veterinarios ha calibrado y
-  certificado, mediante exámenes de laboratorio, que nuestro alimento natural cuente con todos los
-  requerimientos nutricionales que nuestras mascotas necesitan.`,
+  q1Text: 'Does feeding only pixie recipes to a pet replace completely a kibble-based diet?',
+  q1Answer: `The answer is yes. Pixie has been developed under globally recognized nutritional standards, such
+  as the National Research Council. In addition, our team of veterinarians has calibrated and
+  certified, through laboratory tests, that our natural food has all the nutritional requirements that
+  our pets need.`,
 
-  q2Text: '¿Cuántas veces al día debe comer mi perro?',
-  q2AnswerFrag1: 'Adulto:',
-  q2AnswerFrag2: '2 veces al día.',
-  q2AnswerFrag3: 'Cachorro:',
-  q2AnswerFrag4: '3-4 veces al día.',
-  q2AnswerFrag5: 'Te invitamos a usar nuestra',
-  q2AnswerFrag6: 'calculadora de raciones',
+  q2Text: 'How many times a day should my dog eat?',
+  q2AnswerFrag1: 'Adult:',
+  q2AnswerFrag2: '2 times a day.',
+  q2AnswerFrag3: 'Puppy:',
+  q2AnswerFrag4: '3-4 times a day.',
+  q2AnswerFrag5: 'We invite you to use our',
+  q2AnswerFrag6: 'portion calculator',
 
-  q3Text: '¿Varía la dieta de mi mascota según la edad?',
-  q3AnswerFrag1: `Por supuesto, cada etapa fisiológica de nuestras mascotas (cachorro, adulto, adulto mayor) requiere
-  características nutricionales diferentes. Por esta razón, Pixie te ofrece variedad de dietas para cada una
-  de sus etapas.`,
-  q3AnswerFrag2: 'Te invitamos a usar nuestra',
-  q3AnswerFrag3: 'calculadora de raciones',
+  q3Text: 'Does my pet’s diet vary according to age?',
+  q3AnswerFrag1: `Of course, each physiological stage of our pets (puppy, adult, senior) requires different nutritional
+  characteristics. For this reason, Pixie offers you a variety of diets for each of its stages.`,
+  q3AnswerFrag2: 'We invite you to use our',
+  q3AnswerFrag3: 'portion calculator',
 
-  q4Text: '¿Puedo dejar la ración servida en el plato todo el día?',
-  q4Answer: `Una vez abierto el producto, debe consumirse en el menor tiempo posible. Por eso, te recomendamos congelar
-  lo que usarás en los siguientes días y refrigerar lo que usarás durante el día.`,
+  q4Text: 'Can I leave the portion served on the plate all day?',
+  q4Answer: `Once the product is opened, it must be consumed in the shortest possible time. For this reason,
+  we recommend that you freeze what you will use in the following days and refrigerate what you
+  will use during the day.`,
 
-  q5Text: '¿Pixie tiene dietas medicadas?',
-  q5AnswerFrag1: '¡Si! Contamos con un desarrollo científico de dietas medicadas como:',
-  q5AnswerFrag2: 'Hepatopatias',
-  q5AnswerFrag3: 'Obesidad',
-  q5AnswerFrag4: 'Alergias',
-  q5AnswerFrag5: 'Estomago sensible',
+  q5Text: 'Does Pixie have medicated diets?',
+  q5AnswerFrag1: 'Yes! We have a scientific development of medicated diets such as:',
+  q5AnswerFrag2: 'Recipes for Liver diseases',
+  q5AnswerFrag3: 'Recipes for Obesity',
+  q5AnswerFrag4: 'Recipes for allergies',
+  q5AnswerFrag5: 'Recipes for sensitive stomach',
 
-  q6Text: '¿Por qué PIXIE alimentacion natural es mejor?',
-  q6Answer: `Es un alimento elaborado con ingredientes frescos y naturales, no usamos ningún tipo de conservador,
-  preservante, colorante ni saborizante; su palatabilidad es muy alta ya que brinda un sabor delicioso. ¿Y qué
-  mejor que alimentar a nuestras mascotas con un alimento creado anatómicamente y fisiológicamente para comer?`,
+  q6Text: 'Why is PIXIE better than kibble?',
+  q6Answer: `It is a food made with fresh and natural ingredients, we do not use any type of preservatives,
+  coloring or flavoring; its palatability is very high since it provides a delicious flavor. And what
+  better than feeding our pets with a food created anatomically and physiologically ready to eat?`,
 
-  q7Text: '¿Cuánto dura el alimento PIXIE?',
-  q7AnswerFrag1: 'Congelado:',
-  q7AnswerFrag2: '6 meses.',
-  q7AnswerFrag3: 'Refrigerado:',
-  q7AnswerFrag4: '7 días en empaque cerrado a una temperatura máxima de 4 grados centígrados.',
-  q7AnswerFrag5: `Una vez abierto debe guardarse en recipiente hermético y consumir en el menor tiempo posible. Lo ideal es
-  que mantengas el producto congelado y vayas pasando al refrigerador a medida que lo vayas necesitando.
-  Aunque el producto está diseñado para mantenerse en refrigeración (Max. 4 grados) el refrigerador de casa
-  suele abrirse mucho, impidiendo que esa temperatura se mantenga. Por eso, congélalo y manteniendo en
-  refrigeración solo lo del día.`,
+  q7Text: 'How long does PIXIE recipes last?',
+  q7AnswerFrag1: 'Frozen::',
+  q7AnswerFrag2: '6 months',
+  q7AnswerFrag3: 'Refrigerated:',
+  q7AnswerFrag4: '7 days',
+  q7AnswerFrag5: `Once opened, it should be stored in an airtight container and consumed as soon as possible.
+  Ideally, you keep the product frozen and go to the refrigerator as you need it. Although the
+  product is designed to be kept refrigerated (Max. 39.2 ◦F), the home refrigerator usually opens a
+  lot, preventing that temperature from being maintained. Therefore, freeze it and keep
+  refrigerated only the day of use.`,
 
-  q8Text: '¿Qué ventajas tiene comer PIXIE alimentación natural?',
-  q8AnswerFrag1: 'Beneficios generales:',
-  q8AnswerFrag2: 'Mascotas saludables y longevas con un',
-  q8AnswerFrag3: 'pelaje brillante',
-  q8AnswerFrag4: 'una',
-  q8AnswerFrag5: 'mejor digestión',
-  q8AnswerFrag6: 'y metabolismo del alimento, un',
-  q8AnswerFrag7: 'mejor transito gastrointestinal',
-  q8AnswerFrag8: 'y',
-  q8AnswerFrag9: 'mayor desarrollo muscular',
-  q8AnswerFrag10: 'con menor grasa corporal y una mejor actitud al comer. Nuestras dietas',
-  q8AnswerFrag11: 'fortalecen el sistema inmune',
-  q8AnswerFrag12: 'detoxificando su sistema biológico y reduciendo la cantidad de deposiciones, generando así animales',
-  q8AnswerFrag13: 'más activos y enérgicos',
+  q8Text: 'What are the advantages of eating PIXIE natural recipes?',
+  q8AnswerFrag1: 'General benefits:',
+  q8AnswerFrag2: 'Healthy and long-lived pets with a',
+  q8AnswerFrag3: 'shiny coat',
+  q8AnswerFrag4: 'a',
+  q8AnswerFrag5: 'better digestion',
+  q8AnswerFrag6: 'and metabolism of food,',
+  q8AnswerFrag7: 'better gastrointestinal transit',
+  q8AnswerFrag8: 'and',
+  q8AnswerFrag9: 'greater muscle development',
+  q8AnswerFrag10: 'with less body fat and a better attitude when eating. Our diets',
+  q8AnswerFrag11: 'strengthen the immune system,',
+  q8AnswerFrag12: 'detoxifying its biological system and reducing the number of stools, thus generating',
+  q8AnswerFrag13: 'more active and energetic animals.',
 
-  q9Text: '¿Pixie es BARF?',
+  q9Text: 'Is Pixie BARF?',
   q9AnswerFrag1:
-    'B.A.R.F es un acrónimo en inglés: Biologically Appropriate Raw Food, lo que traduce Alimentos Crudos Biológicamente Apropiados. Como Pixie es un alimento natural horneado: ¡NO ES BARF!',
-  q9AnswerFrag2: `En Pixie solo usamos cortes magros para nuestras dietas, mientras que BARF usa residuos de la industria
-    cárnica y muelen huesos en la preparación de sus dietas. BARF elabora sus productos basado en la idea de
-    que los perros son carnívoros estrictos, por eso se exceden con la proteína no digestible, lo que a largo
-    plazo causa problemas hepáticos y/o renales.`,
+    'B.A.R.F is an acronym that stands for: Biologically Appropriate Raw Food. Pixie is a natural baked food: IT IS NOT BARF!',
+  q9AnswerFrag2: `At Pixie we only use lean cuts for our diets, while BARF uses waste from the meat industry and
+  grind up bones in the preparation of their diets. BARF makes its products based on the idea that
+  dogs are strict carnivores, which is why they go overboard with non-digestible protein, which in
+  the long term causes liver and/or kidney problems.`,
 
   q10Text: '¿Es necesario realizar una transición para iniciar con Pixie?',
   q10AnswerFrag1: `Sí recomendamos realizar la transición del alimento que consume actualmente a nuestras dietas, para evitar
@@ -86,14 +86,14 @@ export const questions = {
   q10AnswerFrag7: 'Día 5-6: 25% alimento actual y 75% Pixie.',
   q10AnswerFrag8: 'Día 7: ya puedes empezar totalmente con Pixie.',
 
-  q11Text: '¿Son los snacks también para gatitos?',
-  q11AnswerFrag1: `¡Claro que sí! Aunque en el empaque se encuentra indicado para perritos por sus ingredientes y composición
-  nutricional, también se las puedes dar a los gatitos sin problema`,
-  q11AnswerFrag2: 'Nota: Recuerda validar el tamaño del snack y cortarlos en porciones más pequeñas',
+  q11Text: 'Are the snacks also for kittens?',
+  q11AnswerFrag1: `Of course! Although on the packaging it is indicated for dogs due to its ingredients and nutritional
+  composition, you can also give it to kittens without any problem.`,
+  q11AnswerFrag2: 'Note: Remember to validate the size of the snack and cut them into smaller portions',
 
-  q12Text: '¿Puedo alternar los sabores?',
-  q12AnswerFrag1: `En Pixie sabemos que en la variedad está el placer, por ello contamos con diferentes dietas para tu
-  peludito. Puedes alternarlas y así mantener siempre su interés al hora del alimento (no recomendamos
-  mezclar dos dietas diferentes en una misma comida)`,
-  q12AnswerFrag2: 'Si tu peludito es sensible del estómago, contáctanos para brindarte asesoría personalizada',
+  q12Text: 'Can I alternate the recipes?',
+  q12AnswerFrag1: `At Pixie we know that variety gives pleasure, which is why we have different recipes for your furry
+  friend. You can alternate them and thus always maintain their interest at meal time (we do not
+  recommend mixing two different recipes in the same meal)`,
+  q12AnswerFrag2: 'If your furry one is sensitive to the stomach, contact us to give you personalized advice',
 };
