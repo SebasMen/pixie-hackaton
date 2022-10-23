@@ -76,7 +76,7 @@ export const ProductCard = ({
   };
 
   const isEs = language === 'es';
-  const productName = isEs ? product.name : product.name;
+  const productName = isEs ? product.name : product.name_en;
 
   // Component
   return (
