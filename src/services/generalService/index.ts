@@ -1,29 +1,17 @@
-import axios from 'axios';
-import { getDataLocation, getIp } from '../../interfaces/location';
+import { getDataLocation } from '../../interfaces/location';
+import api from '../axios';
 
 class GeneralService {
   init() {}
 
-  getIp = async (): Promise<getIp> =>
+  getLocationData = async (longitud: number, latitud: number): Promise<getDataLocation> =>
     new Promise((resolve, reject) => {
-      axios.get('https://api.ipify.org?format=json')
+      api.get(`pixie-payments/api/payments//location/${longitud}/${latitud}`)
         .then(response => {
-          resolve(response.data);
+          resolve(response.data.data);
         }).catch(error => {
-          reject(error.response);
-        }
-        );
-    });
-
-  getLocationData = async (ip: string): Promise<getDataLocation> =>
-    new Promise((resolve, reject) => {
-      axios.get(`http://www.geoplugin.net/json.gp?ip=${ip}`)
-        .then(response => {
-          resolve(response.data);
-        }).catch(error => {
-          reject(error.response);
-        }
-        );
+          reject(error);
+        });
     });
 }
 

@@ -3,6 +3,8 @@ import { lazy, Suspense, useEffect, useRef } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import FadeScreen from '../components/layout/fadeScreen';
 
+import generalService from '../services/generalService';
+
 const NotFound = lazy(() => import('../views/notFound'));
 const Catalogue = lazy(() => import('../views/Catalogue'));
 const Home = lazy(() => import('../views/Home'));
@@ -15,14 +17,14 @@ const DataPrivacy = lazy(() => import('../views/dataPrivacy'));
 const TermsAndConditions = lazy(() => import('../views/termsAndConditions'));
 const ResultPayment = lazy(() => import('../views/resultPayment'));
 
-import { useAppContext, useAuth } from '../hooks';
-import { getDataLocation } from '../interfaces/location';
+import { useAppContext, useAuth, useLocation } from '../hooks';
 
 const AppRouter = () => {
   // Hooks
   const { isAuthenticated, updateContext } = useAppContext();
   const { checkToken, old: token, isChecking } = useAuth();
   const isMounted = useRef(false);
+  const { getUserLocation } = useLocation();
 
   // Check if user is authenticated
   useEffect(() => {
@@ -48,32 +50,17 @@ const AppRouter = () => {
     return () => { };
   }, [isMounted.current]);
 
-  // Get ip to know location
   useEffect(() => {
-    const data: getDataLocation = {
-      geoplugin_city: 'ciudad de mexico',
-      geoplugin_region: 'Queretaro',
-      geoplugin_countryCode: 'MX',
-      geoplugin_countryName: 'MEXICO',
-      geoplugin_continentName: 'South America',
-      geoplugin_latitude: '6.2059',
-      geoplugin_longitude: '-75.5901',
-      geoplugin_currencyCode: 'COP',
-      geoplugin_currencySymbol: '$',
-      geoplugin_currencyConverter: 4607.26,
-      geoplugin_regionCode: '',
-      geoplugin_regionName: '',
-      geoplugin_timezone: ''
-    };
-
-    /// generalService.getIp().then(ip =>
-    //   generalService.getLocationData(ip.ip).then(data => {
-    updateContext(old => ({ ...old, location: data }));
-    //   }).catch(error => console.log('error obteniendo locatizacion', error))
-    // ).catch(error => console.log('error obteniendo la ip', error));
-
-    return () => { };
+    getUserLocation().then(lngLat => setDataLocation(lngLat[0], lngLat[1]));
+    return () => {};
   }, []);
+
+  const setDataLocation = (longitud: number, latitud: number) => {
+    generalService.getLocationData(longitud, latitud).then(res => {
+      updateContext(old => ({ ...old, location: res.country }));
+    }
+    );
+  };
 
   // Routes
   return (

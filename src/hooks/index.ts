@@ -4,5 +4,6 @@ import useForm from './useForm';
 import useLogin from './useLogin';
 import useLogout from './useLogout';
 import useAuth from './useAuth';
+import useLocation from './useLocation';
 
-export { useAppContext, useFetch, useForm, useLogin, useAuth, useLogout };
+export { useAppContext, useFetch, useForm, useLogin, useAuth, useLogout, useLocation };

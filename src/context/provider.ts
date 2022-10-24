@@ -90,21 +90,7 @@ export const appProvider: AppContextType = {
   showPopupGotoSite: true,
   // Provitional data to show recomendation
   productsToShowRecomendation: [],
-  location: {
-    geoplugin_city: '',
-    geoplugin_continentName: '',
-    geoplugin_countryCode: '',
-    geoplugin_countryName: '',
-    geoplugin_currencyCode: '',
-    geoplugin_currencyConverter: 0,
-    geoplugin_currencySymbol: '',
-    geoplugin_latitude: '',
-    geoplugin_longitude: '',
-    geoplugin_region: '',
-    geoplugin_regionCode: '',
-    geoplugin_regionName: '',
-    geoplugin_timezone: '',
-  },
+  location: '',
   showPopupTermsAndConditions: {
     status: false,
     type: 1

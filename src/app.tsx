@@ -8,6 +8,11 @@ export const App = () => {
   // Updatable Provider
   const [provider, setProvider] = useState(appProvider);
 
+  if (!navigator.geolocation) {
+    console.log('tu navegador no tiene opcion de geolocalización');
+    throw new Error('Tu navegador no tiene geolocalizacion');
+  }
+
   // Auth check
   useEffect(() => {
     if (!provider) return;
