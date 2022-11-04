@@ -35,6 +35,9 @@ export const appProvider: AppContextType = {
 
   // Products
   products: shoppingCar === null ? [] : shoppingCar,
+
+  // Discount
+  discount: 0,
   // ProductView
   productView: {
     age: '',

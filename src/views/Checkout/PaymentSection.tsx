@@ -16,6 +16,7 @@ import { calculateTotalPayment, organiceInformationPaymentMP } from '../../helpe
 import { useLoading } from '../../hooks/useLoading';
 import { mexicanStates } from '../../@fake/statesFake';
 import { getCities, getPostalCode } from '../../helpers/formCheckoutHelper';
+import { couponComplete } from '../../interfaces/coupon';
 
 const numberOfInstallmentsOptions: SelectItem[] = [
   { value: '1', label: '1 Cuota' },
@@ -24,7 +25,7 @@ const numberOfInstallmentsOptions: SelectItem[] = [
   { value: '24', label: '24 Cuota' },
 ];
 
-const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPaymentAnswer, countriesOptions }:PaymentSectionProps) => {
+const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPaymentAnswer, countriesOptions, coupon }:PaymentSectionProps) => {
   // Hooks
   const [sameBillingAdressSt, setSameBillingAdressSt] = useState<boolean>(true);
   /// const [showPopup, setShowPopup] = useState(false);
@@ -43,7 +44,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     numberOfInstallments: { label: '', value: '' },
     numberOfInstallmentsSelect: numberOfInstallmentsOptions,
     card_cvv: '',
-    amount: calculateTotalPayment(products, shippingData, true),
+    amount: calculateTotalPayment(products, shippingData, true, coupon),
     // Billing Form
     name: '',
     last_name: '',
@@ -282,7 +283,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   const handleSubmit = async (form: paymentForm) => {
     loadingTrue();
     // Organize data
-    const paymentData = organiceInformationPaymentMP(idCustomer, userData, products, shippingData, form, sameBillingAdressSt);
+    const paymentData = organiceInformationPaymentMP(idCustomer, userData, products, shippingData, form, sameBillingAdressSt, coupon);
     localStorage.setItem('order-data', JSON.stringify(paymentData));
     await paymentService.getPaymentId(paymentData)
       .then(res => {
@@ -481,6 +482,7 @@ interface PaymentSectionProps {
   changeStep: React.Dispatch<React.SetStateAction<number>>;
   setPaymentAnswer: React.Dispatch<React.SetStateAction<postSendPayment>>;
   countriesOptions: SelectItem[] | undefined;
+  coupon?: couponComplete;
 }
 
 export default PaymentSection;

@@ -367,7 +367,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
         />
         <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
           <SelectField
-            placeholder='Estado*'
+            placeholder='Estado / Ciudad*'
             name='state'
             options={form.states}
             value={form.state.value ? form.state : undefined}
@@ -382,7 +382,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             name='city'
             options={form.cities}
             value={form.city.value ? form.city : undefined}
-            placeholder='Ciudad*'
+            placeholder='Delegación / Municipio*'
             onChange={handleSelectChange}
             borderRadius={true}
             borderColor='#000'

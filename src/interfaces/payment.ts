@@ -48,6 +48,10 @@ export interface generatePaymentMP {
     billingDetails: houseData,
     customer_id: string,
     delivery_note: string,
+    couponId?: {
+      id: string,
+      amount: number
+    }
   }
   total_amount: number,
   back_urls: {

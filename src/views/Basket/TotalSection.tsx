@@ -1,12 +1,13 @@
 import { useAppContext } from '../../hooks';
 
 import { useEffect } from 'react';
-import { calculateTotalPayment } from '../../helpers/paymentHelper';
+import { calculateTotalPayment, getPriceDescount } from '../../helpers/paymentHelper';
 import { calculateIva, calculateTotal } from '../../helpers/productHelper';
 
 import { shippingTypeForm, typeShipping } from '../../interfaces/checkout';
+import { couponComplete } from '../../interfaces/coupon';
 
-const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', price: 90 }, setUpdateShippingPrince }:TotalSectionProps) => {
+const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', price: 90 }, setUpdateShippingPrince, coupon }:TotalSectionProps) => {
   // Hooks
   const { products, location } = useAppContext();
 
@@ -47,20 +48,32 @@ const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', pri
             <span>${shippingInfo.price}</span>
           </div>
         }
+
+        {coupon && (<div>
+          <div className='flex justify-between mt-3'>
+            <span>Descuento</span>
+            {coupon.couponType.key === 'percent' &&
+               <span>$ {-(getPriceDescount(products, coupon) - calculateTotal(products, false))}</span>
+            }
+            {coupon.couponType.key === 'discount' &&
+               <span>${coupon.discount}</span>
+            }
+          </div>
+        </div>)}
       </div>
       <div className='bg-[#dbdbdb] rounded-xl px-4 mt-[6px] py-2 font-bold text-lg lg:mt-6 lg:py-2 lg:pl-3 lg:pr-4'>
         {location === 'USA'
           ?
           <div className='flex justify-between items-center'>
             Total estimado
-            <p>${calculateTotalPayment(products, shippingInfo, true)}
+            <p>${calculateTotalPayment(products, shippingInfo, true, coupon)}
               <span> + Impuestos</span>
             </p>
           </div>
           :
           <div className='flex justify-between items-center'>
             Total
-            <p>${calculateTotalPayment(products, shippingInfo, true)}</p>
+            <p>${calculateTotalPayment(products, shippingInfo, true, coupon)}</p>
           </div>
         }
       </div>
@@ -72,7 +85,8 @@ const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', pri
 interface TotalSectionProps {
   showTaxes?: boolean;
   shippingInfo?: shippingTypeForm;
-  setUpdateShippingPrince?: (name:typeShipping, value: number) => void
+  setUpdateShippingPrince?: (name:typeShipping, value: number) => void;
+  coupon?: couponComplete
 }
 
 export default TotalSection;

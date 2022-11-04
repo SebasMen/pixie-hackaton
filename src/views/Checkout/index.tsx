@@ -22,6 +22,9 @@ import { postSendPayment } from '../../interfaces/payment';
 import checkOutService from '../../services/checkOutService';
 
 import { basketRed } from '../../assets/vectors/';
+import TextField from '../../components/form/textField';
+import { couponComplete } from '../../interfaces/coupon';
+import Button from '../../components/common/button';
 
 const CheckOut = () => {
   // Hooks
@@ -30,6 +33,11 @@ const CheckOut = () => {
   const [userInfo, setuserInfo] = useState<SubmissionFormInterface>();
   const [idCustomer, setIdCustomer] = useState('');
   const [shippingInfo, setShippingInfo] = useState<shippingTypeForm>({ type: 'estandar', price: 90 });
+  const [coupon, setCoupon] = useState<couponComplete>();
+  const [couponCode, setCouponCode] = useState({
+    status: true,
+    code: ''
+  });
   const [paymentAnswer, setPaymentAnswer] = useState<postSendPayment>({
     status: 'wait',
     data: {
@@ -70,6 +78,27 @@ const CheckOut = () => {
     setShippingInfo({ type: name, price: value });
   };
 
+  const validCoupon = () => {
+    checkOutService.getCoupon(couponCode.code).then(res => {
+      // Validate uses
+      if (res.totalUses >= res.maxUses)
+        setCouponCode(old => ({ ...old, status: false }));
+      else {
+        const date = new Date(res.expireDate.split('T')[0]);
+        date.setDate(date.getDate() + 1);
+        const today = new Date();
+        if (today > date)
+          setCouponCode(old => ({ ...old, status: false }));
+        else {
+          setCoupon(res);
+          setCouponCode(old => ({ ...old, status: true }));
+        }
+      }
+    }).catch(err => {
+      setCouponCode(old => ({ ...old, status: false }));
+    });
+  };
+
   return (
     <Page className='bg-sixth'>
       <div className='w-full mb-16 max-w-[1440px] pt-1 lg:px-32 lg:pt-5 lg:pb-20'>
@@ -81,7 +110,47 @@ const CheckOut = () => {
         {/* resumen section movil */}
         {step !== 5 && (
           <div className='block bg-white mb-7 lg:hidden'>
-            <ResumenSection shippingInfo={shippingInfo} />
+            <ResumenSection
+              shippingInfo={shippingInfo}
+              step={step}
+            />
+            {step >= 3 && (
+              <div className='mx-5 pb-6 mt-5'>
+                <div className='flex-col flex mb-5'>
+                  <div className={`relative flex ${!(coupon === undefined) && 'opacity-40'}`}>
+                    <TextField
+                      handler={e => setCouponCode(old => ({ ...old, code: e.target.value }))}
+                      name='couponCode'
+                      value={couponCode.code}
+                      className='w-full placeholder-slate-100'
+                      placeholder='Ingresa el código de tu cupón'
+                      disabled={!(coupon === undefined)}
+                      fieldClassName='font-subTitles py-[0.50rem] placeholder-pixieLightBlue'
+                      border={`ring-1 rounded-r-[10px] transform transition-all border-0 ${couponCode.status ? 'ring-pixieLightBlue' : 'ring-primary'}`}
+                    />
+                    <Button
+                      className={`${couponCode.status ? 'bg-pixieLightBlue' : 'bg-primary'} 
+                      text-sm w-[30%] tracking-normal text-white rounded-r-[10px] rounded-l-[0px] absolute right-0
+                      ${!(coupon === undefined) && 'cursor-not-allowed'}`}
+                      padding='py-[0.67rem]'
+                      onClick={validCoupon}
+                      disable={!(coupon === undefined)}
+                    >
+                      Aplicar
+                    </Button>
+                  </div>
+                  {!couponCode.status &&
+                    <span className='text-primary text-xs font-subTitles'>* Este código ya fue redimido</span>
+                  }
+                </div>
+                <TotalSection
+                  showTaxes={true}
+                  setUpdateShippingPrince={updateShippingInfo}
+                  shippingInfo={shippingInfo}
+                  coupon={coupon}
+                />
+              </div>
+            )}
           </div>
         )}
 
@@ -98,13 +167,45 @@ const CheckOut = () => {
                 <div className='hidden font-bold tracking-[-0.55px] text-pixieLightBlue lg:text-base lg:block'>
                   <span>RESUMEN DE TU PEDIDO</span>
                 </div>
+                {step >= 3 && (
+                  <div className='flex-col hidden lg:flex'>
+                    <div className={`relative flex ${!(coupon === undefined) && 'opacity-40'}`}>
+                      <TextField
+                        handler={e => setCouponCode(old => ({ ...old, code: e.target.value }))}
+                        name='couponCode'
+                        value={couponCode.code}
+                        className='w-full placeholder-slate-100'
+                        placeholder='Ingresa el código de tu cupón'
+                        disabled={!(coupon === undefined)}
+                        fieldClassName='font-subTitles py-[0.50rem] placeholder-pixieLightBlue'
+                        border={`ring-1 rounded-r-[10px] transform transition-all border-0 ${couponCode.status ? 'ring-pixieLightBlue' : 'ring-primary'}`}
+                      />
+                      <Button
+                        className={`${couponCode.status ? 'bg-pixieLightBlue' : 'bg-primary'} 
+                        text-sm w-[30%] tracking-normal text-white rounded-r-[10px] rounded-l-[0px] absolute right-0
+                        ${!(coupon === undefined) && 'cursor-not-allowed'}`}
+                        padding='py-[0.67rem]'
+                        onClick={validCoupon}
+                        disable={!(coupon === undefined)}
+                      >
+                        Aplicar
+                      </Button>
+                    </div>
+                    {!couponCode.status &&
+                      <span className='text-primary text-xs font-subTitles'>* Este código ya fue redimido</span>
+                    }
+                  </div>
+                )}
                 {/* resumen section desktop */}
                 <div className='hidden lg:block'>
-                  <ResumenSection shippingInfo={shippingInfo} />
+                  <ResumenSection shippingInfo={shippingInfo}
+                    step={step}
+                  />
                   <TotalSection
                     showTaxes={true}
                     setUpdateShippingPrince={updateShippingInfo}
                     shippingInfo={shippingInfo}
+                    coupon={coupon}
                   />
                 </div>
               </div>
@@ -134,6 +235,7 @@ const CheckOut = () => {
                   changeStep={setStep}
                   setPaymentAnswer={setPaymentAnswer}
                   countriesOptions={countries}
+                  coupon={coupon}
                 />
               )}
             </div>

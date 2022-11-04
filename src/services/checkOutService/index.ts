@@ -1,4 +1,5 @@
 import { selectCountryService, postSendFormCheckout, SubmissionFormInterface } from '../../interfaces/checkout';
+import { couponComplete } from '../../interfaces/coupon';
 import api from '../axios';
 
 export class CheckOutService {
@@ -47,6 +48,15 @@ export class CheckOutService {
       return { error: [{ msg: (error as Error)?.message || defError, param: 'global', location: 'global' }], data: { id: '' } };
     }
   };
+
+  getCoupon = (claimCode: string): Promise<couponComplete> =>
+    new Promise((resolve, reject) => {
+      api({ baseURL: `https://apidev.tools.antpack.co/pixie-coupons/api/coupons/code/${claimCode}` }).then(res => {
+        resolve(res.data);
+      }).catch(err => {
+        reject(err.response.data.message);
+      });
+    });
 }
 
 export default new CheckOutService();

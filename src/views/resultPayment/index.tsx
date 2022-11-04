@@ -93,19 +93,22 @@ const ResultPayment = () => {
   };
 
   const updateStatePayment = async (urlData: urlParamsMP) => {
-    await paymentService.updatePayment(urlData)
-      .then(res => {
-        localStorage.removeItem('finalDataPayment');
-        localStorage.removeItem('order-data');
-        if (urlData.status === 'approved')
-          statusApproved();
-      })
-      .catch(error => {
-        toast.fire({
-          icon: 'warning',
-          title: error,
+    if (urlData.status === 'approved') {
+      localStorage.removeItem('finalDataPayment');
+      localStorage.removeItem('order-data');
+      statusApproved();
+    } else
+      await paymentService.updatePayment(urlData)
+        .then(res => {
+          localStorage.removeItem('finalDataPayment');
+          localStorage.removeItem('order-data');
+        })
+        .catch(error => {
+          toast.fire({
+            icon: 'warning',
+            title: error,
+          });
         });
-      });
   };
 
   return (

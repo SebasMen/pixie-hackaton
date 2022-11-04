@@ -24,6 +24,9 @@ export interface AppContextType {
   // Products
   products: CartItem[];
 
+  // Discounts
+  discount: number;
+
   // Productview
   productView: Product;
 

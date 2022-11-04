@@ -1,13 +1,14 @@
 import { CartItem } from '../interfaces/basket';
 import { addressObject, paymentForm, shippingTypeForm, SubmissionFormInterface } from '../interfaces/checkout';
+import { couponComplete } from '../interfaces/coupon';
 import { billingDetailsInterface, billingDetailsInterfaceMV, generatePaymentMP, itemsMP } from '../interfaces/payment';
 import { calculateIva, calculateTotal, roundToXDigits } from './productHelper';
 
 // Organize the data to send them to the api
 // eslint-disable-next-line max-params
-export const organiceInformationPaymentMP = (idCustomer: string, userData: SubmissionFormInterface | undefined, products: CartItem[], shippingData: shippingTypeForm, form: paymentForm, sameBillingAddress: boolean): generatePaymentMP => {
+export const organiceInformationPaymentMP = (idCustomer: string, userData: SubmissionFormInterface | undefined, products: CartItem[], shippingData: shippingTypeForm, form: paymentForm, sameBillingAddress: boolean, coupon: couponComplete | undefined): generatePaymentMP => {
   const paymentData: generatePaymentMP = {
-    items: organiceProductsMP(products, shippingData),
+    items: organiceProductsMP(products, shippingData, coupon),
     payer: organiceBillingDetailsMP(userData, form, sameBillingAddress),
     auto_return: 'approved',
     shipments: {
@@ -46,13 +47,17 @@ export const organiceInformationPaymentMP = (idCustomer: string, userData: Submi
         phoneNumber: userData?.phone ? userData?.phone : '',
       },
       details_payments: {
-        subTotalNoIva: calculateTotalPayment(products, { type: 'gratis', price: 0 }, false),
+        subTotalNoIva: calculateTotalPayment(products, { type: 'gratis', price: 0 }, false, coupon),
         deliveryPrice: shippingData.price,
         onlyIva: calculateIva(products),
-        totalPayment: calculateTotalPayment(products, shippingData, true)
+        totalPayment: calculateTotalPayment(products, shippingData, true, coupon)
       },
+      couponId: coupon && {
+        amount: (getPriceDescount(products, coupon) - calculateTotal(products, false)),
+        id: coupon.id
+      }
     },
-    total_amount: calculateTotalPayment(products, shippingData, true),
+    total_amount: calculateTotalPayment(products, shippingData, true, coupon),
     back_urls: {
       failure: 'https://pixie.antpk.co/checkout/result',
       pending: 'https://pixie.antpk.co/checkout/result',
@@ -63,7 +68,7 @@ export const organiceInformationPaymentMP = (idCustomer: string, userData: Submi
   return paymentData;
 };
 
-const organiceProductsMP = (products: CartItem[], shippingData: shippingTypeForm) : Array<itemsMP> => {
+const organiceProductsMP = (products: CartItem[], shippingData: shippingTypeForm, coupon: couponComplete | undefined) : Array<itemsMP> => {
   const productsArray = products.map(item => {
     const productItem: itemsMP = {
       id: item.product.id,
@@ -95,6 +100,23 @@ const organiceProductsMP = (products: CartItem[], shippingData: shippingTypeForm
       quantity: 1,
     };
     productsArray.push(productItem);
+
+    if (coupon) {
+      const productItemdiscount: itemsMP = {
+        id: '0',
+        description: {
+          description: 'descuento',
+          presentation: 'descuento',
+          age: 'descuento'
+        },
+        picture_url: '',
+        unit_price: (getPriceDescount(products, coupon) - calculateTotal(products, false)),
+        title: 'descuento',
+        quantity: 1,
+      };
+      productsArray.push(productItemdiscount);
+      console.log(productItemdiscount.unit_price);
+    }
   }
 
   return productsArray;
@@ -198,14 +220,40 @@ const organiceAddressChangeBilling = (form:paymentForm): string => {
 };
 
 // Calculate the total with the shipping price and iva
-export const calculateTotalPayment = (productsCar: CartItem[], shippingData: shippingTypeForm, withIva: boolean): number => {
-  const totalProduct = calculateTotal(productsCar, !withIva);
+export const calculateTotalPayment = (productsCar: CartItem[], shippingData: shippingTypeForm, withIva: boolean, coupon: couponComplete | undefined): number => {
+  let totalProduct = calculateTotal(productsCar, !withIva);
+
+  if (coupon)
+    switch (coupon?.couponType.key) {
+      case 'percent':
+        totalProduct = roundToXDigits(totalProduct - (totalProduct * coupon.discount / 100), 0);
+        break;
+      case 'discount':
+        totalProduct = roundToXDigits(totalProduct - coupon.discount, 0);
+        break;
+      default:
+        break;
+    }
 
   // If the product cost > 750 the shipping is free
   if (totalProduct > 750)
     return roundToXDigits(totalProduct, 2);
 
   return roundToXDigits((totalProduct + shippingData.price), 2);
+};
+
+export const getPriceDescount = (productsCar: CartItem[], coupon: couponComplete): number => {
+  const totalProduct = calculateTotal(productsCar, false);
+  switch (coupon?.couponType.key) {
+    case 'percent':
+      return roundToXDigits(totalProduct - (totalProduct * coupon.discount / 100), 0);
+    case 'discount':
+      return roundToXDigits(totalProduct - coupon.discount, 0);
+    default:
+      break;
+  }
+
+  return 0;
 };
 
 export const isFormComplete = (data: SubmissionFormInterface, acceptConditions: boolean) => {

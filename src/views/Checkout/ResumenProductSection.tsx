@@ -10,7 +10,7 @@ import { shippingTypeForm } from '../../interfaces/checkout';
 import { basketBlue, expandMoreBlue } from '../../assets/vectors';
 import Scrollbars from 'react-custom-scrollbars-2';
 
-const ResumenProductSection = ({ shippingInfo }:ResumenProductSectionProps) => {
+const ResumenProductSection = ({ shippingInfo, step }:ResumenProductSectionProps) => {
   // Hooks
   const [isActive, setIsActive] = useState(false);
   const { products } = useAppContext();
@@ -73,9 +73,11 @@ const ResumenProductSection = ({ shippingInfo }:ResumenProductSectionProps) => {
               </div>
             }
             {/* Sections */}
+            {step < 3 &&
             <div className='lg:hidden'>
-              <TotalSection shippingInfo={shippingInfo} />
+              <TotalSection shippingInfo={shippingInfo} coupon={undefined} />
             </div>
+            }
           </div>
         )}
       </div>
@@ -85,6 +87,7 @@ const ResumenProductSection = ({ shippingInfo }:ResumenProductSectionProps) => {
 
 interface ResumenProductSectionProps {
   shippingInfo: shippingTypeForm;
+  step: number
 }
 
 export default ResumenProductSection;
