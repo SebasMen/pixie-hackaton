@@ -56,7 +56,6 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
       reference: dataFormCheckOut.reference,
       houseNumber: dataFormCheckOut.houseNumber,
       apartment: dataFormCheckOut.apartment,
-      delegation: dataFormCheckOut.delegation,
       address: dataFormCheckOut.address,
       colony: dataFormCheckOut.colony,
       delivery_note: dataFormCheckOut.delivery_note
@@ -116,7 +115,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
   }, [form, acceptConditions]);
 
   useEffect(() => {
-    if (form.zip_code.value) {
+    if (form.zip_code?.value) {
       // Validate zip code
       if (!postalCode.includes(parseInt(form.zip_code.value, 10)))
         handlePutMessageError('zip_code', 'El codigo postal no se encuentra en nuestra lista');
@@ -125,9 +124,9 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
   }, [form.zip_code]);
 
   useEffect(() => {
-    if (form.state.value)
+    if (form.state?.value)
       setForm(old => ({ ...old, cities: getCities(form.state.value) }));
-    if (form.city.value)
+    if (form.city?.value)
       setForm(old => ({ ...old, zipcodes: getPostalCode(form.city.value) }));
   }, [form.state, form.city]);
 
@@ -180,27 +179,22 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
       error = true;
     }
 
-    if (!validator.isLength(form.delegation, { min: 4 })) {
-      handlePutMessageError('delegation', 'La colonia debe contener mas de 4 caracteres');
-      error = true;
-    }
-
-    if (validator.equals(form.state.value, '')) {
+    if (validator.equals(form.state?.value, '')) {
       handlePutMessageError('state', 'Se debe seleccionar un estado');
       error = true;
     }
 
-    if (validator.equals(form.country.value, '')) {
+    if (validator.equals(form.country?.value, '')) {
       handlePutMessageError('country', 'Se debe seleccionar un país');
       error = true;
     }
 
-    if (validator.equals(form.city.value, '')) {
+    if (validator.equals(form.city?.value, '')) {
       handlePutMessageError('city', 'Se debe seleccionar una ciudad');
       error = true;
     }
 
-    if (!postalCode.includes(parseInt(form.zip_code.value, 10))) {
+    if (!postalCode.includes(parseInt(form.zip_code?.value, 10))) {
       handlePutMessageError('zip_code', 'El codigo postal no se encuentra en nuestra lista');
       error = true;
     }
@@ -358,30 +352,32 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           placeholder='País*'
           name='country'
           options={form.countries}
-          value={form.country.value ? form.country : undefined}
+          value={form.country?.value ? form.country : undefined}
           onChange={handleSelectChange}
           borderRadius={true}
           borderColor='#000'
           paddingY='0.43rem'
           messageError={validatorBody.country.message}
+          isClearable
         />
         <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
           <SelectField
             placeholder='Estado / Ciudad*'
             name='state'
             options={form.states}
-            value={form.state.value ? form.state : undefined}
+            value={form.state?.value ? form.state : undefined}
             onChange={handleSelectChange}
             borderRadius={true}
             borderColor='#000'
             className='lg:w-1/2'
             paddingY='0.43rem'
             messageError={validatorBody.state.message}
+            isClearable
           />
           <SelectField
             name='city'
             options={form.cities}
-            value={form.city.value ? form.city : undefined}
+            value={form.city?.value ? form.city : undefined}
             placeholder='Delegación / Municipio*'
             onChange={handleSelectChange}
             borderRadius={true}
@@ -389,13 +385,14 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             className='lg:w-1/2'
             paddingY='0.43rem'
             messageError={validatorBody.city.message}
+            isClearable
           />
         </div>
         <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
           <SelectField
             name='zip_code'
             options={form.zipcodes}
-            value={form.zip_code.value ? form.zip_code : undefined}
+            value={form.zip_code?.value ? form.zip_code : undefined}
             placeholder='Código postal*'
             onChange={handleSelectChange}
             borderRadius={true}
@@ -403,16 +400,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             className='lg:w-1/2'
             paddingY='0.43rem'
             messageError={validatorBody.zip_code.message}
-          />
-          <TextField
-            name='delegation'
-            value={form.delegation}
-            handler={handleFormChange}
-            placeholder='Delegación o Municipio*'
-            className='lg:w-1/2'
-            fieldClassName='py-[0.95rem]'
-            messageError={validatorBody.delegation.message}
-            required
+            isClearable
           />
         </div>
         <CheckField

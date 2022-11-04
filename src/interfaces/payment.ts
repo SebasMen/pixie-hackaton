@@ -77,7 +77,6 @@ export interface itemsMP {
   id: string,
   title: string,
   description: {
-    description: string,
     presentation: string,
     age: string
   },

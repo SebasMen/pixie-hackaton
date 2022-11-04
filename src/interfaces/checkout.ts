@@ -13,7 +13,6 @@ export interface SubmissionFormInterface {
   zip_code: SelectItem;
   zipcodes: SelectItem[];
   colony: string;
-  delegation: string;
   city: SelectItem;
   cities: SelectItem[];
   states: SelectItem[];
@@ -129,5 +128,4 @@ export interface addressObject {
   reference: string | undefined,
   zipCode: string | undefined,
   colony: string | undefined,
-  delegation: string | undefined,
 }

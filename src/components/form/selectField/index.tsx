@@ -16,6 +16,7 @@ export const SelectField = ({
   dropdownIndicatorColor,
   isMulti = false,
   colorText,
+  isClearable = false
 }: SelectFieldProps) => (
   <div className={'w-full flex flex-col items-start ' + className}>
     {label && <h2 className='pl-6 mb-3 text-lg font-medium'>{label}</h2>}
@@ -39,6 +40,7 @@ export const SelectField = ({
       value={value}
       options={options}
       onChange={newValue => onChange(newValue, name)}
+      isClearable={isClearable}
       styles={{
         dropdownIndicator: base => ({
           ...base,
@@ -86,6 +88,7 @@ interface SelectFieldProps {
   messageError?: string;
   dropdownIndicatorColor?: string;
   colorText?: string;
+  isClearable?: boolean
 }
 
 export interface SelectItem {

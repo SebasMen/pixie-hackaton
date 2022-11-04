@@ -73,7 +73,6 @@ const organiceProductsMP = (products: CartItem[], shippingData: shippingTypeForm
     const productItem: itemsMP = {
       id: item.product.id,
       description: {
-        description: item.product.description,
         presentation: item.product.presentation,
         age: item.product.age
       },
@@ -90,7 +89,6 @@ const organiceProductsMP = (products: CartItem[], shippingData: shippingTypeForm
     const productItem: itemsMP = {
       id: '0',
       description: {
-        description: 'Envio',
         presentation: 'envio',
         age: 'envio'
       },
@@ -105,7 +103,6 @@ const organiceProductsMP = (products: CartItem[], shippingData: shippingTypeForm
       const productItemdiscount: itemsMP = {
         id: '0',
         description: {
-          description: 'descuento',
           presentation: 'descuento',
           age: 'descuento'
         },
@@ -198,7 +195,6 @@ const organiceAddress = (userData:SubmissionFormInterface | undefined): string =
     reference: userData?.reference,
     zipCode: userData?.zip_code.value,
     colony: userData?.colony,
-    delegation: userData?.delegation,
   };
 
   return JSON.stringify(address);
@@ -213,7 +209,6 @@ const organiceAddressChangeBilling = (form:paymentForm): string => {
     reference: form.reference,
     zipCode: form.zip_code?.value,
     colony: form.colony,
-    delegation: form.delegation,
   };
 
   return JSON.stringify(address);
@@ -226,10 +221,10 @@ export const calculateTotalPayment = (productsCar: CartItem[], shippingData: shi
   if (coupon)
     switch (coupon?.couponType.key) {
       case 'percent':
-        totalProduct = roundToXDigits(totalProduct - (totalProduct * coupon.discount / 100), 0);
+        totalProduct = roundToXDigits(totalProduct - (totalProduct * coupon.discount / 100), 2);
         break;
       case 'discount':
-        totalProduct = roundToXDigits(totalProduct - coupon.discount, 0);
+        totalProduct = roundToXDigits(totalProduct - coupon.discount, 2);
         break;
       default:
         break;
@@ -246,9 +241,9 @@ export const getPriceDescount = (productsCar: CartItem[], coupon: couponComplete
   const totalProduct = calculateTotal(productsCar, false);
   switch (coupon?.couponType.key) {
     case 'percent':
-      return roundToXDigits(totalProduct - (totalProduct * coupon.discount / 100), 0);
+      return roundToXDigits(totalProduct - (totalProduct * coupon.discount / 100), 2);
     case 'discount':
-      return roundToXDigits(totalProduct - coupon.discount, 0);
+      return roundToXDigits(totalProduct - coupon.discount, 2);
     default:
       break;
   }
@@ -260,13 +255,11 @@ export const isFormComplete = (data: SubmissionFormInterface, acceptConditions: 
   let isFull = true;
   if (data.address === '')
     isFull = false;
-  if (data.city.value === '')
+  if (data.city?.value === '')
     isFull = false;
   if (data.colony === '')
     isFull = false;
-  if (data.country.value === '')
-    isFull = false;
-  if (data.delegation === '')
+  if (data.country?.value === '')
     isFull = false;
   if (data.email === '')
     isFull = false;
@@ -278,9 +271,9 @@ export const isFormComplete = (data: SubmissionFormInterface, acceptConditions: 
     isFull = false;
   if (data.phone === '')
     isFull = false;
-  if (data.state.value === '')
+  if (data.state?.value === '')
     isFull = false;
-  if (data.zip_code.value === '')
+  if (data.zip_code?.value === '')
     isFull = false;
   if (!acceptConditions)
     isFull = false;
