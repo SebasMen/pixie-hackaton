@@ -32,7 +32,8 @@ export const Page = ({ className, children, color, addPadding = true }: PageProp
   });
 
   useEffect(() => {
-    scrollTo(0);
+    if (!(pathname.includes('/catalogo')))
+      scrollTo(0);
 
     return () => {};
   }, [pathname]);

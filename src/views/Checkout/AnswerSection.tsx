@@ -79,7 +79,7 @@ const AnswerSection = ({ paymentAnswer: { data, status } }:AnswerSectionProps) =
             <Button
               className='bg-primary text-[#fad7b1] font-sanzBold mt-2'
               padding='px-[3.5rem] py-3'
-              onClick={() => navigate('/basket')}
+              onClick={() => navigate('/canasta')}
             >
               Volver a la canasta
             </Button>

@@ -33,16 +33,16 @@ export const NavBar = () => {
   };
 
   // Constants
-  const isCatalogue = pathname.includes('/catalogue');
-  const isBasket = pathname.includes('/basket');
-  const isCheckout = pathname.includes('/checkout');
-  const isCalculator = pathname.includes('/calculator');
+  const isCatalogue = pathname.includes('/catalogo');
+  const isBasket = pathname.includes('/canasta');
+  const isCheckout = pathname.includes('/pago');
+  const isCalculator = pathname.includes('/calculadora');
   const isHome = pathname.includes('/');
 
-  const itemsBlack = ['/catalogue', '/basket', '/checkout', '/calculator', '/'];
+  const itemsBlack = ['/catalogo', '/canasta', '/pago', '/calculadora', '/'];
   const showItemsBlack = itemsBlack.map(rute => pathname.includes(rute));
 
-  const itemsLogoBlack = ['/catalogue'];
+  const itemsLogoBlack = ['/catalogo'];
   const showLogoBlack = itemsLogoBlack.map(rute => pathname.includes(rute));
   const pixie = showLogoBlack.includes(true) ? logoFooter : logo;
   const color = (isCatalogue || isCalculator || isCheckout || isBasket || isHome ? 'grayText' : 'primary') || 'grayText';
@@ -101,8 +101,8 @@ export const NavBar = () => {
               {/* Navs */}
               { !openSearch &&
                 <div className={`${showMinimalNavbar && 'md:items-center'} hidden md:flex md:flex-row justify-between md:gap-7 md:mr-6`}>
-                  <NavItem name='Tienda' path='/catalogue' color={color}/>
-                  <NavItem name='Calculadora' path='/calculator' color={color} />
+                  <NavItem name='Tienda' path='/catalogo' color={color}/>
+                  <NavItem name='Calculadora' path='/calculadora' color={color} />
                 </div>
               }
               {/* Buttons */}

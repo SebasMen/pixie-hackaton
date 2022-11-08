@@ -10,7 +10,7 @@ const Search = ({ colorIcon, borderColor, sizePlaceholder }: SearchProps) => {
   // Methods
   const handleKeyDown = (event: any) => {
     if (event.key === 'Enter')
-      navigate(`/catalogue?query=${searchText}`);
+      navigate(`/catalogo?query=${searchText}`);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

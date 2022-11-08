@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../../hooks';
 import { useShoppingCar } from '../../../hooks/useShoppingCar';
 
@@ -27,6 +27,7 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
   const [counter, setCounter] = useState(1);
   const [clickBasket, setClickBasket] = useState(false);
   const [showHoverComingSoon, setShowHoverComingSoon] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     if (screen.width < 800)
@@ -39,7 +40,10 @@ export const ProductCard = ({ product, showControls = true, className, isCarrous
     if (showDetailInPopup)
       updateContext(old => ({ ...old, showPopup: true }));
     else
-      navigate('/product/detail/' + product.id);
+    if (location.pathname.includes('catalogo'))
+      navigate(`${location.pathname}/detalle/` + product.key);
+    else
+      navigate('/producto/detalle/' + product.key);
   };
 
   const handleChange = () => {

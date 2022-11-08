@@ -45,9 +45,9 @@ export const Footer = ({ className }: FooterProps) => {
         <div className='flex flex-col lg:w-3/12 lg:pl-12 items-center lg:items-start xl2:pl-[4.8rem]'>
           <h5 className='text-left text-lg mb-2 lg:text-base lg:mb-4'>Links de interés</h5>
           <ul className='font-sanzSemiBold flex flex-col gap-3 text-sm lg:text-base text-center lg:text-left'>
-            <li className='cursor-pointer' onClick={() => navigate('/questions')}>Preguntas frecuentes</li>
-            <li className='cursor-pointer' onClick={() => navigate('/terms')}>Términos y condiciones</li>
-            <li className='cursor-pointer' onClick={() => navigate('/dataprivacy')}>Política de datos</li>
+            <li className='cursor-pointer' onClick={() => navigate('/preguntas-frecuentes')}>Preguntas frecuentes</li>
+            <li className='cursor-pointer' onClick={() => navigate('/terminos')}>Términos y condiciones</li>
+            <li className='cursor-pointer' onClick={() => navigate('/politica-privacidad')}>Política de datos</li>
           </ul>
         </div>
         <div className='lg:w-4/12 items-center lg:items-start xl2:pl-10'>

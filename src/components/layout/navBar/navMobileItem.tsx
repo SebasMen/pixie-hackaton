@@ -6,11 +6,11 @@ const NavMobileItem = ({ name }: NavMobileItemProps) => {
 
   const handleRoute = (name: string) => {
     if (name === 'tienda')
-      navigate('/catalogue');
+      navigate('/catalogo');
     if (name === 'calculadora')
-      navigate('/calculator');
+      navigate('/calculadora');
     if (name === 'canasta')
-      navigate('/basket');
+      navigate('/canasta');
   };
 
   return (

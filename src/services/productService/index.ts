@@ -14,8 +14,18 @@ export class ProductService {
     return data;
   };
 
-  getOneProduct = async (id: number): Promise <Product> => new Promise((resolve, reject) => {
+  getOneProductById = async (id: number): Promise <Product> => new Promise((resolve, reject) => {
     api.get(`pixie-payments/api/products/${id}`)
+      .then(response => {
+        resolve(response.data);
+      }).catch(error => {
+        reject(error.response.data.message);
+      }
+      );
+  });
+
+  getOneProductByKey = async (key: string | undefined): Promise <Product> => new Promise((resolve, reject) => {
+    api.get(`pixie-payments/api/products/key/${key}`)
       .then(response => {
         resolve(response.data);
       }).catch(error => {

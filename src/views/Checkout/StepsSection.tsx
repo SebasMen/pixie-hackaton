@@ -5,7 +5,7 @@ const StepsSection = ({ step, setStep }:StepsSectionProps) => {
 
   return (
     <div className='flex gap-[6px] text-xs lg:text-sm'>
-      <span className={'font-sanzBold'} onClick={() => navigate('/basket')}>Canasta </span>
+      <span className={'font-sanzBold'} onClick={() => navigate('/canasta')}>Canasta </span>
       <span className='font-sanzBold'>{'>'}</span>
       <span className={step > 1 ? 'font-sanzBold' : 'font-subTitles'} onClick={() => step > 2 ? setStep(2) : () => {} }>Información</span>
       <span className={step > 1 ? 'font-sanzBold' : 'font-subTitles'}>{'>'}</span>

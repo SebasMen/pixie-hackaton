@@ -24,7 +24,7 @@ const QuestionSection = () => {
               <strong>Cachorro:</strong> 3-4 veces al día.
             </p>
             <span>
-              Te invitamos a usar nuestra <a className='underline cursor-pointer' onClick={() => navigate('/calculator')}>calculadora de raciones</a>
+              Te invitamos a usar nuestra <a className='underline cursor-pointer' onClick={() => navigate('/calculadora')}>calculadora de raciones</a>
             </span>
           </div>
         </AccordeonList>
@@ -36,7 +36,7 @@ const QuestionSection = () => {
                 variedad de dietas para cada una de sus etapas.
             </p>
             <span>
-                Te invitamos a usar nuestra <a className='underline cursor-pointer' onClick={() => navigate('/calculator')}>calculadora de raciones</a>
+                Te invitamos a usar nuestra <a className='underline cursor-pointer' onClick={() => navigate('/calculadora')}>calculadora de raciones</a>
             </span>
           </div>
         </AccordeonList>

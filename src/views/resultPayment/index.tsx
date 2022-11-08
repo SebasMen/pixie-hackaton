@@ -57,7 +57,7 @@ const ResultPayment = () => {
         payment_type: `${searchParams.get('payment_type')}`,
         total_payment: `${dataLocalStorage?.metadata.details_payments.totalPayment}`
       }));
-      navigate('/checkout/result');
+      navigate('/pago/resultado');
     }
 
     return () => {};
@@ -134,7 +134,7 @@ const ResultPayment = () => {
               <Button
                 className='bg-primary text-[#fad7b1] font-sanzBold mt-2'
                 padding='px-[3.5rem] py-3'
-                onClick={() => navigate('/basket')}
+                onClick={() => navigate('/canasta')}
               >
                 Volver a la canasta
               </Button>

@@ -59,7 +59,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
   const [selected, setSelected] = useState(0);
   const navigate = useNavigate();
 
-  const redirectCatalogue = () => navigate('/catalogue');
+  const redirectCatalogue = () => navigate('/catalogo');
 
   return (
     <div className='pt-8 flex flex-col items-center bg-gray-100 w-full rounded-t-3xl transform md:-mt-4 md:pt-0 pb-[4.5rem] relative overflow-hidden'>

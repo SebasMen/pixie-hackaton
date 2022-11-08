@@ -56,7 +56,8 @@ export const appProvider: AppContextType = {
     url_image: '',
     benefits: '',
     recommendation_for_use: '',
-    atributos: ''
+    atributos: '',
+    key: ''
   },
   dataFormCheckOut: dataFormCheckOutLS === null ? {
     address: '',

@@ -27,10 +27,10 @@ const Detail = () => {
   // Hooks
   const params = useParams();
   const { loadingDeterminate } = useLoading();
-  const { id } = params;
+  const { product } = params;
   const getOneProduct = useCallback(
-    () => productService.getOneProduct(id ? parseInt(id, 10) : 1),
-    [id],
+    () => productService.getOneProductByKey(product),
+    [product],
   );
   const { loading, response } = useFetch<Product>(getOneProduct);
   const [showFooter, setShowFooter] = useState(true);
@@ -57,7 +57,7 @@ const Detail = () => {
           </div>
           <div className='flex flex-col w-full flex-shrink-0 overflow-hidden'>
             <p className='hidden md:mt-3 md:mb-1 md:block text-fourth font-sanzBold text-sm lg:mb-9'>
-              <span onClick={() => navigate('/catalogue')} className='cursor-pointer'>Catálogo &gt; </span>
+              <span onClick={() => navigate('/catalogo')} className='cursor-pointer'>Catálogo &gt; </span>
               {capitalize(response.name)}
             </p>
             <div className='w-full flex-grow flex flex-col flex-shrink-0 md:flex-row md:pb-10 md:gap-1'>
@@ -72,7 +72,7 @@ const Detail = () => {
           {/* Calculator */}
           <div className='flex mx-7 mt-5 md:hidden gap-5 text-sm font-subTitles'>
             <span>Haz click aquí para conocer la ración indicada.</span>
-            <Button className='ring-1 ring-primary text-primary rounded-full font-bold' onClick={() => navigate('/calculator')}>Calculadora</Button>
+            <Button className='ring-1 ring-primary text-primary rounded-full font-bold' onClick={() => navigate('/calculadora')}>Calculadora</Button>
           </div>
 
           {/* Nutrition */}

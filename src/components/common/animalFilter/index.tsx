@@ -4,7 +4,7 @@ import Button from '../button';
 import IconButton from '../iconButton';
 import Icon from '../icon';
 
-import { filterShop, typePet, agePet } from '../../../interfaces/filter';
+import { filterShop, typePet, agePet, typeProduct } from '../../../interfaces/filter';
 
 import {
   CatIcon,
@@ -12,6 +12,7 @@ import {
   DogIconSelected,
   CatIconSelected,
 } from '../../../assets/vectors';
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
   {
@@ -44,14 +45,19 @@ const filters = [
 ];
 
 const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
+  const navigate = useNavigate();
   // Handlers
-  const handleFilterChange = (type: 'typePet' | 'agePet', value: string) => {
+  const handleFilterChange = (type: 'typePet' | 'agePet' | 'typeProduct', value: string) => {
     if (type === 'typePet') {
       const typePet = value as typePet;
 
       const add = filter.typePet.includes(typePet);
       const newTypePet = add ? filter.typePet.filter(item => item !== typePet) : [...filter.typePet, typePet];
       setFilter(() => ({ ...filter, typePet: newTypePet }));
+      if (typePet.length === 0)
+        navigate('/catalogo');
+      else
+        navigate(`/catalogo/${typePet === 'CAT' ? 'gatos' : 'perros'}`);
     }
 
     if (type === 'agePet') {
@@ -60,6 +66,11 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
       const add = filter.agePet.includes(agePet);
       const newAgePet = add ? filter.agePet.filter(item => item !== agePet) : [...filter.agePet, agePet];
       setFilter(() => ({ ...filter, agePet: newAgePet }));
+    }
+
+    if (type === 'typeProduct') {
+      const typeProduct = value as typeProduct;
+      setFilter(() => ({ ...filter, typeProduct }));
     }
   };
 

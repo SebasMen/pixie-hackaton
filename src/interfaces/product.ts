@@ -28,6 +28,7 @@ export interface Product {
   url_image: string;
   recommendation_for_use: string;
   atributos: string;
+  key: string;
 }
 
 export interface productShort {

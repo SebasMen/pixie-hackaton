@@ -14,7 +14,6 @@ import AttributesItem from '../../components/common/attributesItem';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-
 const InfoSection = ({ product, attributes, showControls = true }: InfoSectionProps) => {
   // Hooks
   const [quantity, setQuantity] = useState(1);
@@ -82,7 +81,7 @@ const InfoSection = ({ product, attributes, showControls = true }: InfoSectionPr
           {/* Calculator */}
           <div className='hidden justify-between mt-5 md:flex md:px-1'>
             <span className='font-subTitles text-sm pr-5'>Haz click aquí para conocer la ración indicada.</span>
-            <Button rounded className='ring-1 ring-primary text-primary h-10 font-paragraph text-sm' onClick={() => navigate('/calculator')}>Calculadora</Button>
+            <Button rounded className='ring-1 ring-primary text-primary h-10 font-paragraph text-sm' onClick={() => navigate('/calculadora')}>Calculadora</Button>
           </div>
         </div>
       }

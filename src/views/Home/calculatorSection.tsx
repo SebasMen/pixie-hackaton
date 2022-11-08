@@ -45,7 +45,7 @@ export const CalculatorSection = () => {
           </p>
           <Button className='font-sanzBold bg-white text-primary lg:text-xs lg2:text-sm xl2:text-base'
             padding='py-3 px-11'
-            onClick={() => navigate('/calculator')}
+            onClick={() => navigate('/calculadora')}
           >
             Calcúlalo aquí
           </Button>

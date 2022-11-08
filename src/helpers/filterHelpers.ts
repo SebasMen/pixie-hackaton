@@ -13,6 +13,9 @@ export const filterDefault = (products: Array<Product> | undefined, filter: filt
     // Get product types
     const productKinds = product.kind_pet.split(',') as filterShop['typePet'];
 
+    // Get type
+    const productType = product.category as filterShop['typeProduct'];
+
     const ageFilter = filter.agePet.length === 0 ?
       // If no age filter, return true
       true :
@@ -25,8 +28,14 @@ export const filterDefault = (products: Array<Product> | undefined, filter: filt
       // Check if type is in filter types
       filter.typePet.some(kind => productKinds.includes(kind));
 
+    const typeProduct = filter.typeProduct === '' ?
+      // If no type filter, return true
+      true :
+      // Check if type is in filter types
+      filter.typeProduct === productType;
+
     // Check if both conditions are true
-    return ageFilter && kindFilter;
+    return ageFilter && kindFilter && typeProduct;
   });
 
   // Products by category

@@ -426,7 +426,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           >
             Seguir con envios
           </Button>
-          <div className='font-sanzBold text-sm text-center mt-[1.40rem] text-primary cursor-pointer lg:mt-6 lg:text-base lg:mr-14' onClick={() => navigate('/basket')}>
+          <div className='font-sanzBold text-sm text-center mt-[1.40rem] text-primary cursor-pointer lg:mt-6 lg:text-base lg:mr-14' onClick={() => navigate('/canasta')}>
             <span>{'<'} Volver a la canasta</span>
           </div>
         </div>

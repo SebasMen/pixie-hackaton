@@ -59,9 +59,9 @@ export const organiceInformationPaymentMP = (idCustomer: string, userData: Submi
     },
     total_amount: calculateTotalPayment(products, shippingData, true, coupon),
     back_urls: {
-      failure: 'https://pixie.antpk.co/checkout/result',
-      pending: 'https://pixie.antpk.co/checkout/result',
-      success: 'https://pixie.antpk.co/checkout/result'
+      failure: 'https://pixie.antpk.co/pago/resultado',
+      pending: 'https://pixie.antpk.co/pago/resultado',
+      success: 'https://pixie.antpk.co/pago/resultado'
     },
   };
 

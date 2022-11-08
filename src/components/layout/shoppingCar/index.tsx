@@ -57,7 +57,7 @@ const ShoppingCar = ({ onClose, show }: shoppingCarProps) => {
         <span>${calculateTotal(products, false)}</span>
       </div>
       <div className='flex flex-col gap-2 font-sanzBold'>
-        <Button className='bg-primary text-[#fad7b1]' onClick={() => navigate('/basket')}>
+        <Button className='bg-primary text-[#fad7b1]' onClick={() => navigate('/canasta')}>
           Ver canasta
         </Button>
         <Button className='ring-1 ring-primary text-primary' onClick={onClose}>

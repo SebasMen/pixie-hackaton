@@ -78,7 +78,7 @@ const AppRouter = () => {
           />
 
           <Route
-            path='/catalogue'
+            path='/catalogo'
             element={
               <Suspense fallback={<FadeScreen />}>
                 <Catalogue />
@@ -86,8 +86,49 @@ const AppRouter = () => {
             }
           />
 
-          <Route
-            path='product/detail/:id'
+          {/* <Route path='/gatos' element={<></>}>
+            <Route index />
+            <Route path='/cachorros'>
+              <Route index />
+              <Route path='/alimentos'>
+                <Route index />
+                <Route path='/:product' />
+              </Route>
+              <Route path='/:product' />
+            </Route>
+            <Route path='/:product' />
+          </Route> */}
+
+          <Route path='/catalogo/:type'>
+            <Route index
+              element={
+                <Suspense fallback={<FadeScreen />}>
+                  <Catalogue />
+                </Suspense>
+              }/>
+            <Route path='/catalogo/:type/:cat'>
+              <Route index
+                element={
+                  <Suspense fallback={<FadeScreen />}>
+                    <Catalogue />
+                  </Suspense>
+                }
+              />
+              <Route path='/catalogo/:type/:cat/detalle/:product'
+                element={
+                  <Suspense fallback={<FadeScreen />}>
+                    <Detail />
+                  </Suspense>
+                }/>
+            </Route>
+            <Route path='/catalogo/:type/detalle/:product'
+              element={
+                <Suspense fallback={<FadeScreen />}>
+                  <Detail />
+                </Suspense>
+              }/>
+          </Route>
+          <Route path='/catalogo/detalle/:product'
             element={
               <Suspense fallback={<FadeScreen />}>
                 <Detail />
@@ -96,7 +137,16 @@ const AppRouter = () => {
           />
 
           <Route
-            path='/calculator'
+            path='producto/detalle/:product'
+            element={
+              <Suspense fallback={<FadeScreen />}>
+                <Detail />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path='/calculadora'
             element={
               <Suspense fallback={<FadeScreen />}>
                 <Calculator />
@@ -104,7 +154,7 @@ const AppRouter = () => {
             }
           />
           <Route
-            path='/basket'
+            path='/canasta'
             element={
               <Suspense fallback={<FadeScreen />}>
                 <Basket/>
@@ -112,7 +162,7 @@ const AppRouter = () => {
             }
           />
           <Route
-            path='/checkout'
+            path='/pago'
             element={
               <Suspense fallback={<FadeScreen />}>
                 <CheckOut/>
@@ -120,7 +170,7 @@ const AppRouter = () => {
             }
           />
           <Route
-            path='/checkout/result'
+            path='/pago/resultado'
             element={
               <Suspense fallback={<FadeScreen />}>
                 <ResultPayment/>
@@ -128,7 +178,7 @@ const AppRouter = () => {
             }
           />
           <Route
-            path='/questions'
+            path='/preguntas-frecuentes'
             element={
               <Suspense fallback={<FadeScreen />}>
                 <FrequentQuestions/>
@@ -136,7 +186,7 @@ const AppRouter = () => {
             }
           />
           <Route
-            path='/dataprivacy'
+            path='/politica-privacidad'
             element={
               <Suspense fallback={<FadeScreen />}>
                 <DataPrivacy/>
@@ -144,7 +194,7 @@ const AppRouter = () => {
             }
           />
           <Route
-            path='/terms'
+            path='/terminos'
             element={
               <Suspense fallback={<FadeScreen />}>
                 <TermsAndConditions />

@@ -14,7 +14,7 @@ import { filterShop } from '../../interfaces/filter';
 import productService from '../../services/productService';
 
 import '../../styles/catalogue.css';
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import useScrolled from '../../hooks/useScrolled';
 import ButtonWhatsap from '../../components/common/buttonWhatsapp';
 import { useLoading } from '../../hooks/useLoading';
@@ -23,9 +23,11 @@ const Catalogue = () => {
   // Hooks
   const [products, setproducts] = useState<ProductListResponse>();
   const [loading, setLoading] = useState(true);
+  const { type, cat } = useParams();
   const [filterSelected, setfilterSelected] = useState<filterShop>({
     agePet: [],
-    typePet: []
+    typePet: [],
+    typeProduct: ''
   });
   const { updateContext } = useAppContext();
   const [searchParams] = useSearchParams();
@@ -45,6 +47,11 @@ const Catalogue = () => {
     loadingDeterminate(loading);
   }, [loading]);
 
+  useEffect(() => {
+    setFilterUrl();
+    return () => {};
+  }, [type, cat]);
+
   // Methods
   const getProducts = async () => {
     if (searchParams.get('query'))
@@ -59,6 +66,42 @@ const Catalogue = () => {
         setproducts(data);
         setLoading(false);
       });
+  };
+
+  const setFilterUrl = () => {
+    switch (type) {
+      case 'gatos':
+        setfilterSelected(old => ({
+          ...old,
+          typePet: ['CAT']
+        }));
+        break;
+      case 'perros':
+        setfilterSelected(old => ({
+          ...old,
+          typePet: ['DOG']
+        }));
+        break;
+      default:
+        break;
+    }
+
+    switch (cat) {
+      case 'alimentos':
+        setfilterSelected(old => ({
+          ...old,
+          typeProduct: 'Alimentos'
+        }));
+        break;
+      case 'snacks':
+        setfilterSelected(old => ({
+          ...old,
+          typeProduct: 'Snacks'
+        }));
+        break;
+      default:
+        break;
+    }
   };
 
   return (
