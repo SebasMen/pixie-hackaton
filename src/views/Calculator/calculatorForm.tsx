@@ -12,6 +12,7 @@ import CheckField from '../../components/form/checkField';
 
 import { CalculatorForm as CalculatorFormType, CalculatorFormValidate } from '../../interfaces/calculator';
 import { idealWeightCat, idealWeightDog } from '../../assets/images';
+import { useTranslation } from 'react-i18next';
 
 export const CalculatorForm = ({
   onChange,
@@ -27,43 +28,42 @@ export const CalculatorForm = ({
     ageOptions,
     exactAge,
     exerciseOptions,
-    allergies: {
-      alergies,
-      hepatics,
-      obesity,
-      renal,
-      sensitive_stomach
-    },
+    allergies: { alergies, hepatics, obesity, renal, sensitive_stomach },
     exercise,
     idealWeight,
   },
 }: CalculatorFormProps) => {
   // Hooks
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const [page, setPage] = useState(0);
   const [allergiesST, setAllergiesST] = useState(false);
   const [textTitleForm, setTextTitleForm] = useState('Descubre cuál es el plan que más le conviene');
   const { toast, updateContext } = useAppContext();
   const { handlePutMessageError, validatorBody, resetValidator } = useValidator<CalculatorFormValidate>({
     name: {
-      message: ''
+      message: '',
     },
     type: {
-      message: ''
+      message: '',
     },
     age: {
-      message: ''
+      message: '',
     },
     exactAge: {
-      message: ''
+      message: '',
     },
     idealWeight: {
-      message: ''
+      message: '',
     },
     exercise: {
-      message: ''
+      message: '',
     },
   });
 
+  // Handlers
   const handleChangeView = (page: number) => {
     const validator = validateForm(page);
     if (!validator) {
@@ -71,27 +71,26 @@ export const CalculatorForm = ({
       // Validate age
       if (age.value === 'cachorros' && exactAge > 12) {
         hasError = true;
-        showToast('¡Wow, tu amigo ha crecido! Si tu mascota tiene más de 12 meses ya es un adulto.');
+        showToast(t('calcFormErrorAdult'));
       }
 
       if (age.value === 'cachorros' && exactAge < 2) {
         hasError = true;
-        showToast('¡Auch! Pixie está diseñado para cachorros a partir de los 2 meses.');
+        showToast(t('calcFormErrorPuppy'));
       }
 
       // Adult
       if (age.value === 'adultos' && exactAge > 7 && type.value === 'dog') {
         hasError = true;
-        showToast('¡Woow, tu amigo ya ha llegado a su etapa senior!, Si tu perrito tiene más de 7 años ya es considerado senior');
+        showToast(t('calcFormErrorSenior'));
       }
 
       if (age.value === 'adultos' && exactAge > 8 && type.value === 'cat') {
         hasError = true;
-        showToast('¡Woow, tu amigo ya ha llegado a su etapa senior!, Si tu michi tiene más de 8 años ya es considerado senior');
+        showToast(t('calcFormErrorSeniorCat'));
       }
 
-      if (!hasError)
-        setPage(page);
+      if (!hasError) setPage(page);
     }
   };
 
@@ -101,32 +100,32 @@ export const CalculatorForm = ({
     let error = false;
     if (page === 1) {
       if (name.length < 1) {
-        handlePutMessageError('name', 'Debes escribir un nombre');
+        handlePutMessageError('name', t('calcFormErrorName'));
         error = true;
       }
 
       if (validator.equals(type.value, '')) {
-        handlePutMessageError('type', 'Se debe seleccionar un tipo de mascota');
+        handlePutMessageError('type', t('calcFormErrorType'));
         error = true;
       }
 
       if (validator.equals(age.value, '')) {
-        handlePutMessageError('age', 'Se debe seleccionar una edad');
+        handlePutMessageError('age', t('calcFormErrorAge'));
         error = true;
       }
 
       if (exactAge < 1) {
-        handlePutMessageError('exactAge', 'Se debe seleccionar una edad correcta');
+        handlePutMessageError('exactAge', t('calcFormErrorExactAge'));
         error = true;
       }
     } else {
       if (idealWeight < 1) {
-        handlePutMessageError('idealWeight', 'Se debe seleccionar un peso mayor a 0');
+        handlePutMessageError('idealWeight', t('calcFormErrorWeight'));
         error = true;
       }
 
       if (validator.equals(exercise.value, '')) {
-        handlePutMessageError('exercise', 'Se debe seleccionar una actividad fisica');
+        handlePutMessageError('exercise', t('calcFormErrorEx'));
         error = true;
       }
     }
@@ -143,8 +142,18 @@ export const CalculatorForm = ({
 
   useEffect(() => {
     if (type.value)
-      setTextTitleForm(`Consiente a tu ${type.value === 'dog' ? 'perrito' : 'michi'} con nuestra dieta rica en proteína satisfaciendo sus necesidades nutricionales.`);
-  }, [type]);
+      setTextTitleForm(
+        `${t('calcFormTitleFrag1')} ${type.value === 'dog' ? t('calcFormDog') : t('calcFormCat')} ${t(
+          'calcFormTitleFrag2'
+        )}`
+      );
+    else
+      setTextTitleForm(
+        language === 'en'
+          ? 'Discover the plan that is most suited for your pet'
+          : 'Descubre cuál es el plan que más le conviene'
+      );
+  }, [type, language]);
 
   // Component
   return (
@@ -168,7 +177,7 @@ export const CalculatorForm = ({
             name='name'
             value={name}
             handler={onChange}
-            label='¿Cómo se llama tu mascota?*'
+            label={t('calcFormLabelName')}
             fieldClassName='text-grayText'
             messageError={validatorBody.name.message}
             required
@@ -178,7 +187,7 @@ export const CalculatorForm = ({
             value={type}
             options={typeOptions}
             onChange={onSelectChange}
-            label='Tu mascota es un... *'
+            label={t('calcFormLabelType')}
             dropdownIndicatorColor='#33B5A9'
             colorText='#4A4A4A'
             messageError={validatorBody.type.message}
@@ -188,7 +197,7 @@ export const CalculatorForm = ({
             value={age}
             options={ageOptions}
             onChange={onSelectChange}
-            label='Edad*'
+            label={t('calcFormLabelAge')}
             dropdownIndicatorColor='#33B5A9'
             colorText='#4A4A4A'
             messageError={validatorBody.age.message}
@@ -198,7 +207,9 @@ export const CalculatorForm = ({
             value={exactAge}
             handler={onChange}
             type='number'
-            label={`Edad exacta en ${age.value === 'cachorros' ? 'meses' : 'años'}*`}
+            label={`${t('calcFormLabelExactAge')} ${
+              age.value === 'cachorros' ? t('calcFormMonths') : t('calcFormYears')
+            }*`}
             fieldClassName='text-grayText'
             messageError={validatorBody.exactAge.message}
             required
@@ -210,11 +221,8 @@ export const CalculatorForm = ({
             </div>
 
             <div className='flex justify-center gap-7 md:justify-end md:mt-2'>
-              <Button
-                className='bg-primary text-[#FAD7B1] w-32 text-sm md:w-36'
-                onClick={() => handleChangeView(1)}
-              >
-                Siguiente
+              <Button className='bg-primary text-[#FAD7B1] w-32 text-sm md:w-36' onClick={() => handleChangeView(1)}>
+                {t('calcFormNextButton')}
               </Button>
             </div>
           </div>
@@ -229,24 +237,28 @@ export const CalculatorForm = ({
         >
           <div className='w-full flex flex-col items-center gap-6 mb-8 text-center'>
             <div className='flex flex-col font-subTitles font-bold text-lg md:block'>
-              <span>¿Sabes el peso ideal de tu mascota? &nbsp;</span>
-              <span>Revisa esta guía:</span>
+              <span>{t('calcFormWeightTitle')} &nbsp;</span>
+              <span>{t('calcFormWeightSubtitle')}</span>
             </div>
             <div className='flex w-full px-3 justify-center items-center gap-3 sm:gap-6 lg2:gap-4 sm:flex-row md:px-0'>
               <Button
                 className='ring-pixieLightBlue ring-1 w-full md:w-max'
                 padding={'py-[0.4rem] px-2 md:py-[0.3rem] xl1:px-8 xl2:px-[2.4rem] lg2:px-6'}
-                onClick={() => updateContext(old => ({ ...old, showPopupViewerImage: { show: true, url: idealWeightCat } }))}
+                onClick={() =>
+                  updateContext(old => ({ ...old, showPopupViewerImage: { show: true, url: idealWeightCat } }))
+                }
               >
-                <span className='font-subTitles text-sm md:text-base font-bold truncate'>Tabla peso ideal gato</span>
+                <span className='font-subTitles text-sm md:text-base font-bold truncate'>{t('calcFormTableCat')}</span>
               </Button>
 
               <Button
                 className='ring-pixieLightBlue ring-1 w-full sm:w-max'
                 padding={'py-[0.4rem] px-2 md:py-[0.3rem] xl1:px-8 xl2:px-[2.4rem] lg2:px-6'}
-                onClick={() => updateContext(old => ({ ...old, showPopupViewerImage: { show: true, url: idealWeightDog } }))}
+                onClick={() =>
+                  updateContext(old => ({ ...old, showPopupViewerImage: { show: true, url: idealWeightDog } }))
+                }
               >
-                <span className='font-subTitles text-sm md:text-base font-bold truncate'>Tabla peso ideal perro</span>
+                <span className='font-subTitles text-sm md:text-base font-bold truncate'>{t('calcFormTableDog')}</span>
               </Button>
             </div>
           </div>
@@ -255,7 +267,7 @@ export const CalculatorForm = ({
             value={idealWeight}
             type='number'
             handler={onChange}
-            label='Peso ideal en kilogramos*'
+            label={t('calcFormLabelWeight')}
             fieldClassName='text-grayText'
             messageError={validatorBody.idealWeight.message}
             required
@@ -265,15 +277,15 @@ export const CalculatorForm = ({
             value={exercise}
             options={exerciseOptions}
             onChange={onSelectChange}
-            label='Actividad fisica*'
+            label={t('calcFormLabelEx')}
             dropdownIndicatorColor='#33B5A9'
             colorText='#4A4A4A'
             messageError={validatorBody.exercise.message}
           />
-          <label>Enfermedades y alergias</label>
+          <label>{t('calcFormLabelAlergies')}</label>
           <div className='flex gap-5'>
             <RadioField
-              label=' Si'
+              label={t('calcFormLabelYes')}
               changeState={setAllergiesST}
               currentState={allergiesST}
               name='hasAllergies'
@@ -289,92 +301,102 @@ export const CalculatorForm = ({
               value={false}
             />
           </div>
-          {allergiesST &&
-          <div className='flex gap-5 md:gap-14'>
-            <div className='flex flex-col'>
-              <CheckField
-                onClick={() =>
-                  setForm(old => ({ ...old,
-                    allergies: {
-                      ...old.allergies,
-                      hepatics: !hepatics
-                    }
-                  }))}
-                label='Hepática'
-                border='border border-pixieLightBlue'
-                sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
-                className='mt-1'
-                labelClassName='text-xs lg:text-sm'
-              />
-              <CheckField
-                onClick={() =>
-                  setForm(old => ({ ...old,
-                    allergies: {
-                      ...old.allergies,
-                      renal: !renal
-                    }
-                  }))}
-                label='Renal'
-                border='border border-pixieLightBlue'
-                sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
-                className='mt-1 '
-                labelClassName='text-xs lg:text-sm'
-              />
-              <CheckField
-                onClick={() =>
-                  setForm(old => ({ ...old,
-                    allergies: {
-                      ...old.allergies,
-                      obesity: !obesity
-                    }
-                  }))}
-                label='Obesidad'
-                border='border border-pixieLightBlue'
-                sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
-                className='mt-1'
-                labelClassName='text-xs lg:text-sm'
-              />
+          {allergiesST && (
+            <div className='flex gap-5 md:gap-14'>
+              <div className='flex flex-col'>
+                <CheckField
+                  onClick={() =>
+                    setForm(old => ({
+                      ...old,
+                      allergies: {
+                        ...old.allergies,
+                        hepatics: !hepatics,
+                      },
+                    }))
+                  }
+                  label={t('calcFormLabelHepatic')}
+                  border='border border-pixieLightBlue'
+                  sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+                  className='mt-1'
+                  labelClassName='text-xs lg:text-sm'
+                />
+                <CheckField
+                  onClick={() =>
+                    setForm(old => ({
+                      ...old,
+                      allergies: {
+                        ...old.allergies,
+                        renal: !renal,
+                      },
+                    }))
+                  }
+                  label={t('calcFormLabelRenal')}
+                  border='border border-pixieLightBlue'
+                  sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+                  className='mt-1 '
+                  labelClassName='text-xs lg:text-sm'
+                />
+                <CheckField
+                  onClick={() =>
+                    setForm(old => ({
+                      ...old,
+                      allergies: {
+                        ...old.allergies,
+                        obesity: !obesity,
+                      },
+                    }))
+                  }
+                  label={t('calcFormLabelObesity')}
+                  border='border border-pixieLightBlue'
+                  sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+                  className='mt-1'
+                  labelClassName='text-xs lg:text-sm'
+                />
+              </div>
+              <div className='flex flex-col'>
+                <CheckField
+                  onClick={() =>
+                    setForm(old => ({
+                      ...old,
+                      allergies: {
+                        ...old.allergies,
+                        alergies: !alergies,
+                      },
+                    }))
+                  }
+                  label={t('calcFormLabelAlergy')}
+                  border='border border-pixieLightBlue'
+                  sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+                  className='mt-1 ml-1 lg:ml-5'
+                  labelClassName='text-xs lg:text-sm'
+                />
+                <CheckField
+                  onClick={() =>
+                    setForm(old => ({
+                      ...old,
+                      allergies: {
+                        ...old.allergies,
+                        sensitive_stomach: !sensitive_stomach,
+                      },
+                    }))
+                  }
+                  label={t('calcFormLabelStomach')}
+                  border='border border-pixieLightBlue'
+                  sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+                  className='mt-1 ml-1 lg:ml-5'
+                  labelClassName='text-xs lg:text-sm'
+                />
+                <CheckField
+                  onClick={() => {}}
+                  label={t('calcFormLabelOther')}
+                  border='border border-pixieLightBlue'
+                  sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
+                  className='mt-1 ml-1 lg:ml-5'
+                  labelClassName='text-xs lg:text-sm'
+                />
+              </div>
             </div>
-            <div className='flex flex-col'>
-              <CheckField
-                onClick={() =>
-                  setForm(old => ({ ...old,
-                    allergies: {
-                      ...old.allergies,
-                      alergies: !alergies
-                    }
-                  }))}
-                label='Alergia'
-                border='border border-pixieLightBlue'
-                sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
-                className='mt-1 ml-1 lg:ml-5'
-                labelClassName='text-xs lg:text-sm'
-              />
-              <CheckField
-                onClick={() =>
-                  setForm(old => ({ ...old,
-                    allergies: {
-                      ...old.allergies,
-                      sensitive_stomach: !sensitive_stomach
-                    }
-                  }))}
-                label='Estómago sensible'
-                border='border border-pixieLightBlue'
-                sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
-                className='mt-1 ml-1 lg:ml-5'
-                labelClassName='text-xs lg:text-sm'
-              />
-              <CheckField
-                onClick={() => {}}
-                label='Otras'
-                border='border border-pixieLightBlue'
-                sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
-                className='mt-1 ml-1 lg:ml-5'
-                labelClassName='text-xs lg:text-sm'
-              />
-            </div>
-          </div>
-          }
+          )}
           <div className='flex flex-col gap-5 items-center mt-4 md:gap-0 md:justify-between md:flex-row'>
             <div className='flex gap-2 items-center px-5'>
               <div className='w-3 h-3 bg-gray-400 rounded-full' />
@@ -386,14 +408,14 @@ export const CalculatorForm = ({
                 onClick={() => handleChangeView(0)}
                 padding='px-1 py-1 md:px-5 md:py-2.5'
               >
-                Anterior
+                {t('calcFormBackButton')}
               </Button>
               <Button
                 className='bg-primary text-[#FAD7B1] w-32  md:w-36'
                 type='submit'
                 padding='px-1 py-2 md:px-5 md:py-2.5'
               >
-                Consultar
+                {t('calcFormConsultButton')}
               </Button>
             </div>
           </div>
@@ -407,8 +429,8 @@ interface CalculatorFormProps {
   onSelectChange: (selected: MultiValue<SelectItem> | SingleValue<SelectItem>, name: string) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  onRadioChange: (selected: string | boolean, name: string) => void,
-  setForm: React.Dispatch<React.SetStateAction<CalculatorFormType>>,
+  onRadioChange: (selected: string | boolean, name: string) => void;
+  setForm: React.Dispatch<React.SetStateAction<CalculatorFormType>>;
   form: CalculatorFormType;
 }
 

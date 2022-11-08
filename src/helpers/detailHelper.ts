@@ -44,7 +44,7 @@ import {
   atHighProtein,
   atKidneyCare,
   atHighEnergy,
-  atRefreshing
+  atRefreshing,
 } from '../assets/vectors';
 import { attributesType, ingredientesProps } from '../interfaces/product';
 
@@ -69,7 +69,7 @@ export const organizeAttributes = (attributes: string): Array<attributesType> =>
 const switchOrganiceIngredients = (ingredient: string) => {
   const objectIngredient = {
     name: ingredient,
-    img: ''
+    img: '',
   };
 
   if (ingredient.toLocaleLowerCase().includes('quinua')) {
@@ -204,7 +204,7 @@ const switchOrganiceIngredients = (ingredient: string) => {
 const switchOrganiceAttributes = (attribute: string): attributesType => {
   const objectAttributes: attributesType = {
     name: attribute,
-    img: ''
+    img: '',
   };
 
   if (attribute.toLocaleLowerCase().includes('digestiva')) {
@@ -253,7 +253,10 @@ const switchOrganiceAttributes = (attribute: string): attributesType => {
   return objectAttributes;
 };
 
-export const calculatePageNutrients = (ingredients: ingredientesProps[], divideNumber: number): ingredientesProps[][] => {
+export const calculatePageNutrients = (
+  ingredients: ingredientesProps[],
+  divideNumber: number
+): ingredientesProps[][] => {
   const ingredientsFilter = ingredients.filter(item => item.img);
   const ingredientsTotal: ingredientesProps[][] = [];
   let currentPosition = 0;
@@ -270,17 +273,17 @@ export const calculatePageNutrients = (ingredients: ingredientesProps[], divideN
 };
 
 const organizateIngredientsGroup = (ingredients: string[]): Array<ingredientesProps> => {
-  const objectIngredients:ingredientesProps[] = [];
+  const objectIngredients: ingredientesProps[] = [];
 
   const minerales = ['hierro', 'yodo', 'cobre', 'selenio', 'zinc'];
   const carnes = ['carne de res', 'corazón de res', 'pulmón de res'];
   const vitaminas = ['A', 'D', 'E', 'B1', 'B2', 'B3', 'B5', 'B6', 'B8', 'B9', 'B12', 'Colina'];
 
   ingredients.forEach(item => {
-    const objectIngredient:ingredientesProps = {
+    const objectIngredient: ingredientesProps = {
       name: '',
       img: '',
-      tooltip: ''
+      tooltip: '',
     };
 
     if (minerales.includes(item.toLocaleLowerCase().trim())) {
@@ -290,25 +293,21 @@ const organizateIngredientsGroup = (ingredients: string[]): Array<ingredientesPr
         objectIngredient.name = 'Minerales';
         objectIngredient.tooltip += `${item.trim()}, `;
         objectIngredients.push(objectIngredient);
-      } else
-        objectIngredients[index].tooltip += `${item.trim()}, `;
+      } else objectIngredients[index].tooltip += `${item.trim()}, `;
     } else if (carnes.includes(item.toLocaleLowerCase().trim())) {
       const index = objectIngredients.findIndex(item => item.name === 'Carnes');
       if (index === -1) {
         objectIngredient.img = inFillet;
         objectIngredient.name = 'Carnes';
         // Provitional while the ingredient data is update in the DB
-        if (item.toLocaleLowerCase().trim() === 'carne de res')
-          objectIngredient.tooltip += 'Res, ';
-        else
-          objectIngredient.tooltip += `${item.trim()}, `;
+        if (item.toLocaleLowerCase().trim() === 'carne de res') objectIngredient.tooltip += 'Res, ';
+        else objectIngredient.tooltip += `${item.trim()}, `;
         objectIngredients.push(objectIngredient);
-      } else
+        // eslint-disable-next-line brace-style
+      }
       // Provitional while the ingredient data is update in the DB
-      if (item.toLocaleLowerCase().trim() === 'carne de res')
-        objectIngredients[index].tooltip += 'Res, ';
-      else
-        objectIngredients[index].tooltip += `${item.trim()}, `;
+      else if (item.toLocaleLowerCase().trim() === 'carne de res') objectIngredients[index].tooltip += 'Res, ';
+      else objectIngredients[index].tooltip += `${item.trim()}, `;
     } else if (vitaminas.find(vitaminItem => vitaminItem === item.trim())) {
       const index = objectIngredients.findIndex(item => item.name === 'Vitaminas');
       if (index === -1) {
@@ -316,10 +315,8 @@ const organizateIngredientsGroup = (ingredients: string[]): Array<ingredientesPr
         objectIngredient.name = 'Vitaminas';
         objectIngredient.tooltip += `${item.trim()}, `;
         objectIngredients.push(objectIngredient);
-      } else
-        objectIngredients[index].tooltip += `${item.trim()}, `;
-    } else
-      objectIngredients.push(switchOrganiceIngredients(item));
+      } else objectIngredients[index].tooltip += `${item.trim()}, `;
+    } else objectIngredients.push(switchOrganiceIngredients(item));
   });
   return objectIngredients;
 };

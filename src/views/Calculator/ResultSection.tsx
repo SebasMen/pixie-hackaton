@@ -11,31 +11,29 @@ import { PetFeedData } from '../../helpers/calculator';
 import calculatorService from '../../services/calculatorService';
 import { useLoading } from '../../hooks/useLoading';
 import useScrolled from '../../hooks/useScrolled';
+import { useTranslation } from 'react-i18next';
 
 const ResultSection = ({ data, reset }: ResultSectionProps) => {
   // Hooks
+  const { t } = useTranslation();
   const [selected, setSelected] = useState(0);
   const { current: feedData } = useRef(data);
   const [showAlert, setshowAlert] = useState(false);
   const { toast } = useAppContext();
   const { loadingDeterminate } = useLoading();
 
-  const calculateHeight = useCallback(
-    () => {
-      if (screen.width < 800)
-        return 1100;
+  const calculateHeight = useCallback(() => {
+    if (screen.width < 800) return 1100;
 
-      return 900;
-    },
-    [screen],
-  );
+    return 900;
+  }, [screen]);
 
   useEffect(() => {
     if (showAlert)
       toast.fire({
         icon: 'info',
         timer: 10000,
-        title: 'Selecciona la cantidad deseada y agrega a la canasta.',
+        title: t('calcResultSelectToast'),
       });
   }, [showAlert]);
 
@@ -43,19 +41,16 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
     scrolledData: { isDown },
   } = useScrolled({
     gap: calculateHeight(),
-    callback: () => isDown && setshowAlert(true)
+    callback: () => isDown && setshowAlert(true),
   });
 
-  const getCalculateProduct = useCallback(
-    () => calculatorService.getCalculateProduct(feedData),
-    [feedData],
-  );
+  const getCalculateProduct = useCallback(() => calculatorService.getCalculateProduct(feedData), [feedData]);
   useEffect(() => {
     if (data?.allergies.obesity)
       toast.fire({
         timer: 5000,
         icon: 'warning',
-        title: 'Estas son las dietas para obecidad pero recomendamos tomar una asesoría nutricional con nuestros veterinarios para evaluar mejor tu caso.',
+        title: t('calcResultObesityToast'),
       });
   }, []);
 
@@ -88,7 +83,7 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
           <div className='mb-10 mt-20 text-center px-9 md:px-0'>
             <span className='text-pixieLightBlue text-xl font-bold lg:text-[25px]'>{feedData.msg}</span>
           </div>
-          <span className='ml-3 px-3 md:px-0 md:text-lg'>Recomendados:</span>
+          <span className='ml-3 px-3 md:px-0 md:text-lg'>{t('calcRecommended')}</span>
 
           {/* Carrousel */}
           <Carrousel
@@ -131,12 +126,11 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
           </Carrousel>
           <div className='text-center mt-10 mb-5 md:text-lg md:leading-normal'>
             <span className='font-sanzBold'>
-              Dieta recomendada para 4 semanas = {Math.round((feedData.grams * 30) / calculateGrams)} Pixies.
-              {feedData.type === 'dog' &&
-               <span className='text-pixieLightBlue'> ¡combínalas como tu quieras!</span>
-              }
+              {t('calcRecommendedFrag1')} = {Math.round((feedData.grams * 30) / calculateGrams)}{' '}
+              {t('calcRecommendedFrag2')}.
+              {feedData.type === 'dog' && <span className='text-pixieLightBlue'> {t('calcRecommendedFrag3')}</span>}
             </span>
-            <p className='font-subTitles text-base'>Selecciona y luego agrega al carrito.</p>
+            <p className='font-subTitles text-base'>{t('calcRecommendedFrag4')}</p>
           </div>
           <ResultRecommendation
             products={response.products.sort((a, b) => parseInt(a.status, 10) - parseInt(b.status, 10))}
@@ -147,8 +141,9 @@ const ResultSection = ({ data, reset }: ResultSectionProps) => {
             <Button
               onClick={reset}
               padding='p-3 md:px-10'
-              className='bg-transparent text-sm ring-1 ring-pixieLightBlue text-pixieLightBlue font-bold truncate transform transition-all lg:text-base hover:ring-2'>
-              Calcular de nuevo
+              className='bg-transparent text-sm ring-1 ring-pixieLightBlue text-pixieLightBlue font-bold truncate transform transition-all lg:text-base hover:ring-2'
+            >
+              {t('calcAgainButton')}
             </Button>
           </div>
         </div>

@@ -10,6 +10,7 @@ import { SelectItem } from '../../components/form/selectField';
 import { backgroundCalculator, calculatorCat, calculatorDog } from '../../assets/images';
 import { getPetFeedData, PetFeedData, PetInfo } from '../../helpers/calculator';
 import { CalculatorForm as CalculatorFormType } from '../../interfaces/calculator';
+import { useTranslation } from 'react-i18next';
 
 const ages: SelectItem[] = [
   { value: 'cachorros', label: 'Cachorro (2 a 12 meses)' },
@@ -30,28 +31,30 @@ const exercises: SelectItem[] = [
 
 export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
   // Hooks
-  const { form, onSubmit, handleFormChange, handleRadioChange, handleSelectChange, setForm } = useForm<CalculatorFormType>(
-    {
-      name: '',
-      type: { label: 'Selecciona', value: '' },
-      typeOptions: types,
-      age: ages[0],
-      ageOptions: ages,
-      exactAge: 0,
-      allergies: {
-        alergies: false,
-        hepatics: false,
-        obesity: false,
-        renal: false,
-        sensitive_stomach: false
+  const { t } = useTranslation();
+  const { form, onSubmit, handleFormChange, handleRadioChange, handleSelectChange, setForm } =
+    useForm<CalculatorFormType>(
+      {
+        name: '',
+        type: { label: 'Selecciona', value: '' },
+        typeOptions: types,
+        age: ages[0],
+        ageOptions: ages,
+        exactAge: 0,
+        allergies: {
+          alergies: false,
+          hepatics: false,
+          obesity: false,
+          renal: false,
+          sensitive_stomach: false,
+        },
+        exercise: exercises[0],
+        exerciseOptions: exercises,
+        idealWeight: 0,
+        hasAllergies: false,
       },
-      exercise: exercises[0],
-      exerciseOptions: exercises,
-      idealWeight: 0,
-      hasAllergies: false
-    },
-    form => handleSubmit(form)
-  );
+      form => handleSubmit(form)
+    );
 
   const { toast } = useAppContext();
 
@@ -69,13 +72,13 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
       type: form.type.value as PetInfo['type'],
       name: form.name,
       weight: form.idealWeight,
-      allergies: form.allergies
+      allergies: form.allergies,
     });
 
     if (!data)
       return toast.fire({
         icon: 'warning',
-        title: 'Hubo un error en el calculo, porfavor revise los datos.',
+        title: t('calcFormError'),
       });
 
     setFeedData(data);
@@ -99,12 +102,15 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
             {/* Background */}
             <div className='hidden tall:hidden md:w-1/2 md:overflow-hidden md:flex xl2:justify-center'>
               <img src={backgroundCalculator} className='md:absolute md:-z-10 md:ml-24 md:mt-7' />
-              {form.type.value === 'dog' &&
+              {form.type.value === 'dog' && (
                 <img src={calculatorDog} className='animate__bounceIn animate__animated mt-16 mb-60 z-10 xl2:ml-20' />
-              }
-              {(form.type.value === 'cat' || form.type.value === '') &&
-                <img src={calculatorCat} className='animate__bounceIn animate__animated mt-16 mb-32 lg:w-[570px] lg:h-[632px] z-10 lg2:ml-20' />
-              }
+              )}
+              {(form.type.value === 'cat' || form.type.value === '') && (
+                <img
+                  src={calculatorCat}
+                  className='animate__bounceIn animate__animated mt-16 mb-32 lg:w-[570px] lg:h-[632px] z-10 lg2:ml-20'
+                />
+              )}
             </div>
             {/* Form */}
             <CalculatorForm
@@ -117,12 +123,10 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
             />
           </div>
           {/* Mobile Dog */}
-          {(form.type.value === 'cat' || form.type.value === '') &&
+          {(form.type.value === 'cat' || form.type.value === '') && (
             <img src={calculatorCat} className='block w-full z-10 pr-5 sm:hidden' />
-          }
-          {form.type.value === 'dog' &&
-           <img src={calculatorDog} className='block w-full z-10 pr-5 sm:hidden' />
-          }
+          )}
+          {form.type.value === 'dog' && <img src={calculatorDog} className='block w-full z-10 pr-5 sm:hidden' />}
         </div>
       )}
     </>
