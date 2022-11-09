@@ -1,4 +1,3 @@
-import { separateByCommas, separateByCommasAndParenthesis } from './productHelper';
 import {
   inLeg,
   inChickenMeat,
@@ -49,19 +48,17 @@ import {
 import { attributesType, ingredientesProps } from '../interfaces/product';
 
 // Order nutrient adjunting with his image
-export const organizeIngredients = (ingredients: string): Array<ingredientesProps> => {
-  const arrayIngredients = separateByCommasAndParenthesis(ingredients);
-  const ingredientGroup = organizateIngredientsGroup(arrayIngredients);
+export const organizeIngredients = (ingredients: string[]): Array<ingredientesProps> => {
+  const ingredientGroup = organizateIngredientsGroup(ingredients);
   return ingredientGroup;
 };
 
-export const organizeAttributes = (attributes: string): Array<attributesType> => {
-  let arrayAttributes = separateByCommas(attributes);
+export const organizeAttributes = (attributes: string[]): Array<attributesType> => {
   // Delete one element because is the same icon
-  if (arrayAttributes.find(element => element === 'Fresco') && arrayAttributes.find(element => element === 'natural'))
-    arrayAttributes = arrayAttributes.filter(item => item !== 'Fresco');
+  if (attributes.find(element => element === 'Fresco') && attributes.find(element => element === 'natural'))
+    attributes = attributes.filter(item => item !== 'Fresco');
   const objectAttributes: Array<attributesType> = [];
-  arrayAttributes.forEach(item => objectAttributes.push(switchOrganiceAttributes(item)));
+  attributes.forEach(item => objectAttributes.push(switchOrganiceAttributes(item)));
   return objectAttributes;
 };
 

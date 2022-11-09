@@ -9,37 +9,37 @@ export interface ResultProduct {
 }
 
 export interface Product {
-  id: string;
+  license: string;
+  age: string;
+  atributos: string[];
+  atributos_en: string[] | null;
+  benefits: string[];
+  benefits_en: string[] | null;
+  category: 'Alimentos' | 'Snack' | 'Accesorios';
   country: number;
+  description: string;
+  description_en: string | null;
+  dosis: string;
+  dosis_en: string;
+  id: string;
+  ingredients: string[];
+  ingredients_en: string[] | null;
   key: string;
   key_en: string;
-  name: string;
-  name_en: string;
-  age: string;
-  benefits: string;
-  benefits_en: string;
-  category: 'Alimentos' | 'Snack' | 'Accesorios';
-  description: string;
-  description_en: string;
-  ingredients: string;
-  ingredients_en: string;
   kind_pet: string;
-  license: string;
-  nutrition_information: string;
-  nutrition_information_en: string;
+  name: string;
+  name_en: string | null;
+  nutrition_information: string[];
+  nutrition_information_en: string[] | null;
   presentation: string;
   price: number;
   quantity: number;
-  status: string;
-  quantitySold?: number;
-  totalPrice?: number;
-  url_image: string;
   recommendation_for_use: string;
   recommendation_for_use_en: string;
-  atributos: string;
-  atributos_en: string;
-  dosis: string;
-  dosis_en: string;
+  status: string;
+  url_image: string;
+  quantitySold?: number;
+  totalPrice?: number;
 }
 
 export interface productShort {

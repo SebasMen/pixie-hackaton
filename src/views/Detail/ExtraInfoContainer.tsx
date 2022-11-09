@@ -1,7 +1,6 @@
 import ExtraInfo from './ExtraInfo';
 import { extraInfo } from '../../@fake/detailFake';
 import { Product } from '../../interfaces/product';
-import { separateByCommas } from '../../helpers/productHelper';
 import { useEffect, useState } from 'react';
 import { tableCachorro, tableCachorroWhite } from '../../assets/images';
 import { useAppContext } from '../../hooks';
@@ -73,7 +72,7 @@ const ExtraInfoContainer = ({ product }: ExtraInfoContainerProps) => {
             <span className='text-lg font-bold text-fourth'>{t('productsInfoTitle')}</span>
           </div>
           <div className='pb-8 pl-5'>
-            <ExtraInfo type='list' infoList={separateByCommas(product.benefits)} />
+            <ExtraInfo type='list' infoList={product.benefits} />
           </div>
         </div>
         <div className='rounded-lg text-sm	w-1/2 px-16 bg-fifth'>
@@ -98,7 +97,7 @@ const ExtraInfoContainer = ({ product }: ExtraInfoContainerProps) => {
             <span className='text-lg font-bold text-fourth'>{t('productsInfoComp')}</span>
           </div>
           <div className='pb-8 pl-5'>
-            <ExtraInfo type='list' infoList={separateByCommas(product.nutrition_information)} />
+            <ExtraInfo type='list' infoList={product.nutrition_information} />
           </div>
         </div>
         <div className='w-3/5'>

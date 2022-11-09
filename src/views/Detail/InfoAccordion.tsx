@@ -1,7 +1,6 @@
 import ItemAccordion from '../../components/common/itemAccordion';
 import { extraInfo } from '../../@fake/detailFake';
 import { Product } from '../../interfaces/product';
-import { separateByCommas } from '../../helpers/productHelper';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -57,7 +56,7 @@ const InfoAccordion = ({ product }: InfoAccordionProps) => {
 
   return (
     <ul className='w-full md:px-24 md:hidden bg-fifth'>
-      <ItemAccordion name='Beneficios y Características' infoList={separateByCommas(product.benefits)} type='list' />
+      <ItemAccordion name='Beneficios y Características' infoList={product.benefits} type='list' />
       {product.age.toLocaleLowerCase() === 'cachorros' ? (
         <ItemAccordion name={t('productsInfoIngr')} type='tableCachorro' />
       ) : (
@@ -65,7 +64,7 @@ const InfoAccordion = ({ product }: InfoAccordionProps) => {
       )}
       <ItemAccordion
         name={t('productsInfoComp')}
-        infoList={separateByCommas(product.nutrition_information)}
+        infoList={product.nutrition_information}
         type='list'
       />
       <ItemAccordion
