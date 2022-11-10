@@ -17,7 +17,7 @@ export const Page = ({ className, children, color, addPadding = true }: PageProp
   const minimalNavbar = useCallback(() => {
     if (screen.width < 800) return 20;
 
-    return 112;
+    return 50;
   }, [screen]);
 
   const {

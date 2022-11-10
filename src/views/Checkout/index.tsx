@@ -81,7 +81,7 @@ const CheckOut = () => {
   const validCoupon = () => {
     checkOutService.getCoupon(couponCode.code).then(res => {
       // Validate uses
-      if (res.totalUses >= res.maxUses)
+      if ((res.totalUses >= res.maxUses) || res.status === 0)
         setCouponCode(old => ({ ...old, status: false }));
       else {
         const date = new Date(res.expireDate.split('T')[0]);

@@ -52,7 +52,7 @@ export class CheckOutService {
   getCoupon = (claimCode: string): Promise<couponComplete> =>
     new Promise((resolve, reject) => {
       api({ baseURL: `https://apidev.tools.antpack.co/pixie-coupons/api/coupons/code/${claimCode}` }).then(res => {
-        resolve(res.data);
+        resolve(res.data.response);
       }).catch(err => {
         reject(err.response.data.message);
       });

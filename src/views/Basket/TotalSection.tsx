@@ -2,7 +2,7 @@ import { useAppContext } from '../../hooks';
 
 import { useEffect } from 'react';
 import { calculateTotalPayment, getPriceDescount } from '../../helpers/paymentHelper';
-import { calculateIva, calculateTotal } from '../../helpers/productHelper';
+import { calculateIva, calculateTotal, roundToXDigits } from '../../helpers/productHelper';
 
 import { shippingTypeForm, typeShipping } from '../../interfaces/checkout';
 import { couponComplete } from '../../interfaces/coupon';
@@ -53,7 +53,7 @@ const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', pri
           <div className='flex justify-between mt-3'>
             <span>Descuento</span>
             {coupon.couponType.key === 'percent' &&
-               <span>$ {-(getPriceDescount(products, coupon) - calculateTotal(products, false))}</span>
+               <span>$ {-roundToXDigits((getPriceDescount(products, coupon) - calculateTotal(products, false)), 2)}</span>
             }
             {coupon.couponType.key === 'discount' &&
                <span>${coupon.discount}</span>

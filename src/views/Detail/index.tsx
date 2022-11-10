@@ -52,7 +52,7 @@ const Detail = () => {
     <Page className={`${!showFooter && 'mb-14'}`}>
       {response && (
         <div>
-          <div className='lg:px-[123px] max-w-[1440px]'>
+          <div className='lg:px-[123px] max-w-[1440px] mt-6'>
             <div className='md:hidden px-7 mt-7 mb'>
               <img src={backArrow} onClick={() => navigate(-1)} />
             </div>

@@ -16,7 +16,8 @@ export interface couponComplete {
   internal_coupons_id: string,
   prerequisites_id: string,
   totalUses: number,
-  couponType: couponType
+  couponType: couponType,
+  status: number
 }
 
 export interface couponType {
