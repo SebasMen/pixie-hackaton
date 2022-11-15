@@ -69,127 +69,159 @@ const switchOrganiceIngredients = (ingredient: string) => {
     img: '',
   };
 
-  if (ingredient.toLocaleLowerCase().includes('quinua')) {
-    objectIngredient.img = inQuinua;
-    objectIngredient.name = 'quinua';
-  }
+  /// if (ingredient.toLocaleLowerCase().includes('quinua')) {
+  //   objectIngredient.img = inQuinua;
+  //   objectIngredient.name = 'quinua';
+  // }
 
-  if (ingredient.toLocaleLowerCase().includes('quinoa')) {
-    objectIngredient.img = inQuinua;
-    objectIngredient.name = 'Quinoa';
-  }
+  // if (ingredient.toLocaleLowerCase().includes('quinoa')) {
+  //   objectIngredient.img = inQuinua;
+  //   objectIngredient.name = 'Quinoa';
+  // }
 
-  if (ingredient.toLocaleLowerCase().includes('harina de quinua')) {
-    objectIngredient.img = inQuinua;
-    objectIngredient.name = 'Harina de quinua';
-  }
+  // if (ingredient.toLocaleLowerCase().includes('harina de quinua')) {
+  //   objectIngredient.img = inQuinua;
+  //   objectIngredient.name = 'Harina de quinua';
+  // }
 
-  if (ingredient.toLocaleLowerCase().includes('batata')) {
-    objectIngredient.img = inBatata;
-    objectIngredient.name = 'Batata';
-  }
+  // if (ingredient.toLocaleLowerCase().includes('batata')) {
+  //   objectIngredient.img = inBatata;
+  //   objectIngredient.name = 'Batata';
+  // }
 
-  if (ingredient.toLocaleLowerCase().includes('hígado de res')) {
-    objectIngredient.img = inFillet;
-    objectIngredient.name = 'Hígado de Res';
-  }
+  // if (ingredient.toLocaleLowerCase().includes('hígado de res')) {
+  //   objectIngredient.img = inFillet;
+  //   objectIngredient.name = 'Hígado de Res';
+  // }
 
-  if (ingredient.toLocaleLowerCase().includes('harina de arroz')) {
-    objectIngredient.img = inIntegralRice;
-    objectIngredient.name = 'Harina de Arroz';
-  }
+  // if (ingredient.toLocaleLowerCase().includes('harina de arroz')) {
+  //   objectIngredient.img = inIntegralRice;
+  //   objectIngredient.name = 'Harina de Arroz';
+  // }
 
-  if (ingredient.toLocaleLowerCase().includes('cacahuate')) {
-    objectIngredient.img = inPeanut;
-    objectIngredient.name = 'Cacahuate';
-  }
+  // if (ingredient.toLocaleLowerCase().includes('cacahuate')) {
+  //   objectIngredient.img = inPeanut;
+  //   objectIngredient.name = 'Cacahuate';
+  // }
 
-  if (ingredient.toLocaleLowerCase().includes('yogurt')) {
-    objectIngredient.img = inYogurt;
-    objectIngredient.name = 'Yogurt';
-  }
+  // if (ingredient.toLocaleLowerCase().includes('yogurt')) {
+  //   objectIngredient.img = inYogurt;
+  //   objectIngredient.name = 'Yogurt';
+  // }
 
   switch (ingredient.trim().toLocaleLowerCase()) {
-    case 'carne de cordero':
-      objectIngredient.img = inLeg;
+    case 'huevo':
+      objectIngredient.img = inEggs;
       break;
-    case 'carne de pollo':
-      objectIngredient.img = inChickenMeat;
-      break;
-    case 'carne de pavo':
-      objectIngredient.img = inTurkeyMeat;
-      break;
-    case 'arroz integral':
-      objectIngredient.img = inIntegralRice;
-      break;
-    case 'papa':
-      objectIngredient.img = inPotatoes;
-      break;
-    case 'zanahoria':
-      objectIngredient.img = inCarrot;
-      break;
-    case 'espinaca y/o ejotes':
-      objectIngredient.img = inSpinach;
-      break;
-    case 'linaza':
-      objectIngredient.img = inLinaza;
-      break;
-    case 'aceite vegetal':
-      objectIngredient.img = inVegetableOil;
-      break;
-    case 'almidón de mandioca':
-      objectIngredient.img = inInstarchCassava;
-      break;
-    case 'tilapia':
-      objectIngredient.img = inTilapia;
-      break;
-    case 'agua':
-      objectIngredient.img = inWater;
-      break;
-    case 'aceite de pescado':
-      objectIngredient.img = inFishOil;
+    case 'harina-de-quinua':
+      objectIngredient.img = inQuinua;
+      objectIngredient.name = 'Harina de quinua';
       break;
     case 'espirulina':
       objectIngredient.img = inSpirulina;
       break;
-    case 'harina de algarrobo':
-      objectIngredient.img = inCarobtree;
+    case 'carne-de-pavo':
+      objectIngredient.img = inTurkeyMeat;
       break;
-    case 'avena en hojuelas':
-      objectIngredient.img = inOatmeAlflakes;
-      break;
-    case 'gelatina':
-      objectIngredient.img = inJelly;
-      break;
-    case 'harina de trigo integral':
+    case 'harina-de-trigo-integral':
       objectIngredient.img = inWheatFlour;
       break;
-    case 'carne de conejo':
+    case 'huevo-de-gallina':
+      objectIngredient.img = inEggs;
+      break;
+    case 'aceite-de-pescado':
+      objectIngredient.img = inFishOil;
+      break;
+    case 'harina-de-algarrobo':
+      objectIngredient.img = inCarobtree;
+      break;
+    case 'quinoa':
+      objectIngredient.img = inQuinua;
+      objectIngredient.name = 'Quinoa';
+      break;
+    case 'almidon-de-mandioca':
+      objectIngredient.img = inInstarchCassava;
+      break;
+    case 'carne-de-conejo':
       objectIngredient.img = inRabbitMeat;
       break;
-    case 'harina de avena':
-      objectIngredient.img = inFlourOats;
+    case 'arroz-integral':
+      objectIngredient.img = inIntegralRice;
       break;
-    case 'crema de cacahuate':
-      objectIngredient.img = inPeanutButter;
+    case 'habichuela':
+      objectIngredient.img = bean;
       break;
-    case 'miel de abejas':
-      objectIngredient.img = inhoneyBees;
+    case 'papa':
+      objectIngredient.img = inPotatoes;
       break;
-    case 'mango':
-      objectIngredient.img = inMango;
+    case 'avena-en-hojuelas':
+      objectIngredient.img = inOatmeAlflakes;
       break;
-    case 'huevo de gallina':
-      objectIngredient.img = inEggs;
+    case 'espinaca-y/o-ejotes':
+      objectIngredient.img = inSpinach;
       break;
-    case 'huevo':
-      objectIngredient.img = inEggs;
+    case 'batata':
+      objectIngredient.img = inBatata;
+      objectIngredient.name = 'Batata';
+      break;
+    case 'tilapia':
+      objectIngredient.img = inTilapia;
       break;
     case 'banano':
       objectIngredient.img = inBanana;
       break;
-    case 'habichuela':
-      objectIngredient.img = bean;
+    case 'yogurt':
+      objectIngredient.img = inYogurt;
+      objectIngredient.name = 'Yogurt';
+      break;
+    case 'harina-de-avena':
+      objectIngredient.img = inFlourOats;
+      break;
+    case 'linaza':
+      objectIngredient.img = inLinaza;
+      break;
+    case 'miel-de-abejas':
+      objectIngredient.img = inhoneyBees;
+      break;
+    case 'quinua':
+      objectIngredient.img = inQuinua;
+      objectIngredient.name = 'quinua';
+      break;
+    case 'crema-de-cacahuate':
+      objectIngredient.img = inPeanutButter;
+      break;
+    case 'zanahoria':
+      objectIngredient.img = inCarrot;
+      break;
+    case 'harina-de-arroz':
+      objectIngredient.img = inIntegralRice;
+      objectIngredient.name = 'Harina de Arroz';
+      break;
+    case 'aceite-vegetal':
+      objectIngredient.img = inVegetableOil;
+      break;
+    case 'mango':
+      objectIngredient.img = inMango;
+      break;
+    case 'hígado-de-res':
+      objectIngredient.img = inFillet;
+      objectIngredient.name = 'Hígado de Res';
+      break;
+    case 'carne-de-pollo':
+      objectIngredient.img = inChickenMeat;
+      break;
+    case 'carne-de-cordero':
+      objectIngredient.img = inLeg;
+      break;
+    case 'cacahuate':
+      objectIngredient.img = inPeanut;
+      objectIngredient.name = 'Cacahuate';
+      break;
+    case 'agua':
+      objectIngredient.img = inWater;
+      break;
+    case 'gelatina':
+      objectIngredient.img = inJelly;
       break;
     default:
       break;
@@ -204,44 +236,48 @@ const switchOrganiceAttributes = (attribute: string): attributesType => {
     img: '',
   };
 
-  if (attribute.toLocaleLowerCase().includes('digestiva')) {
-    objectAttributes.img = atSensitiveAllergic;
-    objectAttributes.name = 'digestiva';
-  }
+  /// if (attribute.toLocaleLowerCase().includes('digestiva')) {
+  //   objectAttributes.img = atSensitiveAllergic;
+  //   objectAttributes.name = 'digestiva';
+  // }
 
   switch (attribute.trim().toLocaleLowerCase()) {
-    case 'alta digestibilidad':
-      objectAttributes.img = atDigestibility;
+    case 'digestiva':
+      objectAttributes.img = atSensitiveAllergic;
+      objectAttributes.name = 'digestiva';
       break;
-    case 'ingredientes naturales':
-      objectAttributes.img = atNaturalIngredients;
-      break;
-    case 'rico en vitaminas':
-      objectAttributes.img = atHighVitamine;
-      break;
-    case 'rico en probioticos':
-      objectAttributes.img = atHightProbiotics;
-      break;
-    case 'bajo en proteína':
+    case 'bajo-en-proteína':
       objectAttributes.img = atLowProtein;
       break;
-    case 'libre de gluten':
-      objectAttributes.img = atGlutenFree;
+    case 'refrescante':
+      objectAttributes.img = atRefreshing;
+      break;
+    case 'alta-digestibilidad':
+      objectAttributes.img = atDigestibility;
+      break;
+    case 'ingredientes-naturales':
+      objectAttributes.img = atNaturalIngredients;
+      break;
+    case 'rico-en-probioticos':
+      objectAttributes.img = atHightProbiotics;
       break;
     case 'fresco':
       objectAttributes.img = atFreshNatural;
       break;
-    case 'alto en proteína':
-      objectAttributes.img = atHighProtein;
-      break;
-    case 'cuidado hepatico y renal':
+    case 'cuidado-hepatico-y-renal':
       objectAttributes.img = atKidneyCare;
       break;
-    case 'alta energía':
+    case 'alto-en-proteina':
+      objectAttributes.img = atHighProtein;
+      break;
+    case 'alta-energia':
       objectAttributes.img = atHighEnergy;
       break;
-    case 'refrescante':
-      objectAttributes.img = atRefreshing;
+    case 'rico-en-vitaminas':
+      objectAttributes.img = atHighVitamine;
+      break;
+    case 'libre-de-gluten':
+      objectAttributes.img = atGlutenFree;
       break;
     default:
       break;
