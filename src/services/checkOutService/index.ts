@@ -1,5 +1,5 @@
 import { selectCountryService, postSendFormCheckout, SubmissionFormInterface } from '../../interfaces/checkout';
-import { couponComplete } from '../../interfaces/coupon';
+import { couponComplete, couponHistory } from '../../interfaces/coupon';
 import api from '../axios';
 
 export class CheckOutService {
@@ -53,6 +53,15 @@ export class CheckOutService {
     new Promise((resolve, reject) => {
       api({ baseURL: `https://apidev.tools.antpack.co/pixie-coupons/api/coupons/code/${claimCode}` }).then(res => {
         resolve(res.data.response);
+      }).catch(err => {
+        reject(err.response.data.message);
+      });
+    });
+
+  getCouponHistory = (userInfo:SubmissionFormInterface | undefined, couponInfo:couponComplete | undefined): Promise<couponHistory[]> =>
+    new Promise((resolve, reject) => {
+      api({ baseURL: `https://apidev.tools.antpack.co/pixie-coupons/api/history_coupons?email=${userInfo?.email}&coupon=${couponInfo?.id}` }).then(res => {
+        resolve(res.data.response.data);
       }).catch(err => {
         reject(err.response.data.message);
       });

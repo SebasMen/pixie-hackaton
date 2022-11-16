@@ -36,6 +36,7 @@ const CheckOut = () => {
   const [coupon, setCoupon] = useState<couponComplete>();
   const [couponCode, setCouponCode] = useState({
     status: true,
+    messageError: '',
     code: ''
   });
   const [paymentAnswer, setPaymentAnswer] = useState<postSendPayment>({
@@ -72,30 +73,47 @@ const CheckOut = () => {
 
     setcountries(countries);
   }, [loading, response]);
+  useEffect(() => {
+    if (coupon)
+      validateHistoryCoupon();
+    return () => {};
+  }, [coupon]);
 
   // Methods
   const updateShippingInfo = (name: typeShipping, value: number) => {
     setShippingInfo({ type: name, price: value });
   };
 
-  const validCoupon = () => {
-    checkOutService.getCoupon(couponCode.code).then(res => {
+  const validCoupon = async () => {
+    await checkOutService.getCoupon(couponCode.code).then(res => {
       // Validate uses
       if ((res.totalUses >= res.maxUses) || res.status === 0)
-        setCouponCode(old => ({ ...old, status: false }));
+        setCouponCode(old => ({ ...old, status: false, messageError: '* Este código ya fue redimido' }));
       else {
         const date = new Date(res.expireDate.split('T')[0]);
         date.setDate(date.getDate() + 1);
         const today = new Date();
         if (today > date)
-          setCouponCode(old => ({ ...old, status: false }));
+          setCouponCode(old => ({ ...old, status: false, messageError: '* Este código ya no esta disponible' }));
         else {
           setCoupon(res);
           setCouponCode(old => ({ ...old, status: true }));
         }
       }
     }).catch(err => {
-      setCouponCode(old => ({ ...old, status: false }));
+      setCouponCode(old => ({ ...old, status: false, messageError: '* El cupon no fue encontrado' }));
+    });
+  };
+
+  const validateHistoryCoupon = () => {
+    checkOutService.getCouponHistory(userInfo, coupon).then(res => {
+      const couponUsesbyUser = coupon?.usesByUser ? coupon.usesByUser : 0;
+      if (res.length >= couponUsesbyUser) {
+        setCouponCode(old => ({ ...old, status: false, messageError: '* El usuario exedió los usos de este cupon' }));
+        setCoupon(undefined);
+      }
+    }).catch(error => {
+      console.log(error);
     });
   };
 
@@ -140,7 +158,7 @@ const CheckOut = () => {
                     </Button>
                   </div>
                   {!couponCode.status &&
-                    <span className='text-primary text-xs font-subTitles'>* Este código ya fue redimido</span>
+                    <span className='text-primary text-xs font-subTitles'>{couponCode.messageError}</span>
                   }
                 </div>
                 <TotalSection
@@ -192,7 +210,7 @@ const CheckOut = () => {
                       </Button>
                     </div>
                     {!couponCode.status &&
-                      <span className='text-primary text-xs font-subTitles'>* Este código ya fue redimido</span>
+                      <span className='text-primary text-xs font-subTitles'>{couponCode.messageError}</span>
                     }
                   </div>
                 )}

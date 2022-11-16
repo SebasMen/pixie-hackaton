@@ -54,7 +54,8 @@ export const organiceInformationPaymentMP = (idCustomer: string, userData: Submi
       },
       couponId: coupon && {
         amount: (getPriceDescount(products, coupon) - calculateTotal(products, false)),
-        id: coupon.id
+        id: coupon.id,
+        code: coupon.claimCode
       }
     },
     total_amount: calculateTotalPayment(products, shippingData, true, coupon),

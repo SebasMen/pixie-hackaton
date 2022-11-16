@@ -25,3 +25,12 @@ export interface couponType {
   name: string,
   key: string
 }
+export interface couponHistory {
+  id: string,
+  user: string,
+  amount: number,
+  createdAt: string,
+  updatedAt: string,
+  coupons_id: string,
+  coupon: couponComplete
+}

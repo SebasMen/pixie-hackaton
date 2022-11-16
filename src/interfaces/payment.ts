@@ -50,7 +50,8 @@ export interface generatePaymentMP {
     delivery_note: string,
     couponId?: {
       id: string,
-      amount: number
+      amount: number,
+      code: string
     }
   }
   total_amount: number,
