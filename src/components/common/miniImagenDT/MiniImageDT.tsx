@@ -1,5 +1,4 @@
-import { transformUrlGDrive } from '../../helpers/imgHelper';
-import { notImage } from '../../assets/vectors/index';
+import { notImage } from '../../../assets/vectors';
 
 const MiniImageDT = ({ src, handleChangeImage, index = 0 }: MiniImageDTProps) => (
   <>
@@ -10,7 +9,7 @@ const MiniImageDT = ({ src, handleChangeImage, index = 0 }: MiniImageDTProps) =>
       </div>
       :
       <div className='mb-4 cursor-pointer hover:' onClick={() => handleChangeImage(index)}>
-        <img src={transformUrlGDrive(src)} className='w-[146px] h-[123px] object-contain'/>
+        <img src={src} className='w-[146px] h-[123px] object-contain'/>
       </div>
     }
   </>

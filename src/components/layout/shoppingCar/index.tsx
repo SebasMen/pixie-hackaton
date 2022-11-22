@@ -6,7 +6,7 @@ import Button from '../../common/button';
 import IconButton from '../../common/iconButton';
 import ItemShoppingCarMini from '../../common/itemShoppingCarMini';
 
-import { calculateTotal } from '../../../helpers/productHelper';
+import { calculateTotal, roundToXDigits } from '../../../helpers/productHelper';
 import { useTranslation } from 'react-i18next';
 
 const ShoppingCar = ({ onClose, show }: shoppingCarProps) => {
@@ -59,7 +59,7 @@ const ShoppingCar = ({ onClose, show }: shoppingCarProps) => {
       </div>
       <div className='bg-[#dbdbdb] rounded-xl px-4 mt-[6px] mb-3 flex justify-between items-center py-2 font-bold text-lg lg:mt-6 lg:py-2 lg:pl-3 lg:pr-4'>
         <p>Total</p>
-        <span>${calculateTotal(products, false)}</span>
+        <span>${roundToXDigits(calculateTotal(products, false), 2)}</span>
       </div>
       <div className='flex flex-col gap-2 font-sanzBold'>
         <Button className='bg-primary text-[#fad7b1]' onClick={() => navigate('/canasta')}>

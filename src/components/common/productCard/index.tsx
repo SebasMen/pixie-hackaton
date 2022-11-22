@@ -8,7 +8,7 @@ import IconButton from '../iconButton';
 import Tag from './tag';
 
 import { Product } from '../../../interfaces/product';
-import { transformAge } from '../../../helpers/productHelper';
+import { roundToXDigits, transformAge } from '../../../helpers/productHelper';
 import { capitalize } from '../../../helpers/capitalize';
 
 import { basket, tagCatGray, tagDogGray, notImage } from '../../../assets/vectors/index';
@@ -147,7 +147,7 @@ export const ProductCard = ({
           {product.status !== '2' && (
             <div className='flex items-center justify-between px-4'>
               <p className='font-sanzBold text-base md:text-xl flex flex-col'>
-                <span>${product.price} </span>
+                <span>${roundToXDigits(product.price, 2)} </span>
                 <span className='text-xs font-semibold hidden lg:inline-flex '>
                   {product.presentation.toLocaleLowerCase()}
                 </span>

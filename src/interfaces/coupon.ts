@@ -17,7 +17,8 @@ export interface couponComplete {
   prerequisites_id: string,
   totalUses: number,
   couponType: couponType,
-  status: number
+  status: number,
+  internalCoupon: internalCoupon
 }
 
 export interface couponType {
@@ -33,4 +34,10 @@ export interface couponHistory {
   updatedAt: string,
   coupons_id: string,
   coupon: couponComplete
+}
+
+export interface internalCoupon {
+  code: string,
+  id: string,
+  name: string,
 }

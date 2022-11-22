@@ -58,3 +58,48 @@ export const separateByCommasAndParenthesis = (text : string) => {
   const array = text.split(/[(),.]+/);
   return array;
 };
+
+export const pricex20 = (product: Product): Product => {
+  const productNew = { ...product };
+  try {
+    productNew.price *= 20;
+  } catch (err) {
+    console.log(err);
+  }
+
+  return productNew;
+};
+
+export const productCombo:Product = {
+  age: 'cachorros,adultos,senior',
+  atributos: [],
+  atributos_en: [],
+  benefits: [],
+  benefits_en: [],
+  category: 'Alimentos',
+  country: 2,
+  description: '',
+  description_en: '',
+  dosis: '',
+  dosis_en: '',
+  id: '-9999',
+  ingredients: [],
+  ingredients_en: [],
+  key: '',
+  key_en: '',
+  kind_pet: '',
+  license: '',
+  name: 'Caja x20 rollos diferentes sabores',
+  name_en: 'Box x20 rolls of different flavors',
+  nutrition_information: [],
+  nutrition_information_en: [],
+  presentation: '1 lb',
+  price: 0,
+  quantity: 999,
+  recommendation_for_use: '',
+  recommendation_for_use_en: '',
+  status: '1',
+  url_image: '',
+  productsInside: []
+};
+

@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useFetch } from '../../hooks';
 
 import Page from '../../components/layout/page';
 import Button from '../../components/common/button';
@@ -20,7 +19,7 @@ import { backArrow } from '../../assets/vectors';
 import '../../styles/banner.css';
 import ButtonWhatsap from '../../components/common/buttonWhatsapp';
 import productService from '../../services/productService';
-import { Product } from '../../interfaces/product';
+import { infoSelectSPandEn, Product } from '../../interfaces/product';
 import { useLoading } from '../../hooks/useLoading';
 import { useTranslation } from 'react-i18next';
 
@@ -28,13 +27,11 @@ const Detail = () => {
   // Hooks
   const { t } = useTranslation();
   const params = useParams();
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState<Product>();
+  const [allIngredients, setallIngredients] = useState<infoSelectSPandEn[]>();
   const { loadingDeterminate } = useLoading();
   const { product } = params;
-  const getOneProduct = useCallback(
-    () => productService.getOneProductByKey(product),
-    [product],
-  );
-  const { loading, response } = useFetch<Product>(getOneProduct);
   const [showFooter, setShowFooter] = useState(true);
   const navigate = useNavigate();
 
@@ -47,10 +44,30 @@ const Detail = () => {
     loadingDeterminate(loading);
   }, [loading]);
 
+  useEffect(() => {
+    productService.getIngredients().then(res => {
+      setallIngredients(res);
+    }).catch(err => {
+      console.log(err);
+    });
+
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    productService.getOneProductByKey(product, false).then(res => {
+      setProducts(res);
+      setLoading(false);
+    }).catch(error => {
+      console.log(error);
+    });
+    return () => {};
+  }, [location]);
+
   // Component
   return (
     <Page className={`${!showFooter && 'mb-14'}`}>
-      {response && (
+      {(products && allIngredients) && (
         <div>
           <div className='lg:px-[123px] max-w-[1440px] mt-6'>
             <div className='md:hidden px-7 mt-7 mb'>
@@ -61,14 +78,14 @@ const Detail = () => {
                 <span onClick={() => navigate('/catalogo')} className='cursor-pointer'>
                   Catálogo &gt;{' '}
                 </span>
-                {capitalize(response.name)}
+                {capitalize(products.name)}
               </p>
               <div className='w-full flex-grow flex flex-col flex-shrink-0 md:flex-row md:pb-10 md:gap-1'>
                 {/* Banner Detail to mobile */}
-                <BannerDetail product={response} />
+                <BannerDetail product={products} />
                 {/* Banner Detail to desktop */}
-                <BannerDetailDT product={response} />
-                <InfoSection product={response} attributes={organizeAttributes(response.atributos)} />
+                <BannerDetailDT product={products} />
+                <InfoSection product={products} attributes={organizeAttributes(products.atributos)} />
               </div>
             </div>
             {/* Calculator */}
@@ -83,15 +100,15 @@ const Detail = () => {
             </div>
 
             {/* Nutrition */}
-            <NutritionSection ingredients={organizeIngredients(response.ingredients)} />
+            <NutritionSection ingredients={organizeIngredients(products.ingredients, allIngredients)} />
 
-            <ExtraInfoContainer product={response} />
+            <ExtraInfoContainer product={products} />
 
             {/* FAB */}
             {showFooter && <ButtonWhatsap />}
           </div>
           {/* Other Info */}
-          <InfoAccordion product={response} />
+          <InfoAccordion product={products} />
           {/* Footer */}
           {showFooter && <Footer className='md:mt-16' />}
         </div>

@@ -1,3 +1,5 @@
+import { SelectItem } from '../components/form/selectField';
+
 export interface ProductListResponse {
   status: string;
   products: Array<Product>;
@@ -40,6 +42,8 @@ export interface Product {
   url_image: string;
   quantitySold?: number;
   totalPrice?: number;
+  productsInside?: Product[]
+  isComboPersonality?: boolean
 }
 
 export interface productShort {
@@ -67,4 +71,21 @@ export interface ingredientesProps {
 export interface attributesType {
   img: string;
   name: string;
+}
+
+export interface infoSelectSPandEn {
+  id: string,
+  key: string,
+  name: string,
+  name_en: string
+}
+
+export interface createComboForm {
+  quantityChoose: number,
+  flavor: Product[],
+  quantity: number,
+  flavorOptions: SelectItem[]
+  flavorSelect: SelectItem,
+  finalPrice: number,
+  quantityToProduct: number
 }

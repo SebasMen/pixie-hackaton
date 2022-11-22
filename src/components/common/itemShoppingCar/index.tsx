@@ -2,7 +2,7 @@ import useShoppingCar from '../../../hooks/useShoppingCar';
 
 import AddRemoveItem from '../addRemoveItem/AddRemoveItem';
 
-import { calculateGrs } from '../../../helpers/productHelper';
+import { calculateGrs, roundToXDigits } from '../../../helpers/productHelper';
 import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import { capitalize } from '../../../helpers/capitalize';
 import { CartItem } from '../../../interfaces/basket';
@@ -48,9 +48,20 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
         <div className='flex flex-col text-xs justify-between'>
           <div className='flex flex-col lg:pt-1'>
             <span className='text-sm text-pixieLightBlue lg:text-lg'>{capitalize(item.product.name)}</span>
-            <span className='font-sanzBold lg:text-sm'>
-              {item.quantity === 1 ? `${item.quantity} unidad ` : `${item.quantity} unidades `}
-              - {calculateGrs(item)}</span>
+            {item.product.productsInside
+              ?
+              <div className='flex flex-col '>
+                {item.product.productsInside.map(prod =>
+                  <span key={prod.id} className='font-sanzBold lg:text-sm'>
+                    {prod.name_en} (x{prod.quantity}),
+                  </span>)}
+              </div>
+              :
+              <span className='font-sanzBold lg:text-sm'>
+                {item.quantity === 1 ? `${item.quantity} unidad ` : `${item.quantity} unidades `}
+              - {calculateGrs(item)}
+              </span>
+            }
           </div>
           {showOptions &&
             <img
@@ -61,10 +72,13 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
           }
         </div>
         <div className='flex flex-col items-end pb-3 justify-between lg:pt-3 lg:justify-start lg:gap-3 lg:pr-1 lg:pb-0'>
-          <span className='text-sm font-bold lg:text-[22px] lg:leading-7'>${item.quantity * item.product.price}</span>
+          <span className='text-sm font-bold lg:text-[22px] lg:leading-7'>${roundToXDigits(item.quantity * item.product.price, 2)}</span>
           {showOptions && (
             <div className='w-[65px] h-[23px] lg:w-[79px] lg:h-[29px]'>
               <AddRemoveItem handleChance={handleChange} counter={counter} />
+              {item.product.productsInside &&
+                <span className='text-pixieLightBlue text-[8px]'>(Caja x20 unidades)</span>
+              }
             </div>
           )}
         </div>

@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useAppContext, useFetch } from '../../hooks';
+import { useEffect, useState } from 'react';
+import { useAppContext } from '../../hooks';
 
 import Page from '../../components/layout/page';
 import ProductsSection from './productsSection';
@@ -22,9 +22,25 @@ const Home = () => {
   const {
     i18n: { language },
   } = useTranslation();
-  const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
 
-  const { updateContext, showPopupGotoSite } = useAppContext();
+  const { updateContext, showPopupGotoSite, location } = useAppContext();
+  const [productList, setProductList] = useState<ProductListResponse>();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    handleGetProducts();
+    return () => {};
+  }, [location]);
+
+  const handleGetProducts = () => {
+    productService.getAllProducts(location === 'USA' ? 2 : 1, true).then(res => {
+      setProductList(res);
+      setLoading(false);
+    }
+    ).catch(error => {
+      console.log(error);
+    });
+  };
+
   const { loadingDeterminate } = useLoading();
 
   useEffect(() => {
@@ -52,7 +68,7 @@ const Home = () => {
         <Banner dataBanner={language === 'es' ? dataBanner : dataBannerEn} showBotton={true} />
 
         {/* Carrousel & Products */}
-        <ProductsSection products={response?.products} />
+        <ProductsSection products={productList?.products} />
 
         {/* FAB */}
         <ButtonWhatsap />

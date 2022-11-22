@@ -51,7 +51,9 @@ export interface generatePaymentMP {
     couponId?: {
       id: string,
       amount: number,
-      code: string
+      code: string,
+      internalCouponName: string,
+      internalCouponNumber: string
     }
   }
   total_amount: number,

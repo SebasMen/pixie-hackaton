@@ -1,4 +1,4 @@
-import { calculateGrs } from '../../../helpers/productHelper';
+import { calculateGrs, roundToXDigits } from '../../../helpers/productHelper';
 import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import { capitalize } from '../../../helpers/capitalize';
 import { CartItem } from '../../../interfaces/basket';
@@ -22,7 +22,7 @@ const ItemShoppingCarMini = ({ item }: ItemShoppingCarMiniProps) => (
         </div>
       </div>
       <div className='flex flex-col items-end lg:gap-[1px] lg:pr-1'>
-        <span className='text-sm lg:font-sanzBold lg:text-base lg:leading-7'>${item.quantity * item.product.price}</span>
+        <span className='text-sm lg:font-sanzBold lg:text-base lg:leading-7'>${roundToXDigits(item.quantity * item.product.price, 2)}</span>
         <span className='font-sanzSemiBold text-xs'>
           {item.quantity === 1 ? `${item.quantity} unidad` : `${item.quantity} unidades`}
         </span>

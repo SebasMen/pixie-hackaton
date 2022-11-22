@@ -15,8 +15,12 @@ export const SelectField = ({
   paddingY,
   dropdownIndicatorColor,
   isMulti = false,
+  disabled = false,
   colorText,
-  isClearable = false
+  isClearable = false,
+  backgroundColor,
+  colorPlaceholder,
+  fontSize
 }: SelectFieldProps) => (
   <div className={'w-full flex flex-col items-start ' + className}>
     {label && <h2 className='pl-6 mb-3 text-lg font-medium'>{label}</h2>}
@@ -30,8 +34,8 @@ export const SelectField = ({
         ...old,
         colors: {
           ...old.colors,
-          primary: '#33B5A9',
-          primary25: '#33b5a9b0',
+          primary: dropdownIndicatorColor ? dropdownIndicatorColor : '#33B5A9',
+          primary25: dropdownIndicatorColor ? dropdownIndicatorColor : '#33b5a9b0',
         },
       })}
       isMulti={isMulti}
@@ -41,6 +45,7 @@ export const SelectField = ({
       options={options}
       onChange={newValue => onChange(newValue, name)}
       isClearable={isClearable}
+      isDisabled={disabled}
       styles={{
         dropdownIndicator: base => ({
           ...base,
@@ -51,6 +56,7 @@ export const SelectField = ({
           minHeight: 40,
           border: border ? '' : 'none',
           borderRadius: borderRadius ? '9999px' : '',
+          backgroundColor: backgroundColor ? backgroundColor : 'white',
           paddingLeft: '10px',
           paddingRight: '10px',
           paddingBottom: paddingY ? paddingY : '',
@@ -66,6 +72,11 @@ export const SelectField = ({
           ...base,
           color: colorText ? colorText : 'black',
         }),
+        placeholder: base => ({
+          ...base,
+          color: colorPlaceholder ? colorPlaceholder : '#616161',
+          fontSize: fontSize ? fontSize : '14px'
+        })
       }}
     />
     {messageError && <p className='text-primary pl-2 text-xs lg:text-base'>{messageError}</p>}
@@ -83,12 +94,16 @@ interface SelectFieldProps {
   borderRadius?: boolean;
   borderColor?: string;
   paddingY?: string;
+  colorPlaceholder? : string;
   options: SelectItem[];
   onChange: (selected: MultiValue<SelectItem> | SingleValue<SelectItem>, name: string) => void;
   messageError?: string;
   dropdownIndicatorColor?: string;
+  backgroundColor? : string;
   colorText?: string;
-  isClearable?: boolean
+  isClearable?: boolean,
+  fontSize? : string;
+  disabled?: boolean
 }
 
 export interface SelectItem {

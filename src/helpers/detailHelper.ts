@@ -45,11 +45,11 @@ import {
   atHighEnergy,
   atRefreshing,
 } from '../assets/vectors';
-import { attributesType, ingredientesProps } from '../interfaces/product';
+import { attributesType, infoSelectSPandEn, ingredientesProps } from '../interfaces/product';
 
 // Order nutrient adjunting with his image
-export const organizeIngredients = (ingredients: string[]): Array<ingredientesProps> => {
-  const ingredientGroup = organizateIngredientsGroup(ingredients);
+export const organizeIngredients = (ingredients: string[], allIngredients: infoSelectSPandEn[]): Array<ingredientesProps> => {
+  const ingredientGroup = organizateIngredientsGroup(ingredients, allIngredients);
   return ingredientGroup;
 };
 
@@ -63,51 +63,12 @@ export const organizeAttributes = (attributes: string[]): Array<attributesType> 
 };
 
 // eslint-disable-next-line complexity
-const switchOrganiceIngredients = (ingredient: string) => {
+const switchOrganiceIngredients = (ingredient: string, ingredientSPEn: infoSelectSPandEn[]) => {
+  const name = ingredientSPEn.find(item => item.key === ingredient);
   const objectIngredient = {
-    name: ingredient,
+    name: name?.name as string,
     img: '',
   };
-
-  /// if (ingredient.toLocaleLowerCase().includes('quinua')) {
-  //   objectIngredient.img = inQuinua;
-  //   objectIngredient.name = 'quinua';
-  // }
-
-  // if (ingredient.toLocaleLowerCase().includes('quinoa')) {
-  //   objectIngredient.img = inQuinua;
-  //   objectIngredient.name = 'Quinoa';
-  // }
-
-  // if (ingredient.toLocaleLowerCase().includes('harina de quinua')) {
-  //   objectIngredient.img = inQuinua;
-  //   objectIngredient.name = 'Harina de quinua';
-  // }
-
-  // if (ingredient.toLocaleLowerCase().includes('batata')) {
-  //   objectIngredient.img = inBatata;
-  //   objectIngredient.name = 'Batata';
-  // }
-
-  // if (ingredient.toLocaleLowerCase().includes('hígado de res')) {
-  //   objectIngredient.img = inFillet;
-  //   objectIngredient.name = 'Hígado de Res';
-  // }
-
-  // if (ingredient.toLocaleLowerCase().includes('harina de arroz')) {
-  //   objectIngredient.img = inIntegralRice;
-  //   objectIngredient.name = 'Harina de Arroz';
-  // }
-
-  // if (ingredient.toLocaleLowerCase().includes('cacahuate')) {
-  //   objectIngredient.img = inPeanut;
-  //   objectIngredient.name = 'Cacahuate';
-  // }
-
-  // if (ingredient.toLocaleLowerCase().includes('yogurt')) {
-  //   objectIngredient.img = inYogurt;
-  //   objectIngredient.name = 'Yogurt';
-  // }
 
   switch (ingredient.trim().toLocaleLowerCase()) {
     case 'huevo':
@@ -115,7 +76,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
       break;
     case 'harina-de-quinua':
       objectIngredient.img = inQuinua;
-      objectIngredient.name = 'Harina de quinua';
       break;
     case 'espirulina':
       objectIngredient.img = inSpirulina;
@@ -137,7 +97,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
       break;
     case 'quinoa':
       objectIngredient.img = inQuinua;
-      objectIngredient.name = 'Quinoa';
       break;
     case 'almidon-de-mandioca':
       objectIngredient.img = inInstarchCassava;
@@ -162,7 +121,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
       break;
     case 'batata':
       objectIngredient.img = inBatata;
-      objectIngredient.name = 'Batata';
       break;
     case 'tilapia':
       objectIngredient.img = inTilapia;
@@ -172,7 +130,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
       break;
     case 'yogurt':
       objectIngredient.img = inYogurt;
-      objectIngredient.name = 'Yogurt';
       break;
     case 'harina-de-avena':
       objectIngredient.img = inFlourOats;
@@ -185,7 +142,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
       break;
     case 'quinua':
       objectIngredient.img = inQuinua;
-      objectIngredient.name = 'quinua';
       break;
     case 'crema-de-cacahuate':
       objectIngredient.img = inPeanutButter;
@@ -195,7 +151,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
       break;
     case 'harina-de-arroz':
       objectIngredient.img = inIntegralRice;
-      objectIngredient.name = 'Harina de Arroz';
       break;
     case 'aceite-vegetal':
       objectIngredient.img = inVegetableOil;
@@ -205,7 +160,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
       break;
     case 'hígado-de-res':
       objectIngredient.img = inFillet;
-      objectIngredient.name = 'Hígado de Res';
       break;
     case 'carne-de-pollo':
       objectIngredient.img = inChickenMeat;
@@ -215,7 +169,6 @@ const switchOrganiceIngredients = (ingredient: string) => {
       break;
     case 'cacahuate':
       objectIngredient.img = inPeanut;
-      objectIngredient.name = 'Cacahuate';
       break;
     case 'agua':
       objectIngredient.img = inWater;
@@ -235,11 +188,6 @@ const switchOrganiceAttributes = (attribute: string): attributesType => {
     name: attribute,
     img: '',
   };
-
-  /// if (attribute.toLocaleLowerCase().includes('digestiva')) {
-  //   objectAttributes.img = atSensitiveAllergic;
-  //   objectAttributes.name = 'digestiva';
-  // }
 
   switch (attribute.trim().toLocaleLowerCase()) {
     case 'digestiva':
@@ -305,12 +253,12 @@ export const calculatePageNutrients = (
   return ingredientsTotal;
 };
 
-const organizateIngredientsGroup = (ingredients: string[]): Array<ingredientesProps> => {
+const organizateIngredientsGroup = (ingredients: string[], ingredientSPEn: infoSelectSPandEn[]): Array<ingredientesProps> => {
   const objectIngredients: ingredientesProps[] = [];
 
   const minerales = ['hierro', 'yodo', 'cobre', 'selenio', 'zinc'];
-  const carnes = ['carne de res', 'corazón de res', 'pulmón de res'];
-  const vitaminas = ['A', 'D', 'E', 'B1', 'B2', 'B3', 'B5', 'B6', 'B8', 'B9', 'B12', 'Colina'];
+  const carnes = ['carne-de-res', 'corazon-de-res', 'pulmon-de-res'];
+  const vitaminas = ['vitamina-a', 'vitamina-d', 'vitamina-e', 'vitamina-b1', 'vitamina-b2', 'vitamina-b3', 'vitamina-b5', 'vitamina-b6', 'vitamina-b8', 'vitamina-b9', 'vitamina-b12', 'colina'];
 
   ingredients.forEach(item => {
     const objectIngredient: ingredientesProps = {
@@ -324,9 +272,9 @@ const organizateIngredientsGroup = (ingredients: string[]): Array<ingredientesPr
       if (index === -1) {
         objectIngredient.img = inMineral;
         objectIngredient.name = 'Minerales';
-        objectIngredient.tooltip += `${item.trim()}, `;
+        objectIngredient.tooltip += `${ingredientSPEn.find(ing => ing.key === item.trim())?.name}, `;
         objectIngredients.push(objectIngredient);
-      } else objectIngredients[index].tooltip += `${item.trim()}, `;
+      } else objectIngredients[index].tooltip += `${ingredientSPEn.find(ing => ing.key === item.trim())?.name}, `;
     } else if (carnes.includes(item.toLocaleLowerCase().trim())) {
       const index = objectIngredients.findIndex(item => item.name === 'Carnes');
       if (index === -1) {
@@ -334,22 +282,22 @@ const organizateIngredientsGroup = (ingredients: string[]): Array<ingredientesPr
         objectIngredient.name = 'Carnes';
         // Provitional while the ingredient data is update in the DB
         if (item.toLocaleLowerCase().trim() === 'carne de res') objectIngredient.tooltip += 'Res, ';
-        else objectIngredient.tooltip += `${item.trim()}, `;
+        else objectIngredient.tooltip += `${ingredientSPEn.find(ing => ing.key === item.trim())?.name}}, `;
         objectIngredients.push(objectIngredient);
         // eslint-disable-next-line brace-style
       }
       // Provitional while the ingredient data is update in the DB
-      else if (item.toLocaleLowerCase().trim() === 'carne de res') objectIngredients[index].tooltip += 'Res, ';
-      else objectIngredients[index].tooltip += `${item.trim()}, `;
+      else if (item.toLocaleLowerCase().trim() === 'carne-de-res') objectIngredients[index].tooltip += 'Res, ';
+      else objectIngredients[index].tooltip += `${ingredientSPEn.find(ing => ing.key === item.trim())?.name}, `;
     } else if (vitaminas.find(vitaminItem => vitaminItem === item.trim())) {
       const index = objectIngredients.findIndex(item => item.name === 'Vitaminas');
       if (index === -1) {
         objectIngredient.img = inVitamines;
         objectIngredient.name = 'Vitaminas';
-        objectIngredient.tooltip += `${item.trim()}, `;
+        objectIngredient.tooltip += `${ingredientSPEn.find(ing => ing.key === item.trim())?.name}, `;
         objectIngredients.push(objectIngredient);
-      } else objectIngredients[index].tooltip += `${item.trim()}, `;
-    } else objectIngredients.push(switchOrganiceIngredients(item));
+      } else objectIngredients[index].tooltip += `${ingredientSPEn.find(ing => ing.key === item.trim())?.name}, `;
+    } else objectIngredients.push(switchOrganiceIngredients(item, ingredientSPEn));
   });
   return objectIngredients;
 };

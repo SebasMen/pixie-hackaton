@@ -16,6 +16,7 @@ const FrequentQuestions = lazy(() => import('../views/FrequentQuestions'));
 const DataPrivacy = lazy(() => import('../views/dataPrivacy'));
 const TermsAndConditions = lazy(() => import('../views/termsAndConditions'));
 const ResultPayment = lazy(() => import('../views/resultPayment'));
+const CreateCombo = lazy(() => import('../views/createCombo'));
 
 import { useAppContext, useAuth, useLocation } from '../hooks';
 
@@ -86,19 +87,6 @@ const AppRouter = () => {
             }
           />
 
-          {/* <Route path='/gatos' element={<></>}>
-            <Route index />
-            <Route path='/cachorros'>
-              <Route index />
-              <Route path='/alimentos'>
-                <Route index />
-                <Route path='/:product' />
-              </Route>
-              <Route path='/:product' />
-            </Route>
-            <Route path='/:product' />
-          </Route> */}
-
           <Route path='/catalogo/:type'>
             <Route index
               element={
@@ -141,6 +129,15 @@ const AppRouter = () => {
             element={
               <Suspense fallback={<FadeScreen />}>
                 <Detail />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path='producto/crear/combo'
+            element={
+              <Suspense fallback={<FadeScreen />}>
+                <CreateCombo />
               </Suspense>
             }
           />

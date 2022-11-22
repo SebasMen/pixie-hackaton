@@ -29,7 +29,7 @@ const Catalogue = () => {
     typePet: [],
     typeProduct: ''
   });
-  const { updateContext } = useAppContext();
+  const { updateContext, location } = useAppContext();
   const [searchParams] = useSearchParams();
   const { scrollTo } = useScrolled();
   const { loadingDeterminate } = useLoading();
@@ -40,7 +40,7 @@ const Catalogue = () => {
 
   useEffect(() => {
     getProducts();
-  }, [searchParams]);
+  }, [searchParams, location]);
 
   // Show loading
   useEffect(() => {
@@ -62,7 +62,7 @@ const Catalogue = () => {
           scrollTo(800);
         });
     else
-      await productService.getAllProducts().then(data => {
+      await productService.getAllProducts(location === 'USA' ? 2 : 1, true).then(data => {
         setproducts(data);
         setLoading(false);
       });

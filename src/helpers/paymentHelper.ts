@@ -55,7 +55,9 @@ export const organiceInformationPaymentMP = (idCustomer: string, userData: Submi
       couponId: coupon && {
         amount: (getPriceDescount(products, coupon) - calculateTotal(products, false)),
         id: coupon.id,
-        code: coupon.claimCode
+        code: coupon.claimCode,
+        internalCouponName: coupon.internalCoupon.name,
+        internalCouponNumber: coupon.internalCoupon.code
       }
     },
     total_amount: calculateTotalPayment(products, shippingData, true, coupon),
@@ -78,7 +80,7 @@ const organiceProductsMP = (products: CartItem[], shippingData: shippingTypeForm
         age: item.product.age
       },
       picture_url: item.product.url_image,
-      unit_price: item.product.price,
+      unit_price: Number(item.product.price),
 
       title: item.product.name,
       quantity: item.quantity,
@@ -99,22 +101,22 @@ const organiceProductsMP = (products: CartItem[], shippingData: shippingTypeForm
       quantity: 1,
     };
     productsArray.push(productItem);
+  }
 
-    if (coupon) {
-      const productItemdiscount: itemsMP = {
-        id: '0',
-        description: {
-          presentation: 'descuento',
-          age: 'descuento'
-        },
-        picture_url: '',
-        unit_price: (getPriceDescount(products, coupon) - calculateTotal(products, false)),
-        title: 'descuento',
-        quantity: 1,
-      };
-      productsArray.push(productItemdiscount);
-      console.log(productItemdiscount.unit_price);
-    }
+  if (coupon) {
+    const productItemdiscount: itemsMP = {
+      id: '0',
+      description: {
+        presentation: 'descuento',
+        age: 'descuento'
+      },
+      picture_url: '',
+      unit_price: (getPriceDescount(products, coupon) - calculateTotal(products, false)),
+      title: 'descuento',
+      quantity: 1,
+    };
+    productsArray.push(productItemdiscount);
+    console.log(productItemdiscount.unit_price);
   }
 
   return productsArray;

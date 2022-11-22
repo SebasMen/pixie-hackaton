@@ -12,6 +12,8 @@ import { dogDesktop, vegetables } from '../../assets/images';
 import { homeIconCard, poopIconCard, foodIconCard, dogIconCard, catIconCard } from '../../assets/vectors';
 import { homeCardCats, homeCardFood, homeCardHold, homeCardHouse, homeCardPoop } from '../../assets/json';
 import { useTranslation } from 'react-i18next';
+import { useAppContext } from '../../hooks';
+import ProductCardCombo from '../../components/common/productCardCombo';
 
 export const ProductsSection = ({ products }: ProductsSectionProps) => {
   // Hooks
@@ -21,6 +23,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
   } = useTranslation();
   const [selected, setSelected] = useState(0);
   const navigate = useNavigate();
+  const { location } = useAppContext();
 
   const redirectCatalogue = () => navigate('/catalogo');
 
@@ -150,9 +153,12 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
         <span>{t('homeProductsTitle')}</span>
       </div>
       <div className='flex flex-wrap justify-center items-start gap-4 gap-y-[4.3rem] mt-20 md:mt-0 p-4 lg:px-36 lg:pb-12 xl:justify-between 2xl:pb-32 2xl:px-32 max-w-[1880px]'>
-        {products?.slice(0, 7).map(product => (
+        {location === 'USA' &&
+          <ProductCardCombo key='createCombo'/>
+        }
+        {products?.slice(0, location === 'USA' ? 6 : 7).map((product, index) =>
           <ProductCard key={product.id} product={product} />
-        ))}
+        )}
         <div className='h-[357px] w-[16.815rem] hidden xl:block' />
       </div>
       <Button

@@ -25,7 +25,7 @@ const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', pri
           ?
           <div className='mb-4 flex justify-between lg:mb-3'>
             <span>Subtotal</span>
-            <span>${calculateTotal(products, false)}</span>
+            <span>${roundToXDigits(calculateTotal(products, false), 2)}</span>
           </div>
           :
           <div className='mb-4 flex justify-between lg:mb-3'>
@@ -73,7 +73,7 @@ const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', pri
           :
           <div className='flex justify-between items-center'>
             Total
-            <p>${calculateTotalPayment(products, shippingInfo, true, coupon)}</p>
+            <p>${roundToXDigits(calculateTotalPayment(products, shippingInfo, true, coupon), 2)}</p>
           </div>
         }
       </div>

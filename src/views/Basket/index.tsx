@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext, useFetch } from '../../hooks';
 
@@ -20,8 +20,9 @@ const Basket = () => {
   // Hooks
   const [showMessage, setShowMessage] = useState(false);
   const [messageDelete, setMessageDelete] = useState('');
-  const { products, updateContext, toast } = useAppContext();
-  const { loading, response } = useFetch<ProductListResponse>(productService.getAllProducts);
+  const { products, updateContext, toast, location } = useAppContext();
+  const getCalculateProduct = useCallback(() => productService.getAllProducts(location === 'USA' ? 2 : 1, true), [location]);
+  const { loading, response } = useFetch<ProductListResponse>(getCalculateProduct);
 
   const navigate = useNavigate();
 
@@ -62,7 +63,7 @@ const Basket = () => {
 
             <div className='border-b border-[#a4a09b] pb-2 lg:pb-5'>
               {/* Product list */}
-              {products.map(item => <ItemShoppingCar key={`item-${item.product.id}`} item={item} showMessageDelete={showMessageDelete} showOptions />)}
+              {products.map((item, index) => <ItemShoppingCar key={`item-${item.product.id}-${index}`} item={item} showMessageDelete={showMessageDelete} showOptions />)}
             </div>
           </div>
 
