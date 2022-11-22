@@ -51,7 +51,7 @@ export class CheckOutService {
 
   getCoupon = (claimCode: string): Promise<couponComplete> =>
     new Promise((resolve, reject) => {
-      api({ baseURL: `https://apidev.tools.antpack.co/pixie-coupons/api/coupons/code/${claimCode}` }).then(res => {
+      api.get(`pixie-coupons/api/coupons/code/${claimCode}`).then(res => {
         resolve(res.data.response);
       }).catch(err => {
         reject(err.response.data.message);
@@ -60,7 +60,7 @@ export class CheckOutService {
 
   getCouponHistory = (userInfo:SubmissionFormInterface | undefined, couponInfo:couponComplete | undefined): Promise<couponHistory[]> =>
     new Promise((resolve, reject) => {
-      api({ baseURL: `https://apidev.tools.antpack.co/pixie-coupons/api/history_coupons?email=${userInfo?.email}&coupon=${couponInfo?.id}` }).then(res => {
+      api.get(`pixie-coupons/api/history_coupons?email=${userInfo?.email}&coupon=${couponInfo?.id}`).then(res => {
         resolve(res.data.response.data);
       }).catch(err => {
         reject(err.response.data.message);
