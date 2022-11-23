@@ -49,7 +49,7 @@ export const ProductCounter = ({ price = 0, onPriceChange, productQuantity, clas
       <div className='flex flex-col flex-grow items-end h-full transform transition-all w-3/5'>
         <div className='flex gap-2 items-end text-pixieLightBlue font-paragraph'>
           <h2 className={`animate__animated animate__faster ${showTotal ? 'text-base text-gray-500 animate__fadeIn' : 'text-3xl font-bold animate__bounceIn'}`}>${roundToXDigits(price, 2)}</h2>
-          {showTotal && <h2 className='text-3xl font-bold animate__animated animate__bounceIn'>${roundToXDigits(totalPrice, 2)}</h2>}
+          {showTotal && <h2 className='text-3xl font-bold animate__animated animate__bounceIn gt-detail-product-price'>${roundToXDigits(totalPrice, 2)}</h2>}
         </div>
         {showGr && <p className='text-pixieLightBlue font-paragraph text-sm'>{(count * 500) + ' gr'}</p>}
       </div>

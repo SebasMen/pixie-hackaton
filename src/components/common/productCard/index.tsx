@@ -91,7 +91,7 @@ export const ProductCard = ({
       className={`
           relative flex flex-col flex-shrink-0 justify-between items-center
           h-[15.5rem] smaller:w-48 w-40 md:w-[16.815rem] md:h-[380px]
-          2xl1:w-[19.815rem] 2xl1:h-[414px]
+          2xl1:w-[19.815rem] 2xl1:h-[414px] gt-product-cart
           ${className} 
         `}
     >
@@ -175,7 +175,7 @@ export const ProductCard = ({
           ) : (
             <IconButton.mini
               imgClassName='w-6 h-6 md:w-7 md:h-7'
-              sizeContainer='w-[35px] h-[35px] md:w-[43px] md:h-[43px] '
+              sizeContainer='w-[35px] h-[35px] md:w-[43px] md:h-[43px] tg-basket-product-card'
               img={basket}
               name='basket'
               type='outlined'

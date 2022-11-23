@@ -17,13 +17,13 @@ const ItemShoppingCarMini = ({ item }: ItemShoppingCarMiniProps) => (
     <div className='flex justify-between w-[78.67%] lg:w-[76%] lg:pt-3'>
       <div className='flex flex-col text-xs justify-between'>
         <div className='flex flex-col'>
-          <span className='text-sm text-pixieLightBlue lg:font-sanzBold lg:text-base'>{capitalize(item.product.name)}</span>
+          <span className='text-sm text-pixieLightBlue lg:font-sanzBold lg:text-base gt-product-buy'>{capitalize(item.product.name)}</span>
           <span className='font-sanzSemiBold lg:text-xs'>{calculateGrs(item)}</span>
         </div>
       </div>
       <div className='flex flex-col items-end lg:gap-[1px] lg:pr-1'>
-        <span className='text-sm lg:font-sanzBold lg:text-base lg:leading-7'>${roundToXDigits(item.quantity * item.product.price, 2)}</span>
-        <span className='font-sanzSemiBold text-xs'>
+        <span className='text-sm lg:font-sanzBold lg:text-base lg:leading-7 gt-product-buy-price'>${roundToXDigits(item.quantity * item.product.price, 2)}</span>
+        <span className='font-sanzSemiBold text-xs gt-product-buy-quantity'>
           {item.quantity === 1 ? `${item.quantity} unidad` : `${item.quantity} unidades`}
         </span>
       </div>

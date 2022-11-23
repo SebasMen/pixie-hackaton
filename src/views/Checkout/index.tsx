@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useFetch } from '../../hooks';
+import { useAppContext, useFetch } from '../../hooks';
 
 import Page from '../../components/layout/page';
 import ResumenSection from './ResumenProductSection';
@@ -25,6 +25,7 @@ import { basketRed } from '../../assets/vectors/';
 import TextField from '../../components/form/textField';
 import { couponComplete } from '../../interfaces/coupon';
 import Button from '../../components/common/button';
+import { calculateTotal } from '../../helpers/productHelper';
 
 const CheckOut = () => {
   // Hooks
@@ -34,6 +35,7 @@ const CheckOut = () => {
   const [idCustomer, setIdCustomer] = useState('');
   const [shippingInfo, setShippingInfo] = useState<shippingTypeForm>({ type: 'estandar', price: 90 });
   const [coupon, setCoupon] = useState<couponComplete>();
+  const { products } = useAppContext();
   const [couponCode, setCouponCode] = useState({
     status: true,
     messageError: '',
@@ -95,6 +97,8 @@ const CheckOut = () => {
         const today = new Date();
         if (today > date)
           setCouponCode(old => ({ ...old, status: false, messageError: '* Este código ya no esta disponible' }));
+        else if (res.couponType.key === 'discount' && res.discount >= calculateTotal(products, false))
+          setCouponCode(old => ({ ...old, status: false, messageError: '* El precio final debe ser mayor al descuento' }));
         else {
           setCoupon(res);
           setCouponCode(old => ({ ...old, status: true }));
@@ -122,7 +126,7 @@ const CheckOut = () => {
       <div className='w-full mb-16 max-w-[1440px] pt-1 lg:px-32 lg:pt-5 lg:pb-20'>
         <div className='flex gap-5 items-center px-5 lg:pl-4'>
           <img src={basketRed} className='w-5 h-5 lg:w-7 lg:h-7' />
-          <span className='text-primary text-[25px] lg:text-[36px] lg:tracking-[-1.5px]'>Tu canasta</span>
+          <h1 className='text-primary text-[25px] lg:text-[36px] lg:tracking-[-1.5px]'>Tu canasta</h1>
         </div>
 
         {/* resumen section movil */}

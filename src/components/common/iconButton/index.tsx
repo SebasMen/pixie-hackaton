@@ -7,7 +7,7 @@ export const IconButton = ({ onClick, name, type, size, className, img, imgClass
   };
 
   return (
-    <div
+    <button
       onClick={e => handleClick(e, onClick)}
       style={color ? { backgroundColor: color } : {}}
       className={`
@@ -20,7 +20,7 @@ export const IconButton = ({ onClick, name, type, size, className, img, imgClass
       onMouseLeave={onMouseLeave}
     >
       {img ? <img src={img} alt={name} className={imgClassName || 'w-full h-full'} /> : <Icon name={name} type={type} size={size} />}
-    </div>
+    </button>
   );
 };
 
@@ -31,7 +31,7 @@ IconButton.mini = ({ onClick, name, type, size, className, img, imgClassName, co
   };
 
   return (
-    <div
+    <button
       onClick={e => handleClick(e, onClick)}
       style={color ? { backgroundColor: color } : {}}
       className={`
@@ -42,7 +42,7 @@ IconButton.mini = ({ onClick, name, type, size, className, img, imgClassName, co
       `}
     >
       {img ? <img src={img} alt={name} className={imgClassName || 'w-full h-full'} /> : <Icon name={name} type={type} size={size} />}
-    </div>
+    </button>
   );
 };
 
@@ -53,7 +53,7 @@ IconButton.xl = ({ onClick, name, type, size, className, img, imgClassName, colo
   };
 
   return (
-    <div
+    <button
       onClick={e => handleClick(e, onClick)}
       style={color ? { backgroundColor: color } : {}}
       className={`
@@ -64,7 +64,7 @@ IconButton.xl = ({ onClick, name, type, size, className, img, imgClassName, colo
       `}
     >
       {img ? <img src={img} alt={name} className={imgClassName || 'w-full h-full'} /> : <Icon name={name} type={type} size={size} />}
-    </div>
+    </button>
   );
 };
 

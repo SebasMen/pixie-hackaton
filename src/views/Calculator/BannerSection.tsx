@@ -22,11 +22,11 @@ const BannerSection = ({ view = 3 }: BannerSectionProps) => {
             src={bannerCalculator}
             className='hidden absolute -bottom-4 z-20 lg:block lg:right-[4.8%] lg:scale-75 lg:-bottom-14 lg2:right-[10.2%] lg2:scale-90 lg2:-bottom-8 xl2:right-[13.5%] animate__animated animate__bounceInDown animate__slow'
           />
-          <p className='flex flex-col text-xl text-center mt-6 leading-tight lg:text-[27px] lg:text-left lg:absolute lg:left-[17.8%] lg:top-[22%] lg2:left-[17.5%] lg2:top-[23%] xl2:left-[17.5%] xl2:top-[26%] xl2:text-[35px] animation-title'>
+          <h1 className='flex flex-col text-xl text-center mt-6 leading-tight lg:text-[27px] lg:text-left lg:absolute lg:left-[17.8%] lg:top-[22%] lg2:left-[17.5%] lg2:top-[23%] xl2:left-[17.5%] xl2:top-[26%] xl2:text-[35px] animation-title'>
             <span>{t('calcBannerFrag1')}</span>
             <span>{t('calcBannerFrag2')}</span>
             <span className='text-primary'>{t('calcBannerFrag3')}</span>
-          </p>
+          </h1>
         </div>
       )}
       {view === 2 && (

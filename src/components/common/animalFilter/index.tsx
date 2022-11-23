@@ -92,7 +92,7 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
       <h4 className='mt-[2rem] md:mt-[5rem]'>{t('catFiltersTitle')}</h4>
       <div className='flex flex-row mb-7 md:mb-14 mt-[0.4rem] gap-12 md:gap-14'>
         {filters.map(({ name, key, img, imgSelected }) => (
-          <div
+          <Button
             key={key}
             className='flex justify-center items-center flex-col text-center cursor-pointer'
             onClick={() => handleFilterChange('typePet', key)}
@@ -129,7 +129,7 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
             <div className={'md:hidden text-lg font-bold text-primary md:flex-grow'}>
               <span>{name}</span>
             </div>
-          </div>
+          </Button>
         ))}
       </div>
       <div className='w-full flex flex-row justify-around px-8 gap-1 mb-10 md:gap-5 md:mb-2 md:px-32 md:justify-center'>

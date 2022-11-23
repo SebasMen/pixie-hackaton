@@ -45,7 +45,7 @@ const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', pri
         {calculateTotal(products, false) < 750 &&
           <div className='flex justify-between'>
             <span>Envio</span>
-            <span>${shippingInfo.price}</span>
+            <span className='gt-price-shipping'>${shippingInfo.price}</span>
           </div>
         }
 
@@ -73,7 +73,7 @@ const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', pri
           :
           <div className='flex justify-between items-center'>
             Total
-            <p>${roundToXDigits(calculateTotalPayment(products, shippingInfo, true, coupon), 2)}</p>
+            <p className='gt-total-payment'>${roundToXDigits(calculateTotalPayment(products, shippingInfo, true, coupon), 2)}</p>
           </div>
         }
       </div>

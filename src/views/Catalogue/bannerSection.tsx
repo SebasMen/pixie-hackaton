@@ -20,18 +20,18 @@ export const BannerSection = () => {
       <div className='flex flex-col mt-3 ml-6 gap-4 text-white z-10 text-sm md:absolute md:left-[25%] md:top-[20%] lg:static lg:w-full lg:h-full lg:gap-8 xl2:text-base xl2:w-1/2'>
         <div className='flex gap-4 items-center lg:absolute lg:right-[18.3%] lg:top-[46.5%] lg:gap-4 xl1:gap-4 xl2:gap-5 animate__animated animate__backInLeft animate__delay-2s'>
           <img src={pointCatalogue} className='md:w-[35px]' />
-          <span>{t('catBannerItem1')}</span>
+          <h2>{t('catBannerItem1')}</h2>
         </div>
         <div className='flex gap-4 items-center lg:absolute lg:right-[16.3%] lg:top-[61.5%] lg:gap-4 xl1:gap-4 xl2:gap-5 animate__animated animate__backInLeft animate__delay-3s'>
           <img src={pointCatalogue} className='md:w-[35px]' />
-          <p className='flex flex-col'>
-            <span>{t('catBannerItem2')}</span>
-            <span>{t('catBannerItem2_2')}</span>
-          </p>
+          <div className='flex flex-col'>
+            <h2>{t('catBannerItem2')}</h2>
+            <h2>{t('catBannerItem2_2')}</h2>
+          </div>
         </div>
         <div className='flex gap-4 items-center lg:absolute lg:right-[6.8%] lg:top-[79.5%] lg:gap-4 xl1:gap-4 xl2:gap-5 animate__animated animate__backInLeft animate__delay-4s'>
           <img src={pointCatalogue} className='md:w-[35px]' />
-          <span>{t('catBannerItem3')}</span>
+          <h2>{t('catBannerItem3')}</h2>
         </div>
       </div>
     </div>

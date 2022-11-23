@@ -147,7 +147,7 @@ const ResultPayment = () => {
         <div className='flex flex-col gap-4 leading-[13px] pb-[90px] font-subTitles text-xs lg:grid lg:grid-cols-3 lg:text-sm lg:gap-6 lg:leading-[22px]'>
           <div className='flex justify-between lg:flex-col gap-2'>
             <span className='font-sanzBold'>VALOR</span>
-            <p>${urlParams.total_payment}</p>
+            <p className='gt-result-price'>${urlParams.total_payment}</p>
           </div>
           <div className='flex justify-between lg:flex-col gap-2'>
             <span className='font-sanzBold pr-32 lg:pr-0'>FECHA Y HORA DE PAGO</span>
@@ -155,7 +155,7 @@ const ResultPayment = () => {
           </div>
           <div className='flex justify-between items-center lg:flex-col gap-2 lg:justify-center'>
             <span className='font-sanzBold w-1/3 lg:w-full'>NÚMERO DE TRANSACCIÓN</span>
-            <p className='w-2/3 text-right lg:w-full lg:text-left'>{urlParams.payment_id}</p>
+            <p className='w-2/3 text-right gt-result-transaction lg:w-full lg:text-left'>{urlParams.payment_id}</p>
           </div>
         </div>
       </div>

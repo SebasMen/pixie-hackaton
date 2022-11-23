@@ -8,7 +8,7 @@ const DataPrivacyInfoSection = () => {
   // Component
   return (
     <div className='flex flex-col text-left w-full px-6 mt-3 md:px-36 mb-36 md:mt-[6.35rem]'>
-      <h3 className='text-pixieLightBlue text-2xl text-left md:text-[30px]'>{t('privacyTitle')}</h3>
+      <h1 className='text-pixieLightBlue text-2xl text-left md:text-[30px]'>{t('privacyTitle')}</h1>
       <ul className='mt-10 flex flex-col gap-5 md:gap-7'>
         <ItemListInfo title={t('privacyI1Title')}>
           <p>{t('privacyI1Frag1')}</p>

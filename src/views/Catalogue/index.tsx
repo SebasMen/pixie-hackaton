@@ -18,6 +18,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import useScrolled from '../../hooks/useScrolled';
 import ButtonWhatsap from '../../components/common/buttonWhatsapp';
 import { useLoading } from '../../hooks/useLoading';
+import { Helmet } from 'react-helmet';
 
 const Catalogue = () => {
   // Hooks
@@ -106,6 +107,11 @@ const Catalogue = () => {
 
   return (
     <Page className='bg-pixieLightBlue md:bg-[#7bc6bf]' addPadding={false}>
+      <Helmet>
+        <title>pixie - Catalogo</title>
+        <meta name='description' content='Condición de piel y pelaje más suaves, Ayuda a la digestión y tránsito gastrointestinal, Fortalecimiento del sistema inmune.' />
+        <meta name='keywords' content='catalogo, alimentos, snacks, accesorios, perros, gatos'/>
+      </Helmet>
       {loading
         ?
         <div className='w-full h-screen flex items-center justify-center'>

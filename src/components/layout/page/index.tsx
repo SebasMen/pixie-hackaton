@@ -41,13 +41,13 @@ export const Page = ({ className, children, color, addPadding = true }: PageProp
   return (
     <>
       <div style={color ? { backgroundColor: color } : {}} className='absolute h-screen w-screen -z-10' />
-      <div
+      <section
         className={`
         flex flex-col items-center justify-center 
         flex-grow relative w-full
         animate__animated animate__fadeIn animate__fast
         ${showNavbar && `pt-[5.5rem] ${addPadding ? 'md:pt-[7.5rem]' : 'md:pt-0'}`}
-        ${className}  
+        ${className ? className : ''}  
       `}
       >
         <NavBar />
@@ -56,7 +56,7 @@ export const Page = ({ className, children, color, addPadding = true }: PageProp
         {showLoading && <Loading />}
         {showPopupTermsAndConditions.status && <PopupTermAndConditions />}
         <>{children}</>
-      </div>
+      </section>
     </>
   );
 };

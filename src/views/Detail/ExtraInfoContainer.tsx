@@ -69,17 +69,17 @@ const ExtraInfoContainer = ({ product }: ExtraInfoContainerProps) => {
       <div className='flex gap-4 mb-8'>
         <div className='rounded-lg w-1/2 text-sm pl-12 pr-16 bg-fifth'>
           <div className='py-7'>
-            <span className='text-lg font-bold text-fourth'>{t('productsInfoTitle')}</span>
+            <h2 className='text-lg font-bold text-fourth text-left'>{t('productsInfoTitle')}</h2>
           </div>
-          <div className='pb-8 pl-5'>
+          <h3 className='pb-8 pl-5 text-left'>
             <ExtraInfo type='list' infoList={product.benefits} />
-          </div>
+          </h3>
         </div>
         <div className='rounded-lg text-sm	w-1/2 px-16 bg-fifth'>
           <div className='pt-7 pb-1'>
-            <span className='text-lg font-bold text-fourth'>{t('productsInfoTable')}</span>
+            <h2 className='text-lg font-bold text-fourth text-left'>{t('productsInfoTable')}</h2>
           </div>
-          <div className='pb-8'>
+          <h3 className='pb-8 text-left'>
             {product.age.toLocaleLowerCase() === 'cachorros' ? (
               <div className='mt-7 flex flex-col items-center gap-4 cursor-pointer' onClick={handleShowTable}>
                 <img src={tableCachorro} />
@@ -88,25 +88,25 @@ const ExtraInfoContainer = ({ product }: ExtraInfoContainerProps) => {
             ) : (
               <ExtraInfo type='table' infoTable={tableInfo} nameTable={nameTable} />
             )}
-          </div>
+          </h3>
         </div>
       </div>
       <div className='flex justify-around rounded-lg px-16 bg-fifth'>
         <div className='w-2/5'>
           <div className='py-7'>
-            <span className='text-lg font-bold text-fourth'>{t('productsInfoComp')}</span>
+            <h2 className='text-lg font-bold text-fourth text-left'>{t('productsInfoComp')}</h2>
           </div>
-          <div className='pb-8 pl-5'>
+          <h3 className='pb-8 pl-5 text-left'>
             <ExtraInfo type='list' infoList={product.nutrition_information} />
-          </div>
+          </h3>
         </div>
         <div className='w-3/5'>
           <div className='py-7'>
-            <span className='text-lg font-bold text-fourth'>{t('productsInfoCons')}</span>
+            <h2 className='text-lg font-bold text-fourth text-left'>{t('productsInfoCons')}</h2>
           </div>
-          <div className='pb-8'>
+          <h3 className='pb-8 text-left'>
             <ExtraInfo type='conservation' infoConservation={product.recommendation_for_use} />
-          </div>
+          </h3>
         </div>
       </div>
     </div>

@@ -38,6 +38,7 @@ const InfoSection = ({ product, attributes, showControls = true }: InfoSectionPr
       <Helmet>
         <title>pixie - {capitalize(product.name)}</title>
         <meta name='description' content={product.description.slice(0, 150)} />
+        <meta name='keywords' content={`${product.age}, ${product.category}`}/>
       </Helmet>
       <div className='flex-shrink-0 px-7 mb-2 md:px-0 md:mb-4'>
         <div className='hidden gap-3 mb-3 md:flex'>
@@ -45,10 +46,10 @@ const InfoSection = ({ product, attributes, showControls = true }: InfoSectionPr
             <Tag key={`${product.id}-age-${age}`} name={age} className='mb-1 mt-2 md:mt-0' sizeTags={ages.length} />
           ))}
         </div>
-        <div className='text-2xl font-bold mb-3 md:mb-2 md:text-3xl text-pixieLightBlue'>
+        <h1 className='text-2xl font-bold mb-3 md:mb-2 md:text-3xl text-pixieLightBlue text-left gt-title-detail-product'>
           {capitalize(product.name)}
-        </div>
-        <div className='mb-2 font-subTitles md:text-lg'>{product.description}</div>
+        </h1>
+        <h2 className='mb-2 font-subTitles text-left md:text-lg'>{product.description}</h2>
         <div className='text-sm text-fourth	font-paragraph'>Licencia de venta {product.license}</div>
       </div>
 

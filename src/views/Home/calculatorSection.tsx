@@ -40,14 +40,14 @@ export const CalculatorSection = () => {
         ${initAnimate ? 'animate__zoomIn' : 'animate__zoomOut'} animate__animated
         `}
         >
-          <p className='flex flex-col text-center leading-[1.25] text-[25px] lg2:text-[30px] xl2:text-[35px]'>
+          <h2 className='flex flex-col text-center leading-[1.25] text-[25px] lg2:text-[30px] xl2:text-[35px]'>
             <span>{t('homeCalcFrag1')}</span>
             <span>
               {t('homeCalcFrag2')}
               <span className='hidden lg:block'>{t('homeCalcFrag3')}</span>
             </span>
             <span className='lg:hidden'>{t('homeCalcFrag3')}</span>
-          </p>
+          </h2>
           <Button
             className='font-sanzBold bg-white text-primary lg:text-xs lg2:text-sm xl2:text-base'
             padding='py-3 px-11'

@@ -26,7 +26,7 @@ export const Menu = ({ collapsed, toggle }: MenuProps) => {
 
   // Component
   return (
-    <div
+    <menu
       className={`
             flex flex-col gap-5
             h-screen w-4/5 fixed z-1000
@@ -84,7 +84,7 @@ export const Menu = ({ collapsed, toggle }: MenuProps) => {
           <img src={Twittergray} className='w-7 h-[19px]' />
         </div>
       </div>
-    </div>
+    </menu>
   );
 };
 

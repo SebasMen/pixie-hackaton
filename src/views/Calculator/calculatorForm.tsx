@@ -169,9 +169,9 @@ export const CalculatorForm = ({
             ${page === 0 ? 'flex animate__fadeInRight' : 'hidden'}
           `}
         >
-          <div className='font-sanzBold text-center mb-9 text-xl'>
+          <h2 className='font-sanzBold text-center mb-9 text-xl'>
             <p>{textTitleForm}</p>
-          </div>
+          </h2>
 
           <TextField
             name='name'

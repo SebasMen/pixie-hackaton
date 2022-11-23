@@ -15,6 +15,7 @@ import { basketRed } from '../../assets/vectors/';
 import RecomendationSection from './RecomendationSection';
 import { ProductListResponse } from '../../interfaces/product';
 import productService from '../../services/productService';
+import { Helmet } from 'react-helmet';
 
 const Basket = () => {
   // Hooks
@@ -51,10 +52,15 @@ const Basket = () => {
   // Component
   return (
     <Page className='bg-sixth'>
+      <Helmet>
+        <title>Pixie - Canasta</title>
+        <meta name='description' content='pixie, canasta' />
+        <meta name='keywords' content='canasta, pixie'/>
+      </Helmet>
       <div className='px-[11px] w-full mb-16 max-w-[1440px] lg:tracking-[-0.55px] pt-1 lg:px-32 lg:pt-5'>
         <div className='pl-2 flex items-center gap-5 lg:pl-4'>
           <img src={basketRed} className='w-5 h-5 lg:w-7 lg:h-7'/>
-          <span className='text-primary text-[25px] lg:text-[36px] lg:tracking-[-1.5px]'>Tu canasta</span>
+          <h1 className='text-primary text-[25px] lg:text-[36px] lg:tracking-[-1.5px]'>Tu canasta</h1>
         </div>
         <div className='mt-[20px] lg:flex lg:mt-14'>
           <div className='lg:w-1/2'>
