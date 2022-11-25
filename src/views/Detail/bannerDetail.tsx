@@ -1,7 +1,6 @@
 import Carrousel from '../../components/common/carrousel';
 import Icon from '../../components/common/icon';
 
-import { transformUrlGDrive } from '../../helpers/imgHelper';
 import { transUrlImages } from '../../helpers/productHelper';
 import { Product } from '../../interfaces/product';
 
@@ -18,7 +17,7 @@ const BannerDetail = ({ product } : BannerDetailProps) => {
           :
           arrayUrlImages.map(image =>
             <div key={image} className='flex w-full h-full items-center justify-center bg-gray-100'>
-              <img src={transformUrlGDrive(image)} className='w-[319px] h-[319px] object-contain'/>
+              <img src={`https://pixie-antpack.s3.amazonaws.com/${image}`} className='w-[319px] h-[319px] object-contain'/>
             </div>
           )
         }

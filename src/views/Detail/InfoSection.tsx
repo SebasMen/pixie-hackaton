@@ -50,14 +50,14 @@ const InfoSection = ({ product, attributes, showControls = true }: InfoSectionPr
           {capitalize(product.name)}
         </h1>
         <h2 className='mb-2 font-subTitles text-left md:text-lg'>{product.description}</h2>
-        <div className='text-sm text-fourth	font-paragraph'>Licencia de venta {product.license}</div>
+        <div className='text-sm text-fourth	font-paragraph'>Licencia de venta {product.License}</div>
       </div>
 
       {/* Product Counter */}
       <ProductCounter price={product.price} onPriceChange={handlePriceChange} productQuantity={product.quantity} />
 
       {/* attributesProduct */}
-      <div className='my-4 mx-2 pl-6 flex gap-4 opacity-60 lg:mx-0 lg:pl-0'>
+      <div className='grid grid-cols-5 my-4 mx-2 pl-6 gap-4 opacity-60 lg:mx-0 lg:pl-0'>
         {attributes.map(att => (
           <AttributesItem img={att.img} key={att.name} />
         ))}

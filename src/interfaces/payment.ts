@@ -10,7 +10,8 @@ export type postSendTokenCardService = Service<postSendTokenCard>
 
 export interface postSend {
   id: string,
-  init_point: string
+  init_point: string,
+  urlFreeBuy?: string
 }
 
 export interface generatePaymentMP {
@@ -61,7 +62,9 @@ export interface generatePaymentMP {
     failure: string,
     pending: string,
     success: string
-  }
+  },
+  ticketNumberFree?: string;
+  urlFreeBuy?: string;
 }
 
 interface houseData {

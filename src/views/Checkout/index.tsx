@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useAppContext, useFetch } from '../../hooks';
+import { useFetch } from '../../hooks';
 
 import Page from '../../components/layout/page';
 import ResumenSection from './ResumenProductSection';
@@ -25,7 +25,6 @@ import { basketRed } from '../../assets/vectors/';
 import TextField from '../../components/form/textField';
 import { couponComplete } from '../../interfaces/coupon';
 import Button from '../../components/common/button';
-import { calculateTotal } from '../../helpers/productHelper';
 
 const CheckOut = () => {
   // Hooks
@@ -35,7 +34,6 @@ const CheckOut = () => {
   const [idCustomer, setIdCustomer] = useState('');
   const [shippingInfo, setShippingInfo] = useState<shippingTypeForm>({ type: 'estandar', price: 90 });
   const [coupon, setCoupon] = useState<couponComplete>();
-  const { products } = useAppContext();
   const [couponCode, setCouponCode] = useState({
     status: true,
     messageError: '',
@@ -97,8 +95,6 @@ const CheckOut = () => {
         const today = new Date();
         if (today > date)
           setCouponCode(old => ({ ...old, status: false, messageError: '* Este código ya no esta disponible' }));
-        else if (res.couponType.key === 'discount' && res.discount >= calculateTotal(products, false))
-          setCouponCode(old => ({ ...old, status: false, messageError: '* El precio final debe ser mayor al descuento' }));
         else {
           setCoupon(res);
           setCouponCode(old => ({ ...old, status: true }));

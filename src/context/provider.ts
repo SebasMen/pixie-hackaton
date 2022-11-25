@@ -46,7 +46,7 @@ export const appProvider: AppContextType = {
     id: '',
     ingredients: [],
     kind_pet: '',
-    license: '',
+    License: '',
     name: '',
     nutrition_information: [],
     presentation: '',

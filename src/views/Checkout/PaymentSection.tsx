@@ -33,7 +33,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   //   status: '',
   //   token_card: ''
   // });
-  const { products, toast } = useAppContext();
+  const { products, toast, location } = useAppContext();
   const { loadingFalse, loadingTrue } = useLoading();
 
   const { form, onSubmit, handleRadioChange, handleSelectChange, handleFormChange, setForm } = useForm<paymentForm>({
@@ -283,11 +283,14 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
   const handleSubmit = async (form: paymentForm) => {
     loadingTrue();
     // Organize data
-    const paymentData = organiceInformationPaymentMP(idCustomer, userData, products, shippingData, form, sameBillingAdressSt, coupon);
+    const paymentData = organiceInformationPaymentMP(idCustomer, userData, products, shippingData, form, sameBillingAdressSt, coupon, location);
     localStorage.setItem('order-data', JSON.stringify(paymentData));
     await paymentService.getPaymentId(paymentData)
       .then(res => {
-        window.location.replace(`${res.init_point}`);
+        if (paymentData.total_amount === 0 && res.urlFreeBuy)
+          window.location.replace(`${process.env.REACT_APP_URL_BASE}pago/resultado${res.urlFreeBuy}`);
+        else
+          window.location.replace(`${res.init_point}`);
       })
       .catch(error => {
         toast.fire({
@@ -295,67 +298,8 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
           title: error,
         });
       });
-
-    /// const response = await paymentService.sendCardInformation(form);
-    // if (response.err) {
-    //   toast.fire({
-    //     icon: 'warning',
-    //     title: response.err,
-    //   });
-    //   loadingFalse();
-    // } else if (response.data.status === 'OK') {
-    //   loadingFalse();
-    //   setPostSendTokenCard(response.data);
-    //   setShowPopup(true);
-    // } else {
-    //   toast.fire({
-    //     icon: 'warning',
-    //     title: 'Hubo un error en la api.',
-    //   });
     loadingFalse();
-    // }
   };
-
-  /// const sendDataPayment = async () => {
-  //   // Close popup
-  //   setShowPopup(false);
-  //   loadingTrue();
-  //   // Organize data
-  //   const paymentData = organiceInformationPayment(idCustomer, postSendTokenCard.token_card, userData, products, shippingData, form, sameBillingAdressSt);
-  //   // Send data to API
-  //   const { data } = await paymentService.sendPayment(paymentData);
-  //   // Set data to show in the answerSection
-  //   if (data.error)
-  //     setAnswerData(form.amount, (data.error ? data.error.details.transactionId : ''), data.status, data.data.order_detail.ticketNumber);
-  //   else if (data.status === 'OK')
-  //     setAnswerData(data.data.order_detail.details.approvedTransactionAmount, data.data.order_detail.details.transactionId, data.status, data.data.order_detail.ticketNumber);
-  //   else
-  //     toast.fire({
-  //       icon: 'warning',
-  //       title: 'Hubo un error en la api.',
-  //     });
-  //   changeStep(5);
-  //   loadingFalse();
-  // };
-
-  // // Save response to show un the answerSection
-  // const setAnswerData = (amount: number, transaccionId: string, state: string, ticketNumber: string) => {
-  //   setPaymentAnswer(old => ({ ...old,
-  //     status: state,
-  //     data: {
-  //       order_detail: {
-  //         details: {
-  //           approvedTransactionAmount: amount,
-  //           transactionId: transaccionId
-  //         },
-  //         ticketNumber,
-  //       }
-  //     } }));
-  // };
-
-  // const handleClosePopup = () => {
-  //   setShowPopup(false);
-  // };
 
   return (
     <div className='font-subTitles text-sm'>

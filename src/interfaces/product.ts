@@ -11,7 +11,7 @@ export interface ResultProduct {
 }
 
 export interface Product {
-  license: string;
+  License: string;
   age: string;
   atributos: string[];
   atributos_en: string[] | null;

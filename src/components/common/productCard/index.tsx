@@ -12,7 +12,6 @@ import { roundToXDigits, transformAge } from '../../../helpers/productHelper';
 import { capitalize } from '../../../helpers/capitalize';
 
 import { basket, tagCatGray, tagDogGray, notImage } from '../../../assets/vectors/index';
-import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import Tooltiped from '../tooltiped';
 import { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
@@ -129,7 +128,7 @@ export const ProductCard = ({
             <img src={notImage} className='w-24 h-24 md:w-36 md:h-36' />
           ) : (
             <img
-              src={transformUrlGDrive(product.url_image)}
+              src={`https://pixie-antpack.s3.amazonaws.com/${product.url_image}`}
               className='w-full h-36 md:w-[15.7rem] md:h-[15.7rem] top-[0.75rem] object-contain right-0 transform transition-all duration-200 hover:scale-[2.2]'
             />
           )}

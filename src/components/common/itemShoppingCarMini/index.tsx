@@ -1,5 +1,4 @@
 import { calculateGrs, roundToXDigits } from '../../../helpers/productHelper';
-import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import { capitalize } from '../../../helpers/capitalize';
 import { CartItem } from '../../../interfaces/basket';
 import { notImage } from '../../../assets/vectors';
@@ -9,7 +8,7 @@ const ItemShoppingCarMini = ({ item }: ItemShoppingCarMiniProps) => (
     <figure className='w-[22.33%] lg:w-[24%]'>
       {item.product.url_image
         ?
-        <img src={transformUrlGDrive(item.product.url_image)} className='w-[60px] h-[70px] rounded-2xl object-cover lg:w-20 lg:h-[82px]' />
+        <img src={`https://pixie-antpack.s3.amazonaws.com/${item.product.url_image}`} className='w-[60px] h-[70px] rounded-2xl object-cover lg:w-20 lg:h-[82px]' />
         :
         <img src={notImage} className='w-[60px] h-[70px] rounded-2xl lg:w-20 lg:h-[82px]' />
       }

@@ -88,7 +88,7 @@ export const productCombo:Product = {
   key: '',
   key_en: '',
   kind_pet: '',
-  license: '',
+  License: '',
   name: 'Caja x20 rollos diferentes sabores',
   name_en: 'Box x20 rolls of different flavors',
   nutrition_information: [],

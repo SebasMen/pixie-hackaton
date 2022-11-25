@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import { transformUrlGDrive } from '../../helpers/imgHelper';
 import { transUrlImages } from '../../helpers/productHelper';
 import { notImage } from '../../assets/vectors/index';
 import { Product } from '../../interfaces/product';
@@ -17,7 +16,7 @@ const BannerDetailDT = ({ product }: BannerDetailDTProps) => {
     <div className='hidden lg:flex w-full overflow-hidden lg:h-full md:w-[63%] '>
       <div className='flex flex-col w-1/5 items-start'>
         {arrayUrlImages.map((url, index) => index < 3 ? (
-          <MiniImageDT key={url} src={transformUrlGDrive(url)} handleChangeImage={setImage} index={index}/>
+          <MiniImageDT key={url} src={`https://pixie-antpack.s3.amazonaws.com/${url}`} handleChangeImage={setImage} index={index}/>
         )
           : '')}
       </div>
@@ -31,7 +30,7 @@ const BannerDetailDT = ({ product }: BannerDetailDTProps) => {
         :
         <div className='flex w-3/4 justify-center'>
           <div>
-            <img src={transformUrlGDrive(arrayUrlImages[image])} className='w-[529px] h-[446px] object-contain'/>
+            <img src={`https://pixie-antpack.s3.amazonaws.com/${arrayUrlImages[image]}`} className='w-[529px] h-[446px] object-contain'/>
           </div>
         </div>
       }

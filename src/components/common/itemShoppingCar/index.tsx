@@ -3,7 +3,6 @@ import useShoppingCar from '../../../hooks/useShoppingCar';
 import AddRemoveItem from '../addRemoveItem/AddRemoveItem';
 
 import { calculateGrs, roundToXDigits } from '../../../helpers/productHelper';
-import { transformUrlGDrive } from '../../../helpers/imgHelper';
 import { capitalize } from '../../../helpers/capitalize';
 import { CartItem } from '../../../interfaces/basket';
 import { notImage, trashIcon } from '../../../assets/vectors';
@@ -39,7 +38,7 @@ const ItemShoppingCar = ({ item, showMessageDelete, showOptions }: ItemShoppingC
       <figure className='w-[26.33%] lg:w-auto'>
         {item.product.url_image
           ?
-          <img src={transformUrlGDrive(item.product.url_image)} className='w-[77px] h-[90px] rounded-2xl object-cover lg:w-[10rem] lg:h-32' />
+          <img src={`https://pixie-antpack.s3.amazonaws.com/${item.product.url_image}`} className='w-[77px] h-[90px] rounded-2xl object-cover lg:w-[10rem] lg:h-32' />
           :
           <img src={notImage} className='w-[77px] h-[90px] rounded-2xl lg:w-[10rem] lg:h-32' />
         }

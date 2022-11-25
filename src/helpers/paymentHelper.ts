@@ -6,7 +6,7 @@ import { calculateIva, calculateTotal, roundToXDigits } from './productHelper';
 
 // Organize the data to send them to the api
 // eslint-disable-next-line max-params
-export const organiceInformationPaymentMP = (idCustomer: string, userData: SubmissionFormInterface | undefined, products: CartItem[], shippingData: shippingTypeForm, form: paymentForm, sameBillingAddress: boolean, coupon: couponComplete | undefined): generatePaymentMP => {
+export const organiceInformationPaymentMP = (idCustomer: string, userData: SubmissionFormInterface | undefined, products: CartItem[], shippingData: shippingTypeForm, form: paymentForm, sameBillingAddress: boolean, coupon: couponComplete | undefined, location: string): generatePaymentMP => {
   const paymentData: generatePaymentMP = {
     items: organiceProductsMP(products, shippingData, coupon),
     payer: organiceBillingDetailsMP(userData, form, sameBillingAddress),
@@ -66,6 +66,7 @@ export const organiceInformationPaymentMP = (idCustomer: string, userData: Submi
       pending: 'https://pixie.antpk.co/pago/resultado',
       success: 'https://pixie.antpk.co/pago/resultado'
     },
+    ticketNumberFree: calculateTotalPayment(products, shippingData, true, coupon) === 0 ? generateTicketNumberFree(location) : undefined
   };
 
   return paymentData;
@@ -281,4 +282,13 @@ export const isFormComplete = (data: SubmissionFormInterface, acceptConditions: 
   if (!acceptConditions)
     isFull = false;
   return isFull;
+};
+
+const generateTicketNumberFree = (location: string): string => {
+  const date = new Date();
+  const today = `${date.getFullYear()}${date.getMonth() + 1}${date.getDate()}`;
+  const locationPs = location === 'USA' ? 'ST' : 'MP';
+  // eslint-disable-next-line no-mixed-operators
+  const code = `REG-${today}${locationPs}${Math.floor(1000 + Math.random() * 9000)}`;
+  return code;
 };
