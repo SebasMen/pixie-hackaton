@@ -6,6 +6,7 @@ import { calculateIva, calculateTotal, roundToXDigits } from '../../helpers/prod
 
 import { shippingTypeForm, typeShipping } from '../../interfaces/checkout';
 import { couponComplete } from '../../interfaces/coupon';
+import { useTranslation } from 'react-i18next';
 
 const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', price: 90 }, setUpdateShippingPrince, coupon }:TotalSectionProps) => {
   // Hooks
@@ -17,6 +18,11 @@ const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', pri
     if (total > 750 && setUpdateShippingPrince)
       setUpdateShippingPrince('gratis', 0);
   }, [products]);
+
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
 
   return (
     <div className='mt-2 lg:mt-4'>
@@ -34,7 +40,7 @@ const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', pri
           </div>
         }
         <div className='mb-4 flex justify-between lg:mb-3'>
-          <span>Impuestos</span>
+          <span>{t('baskTaxes')}</span>
           {location === 'USA'
             ?
             <span>Por determinar</span>
@@ -44,7 +50,7 @@ const TotalSection = ({ showTaxes = true, shippingInfo = { type: 'estandar', pri
         </div>
         {calculateTotal(products, false) < 750 &&
           <div className='flex justify-between'>
-            <span>Envio</span>
+            <span>{t('baskShipping')}</span>
             <span className='gt-price-shipping'>${shippingInfo.price}</span>
           </div>
         }

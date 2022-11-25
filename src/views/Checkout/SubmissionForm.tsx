@@ -15,6 +15,8 @@ import checkOutService from '../../services/checkOutService';
 import { useLoading } from '../../hooks/useLoading';
 import { isFormComplete } from '../../helpers/paymentHelper';
 import { getCities, getPostalCode } from '../../helpers/formCheckoutHelper';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 // Miguel idalgo
 const postalCode = [11470, 11360, 11450, 11529, 11489, 11289, 11320, 11320, 11590, 11580, 11100, 11100, 11490, 11830, 11460, 11800, 11800, 11520, 11240, 11500, 11460, 11460, 11410, 11000, 11000, 11000, 11000, 11000, 11000, 11000, 11000, 11460, 11310, 11450, 11040, 11420, 11430, 11490, 11450, 11350, 11510, 11530, 11540, 11550, 11560, 11480, 11400, 11440, 11600, 11290, 11440, 11850, 11850, 11340, 11410, 11870, 11370, 11280, 11330, 11430, 11300];
@@ -129,6 +131,11 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
     if (form.city?.value)
       setForm(old => ({ ...old, zipcodes: getPostalCode(form.city.value) }));
   }, [form.state, form.city]);
+
+  // Translate
+  const {
+    t,
+  } = useTranslation();
 
   const validateForm = () => {
     // Clear all errors
@@ -251,12 +258,12 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
   return (
     <form className='mt-5 px-6 font-subTitles text-sm lg:mt-0 lg:px-0' onSubmit={onSubmit}>
       <div className='flex flex-col gap-[10px] lg:mt-[38px]'>
-        <span className='text-base font-titles lg:text-xl mb-1'>Información de contacto</span>
+        <span className='text-base font-titles lg:text-xl mb-1'>{t('checkSubmissionTitleForm')}</span>
         <TextField
           name='email'
           value={form.email}
           handler={handleFormChange}
-          placeholder='Correo electrónico*'
+          placeholder={t('checkSubmissionEmail')}
           fieldClassName='py-[0.95rem]'
           messageError={validatorBody.email.message}
           required
@@ -265,25 +272,25 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           name='phone'
           value={form.phone}
           handler={handleFormChange}
-          placeholder='Celular (10 dígitos)*'
+          placeholder={t('checkSubmissionPhone')}
           fieldClassName='py-[0.95rem]'
           messageError={validatorBody.phone.message}
           required/>
         <CheckField
           onClick={sendNewsInMyMail}
-          label='Enviarme novedades y ofertas por correo electrónico'
+          label={t('checkSubmissionNew')}
           border='border border-primary'
           sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
           className='mt-1 ml-1 lg:ml-5'
           labelClassName='text-xs lg:text-sm'
         />
-        <span className='text-base mt-3 mb-1 font-titles lg:text-xl lg:mt-6'>Direccion de envío</span>
+        <span className='text-base mt-3 mb-1 font-titles lg:text-xl lg:mt-6'>{t('checkSubmissionDeliveryTitle')}</span>
         <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
           <TextField
             name='name'
             value={form.name}
             handler={handleFormChange}
-            placeholder='Nombre*'
+            placeholder={t('checkSubmissionFirstName')}
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
             messageError={validatorBody.name.message}
@@ -292,7 +299,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             name='last_name'
             value={form.last_name}
             handler={handleFormChange}
-            placeholder='Apellido*'
+            placeholder={t('checkSubmissionLastName')}
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
             messageError={validatorBody.last_name.message}
@@ -302,7 +309,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           name='address'
           value={form.address}
           handler={handleFormChange}
-          placeholder='Nombre de la calle*'
+          placeholder={t('checkSubmissionStreetName')}
           fieldClassName='py-[0.95rem]'
           required
         />
@@ -311,7 +318,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             name='houseNumber'
             value={form.houseNumber}
             handler={handleFormChange}
-            placeholder='Número exterior, Casa o Edificio*'
+            placeholder={t('checkSubmissionExteriorNumber')}
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
             messageError={validatorBody.houseNumber.message}
@@ -321,7 +328,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             name='apartment'
             value={form.apartment}
             handler={handleFormChange}
-            placeholder='Número Interior ( Ej: Piso, Oficina, Dpto)'
+            placeholder={t('checkSubmissioninteriorNumber')}
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
             messageError={validatorBody.apartment.message}
@@ -332,7 +339,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             name='reference'
             value={form.reference}
             handler={handleFormChange}
-            placeholder='Entre calles (Referencias)'
+            placeholder={t('checkSubmissionBetweenStreets')}
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
             messageError={validatorBody.reference.message}
@@ -341,7 +348,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             name='colony'
             value={form.colony}
             handler={handleFormChange}
-            placeholder='Colonia*'
+            placeholder={t('checkSubmissionColony')}
             className='lg:w-1/2'
             fieldClassName='py-[0.95rem]'
             messageError={validatorBody.colony.message}
@@ -349,7 +356,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           />
         </div>
         <SelectField
-          placeholder='País*'
+          placeholder={t('checkSubmissionCountry')}
           name='country'
           options={form.countries}
           value={form.country?.value ? form.country : undefined}
@@ -362,7 +369,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
         />
         <div className='flex flex-col gap-[10px] lg:flex-row lg:gap-3'>
           <SelectField
-            placeholder='Estado / Ciudad*'
+            placeholder={t('checkSubmissionState')}
             name='state'
             options={form.states}
             value={form.state?.value ? form.state : undefined}
@@ -378,7 +385,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             name='city'
             options={form.cities}
             value={form.city?.value ? form.city : undefined}
-            placeholder='Delegación / Municipio*'
+            placeholder={t('checkSubmissionDelegation')}
             onChange={handleSelectChange}
             borderRadius={true}
             borderColor='#000'
@@ -393,7 +400,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
             name='zip_code'
             options={form.zipcodes}
             value={form.zip_code?.value ? form.zip_code : undefined}
-            placeholder='Código postal*'
+            placeholder={t('checkSubmissionZip')}
             onChange={handleSelectChange}
             borderRadius={true}
             borderColor='#000'
@@ -405,7 +412,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
         </div>
         <CheckField
           onClick={() => console.log('Hi')}
-          label='Guardar mi información y consultar más rápidamente la próxima vez'
+          label={t('checkSubmissionSaveinformation')}
           border='border border-primary'
           sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
           className='mt-1 ml-1 lg:ml-5'
@@ -413,7 +420,7 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
         />
         <CheckField
           onClick={() => setAcceptConditions(old => !old)}
-          labelhtml={<p>Acepto los <span onClick={() => showTermsAndConditions(1)} className='underline cursor-pointer'>terminos y condiciones</span> y la <span onClick={() => showTermsAndConditions(2) } className='underline cursor-pointer'>política de privacidad*</span> </p>}
+          labelhtml={<p>{t('checkSubmissionTermsAndConditionPart1')}<span onClick={() => showTermsAndConditions(1)} className='underline cursor-pointer'>{t('checkSubmissionTermsAndConditionPart2')}</span> {t('checkSubmissionTermsAndConditionPart3')} <span onClick={() => showTermsAndConditions(2) } className='underline cursor-pointer'>{t('checkSubmissionTermsAndConditionPart4')}</span> </p>}
           border='border border-primary'
           sizeContainer='w-4 h-4 lg:w-5 lg:h-5 lg:mr-1'
           className='mt-1 ml-1 lg:ml-5'
@@ -424,10 +431,10 @@ const SubmissionForm = ({ setData, changeStep, setIdCustomer, countriesOptions }
           <Button className={`w-full font-paragraph font-bold  mt-4 
           lg:w-72 lg:text-lg ${formFull ? 'bg-primary text-[#fad7b1]' : ' bg-[#dbb2b7] text-white cursor-not-allowed'}`} type='submit'
           >
-            Seguir con envios
+            {t('checkSubmissionContinue')}
           </Button>
           <div className='font-sanzBold text-sm text-center mt-[1.40rem] text-primary cursor-pointer lg:mt-6 lg:text-base lg:mr-14' onClick={() => navigate('/canasta')}>
-            <span>{'<'} Volver a la canasta</span>
+            <span>{'<'} {t('checkSubmissionBack')}</span>
           </div>
         </div>
       </div>

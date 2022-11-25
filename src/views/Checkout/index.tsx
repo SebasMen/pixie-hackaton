@@ -25,6 +25,7 @@ import { basketRed } from '../../assets/vectors/';
 import TextField from '../../components/form/textField';
 import { couponComplete } from '../../interfaces/coupon';
 import Button from '../../components/common/button';
+import { useTranslation } from 'react-i18next';
 
 const CheckOut = () => {
   // Hooks
@@ -51,6 +52,11 @@ const CheckOut = () => {
       },
     },
   });
+
+  // Translate
+  const {
+    t,
+  } = useTranslation();
 
   // Get countries
   const { loading, response } = useFetch<selectCountryService>(checkOutService.getOneCountry);
@@ -122,7 +128,7 @@ const CheckOut = () => {
       <div className='w-full mb-16 max-w-[1440px] pt-1 lg:px-32 lg:pt-5 lg:pb-20'>
         <div className='flex gap-5 items-center px-5 lg:pl-4'>
           <img src={basketRed} className='w-5 h-5 lg:w-7 lg:h-7' />
-          <h1 className='text-primary text-[25px] lg:text-[36px] lg:tracking-[-1.5px]'>Tu canasta</h1>
+          <h1 className='text-primary text-[25px] lg:text-[36px] lg:tracking-[-1.5px]'>{t('baskTitle')}</h1>
         </div>
 
         {/* resumen section movil */}
@@ -141,7 +147,7 @@ const CheckOut = () => {
                       name='couponCode'
                       value={couponCode.code}
                       className='w-full placeholder-slate-100'
-                      placeholder='Ingresa el código de tu cupón'
+                      placeholder={t('couponCodePlaceholder')}
                       disabled={!(coupon === undefined)}
                       fieldClassName='font-subTitles py-[0.50rem] placeholder-pixieLightBlue'
                       border={`ring-1 rounded-r-[10px] transform transition-all border-0 ${couponCode.status ? 'ring-pixieLightBlue' : 'ring-primary'}`}
@@ -154,7 +160,7 @@ const CheckOut = () => {
                       onClick={validCoupon}
                       disable={!(coupon === undefined)}
                     >
-                      Aplicar
+                      {t('couponApply')}
                     </Button>
                   </div>
                   {!couponCode.status &&
@@ -183,7 +189,7 @@ const CheckOut = () => {
             <div className='lg:w-[48%]'>
               <div className='bg-white lg:ml-[7.2rem] lg:pl-6 lg:pr-4 lg:pb-8 lg:pt-6 lg:rounded-xl lg:mt-[0.8rem] lg:sticky lg:top-[10%]'>
                 <div className='hidden font-bold tracking-[-0.55px] text-pixieLightBlue lg:text-base lg:block'>
-                  <span>RESUMEN DE TU PEDIDO</span>
+                  <span>{t('baskResumeOrder')}</span>
                 </div>
                 {step >= 3 && (
                   <div className='flex-col hidden lg:flex'>
@@ -193,7 +199,7 @@ const CheckOut = () => {
                         name='couponCode'
                         value={couponCode.code}
                         className='w-full placeholder-slate-100'
-                        placeholder='Ingresa el código de tu cupón'
+                        placeholder={t('couponCodePlaceholder')}
                         disabled={!(coupon === undefined)}
                         fieldClassName='font-subTitles py-[0.50rem] placeholder-pixieLightBlue'
                         border={`ring-1 rounded-r-[10px] transform transition-all border-0 ${couponCode.status ? 'ring-pixieLightBlue' : 'ring-primary'}`}
@@ -206,7 +212,7 @@ const CheckOut = () => {
                         onClick={validCoupon}
                         disable={!(coupon === undefined)}
                       >
-                        Aplicar
+                        {t('couponApply')}
                       </Button>
                     </div>
                     {!couponCode.status &&

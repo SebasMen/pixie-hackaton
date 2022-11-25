@@ -9,11 +9,16 @@ import { shippingTypeForm } from '../../interfaces/checkout';
 
 import { basketBlue, expandMoreBlue } from '../../assets/vectors';
 import Scrollbars from 'react-custom-scrollbars-2';
+import { useTranslation } from 'react-i18next';
 
 const ResumenProductSection = ({ shippingInfo, step }:ResumenProductSectionProps) => {
   // Hooks
   const [isActive, setIsActive] = useState(false);
   const { products } = useAppContext();
+  // Translate
+  const {
+    t,
+  } = useTranslation();
 
   return (
     <>
@@ -24,10 +29,10 @@ const ResumenProductSection = ({ shippingInfo, step }:ResumenProductSectionProps
           <img src={basketBlue} className='hidden w-5 h-5 lg:block' />
           <div className='text-sm font-sanzBold text-pixieLightBlue leading-tight pt-2 lg:pt-0'>
             <p>
-              Mostrar resumen del
+              {t('checkSubmissionsShowResumePart1')}
             </p>
             <p>
-              pedido
+              {t('checkSubmissionsShowResumePart2')}
               {isActive
                 ?
                 <img

@@ -16,6 +16,7 @@ import RecomendationSection from './RecomendationSection';
 import { ProductListResponse } from '../../interfaces/product';
 import productService from '../../services/productService';
 import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
 
 const Basket = () => {
   // Hooks
@@ -26,6 +27,11 @@ const Basket = () => {
   const { loading, response } = useFetch<ProductListResponse>(getCalculateProduct);
 
   const navigate = useNavigate();
+
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
 
   useEffect(() => {
     updateContext(old => ({ ...old, productsToShowRecomendation: response?.products ? response.products.slice(0, 4) : [], marginWhatsApp: false }));
@@ -60,7 +66,7 @@ const Basket = () => {
       <div className='px-[11px] w-full mb-16 max-w-[1440px] lg:tracking-[-0.55px] pt-1 lg:px-32 lg:pt-5'>
         <div className='pl-2 flex items-center gap-5 lg:pl-4'>
           <img src={basketRed} className='w-5 h-5 lg:w-7 lg:h-7'/>
-          <h1 className='text-primary text-[25px] lg:text-[36px] lg:tracking-[-1.5px]'>Tu canasta</h1>
+          <h1 className='text-primary text-[25px] lg:text-[36px] lg:tracking-[-1.5px]'>{t('baskTitle')}</h1>
         </div>
         <div className='mt-[20px] lg:flex lg:mt-14'>
           <div className='lg:w-1/2'>
@@ -76,12 +82,12 @@ const Basket = () => {
           <div className='lg:w-1/2'>
             <div className='bg-white rounded-xl py-4 px-[10px] lg:ml-[8.5rem] lg:pl-6 lg:pr-8 lg:pb-8 lg:pt-5 lg:sticky lg:top-[30%]'>
               <div className='text-sm font-bold lg:pb-4 lg:text-base'>
-                <span className='text-pixieLightBlue'>RESUMEN DE TU PEDIDO</span>
+                <span className='text-pixieLightBlue'>{t('baskResumeOrder')}</span>
               </div>
               <TotalSection />
               <div className='flex justify-around font-sanzBold mt-[10px] w-full gap-3 lg:mt-5'>
                 <Button className='text-sm ring-1 ring-primary text-primary w-[54%] lg:text-base lg:font-subTitles' padding='py-2' onClick={() => navigate('/catalogo')}>
-                  Seguir comprando
+                  {t('basketContinueShopping')}
                 </Button>
                 <Button className='bg-primary text-sm text-[#FAD7B1] w-[46%] tracking-normal lg:text-lg lg:font-sanzBold' padding='py-2' onClick={() => validateBasket()}>
                   Siguiente

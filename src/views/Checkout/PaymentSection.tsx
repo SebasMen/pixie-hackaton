@@ -17,6 +17,7 @@ import { useLoading } from '../../hooks/useLoading';
 import { mexicanStates } from '../../@fake/statesFake';
 import { getCities, getPostalCode } from '../../helpers/formCheckoutHelper';
 import { couponComplete } from '../../interfaces/coupon';
+import { useTranslation } from 'react-i18next';
 
 const numberOfInstallmentsOptions: SelectItem[] = [
   { value: '1', label: '1 Cuota' },
@@ -156,6 +157,11 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
     if (form.city?.value)
       setForm(old => ({ ...old, zipCodes: getPostalCode(form.city?.value ? form.city?.value : '') }));
   }, [form.state, form.city]);
+
+  // Translate
+  const {
+    t,
+  } = useTranslation();
 
   // Methods
   // eslint-disable-next-line complexity
@@ -369,12 +375,12 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
             />
           </div>
         </div> */}
-        <span className='font-titles text-base lg:text-xl'>Dirección de facturación</span>
+        <span className='font-titles text-base lg:text-xl'>{t('paymentBillingTitle')}</span>
         <div className='bg-white rounded-2xl mt-4 lg:mt-2 px-6'>
           <div className='border-b border-[#B8B8B8] py-4 lg:py-5'>
             <div className='text-left text-sm'>
               <RadioField
-                label='Misma dirección de envío'
+                label={t('paymentBillingSame')}
                 changeState={setSameBillingAdressSt}
                 currentState={sameBillingAdressSt}
                 name='billingAddress'
@@ -386,7 +392,7 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
           <div className='py-4 lg:py-4'>
             <div className='text-left text-sm'>
               <RadioField
-                label=' Usar una dirección de facturación diferente'
+                label={t('paymentBillingDifferent')}
                 changeState={setSameBillingAdressSt}
                 currentState={sameBillingAdressSt}
                 name='billingAddress'
@@ -406,10 +412,10 @@ const PaymentSection = ({ shippingData, userData, changeStep, idCustomer, setPay
         <div className='pt-3'>
           <div className='lg:flex lg:flex-row-reverse lg:items-center'>
             <Button className='w-full font-paragraph font-bold bg-primary text-[#fad7b1] mt-7 lg:w-[14.4rem] lg:text-lg' type='submit'>
-              Pagar
+              {t('paymentBillingPayment')}
             </Button>
             <div className='text-center font-sanzBold text-sm text-primary cursor-pointer mt-5 lg:mt-6 lg:mr-20 lg:text-base lg:font-subTitles' onClick={() => changeStep(3)}>
-              {'<'} Volver a envíos
+              {'<'} {t('paymentBillingBack')}
             </div>
           </div>
         </div>
