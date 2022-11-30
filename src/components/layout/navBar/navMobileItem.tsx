@@ -9,6 +9,7 @@ const NavMobileItem = ({ name }: NavMobileItemProps) => {
 
   // Handlers
   const handleRoute = (name: string) => {
+    if (name === 'adopta') navigate('/adopta');
     if (name === 'tienda') navigate('/catalogo');
     if (name === 'calculadora') navigate('/calculadora');
     if (name === 'canasta') navigate('/canasta');
@@ -25,6 +26,7 @@ const NavMobileItem = ({ name }: NavMobileItemProps) => {
           <img src={basket} alt='basketBlue' className='object-contain h-full w-full brightness-200' />
         )}
       </div>
+      {name === 'adopta' && <label>{t('navCatalogue')}</label>}
       {name === 'tienda' && <label>{t('navCatalogue')}</label>}
       {name === 'calculadora' && <label>{t('navCalculator')}</label>}
       {name === 'canasta' && <label>{t('navBasket')}</label>}

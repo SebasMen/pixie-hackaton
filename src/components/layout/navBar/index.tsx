@@ -37,20 +37,21 @@ export const NavBar = () => {
   const switchLang = (lang: 'es' | 'en' = 'es') => i18n.changeLanguage(lang);
 
   // Constants
+  const isAdopta = pathname.includes('/adopta');
   const isCatalogue = pathname.includes('/catalogo');
   const isBasket = pathname.includes('/canasta');
   const isCheckout = pathname.includes('/pago');
   const isCalculator = pathname.includes('/calculadora');
   const isHome = pathname.includes('/');
 
-  const itemsBlack = ['/catalogo', '/canasta', '/pago', '/calculadora', '/'];
+  const itemsBlack = ['/adopta', '/catalogo', '/canasta', '/pago', '/calculadora', '/'];
   const showItemsBlack = itemsBlack.map(rute => pathname.includes(rute));
 
   const itemsLogoBlack = ['/catalogo'];
   const showLogoBlack = itemsLogoBlack.map(rute => pathname.includes(rute));
   const pixie = showLogoBlack.includes(true) ? logoFooter : logo;
   const color =
-    (isCatalogue || isCalculator || isCheckout || isBasket || isHome ? 'grayText' : 'primary') || 'grayText';
+    (isAdopta || isCatalogue || isCalculator || isCheckout || isBasket || isHome ? 'grayText' : 'primary') || 'grayText';
   const bgIconColor = 'gray-600';
 
   if (!showNavbar) return <></>;
@@ -175,6 +176,8 @@ export const NavBar = () => {
                 >
                   <NavItem name={t('navCatalogue')} path='/catalogo' color={color} />
                   <NavItem name={t('navCalculator')} path='/calculadora' color={color} />
+                  <NavItem name={t('navAdopta')} path='/adopta' color={color} />
+                  <NavItem name={t('navFundation')} path='/Fundaciones' color={color} />
                 </div>
               )}
               {/* Buttons */}
