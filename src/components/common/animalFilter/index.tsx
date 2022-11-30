@@ -4,13 +4,13 @@ import Button from '../button';
 import IconButton from '../iconButton';
 import Icon from '../icon';
 
-import { filterShop, typePet, agePet, typeProduct } from '../../../interfaces/filter';
+import { filterShop, typePet, agePet, typeProduct, FilterPet } from '../../../interfaces/filter';
 import { useTranslation } from 'react-i18next';
 
 import { CatIcon, DogIcon, DogIconSelected, CatIconSelected } from '../../../assets/vectors';
 import { useNavigate } from 'react-router';
 
-const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
+const AnimalFilter = ({ setFilter, filter, adopt }: animalFilterProps) => {
   // Hooks
   const navigate = useNavigate();
   const {
@@ -19,30 +19,58 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
   } = useTranslation();
 
   // Handlers
-  const handleFilterChange = (type: 'typePet' | 'agePet' | 'typeProduct', value: string) => {
-    if (type === 'typePet') {
-      const typePet = value as typePet;
+  const handleFilterChange = (
+    type: 'typePet' | 'agePet' | 'typeProduct',
+    value: string,
+    inAdopt?: string
+  ) => {
+    if (!inAdopt) {
+      if (type === 'typePet') {
+        const typePet = value as typePet;
 
-      const add = filter.typePet.includes(typePet);
-      const newTypePet = add ? filter.typePet.filter(item => item !== typePet) : [...filter.typePet, typePet];
-      setFilter(() => ({ ...filter, typePet: newTypePet }));
-      if (typePet.length === 0)
-        navigate('/catalogo');
-      else
-        navigate(`/catalogo/${typePet === 'CAT' ? 'gatos' : 'perros'}`);
+        const add = filter.typePet.includes(typePet);
+        const newTypePet = add ? filter.typePet.filter(item => item !== typePet) : [...filter.typePet, typePet];
+        setFilter(() => ({ ...filter, typePet: newTypePet }));
+        if (typePet.length === 0)
+          navigate('/catalogo');
+        else
+          navigate(`/catalogo/${typePet === 'CAT' ? 'gatos' : 'perros'}`);
+      }
+
+      if (type === 'agePet') {
+        const agePet = value as agePet;
+
+        const add = filter.agePet.includes(agePet);
+        const newAgePet = add ? filter.agePet.filter(item => item !== agePet) : [...filter.agePet, agePet];
+        setFilter(() => ({ ...filter, agePet: newAgePet }));
+      }
+
+      if (type === 'typeProduct') {
+        const typeProduct = value as typeProduct;
+        setFilter(() => ({ ...filter, typeProduct }));
+      }
     }
 
-    if (type === 'agePet') {
-      const agePet = value as agePet;
+    if (inAdopt) {
+      if (type === 'typePet') {
+        const typePet = value as typePet;
 
-      const add = filter.agePet.includes(agePet);
-      const newAgePet = add ? filter.agePet.filter(item => item !== agePet) : [...filter.agePet, agePet];
-      setFilter(() => ({ ...filter, agePet: newAgePet }));
-    }
+        const add = filter.typePet.includes(typePet);
+        const newTypePet = add ? filter.typePet.filter(item => item !== typePet) : [...filter.typePet, typePet];
+        setFilter(() => ({ ...filter, typePet: newTypePet }));
+        if (typePet.length === 0)
+          navigate('/adopta');
+        else
+          navigate(`/adopta/${typePet === 'CAT' ? 'gatos' : 'perros'}`);
+      }
 
-    if (type === 'typeProduct') {
-      const typeProduct = value as typeProduct;
-      setFilter(() => ({ ...filter, typeProduct }));
+      if (type === 'agePet') {
+        const agePet = value as agePet;
+
+        const add = filter.agePet.includes(agePet);
+        const newAgePet = add ? filter.agePet.filter(item => item !== agePet) : [...filter.agePet, agePet];
+        setFilter(() => ({ ...filter, agePet: newAgePet }));
+      }
     }
   };
 
@@ -95,7 +123,7 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
           <Button
             key={key}
             className='flex justify-center items-center flex-col text-center cursor-pointer'
-            onClick={() => handleFilterChange('typePet', key)}
+            onClick={() => handleFilterChange('typePet', key, adopt)}
           >
             <div
               className={`
@@ -112,7 +140,7 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
                   className={`z-10 rounded-full ring-1 ring-primary md:ring-0  shadow-none transform transition-all
                   ${filter.typePet.includes(key as any) ? 'px-3 md:px-2' : 'px-2 md:px-3'}
                   `}
-                  onClick={() => handleFilterChange('typePet', key)}
+                  onClick={() => handleFilterChange('typePet', key, adopt)}
                   shadow={false}
                   sizeContainer={`md:h-[4.8rem] md:w-[4.8rem]
                   ${filter.typePet.includes(key as any) ? 'h-[4.8rem] w-[4.8rem]' : 'h-[3.8rem] w-[3.8rem]'}`}
@@ -140,7 +168,7 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
               'font-bold text-white gap-1 h-full transform transition-all duration-300 md:rounded-b-none lg:rounded-t-[30px]'
             }
             color={`${filter.agePet.includes(cat.key) ? '#7ac5be' : '#bee0e1'}`}
-            onClick={() => handleFilterChange('agePet', cat.key)}
+            onClick={() => handleFilterChange('agePet', cat.key, adopt)}
             padding={'px-2 lg:py-4 lg:px-6'}
             rounded={true}
           >
@@ -164,8 +192,9 @@ const AnimalFilter = ({ setFilter, filter }: animalFilterProps) => {
 };
 
 interface animalFilterProps {
-  setFilter: React.Dispatch<SetStateAction<filterShop>>;
-  filter: filterShop;
+  setFilter: React.Dispatch<SetStateAction<filterShop | FilterPet>>;
+  filter: filterShop | FilterPet;
+  adopt?: string;
 }
 
 export default AnimalFilter;

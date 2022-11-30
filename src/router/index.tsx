@@ -19,6 +19,7 @@ const ResultPayment = lazy(() => import('../views/resultPayment'));
 const CreateCombo = lazy(() => import('../views/createCombo'));
 
 import { useAppContext, useAuth, useLocation } from '../hooks';
+import Adopt from '../views/Adopt';
 
 const AppRouter = () => {
   // Hooks
@@ -150,6 +151,34 @@ const AppRouter = () => {
               </Suspense>
             }
           />
+
+          <Route
+            path='/adopta'
+            element={
+              <Suspense fallback={<FadeScreen />}>
+                <Adopt />
+              </Suspense>
+            }
+          />
+
+          <Route path='/adopta/:type'>
+            <Route index
+              element={
+                <Suspense fallback={<FadeScreen />}>
+                  <Adopt />
+                </Suspense>
+              }/>
+            <Route path='/adopta/:type/:cat'>
+              <Route index
+                element={
+                  <Suspense fallback={<FadeScreen />}>
+                    <Adopt />
+                  </Suspense>
+                }
+              />
+            </Route>
+          </Route>
+
           <Route
             path='/canasta'
             element={

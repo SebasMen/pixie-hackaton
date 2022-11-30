@@ -5,6 +5,10 @@ export interface ProductListResponse {
   products: Array<Product>;
 }
 
+export interface PetsListResponse {
+  pets: Array<any>;
+}
+
 export interface ResultProduct {
   product: Product;
   quantity: number;
