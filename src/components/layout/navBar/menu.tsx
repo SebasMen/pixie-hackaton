@@ -53,7 +53,7 @@ export const Menu = ({ collapsed, toggle }: MenuProps) => {
       </div>
 
       {/* Items */}
-      <div className='flex flex-col flex-grow flex-shrink-0 gap-8 mt-8 text-fourth text-xl px-6'>
+      <div className='flex flex-col flex-grow flex-shrink-0 gap-8  mt-8 text-fourth text-xl px-6 bg-blue-600 w-60'>
         <NavMobileItem name='adopta' />
         <NavMobileItem name='tienda' />
         <NavMobileItem name='calculadora' />

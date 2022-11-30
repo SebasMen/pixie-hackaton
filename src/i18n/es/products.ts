@@ -8,7 +8,7 @@ export const products = {
   productsInfoTable: 'Tabla consumo en gramos diarios:',
   productsInfoTableButton: 'Click para ampliar',
   productsInfoPuppiesRange: 'Etapa: Cachorros de 2 a 12 meses',
-  productsInfoAdultsRange: 'Etapa: Adultos de 1 a 6 años',
+  productsInfoAdultsRange: 'Etapa: Adultos de 1 a 7 años',
   productsInfoSeniorRange: 'Etapa: Seniors de 7 años en adelante',
   productsInfoComp: 'Composición Garantizada-MS%',
   productsInfoCons: 'Conservación del producto',

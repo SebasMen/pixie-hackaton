@@ -24,9 +24,9 @@ const types: SelectItem[] = [
 ];
 
 const exercises: SelectItem[] = [
-  { value: 'low', label: 'Baja' },
-  { value: 'medium', label: 'Normal' },
-  { value: 'high', label: 'Alta' },
+  { value: 'low', label: 'Pequeño' },
+  { value: 'medium', label: 'Mediano' },
+  { value: 'high', label: 'G' },
 ];
 
 export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
@@ -52,6 +52,10 @@ export const CalculatorSection = ({ setView }: CalculatorSectionProps) => {
         exerciseOptions: exercises,
         idealWeight: 0,
         hasAllergies: false,
+        sexPet:"",
+        description:"",
+        photoPet:"",
+        city: ""
       },
       form => handleSubmit(form)
     );

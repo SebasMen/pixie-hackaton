@@ -12,7 +12,11 @@ export interface CalculatorForm {
   exercise: SelectItem;
   exerciseOptions: SelectItem[];
   allergies: allergies,
-  hasAllergies: boolean
+  hasAllergies: boolean,
+  sexPet: string,
+  photoPet: string;
+  description: string;
+  city: string;
 }
 export interface allergies {
   hepatics: boolean
@@ -29,4 +33,9 @@ export interface CalculatorFormValidate {
   exactAge: validatorBody;
   idealWeight: validatorBody;
   exercise: validatorBody;
+  sexPet: validatorBody;
+  photoPet: validatorBody;
+  description: validatorBody;
+  city: validatorBody;
+
 }

@@ -172,7 +172,7 @@ export const NavBar = () => {
                 <div
                   className={`${
                     showMinimalNavbar && 'md:items-center'
-                  } hidden md:flex md:flex-row justify-between md:gap-7 md:mr-6`}
+                  } hidden md:flex md:flex-row justify-between md:gap-7 md:mr-6 w-35` }
                 >
                   <NavItem name={t('navCatalogue')} path='/catalogo' color={color} />
                   <NavItem name={t('navCalculator')} path='/calculadora' color={color} />
