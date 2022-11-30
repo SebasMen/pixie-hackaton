@@ -172,7 +172,7 @@ export const CalculatorForm = ({
       setTextTitleForm(
         language === "en"
           ? "Discover the plan that is most suited for your pet"
-          : "Descubre cuál es el plan que más le conviene"
+          : ""
       );
   }, [type, language]);
 
